@@ -13,6 +13,10 @@ design trade-offs**. This session is the trade-off reasoning itself: what breaks
 working pilot and 10,000 users a day. The scored skill is naming what you give up, not
 just what you gain — an answer that claims a design has no downside is wrong on this exam.
 
+## Session focus
+
+This session is the trade-off reasoning itself — what breaks between a working pilot and production scale. The crux is simple and absolute: **every design costs something, and "no downside" is a wrong answer**. The session's real work is the interrogation exercise: the learner proposes an architecture and you press "what does this cost you?", "what breaks at 10×?", "what failure haven't you handled?" until they pre-empt the questions. Also land the counterintuitive result that more concurrency past a rate limit *reduces* effective throughput.
+
 ## Authoritative sources
 
 **Scaling and throughput constraints**

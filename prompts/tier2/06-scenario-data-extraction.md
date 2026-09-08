@@ -15,6 +15,10 @@ structured-output support, batch limits, and pricing multipliers against live do
 `.../batch-processing`, `.../prompt-caching`, `.../citations`) before writing questions
 that turn on a number.
 
+## Session focus
+
+Drill the structured-extraction archetype. The crux is the gap between **asking for structure and guaranteeing it** — on approach-choice items, make the learner name the *guarantee* each option provides, because that word is the entire discrimination in this domain. The archetype's signature question is a pipeline silently inventing plausible values for fields genuinely absent from the source. Verify structured-output support and any figures from live docs before writing questions that turn on a number.
+
 ## Format
 
 1. **Scenario brief** (250–400 words) with the deciding constraints.

@@ -14,6 +14,10 @@ precedence order against live docs (`code.claude.com/docs/en/memory`,
 `.../settings`, `.../settings-reference`, `.../hooks`, `.../skills`) so no question is
 built on a stale detail.
 
+## Session focus
+
+Drill the Claude Code team-configuration archetype. This is the most **precision-dependent** of the six — precedence and placement questions have exactly one right answer — so verify the current hierarchy against live docs before writing anything. The crux is guidance-vs-enforcement: the archetype's signature question is a rule sitting in CLAUDE.md that developers' agents keep ignoring. On precedence items, make the learner state the *rule* they applied, not just the answer; a right answer from a wrong rule fails on the next variation.
+
 ## Format
 
 1. Present a **scenario brief** (250–400 words) with the deciding constraints.

@@ -16,6 +16,10 @@ exactly one right answer and several plausible wrong ones. This is the most
 memorization-heavy session in Tier 1 — and the one where stale knowledge hurts most, so
 verify against live docs.
 
+## Session focus
+
+This session covers the CLAUDE.md hierarchy, settings precedence, and where a given rule belongs. It is the most memorization-dense session in Tier 1, and precedence questions have exactly one right answer — so verify the current hierarchy against live docs before teaching any of it. The crux is the **CLAUDE.md vs. settings distinction**: guidance the model may follow versus a constraint the harness enforces. Spend the most time on the placement exercise, because putting an enforceable requirement in CLAUDE.md is the signature wrong answer of this domain's scenario archetype.
+
 ## Authoritative sources
 
 Fetch these and confirm exact file locations, key names, and precedence order before

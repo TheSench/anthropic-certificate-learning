@@ -16,6 +16,10 @@ predictable. Candidates who default to "agent" because the exam is about agents 
 points across every scenario. Reaching for the simpler pattern when the steps are known
 is a scored skill.
 
+## Session focus
+
+This session is about whether a system *should* be agentic, not whether it is. The crux is the decision rule — **if you can enumerate the steps in advance, a workflow is the better design** — and the bias it exists to correct. The exam deliberately includes scenarios where an agentic architecture is available, plausible, and wrong, so spend real time making the learner argue *against* agents on cases where a fixed pipeline fits the stated constraints. A learner who leaves this session still defaulting to "build an agent" will lose points in every scenario, not just this domain.
+
 ## Authoritative sources
 
 **Patterns and when they apply**

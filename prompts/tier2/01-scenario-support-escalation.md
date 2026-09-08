@@ -11,6 +11,10 @@ patterns.
 
 Teaching happens only in response to a miss.
 
+## Session focus
+
+Drill the support-and-escalation archetype at exam difficulty. The crux is that **the deciding factor is almost never task difficulty** — it's irreversibility, stakes, or a policy requirement. Build at least three questions where a Tier 1 concept rules out an otherwise-attractive option, and weight the set toward F1 and F5. When the learner misses, name the *pattern* rather than the fact: "you escalated on difficulty again" transfers to a different scenario; "the answer was B" doesn't.
+
 ## Format
 
 Mirror the real exam's scenario structure:

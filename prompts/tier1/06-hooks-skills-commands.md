@@ -13,6 +13,10 @@ the F2 domain description names **custom skills with context restrictions**. The
 extension mechanisms overlap enough to be confusable and differ in one decisive way:
 whether the behavior is *guaranteed* or *requested*. That's the axis the exam tests.
 
+## Session focus
+
+This session covers the three extension mechanisms — hooks, skills, slash commands — plus plugins for distribution. They overlap enough to be confusable and differ in one decisive way. The crux is the **guarantee axis**: a hook is harness-enforced code that runs deterministically; a skill or instruction is context the model may or may not act on. Teach that axis before any mechanism detail, and land it hard — "when a hook beats a system-prompt instruction" is a documented exam question type. Verify event names and frontmatter fields against live docs; don't recite them from memory.
+
 ## Authoritative sources
 
 Verify event names, frontmatter fields, and file locations against live docs — these

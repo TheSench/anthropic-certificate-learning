@@ -13,6 +13,10 @@ ways to get information in front of the model — long context, retrieval, files
 lookup at inference time — and knowing which one satisfies a *freshness*, *permission*,
 and *auditability* requirement rather than just fitting the tokens.
 
+## Session focus
+
+This session covers how enterprise data reaches the model — long context, RAG, files, or inference-time tool lookup. The crux is that the choice is decided by **permission, freshness, and auditability far more often than by token math**, and permission usually dominates. Spend the most time on permission-filtered retrieval: one index, two users with different entitlements, one query. Reject any fix that filters *after* generation and explain why that's too late — most wrong answers here are token-optimal designs that leak.
+
 ## Authoritative sources
 
 **Getting content to the model**

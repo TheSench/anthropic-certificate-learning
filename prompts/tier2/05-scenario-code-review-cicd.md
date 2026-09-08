@@ -15,6 +15,10 @@ against live docs (`code.claude.com/docs/en/github-actions`, `.../gitlab-ci-cd`,
 `.../code-review`, `.../headless`, `.../permission-modes`, `.../sandboxing`) before
 writing questions.
 
+## Session focus
+
+Drill the automated-code-review-in-CI archetype. Its signature theme is **what changes when no human is in the loop**: permissions can't be approved interactively, untrusted PR content reaches the context, and cost scales with PR volume. The crux is the propose/act boundary — make the learner state the reversibility argument explicitly, since that same rule decides the support archetype too. Verify CI and permission-mode specifics against live docs first. Keep questions at Foundations altitude; enterprise governance depth is Tier 3.
+
 ## Format
 
 1. **Scenario brief** (250–400 words) with the deciding constraints.

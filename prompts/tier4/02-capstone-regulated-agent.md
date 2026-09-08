@@ -11,6 +11,10 @@ skeptical risk committee, and an incident that arrives late in the session.
 Teach nothing new. This tests integration under the hardest combination on the exam —
 autonomy plus regulation.
 
+## Session focus
+
+The learner designs a customer-facing agentic system under a regulatory regime, while you play a compliance officer and a risk committee. The crux is the **autonomy boundary drawn on reversibility, stakes, and regulatory requirement — never on difficulty** — and it must be drawn *before* any architecture. Interrogate every autonomous classification. Watch for the trap of holding the agent to perfection when the human baseline it replaces is 94%. In Phase 6, a strong response starts with containment and scoping the harm, not with root cause.
+
 ## Why this capstone
 
 Capstone 1 covered internal rollout, where the blast radius is your own engineers. This one

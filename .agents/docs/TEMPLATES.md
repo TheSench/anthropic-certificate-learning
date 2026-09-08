@@ -84,32 +84,55 @@ already has production depth.
 ```markdown
 # Domain Relevance
 
-Depth calibration per exam domain. Ratings: HIGH, MED, LOW.
-Relevance affects *depth and drill difficulty*, never whether a session runs —
-exam weight decides that (see `BLUEPRINT.md`).
+Read this at the start of every session to calibrate depth, examples, and emphasis.
+Ratings: HIGH, MED, LOW. Relevance affects *depth and drill difficulty*, never whether a
+session runs — exam weight decides that (see `BLUEPRINT.md`).
 
-## Foundations (CCAR-F)
+---
 
-| Domain | Weight | Relevance | Notes |
+## Learner context
+
+[One prose paragraph from the initialization interview: who the learner is, what they
+already do hands-on, why they're sitting these exams, their target dates, and the explicit
+priorities they stated about session length, depth, and pace. Write this as prose, not
+bullets — it's the thing an agent reads to decide how to pitch an explanation, and a
+paragraph carries the nuance a table can't.]
+
+## Rating rationale
+
+Every rating carries a *why*. A HIGH with no reason behind it decays into "go slower on
+everything"; the rationale is what lets an agent tell an unfamiliar domain (needs
+teaching) from a weak one (needs drilling) from a high-stakes one (needs both).
+
+### Foundations (CCAR-F)
+
+| Domain | Weight | Relevance | Rationale |
 |---|---|---|---|
-| F1 Agentic Architecture & Orchestration | 27% | HIGH | |
-| F2 Claude Code Configuration & Workflows | 20% | HIGH | |
-| F3 Prompt Engineering & Structured Output | 20% | HIGH | |
-| F4 Tool Design & MCP Integration | 18% | HIGH | |
-| F5 Context Management & Reliability | 15% | MED | |
+| F1 Agentic Architecture & Orchestration | 27% | HIGH | Largest domain; every scenario touches it |
+| F2 Claude Code Configuration & Workflows | 20% | HIGH | [why for this learner] |
+| F3 Prompt Engineering & Structured Output | 20% | HIGH | [why for this learner] |
+| F4 Tool Design & MCP Integration | 18% | HIGH | [why for this learner] |
+| F5 Context Management & Reliability | 15% | MED | [why for this learner] |
 
-## Professional (CCAR-P)
+### Professional (CCAR-P)
 
-| Domain | Weight | Relevance | Notes |
+| Domain | Weight | Relevance | Rationale |
 |---|---|---|---|
-| P1 Integration | 19% | HIGH | |
-| P2 Solution Design & Architecture | 17% | HIGH | |
-| P3 Evaluation, Testing & Optimization | 16% | MED | |
-| P4 Governance, Safety & Risk Management | 14% | MED | |
-| P5 Stakeholder Communication & Lifecycle | 14% | MED | |
-| P6 Claude Models, Prompting & Context Engineering | 13% | MED | |
-| P7 Developer Productivity & Operational Enablement | 7% | LOW | |
+| P1 Integration | 19% | HIGH | Largest Professional domain |
+| P2 Solution Design & Architecture | 17% | HIGH | [why for this learner] |
+| P3 Evaluation, Testing & Optimization | 16% | MED | [why — often weak in builders who haven't operated] |
+| P4 Governance, Safety & Risk Management | 14% | MED | [why — absent from Foundations entirely] |
+| P5 Stakeholder Communication & Lifecycle | 14% | MED | [why — absent from Foundations entirely] |
+| P6 Claude Models, Prompting & Context Engineering | 13% | MED | [why for this learner] |
+| P7 Developer Productivity & Operational Enablement | 7% | LOW | Smallest domain; still absent from Foundations |
 ```
+
+**Setting the initial ratings.** HIGH for stated weak areas and for any domain at ≥18%
+weight; LOW only where the learner has demonstrable production depth already. Never rate a
+domain LOW because it's unfamiliar — unfamiliar is the argument for HIGH. The P4/P5/P7
+group deserves particular care: a learner who has only *built* with Claude will
+under-report weakness there because they've never had to do it, so probe before accepting
+a low rating.
 
 ---
 

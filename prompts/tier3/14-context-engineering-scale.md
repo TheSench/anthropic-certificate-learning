@@ -13,6 +13,10 @@ mechanics — windows, caching, compaction. Professional asks how you *architect
 for a system serving many users over long horizons, where context strategy is simultaneously
 the dominant cost driver, a correctness concern, and a data-boundary concern.
 
+## Session focus
+
+This session raises context from mechanics to architecture for a system serving many users over long horizons. The crux, and the highest-severity failure in the domain, is **multi-tenant context safety**: tenant data must not cross through a shared prefix, a shared cache, or an unscoped memory store. Construct the leak all three ways. The Professional-altitude insight to draw out: because a frequently-edited shared prefix invalidates the cache for every user, prompt-change governance is a cost decision — have the learner connect a policy to a budget line.
+
 ## Authoritative sources
 
 **Context mechanics at scale**

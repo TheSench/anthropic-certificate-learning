@@ -14,6 +14,10 @@ judgment is matching a **mitigation to a specific failure mode** — and knowing
 guardrails are probabilistic, so anything requiring a guarantee needs a deterministic
 control outside the model.
 
+## Session focus
+
+This session covers the guardrail set: hallucination, jailbreak, prompt leak, inconsistency, streaming refusals. The exam tests **mitigation matching**, and the trap is treating "add guardrails" as a universal answer. The crux is the probabilistic limitation: prompt-level guardrails shift odds, they don't guarantee — so any requirement stated as "must never" needs a deterministic control outside the model. Second crux: distinguish injection (arriving via untrusted ingested data) from jailbreak (the user's own input), because the fixes differ, and least-privilege tooling is the strongest injection defense.
+
 ## Authoritative sources
 
 **The guardrail set**

@@ -15,6 +15,10 @@ do about the residual failures either way. Extraction scenarios always come with
 downstream consumer that breaks on malformed data, which is what makes the guarantee
 matter.
 
+## Session focus
+
+This session covers getting structured data out reliably. The whole session turns on one word: **guarantee**. Prompting for JSON improves the odds; schema enforcement constrains the generation — and knowing which is which is the scored distinction. The crux, and the most consequential idea in the domain, is the **missing-value problem**: when a required field isn't in the source, a model will often produce something plausible, so the schema and prompt must make absence representable and detectable. Spend real time there; silent invention is the signature failure of this domain's scenario archetype.
+
 ## Authoritative sources
 
 Verify parameter names, supported models, and current limitations before teaching.

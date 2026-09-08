@@ -15,6 +15,10 @@ requirements change, and the input distribution shifts. The scored skill is owni
 change safely, and the recurring right answer is that an eval suite is what makes
 migration a managed process rather than a gamble.
 
+## Session focus
+
+This session covers owning a system as its dependencies move — model releases, deprecations, prompt drift, shifting input distributions. Verify the current deprecation schedule before teaching any date. The crux is that **an eval suite is what makes migration a managed process rather than a gamble**, and the realistic exam case is inheriting a system with a fixed retirement date and no suite. Spend the most time sequencing that under deadline. Also land that a stronger model can score *worse* on your suite, because prompts aren't perfectly portable.
+
 ## Authoritative sources
 
 Verify the current deprecation schedule and migration guidance — dates and supported

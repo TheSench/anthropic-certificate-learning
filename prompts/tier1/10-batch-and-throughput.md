@@ -15,6 +15,10 @@ deciding facts — volume, latency tolerance, cost ceiling — and the wrong ans
 options that ignore one of them. This is arithmetic-plus-judgment, and it's very
 scoreable, so it's worth being precise.
 
+## Session focus
+
+This session covers running a reliable call at volume: batch, streaming, caching interaction, and rate limits. It's the most arithmetic-friendly material on the Foundations exam, so precision pays — verify the current batch discount, limits, and turnaround window from live docs before quoting any number. The crux is the **batch trade**: much lower cost per token in exchange for asynchronous turnaround, which makes it wrong for anything a user is waiting on regardless of the savings. Also be honest that streaming changes *perceived* latency only; it is neither a throughput nor a cost lever.
+
 ## Authoritative sources
 
 Verify current limits, pricing multipliers, and turnaround guarantees — these change.

@@ -14,6 +14,10 @@ choices look interchangeable until you look at what each does to *context* — w
 real axis, and the one the exam tests. Two of the six scenario archetypes (multi-agent
 research, developer tooling) are built on this material.
 
+## Session focus
+
+This session covers the orchestration primitives — subagents, forks, agent teams, and deterministic workflows over many agents. The crux is that **context inheritance decides nearly all of these choices**: a fork copies the parent's context down, a subagent withholds it and returns only a conclusion. Teach that shape before naming any pattern, because "when to fork a session vs. spawn a subagent" is a documented exam question type and it is fundamentally a context-budget question, not a capability one. Two of the six scenario archetypes are built on this material, so don't rush it.
+
 ## Authoritative sources
 
 Verify current capabilities and naming here — this area of the product moves.

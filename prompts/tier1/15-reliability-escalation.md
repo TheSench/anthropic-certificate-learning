@@ -16,6 +16,10 @@ the six archetypes, so this material is likely to appear on your exam regardless
 scenarios you draw. Escalation questions are scored on whether you can identify the
 *deciding* factor — usually irreversibility or confidence, not difficulty.
 
+## Session focus
+
+This session closes Tier 1 with escalation, state, and distributed failure, and feeds directly into the support scenario archetype. The crux is that **escalation is decided by irreversibility and stakes, not by difficulty** — a hard-but-reversible action is safer to attempt than an easy-but-irreversible one. The second crux, close behind: a model cannot reliably self-assess when it has misunderstood, so escalation triggers should be structural (this action type always escalates; no progress after N attempts) rather than left to model-judged confidence. Both are named exam skills; spend the session's weight there.
+
 ## Authoritative sources
 
 **Session state and recovery**

@@ -15,6 +15,10 @@ dependency*, so reliability comes from the system around it — validation, fall
 circuit breakers, idempotency, and observability — not from making the model more
 reliable. Exam answers that try to fix reliability inside the prompt are usually wrong.
 
+## Session focus
+
+This session covers reliability engineering around a probabilistic dependency. The crux is that **reliability lives in the system around the model** — validation boundaries, fallback ladders, circuit breakers, idempotency — so prompt-level fixes are usually the wrong answer to a reliability question. The hardest failure class, and where to spend the most time: **semantically wrong but well-formed output**, which passes schema validation and fails silently. Push the learner to invariant checks, cross-validation, and sampled review rather than accepting "validate the JSON".
+
 ## Authoritative sources
 
 **Failure handling**

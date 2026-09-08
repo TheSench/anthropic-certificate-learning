@@ -15,6 +15,10 @@ disproportionately worth studying — 14% is more than enough to decide a pass. 
 scored on choosing the *right communication for the audience and situation*, and honest
 communication of uncertainty consistently beats confident overclaiming.
 
+## Session focus
+
+This is the least technical domain and the one engineers most under-prepare, which at 14% makes it disproportionately worth studying. The crux is **audience translation** — the same decision explained to a CFO, a CISO, a staff engineer, and a product owner — and the session's core work is the role-play, where you play a skeptical stakeholder who pushes back at least twice per exchange. Do not let a vague answer pass. Also teach the recommend-against case: advising against a Claude solution when a deterministic system fits better is scored as competence, not as failure to deliver.
+
 ## Authoritative sources
 
 Less documentation-driven than other domains; the material to ground on is what these

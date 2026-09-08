@@ -15,6 +15,10 @@ is the split correct? Bad decomposition is the root cause behind most multi-agen
 failures, and the exam's wrong answers are usually plausible-looking splits with a
 hidden dependency or an unverifiable subtask.
 
+## Session focus
+
+This session is the analytical skill of splitting work so the orchestration primitives apply cleanly. The crux is the **four tests of a well-formed subtask** — self-contained, verifiable, bounded, independent — and the exam form is: here's a proposed split, what's wrong with it? Spend the session's weight on having the learner find the violated test rather than on the taxonomy of axes. Decomposition determines the orchestration pattern, so a bad split can't be rescued by a better pattern, which is exactly why it's tested directly.
+
 ## Authoritative sources
 
 **Decomposition and delegation in practice**

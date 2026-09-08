@@ -14,6 +14,10 @@ a *prompt* — the only information the model has when choosing — so most tool
 bugs are description bugs, not model bugs. Exam wrong answers are typically "improve the
 system prompt" or "use a stronger model" when the actual fix is in the tool definition.
 
+## Session focus
+
+This session covers designing tools the model selects and calls correctly. The crux is that **a tool description is a prompt** — it's the model's entire basis for choosing — so most tool-selection bugs are description bugs. Spend the most time on mutual disambiguation: rewriting two overlapping descriptions against each other so each says when to use it *and when not to*. The exam's tempting wrong answers here are "improve the system prompt" and "use a stronger model"; a learner who reaches for those on a description bug will miss "debugging tool selection issues" items, which are a named exam skill.
+
 ## Authoritative sources
 
 **Tool definition and mechanics**

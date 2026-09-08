@@ -11,6 +11,10 @@ specific weaknesses.
 Run this last. It's the highest-leverage session in the curriculum precisely because it's
 targeted, and it's the one worth re-running.
 
+## Session focus
+
+This session has **no fixed content** — it reads the learner's own record and attacks their specific weaknesses, which makes it the highest-leverage session in the curriculum and the one worth re-running. Two crux ideas: rank domains by *weight × shortfall* rather than by raw weakness, and attack recurring **distractor patterns** separately from domain gaps, by constructing questions engineered to trigger each bias. Tell the learner afterward that those questions were built to trip that bias — naming a trap is what makes it resistible under exam pressure. Be direct in the verdict; a false green light costs an exam fee and a retake wait.
+
 ## Step 1 — Read the record
 
 Before doing anything else, read:

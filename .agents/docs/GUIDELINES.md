@@ -24,11 +24,21 @@ Every prompt file has these sections, in order:
 1. `# <Title> — <Domain code> <Domain name>` + exam weight line
 2. `## What this session assumes` — prior sessions and background
 3. `## Why this domain is worth <N>% of your score` — the framing
-4. `## Authoritative sources` — doc URLs to verify against, grouped by what they settle
-5. `## Teaching objectives` — what the learner can do afterward, as capabilities
-6. `## Decisions the exam actually tests` — the choice pairs, explicitly
-7. `## How to run this session` — the arc, and what to drill
-8. `## Out of scope` — what to defer, and to which session
+4. `## Session focus` — **one prose paragraph** naming what the session covers and, above
+   all, which single idea is the **crux**. Say explicitly where to spend disproportionate
+   time. This is the section that prevents even coverage of unequal material.
+5. `## Authoritative sources` — doc URLs to verify against, grouped by what they settle
+6. `## Teaching objectives` — what the learner can do afterward, as capabilities
+7. `## Decisions the exam actually tests` — the choice pairs, explicitly
+8. `## How to run this session` — the arc, and what to drill
+9. `## Out of scope` — what to defer, and to which session
+
+Prompt files are written **to the instructor in second person** — "Teach me X", "Ask me
+to…" — so emphasis and pacing instructions read as directives rather than description.
+
+Cross-references belong inline: when a concept's full treatment lives in a later session,
+say so at the point it comes up ("state the conclusion here; the full argument is Tier 3
+session 1"), so the agent knows how deep to go rather than guessing.
 
 ## Writing drill questions
 

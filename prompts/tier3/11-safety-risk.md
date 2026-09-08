@@ -14,6 +14,10 @@ what's acceptable, and owning the residual. Exam items here read like an archite
 review board's questions, and the scored skill is systematic risk reasoning rather than
 listing safety features.
 
+## Session focus
+
+This session covers risk management as an organizational discipline, framed as an architecture review board would ask it. The crux is **least privilege for agents**: an agent's blast radius is the union of its tool permissions, so restricting tools beats hardening instructions. Insist the learner explicitly *accept* at least one risk — an architect who mitigates everything hasn't prioritized. Also land the agent-specific risk that traditional appsec misses: the action set is chosen at runtime by a probabilistic process influenced by untrusted input.
+
 ## Authoritative sources
 
 **Security posture**

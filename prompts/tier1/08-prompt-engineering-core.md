@@ -15,6 +15,10 @@ you can diagnose *why* a production prompt is failing and pick the intervention 
 addresses that cause. Wrong answers are usually real techniques applied to the wrong
 failure mode.
 
+## Session focus
+
+This session covers the prompt techniques that earn their token cost, but the exam does not test technique recall — it tests **diagnosis**. The crux is matching a failing prompt to its *cause* (ambiguous criteria, missing context, unhandled edge case, conflicting instructions, or genuinely needing a stronger model) and picking the intervention that addresses that cause. Spend the session's weight on the four-failing-prompts exercise, and do not let the learner answer "add few-shot examples" to all of them — technique-shotgunning is precisely the bias the exam punishes.
+
 ## Authoritative sources
 
 **Core technique reference**

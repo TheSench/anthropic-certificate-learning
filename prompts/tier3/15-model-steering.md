@@ -13,6 +13,10 @@ a single prompt; Professional tests managing prompts as a **portfolio asset** ac
 models, teams, and time — versioned, owned, evaluated, and migrated. Items here often turn
 on treating prompts as code rather than as configuration strings.
 
+## Session focus
+
+This session treats prompts as a **portfolio asset managed like code** — versioned, owned, evaluated, migrated — rather than as configuration strings. The crux is the steering lever order: instruction clarity, examples, output structure, effort/thinking, then model change. Cheapest and most targeted first; reaching for a model change before the prompt is unambiguous is this domain's bias trap. Also teach A/B statistics honestly — in a probabilistic system, small samples mislead, and a difference must clear variance before it's real.
+
 ## Authoritative sources
 
 **Steering and model-specific behavior**

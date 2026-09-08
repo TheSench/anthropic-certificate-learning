@@ -14,6 +14,10 @@ the design constraints materially — no human to approve a permission prompt, n
 to resume, a hard time budget, and secrets handling that must survive audit. The exam
 tests whether you know what breaks when you take the human out of the loop.
 
+## Session focus
+
+This session covers non-interactive Claude Code in a pipeline. The crux is that **removing the human removes the safety net every design decision was implicitly relying on** — no one approves a permission prompt, untrusted PR content lands in the context, and cost scales with PR volume. Spend the most time on the permission problem and the propose/act boundary, and let the learner reach least-privilege allowlisting themselves rather than being told. Ground the propose/act judgment in reversibility; that same rule returns in session 15 and in two scenario archetypes.
+
 ## Authoritative sources
 
 **Non-interactive execution**

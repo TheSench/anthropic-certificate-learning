@@ -10,6 +10,10 @@ session — Tier 1 sessions 1–4 and 14 taught this. Teach only on a miss.
 This archetype carries the heaviest F1 weighting of the six, and F1 is 27% of the exam.
 It is the highest-value drill in Tier 2.
 
+## Session focus
+
+Drill the multi-agent research archetype. This is the **highest-value drill in Tier 2** — it carries the heaviest F1 weighting of the six archetypes, and F1 is 27% of the exam. The crux is over-orchestration: more agents where fewer would do, and parallelization across a real dependency. On decomposition items, make the learner name which of the four well-formed-subtask tests their answer turns on. If F1 accuracy lands below 75% here, say plainly that it's the primary risk to passing.
+
 ## Format
 
 1. **Scenario brief** (250–400 words) with the deciding constraints.

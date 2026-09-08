@@ -14,6 +14,10 @@ questions or so. But it's still part of the 35% missing from Foundations, and it
 learn: the material is organizational rather than technical. It covers rolling Claude out
 to a team and operating it — enablement, standardization, measurement, and support.
 
+## Session focus
+
+The smallest Professional domain at 7%, so keep this session tight — roughly four exam questions' worth. It's still part of the 35% missing from Foundations and it's cheap to learn, being organizational rather than technical. The crux is **metrics**: ask which the learner would report to a CTO, then attack the list — which are gameable, which measure activity rather than value? Push until it includes at least one genuine outcome metric. Volume metrics offered as productivity evidence is the signature wrong answer here.
+
 ## Authoritative sources
 
 **Rollout and adoption**

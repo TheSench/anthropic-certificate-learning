@@ -14,6 +14,10 @@ alone. The exam tests whether you can pick a deployment surface from *those* con
 rather than from technical preference, and whether you know what changes about model
 availability, feature parity, and billing when you move.
 
+## Session focus
+
+This session covers where a Claude workload runs: cloud provider surfaces, gateways, and self-hosted environments. The crux is that **surface choice is a procurement and compliance decision, not a technical preference** — so practice *eliminating* options against stated constraints rather than optimizing. The second crux: feature parity, model availability, and regional coverage differ per surface and must be verified, never assumed. Say that out loud to the learner, because an assumed-parity answer is exactly what an exam item can hinge on.
+
 ## Authoritative sources
 
 Verify current feature parity, model availability per surface, and regional support —

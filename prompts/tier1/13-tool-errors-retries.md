@@ -14,6 +14,10 @@ is context the model reads and acts on, so a well-designed error makes the model
 self-correct while a bad one makes it loop or give up. The exam rewards knowing that
 distinction, and knowing which errors the model should *not* be asked to handle.
 
+## Session focus
+
+This session applies session 11's framing to failure: **an error message is a prompt**. The model reads it and chooses what to do next, so its wording decides whether the model recovers or loops. The crux is the **four-way failure classification** — transient, malformed arguments, permanent/semantic, systemic — and routing each to the right handler, because the F4 domain description names structured error responses with retry logic explicitly. Spend the most time on the classification drill, and make sure the code-vs-model retry boundary lands: letting the model retry a rate limit burns context on a wait it cannot perform.
+
 ## Authoritative sources
 
 **Tool call handling and errors**

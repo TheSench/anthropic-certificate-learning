@@ -11,6 +11,10 @@ no eval suite, and with stakeholders who were promised it was done.
 Teach nothing new. This is the inheritance scenario, and it's the most realistic of the
 four.
 
+## Session focus
+
+The learner inherits a working-but-unscalable system, undocumented and unevaluated, on a model with a retirement date. This is the most realistic of the four capstones. The crux is the **sequencing decision in Phase 2**: with a deadline, no evals, a cost overrun, and a scaling problem, the strong answer builds a minimal eval suite first, because everything else is unsafe without it. Push hard if the learner sequences the migration first — ask how they'd know it broke something. Require they name the planted defects unprompted.
+
 ## Why this capstone
 
 The first two capstones design greenfield systems. Most real Architect work is inheriting

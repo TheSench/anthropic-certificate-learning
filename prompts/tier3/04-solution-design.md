@@ -15,6 +15,10 @@ you a problem plus constraints and asks for the design; wrong answers are typica
 most capable option chosen where a stated cost, latency, or simplicity constraint should
 have decided otherwise.
 
+## Session focus
+
+This session covers requirements-to-architecture and model selection. Verify current model names, IDs, and prices before teaching any — a stale model ID is simply a wrong answer. The crux is **constraint-first selection**: identify the binding constraint, then choose the cheapest model that clears the quality bar. "When Sonnet is the right call over Opus" is a documented exam question type, and defaulting to the most capable option is the top Professional failure mode. Spend real time on the over-engineering exercise; the exam rewards the *sufficient* design.
+
 ## Authoritative sources
 
 Verify current model names, IDs, capabilities, context limits, and prices — model lineups

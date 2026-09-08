@@ -30,11 +30,17 @@ Run only when `learner/profile.md` doesn't exist.
    - What's your engineering background, and how many years in architecture or platform work?
    - How much hands-on Claude work have you done — Claude Code, Agent SDK, the API, MCP? Any of it in production?
    - Which of these are you weakest on: enterprise integration, evals/testing, governance & compliance, stakeholder communication, cost/model selection?
+   - Have you ever had to defend an architecture to a security review, own a compliance
+     requirement, or present a technical decision to executives? (This probes P4/P5 — 28%
+     of Professional — which builders routinely under-report because they've never had to.)
+   - How long do you want sessions to run, and do you prefer depth over pace?
    - Do you have a target exam date for Foundations?
 2. Create `learner/profile.md` from the template in [`.agents/docs/TEMPLATES.md`](docs/TEMPLATES.md).
-3. Create `learner/relevance.md` from its template. Set ratings from the answers:
-   HIGH for stated weak areas and for domains carrying ≥18% weight; LOW only where the
-   learner has demonstrable production depth already.
+3. Create `learner/relevance.md` from its template. Write the `## Learner context` prose
+   paragraph from the answers — it's what later sessions read to pitch explanations — and
+   give every rating a **rationale**, not just a level. HIGH for stated weak areas and for
+   domains carrying ≥18% weight; LOW only where the learner has demonstrable production
+   depth. Never rate a domain LOW for being unfamiliar; unfamiliar argues for HIGH.
 4. Create `learner/readiness.md` from its template (all domains at 0, untested).
 5. Proceed to Step 2 and start session 1.
 
@@ -417,6 +423,28 @@ This learner wants interactive, Socratic sessions — favor multiple rounds of
 "explain it back" / "predict the outcome" interleaved throughout over brisk one-pass
 explanation, even on MED-relevance domains. Check understanding after each major concept.
 Don't compress for pace; compress only where relevance is LOW.
+
+### Cross-cutting requirements
+
+These apply in **every** session, not only where a prompt file names them.
+
+**Production grounding.** After the exam-accurate mechanics are taught, connect the
+concept to how it actually plays out in a real deployment — what breaks, what it costs,
+what an engineer would notice. Both exams are written for practitioners, and scenario
+questions are built from real failure modes, so a concept the learner can only recite
+abstractly is one they'll misapply under a scenario's constraints. Each prompt file names
+starting points; treat them as a floor, not a ceiling.
+
+**Terminology exactly as the docs define it.** Use the product's own names for things —
+`CLAUDE.md`, settings precedence, hooks vs. skills, subagent vs. fork, `stop_reason`,
+prompt caching. Exam items are written in the documentation's vocabulary, and a learner
+who knows a concept under a homemade name will fail to recognize it in a question. When
+the learner uses an imprecise term, correct it in passing rather than adopting it.
+
+**Name the crux.** Most sessions have one idea that carries the others, and the prompt
+file's `## Session focus` says which. Spend disproportionate time there and say plainly
+that you're doing so. Even coverage of unequal material is the most common way a session
+feels complete and leaves the learner unable to answer a scenario question.
 
 ---
 

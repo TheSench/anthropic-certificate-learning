@@ -14,6 +14,10 @@ Foundations. A candidate who prepared only by building will be weakest here, and
 enough to fail on. This session covers the controls and evidence an enterprise deployment
 requires: who can use what, where data goes, how long it's kept, and how you prove it.
 
+## Session focus
+
+This session begins the three domains absent from Foundations entirely. Say plainly that P4, P5, and P7 are 35% of this exam and the usual reason strong builders fail it. The crux is the enforcement-point judgment: **policy in a document is not a control**. Spend the most time on the placement exercise — six stated policies mapped onto managed settings, inference hooks, spend limits, or workspace boundaries — where the point is identifying which are currently *unenforced*. Test audit design against a real auditor question and accept only evidence, never intent.
+
 ## Authoritative sources
 
 **Organizational control**

@@ -13,6 +13,10 @@ products in scope. The exam tests configuration judgment and trust boundaries mo
 protocol internals: which scope a server belongs in, what a remote third-party server can
 see, and what happens when a server's tools land in the context of every request.
 
+## Session focus
+
+This session covers MCP servers, transports, and configuration scopes. The exam tests configuration judgment and trust boundaries here far more than protocol internals, so verify scope names and config locations against live docs. The crux is the **trust boundary**: a third-party server both sees the arguments sent to it (exfiltration) and returns content that enters the model's context (injection), which makes its tool descriptions untrusted input. Have the learner reach the mitigations before you supply any — accepting a vendor server without that analysis is the signature wrong answer.
+
 ## Authoritative sources
 
 Verify config file locations, scope names, and transport support against live docs.

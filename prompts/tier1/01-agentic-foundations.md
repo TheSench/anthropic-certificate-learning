@@ -17,6 +17,10 @@ and ask whether the design is right, and if not, what to change. That requires a
 model of the action loop, because most wrong answers on this exam are architectures that
 would technically run but burn context, lose state, or escalate incorrectly.
 
+## Session focus
+
+This session builds the vocabulary the other three F1 sessions assume: the action loop, the three properties that make a system agentic, and the split between harness and model. The crux is **harness vs. model** — spend disproportionate time there. Nearly every "this agent is misbehaving" question on the exam has a harness answer (a tool description, a missing stop condition, context not carried forward), and candidates who reach for "better prompting" or "a stronger model" lose points across every scenario. Get the learner diagnosing faults to the harness by default, and the rest of F1 follows.
+
 ## Authoritative sources
 
 Fetch these to verify current behavior before teaching specifics.

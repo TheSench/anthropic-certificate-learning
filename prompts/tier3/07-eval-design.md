@@ -14,6 +14,10 @@ prompt or model changes without an eval suite, so "how would you know if this ch
 it worse" is the question behind most P3 items. Answers that rely on spot-checking or
 vibes are wrong.
 
+## Session focus
+
+This session answers the question behind most P3 items: **"how would you know if this change made it worse?"** Hold the learner to it — any answer that can't be measured isn't an answer. The crux is LLM-as-judge done properly, including the step most people skip: validating the judge against human labels. An unvalidated judge is a measurement you cannot trust, and spot-checking is not a regression strategy. Also do the eval-set sizing arithmetic; the number of cases needed to detect a small regression is persuasive in a way the principle isn't.
+
 ## Authoritative sources
 
 **Test design**

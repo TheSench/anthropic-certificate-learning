@@ -15,6 +15,10 @@ The altitude shift matters: Foundations asks "how do you define a tool", Profess
 classification policy, an existing event bus, and a network perimeter". Wrong answers are
 designs that work in isolation but ignore an existing enterprise constraint.
 
+## Session focus
+
+This session raises tool and MCP design to enterprise systems integration — topology, identity, network boundaries, and delivery semantics. The crux is the **delegation problem**: an agent holding service-level access, invoked by a user without it, is a privilege-escalation design, and recognizing that is a scored skill that returns in the governance domain. Construct that escalation concretely and have the learner design the fix. Frame the altitude shift explicitly: Foundations asks how to define a tool, Professional asks how it lands in an org that already has an IdP, an event bus, and a perimeter.
+
 ## Authoritative sources
 
 **Server-hosted agents and their integration surface**

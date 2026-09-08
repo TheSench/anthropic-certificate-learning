@@ -15,6 +15,10 @@ counts, and a budget, then ask which lever closes the gap — or which proposed 
 would break a stated requirement. Precision and knowing each lever's side effect are what
 score here.
 
+## Session focus
+
+This session is the most quantitative material on the Professional exam. Verify every rate, discount, and multiplier from live docs before any arithmetic, and note the date. The crux is the insight that reframes everything: in agentic systems the dominant cost is **accumulated input across loop iterations**, not output — so context discipline outranks model choice. Insist on naming each lever's *side effect* every single time; a lever cited without its cost is an incomplete answer here. And require a baseline before accepting any optimization.
+
 ## Authoritative sources
 
 Verify all pricing, discounts, TTLs, and multipliers — never quote them from memory.

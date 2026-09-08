@@ -13,6 +13,10 @@ verify the current built-in tool surface (`code.claude.com/docs/en/tools-referen
 `.../skills`, `platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools`) so no
 question asserts a stale capability.
 
+## Session focus
+
+Drill the developer-productivity-tooling archetype. Its signature theme is **reuse over reinvention** — knowing which built-in tool, skill, or platform capability already does the job — so verify the current built-in surface before writing questions. The crux is tool-selection diagnosis: the archetype's signature question is an assistant repeatedly choosing the wrong tool among overlapping ones, which is a description bug. Make the learner name *what in the description* causes the misfire; "the description is bad" is not an answer the exam accepts.
+
 ## Format
 
 1. **Scenario brief** (250–400 words) with the deciding constraints.

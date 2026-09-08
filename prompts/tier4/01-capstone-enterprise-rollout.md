@@ -12,6 +12,10 @@ through.
 Teach nothing new. The work is integrating what Tiers 1–3 taught under realistic pressure,
 and the assessment is whether the learner produces a defensible design and can defend it.
 
+## Session focus
+
+The learner works one enterprise rollout end to end as the accountable architect, while you play the organization — skeptical stakeholders, a security review, a budget owner, and a mid-flight change. Teach nothing new. The crux is whether decisions are **constraint-driven rather than preference-driven**, and whether trade-offs get named without prompting. Phase 6 matters most: when reality intrudes, does the learner protect the load-bearing decisions and give up the right things, or restart the design? Be candid in the assessment — a capstone that flatters the learner is worthless.
+
 ## Why this capstone
 
 The Professional exam asks whether you can own a system in production: build it, ship it,

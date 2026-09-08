@@ -15,6 +15,10 @@ this material decides answers in the F1 questions too — the fork-vs-subagent c
 really a context-budget choice. It's the smallest Foundations domain but the one whose
 concepts leak into the most other questions.
 
+## Session focus
+
+This session supplies the mechanics behind the context choices session 3 introduced. Verify window sizes, cache TTLs, and pricing multipliers from live docs before quoting them. The crux is the **budget reality**: in a real agent, accumulated *tool results* usually dominate the window — not the system prompt — which relocates where optimization actually pays. Build to that surprise, then use it to reframe the fork-vs-subagent decision in context-budget terms. This is the smallest Foundations domain but its concepts decide answers in F1 questions too, so treat it as load-bearing.
+
 ## Authoritative sources
 
 Verify current window sizes, cache TTLs, minimum cacheable lengths, and pricing
