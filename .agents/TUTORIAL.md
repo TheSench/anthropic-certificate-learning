@@ -6,14 +6,31 @@
 
 ## What the agent should do on load
 
+### Step 0 — How to read files in this system
+
+Use the **Read tool** for whole files, never `cat` — shell output truncates at ~30KB,
+persists the overflow to a temp file, and re-reading that file truncates again. Two
+wasted turns and two junk blobs in context before you've read anything.
+
+The exception is Step 1, which is a single prepared command precisely so it cannot
+become four turns. Where a step gives you one command, run that command — don't
+decompose it into per-file reads.
+
 ### Step 1 — Load context (silently, without narrating)
 
-Read these files:
-- `learner/profile.md`
-- `learner/relevance.md`
-- `learner/readiness.md`
+Run this **exact command**. It is one call by design: it loads every file routing needs
+and skips the parts that don't matter at load time.
 
-Attempt the read and branch on the result; don't check existence first.
+```bash
+for f in learner/profile.md learner/relevance.md learner/readiness.md; do
+  echo "===== $f ====="; sed '/^## Session log$/,$d' "$f"
+done; echo "===== drill due dates ====="; rg '\*\*Due:\*\*' drills/deck.md
+```
+
+`sed` drops `## Session log` and everything after it — that section grows every session
+and Step 1 never needs it. Read the full `profile.md` later only if you need history.
+
+Branch on what comes back; don't check existence first.
 
 - Missing `learner/profile.md` → first-time learner. Go to [Initialization](#initialization).
 - Missing `learner/relevance.md` → treat all domains as MED until the file is created.
@@ -46,7 +63,8 @@ Run only when `learner/profile.md` doesn't exist.
 
 ### Step 2 — Determine what to run next
 
-Check these in order. The first that matches wins.
+Step 1's command already gave you the drill due dates — don't re-read the deck. Check
+these in order. The first that matches wins.
 
 1. **Learner asked for something specific** — a named topic, `mock`, `drill`, or a domain.
    Honor it. See [Mock exam mode](#mock-exam-mode) and [Drill mode](#drill-mode).
