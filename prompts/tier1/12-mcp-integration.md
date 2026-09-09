@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Session 11 (tool design). MCP servers expose tools, so description quality carries over.
+Tool Design. MCP servers expose tools, so description quality carries over.
 
 ## Why this domain is worth 18% of your score
 

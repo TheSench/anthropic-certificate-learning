@@ -5,7 +5,7 @@
 ## What this session is
 
 An **exam-difficulty drill** on the developer-productivity-tooling archetype. Not a
-teaching session — Tier 1 sessions 5–6 and 11–13 taught this. Teach only on a miss.
+teaching session — the F2 sessions and all three F4 sessions taught this. Teach only on a miss.
 
 The archetype's signature theme is **reuse over reinvention**: the exam rewards knowing
 which built-in tool, skill, or platform capability already does the job. Before drilling,

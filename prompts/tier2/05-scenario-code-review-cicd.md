@@ -5,7 +5,8 @@
 ## What this session is
 
 An **exam-difficulty drill** on the automated-code-review-in-CI archetype. Not a teaching
-session — Tier 1 session 7 taught the core, with 5–6 and 11–13 supporting. Teach only on
+session — Claude Code & CI/CD taught the core, with the other F2 sessions and all F4
+sessions supporting. Teach only on
 a miss.
 
 The archetype's signature theme is **what changes when no human is in the loop**:

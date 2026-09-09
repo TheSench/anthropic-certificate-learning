@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Session 5 (configuration hierarchy and precedence).
+CLAUDE.md & Settings (configuration hierarchy and precedence).
 
 ## Why this domain is worth 20% of your score
 

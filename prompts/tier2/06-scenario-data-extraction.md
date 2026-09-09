@@ -5,7 +5,8 @@
 ## What this session is
 
 An **exam-difficulty drill** on the structured-extraction archetype. Not a teaching
-session — Tier 1 sessions 8–10 taught the core, with 11 and 14 supporting. Teach only on
+session — the three F3 sessions taught the core, with Tool Design and Context Management
+supporting. Teach only on
 a miss.
 
 The archetype's signature theme is the gap between **asking for structure and guaranteeing

@@ -4,7 +4,8 @@
 
 ## What this session assumes
 
-Sessions 1–10. The learner knows the agentic loop and can design a reliable call.
+All F1, F5, F2 and F3 sessions. The learner knows the agentic loop and can design a
+reliable call.
 
 ## Why this domain is worth 18% of your score
 

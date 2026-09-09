@@ -5,7 +5,7 @@
 ## What this session is
 
 An **exam-difficulty drill** on the Claude Code team-configuration archetype. Not a
-teaching session — Tier 1 sessions 5–7 taught this material. Teach only in response to a
+teaching session — the three F2 sessions taught this material. Teach only in response to a
 miss.
 
 This archetype is the most *precision-dependent* of the six: precedence and placement

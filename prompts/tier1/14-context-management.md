@@ -4,8 +4,8 @@
 
 ## What this session assumes
 
-Sessions 1–13. Orchestration (session 3) already introduced context inheritance; this
-session supplies the mechanics behind it.
+The four F1 sessions. Orchestration Patterns already introduced context inheritance; this
+session supplies the mechanics behind it. First of the two F5 sessions.
 
 ## Why this domain is worth 15% of your score
 
@@ -17,7 +17,7 @@ concepts leak into the most other questions.
 
 ## Session focus
 
-This session supplies the mechanics behind the context choices session 3 introduced. Verify window sizes, cache TTLs, and pricing multipliers from live docs before quoting them. The crux is the **budget reality**: in a real agent, accumulated *tool results* usually dominate the window — not the system prompt — which relocates where optimization actually pays. Build to that surprise, then use it to reframe the fork-vs-subagent decision in context-budget terms. This is the smallest Foundations domain but its concepts decide answers in F1 questions too, so treat it as load-bearing.
+This session supplies the mechanics behind the context choices Orchestration Patterns introduced. Verify window sizes, cache TTLs, and pricing multipliers from live docs before quoting them. The crux is the **budget reality**: in a real agent, accumulated *tool results* usually dominate the window — not the system prompt — which relocates where optimization actually pays. Build to that surprise, then use it to reframe the fork-vs-subagent decision in context-budget terms. This is the smallest Foundations domain but its concepts decide answers in F1 questions too, so treat it as load-bearing.
 
 ## Authoritative sources
 
@@ -96,7 +96,7 @@ By the end, the learner can:
 7. **Teach context editing** and the choice against compaction.
 8. **Teach persistence options** and have them place four requirements across the
    mechanisms.
-9. **Teach the context-firewall pattern** and connect it explicitly back to session 3's
+9. **Teach the context-firewall pattern** and connect it explicitly back to the Orchestration Patterns
    fork-vs-subagent decision. Ask them to restate that decision in context-budget terms.
 10. **Teach diagnosis** — four context failures, four different causes and fixes.
 11. **Decision table** — walk all six rows.

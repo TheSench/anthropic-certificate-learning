@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Sessions 1–7. The learner has written prompts but may not have a systematic model of
+All F1, F5 and F2 sessions. The learner has written prompts but may not have a systematic model of
 which techniques earn their token cost.
 
 ## Why this domain is worth 20% of your score
@@ -94,7 +94,7 @@ By the end, the learner can:
    learner answer "add few-shot examples" to all four — that's the exact bias the exam
    punishes.
 7. **Teach the prompt-vs-validation boundary.** Prompting improves the distribution; it
-   never guarantees. Anything requiring a guarantee needs validation (session 9).
+   never guarantees. Anything requiring a guarantee needs validation (Structured Output).
 8. **Decision table** — walk all six rows.
 9. **Scenario drill — 4 questions.** Use a support-ticket classifier at 92% accuracy with
    a 98% requirement, where errors cluster in ambiguous multi-issue tickets. Ask for the

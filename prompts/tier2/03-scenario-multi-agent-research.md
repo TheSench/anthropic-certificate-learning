@@ -5,7 +5,7 @@
 ## What this session is
 
 An **exam-difficulty drill** on the multi-agent research archetype. Not a teaching
-session — Tier 1 sessions 1–4 and 14 taught this. Teach only on a miss.
+session — the four F1 sessions and Context Management taught this. Teach only on a miss.
 
 This archetype carries the heaviest F1 weighting of the six, and F1 is 27% of the exam.
 It is the highest-value drill in Tier 2.
@@ -88,11 +88,6 @@ transferable form.
    before the gate.
 6. Record per `.agents/TUTORIAL.md` Step 5. Misses become drill cards; update F1 and F5
    readiness from measured accuracy.
-
-**This session normally runs interleaved inside Tier 1, at session 7** (see
-`.agents/TUTORIAL.md` § Interleaved drills). At that point only F1 and F5 are taught, which
-suits this archetype — its mix is already ~8 F1 and ~3 F5. Drop the F3/F4 questions, shorten
-to 8–10 total, and note the narrowing in the log.
 
 ## Out of scope
 
