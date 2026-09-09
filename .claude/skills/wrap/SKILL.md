@@ -37,13 +37,18 @@ Follow `.agents/TUTORIAL.md` §5a–5d for exact formats. In brief:
    `projected = 100 + 9 × Σ(weight × confidence)`, and name the domain with the largest
    weight × shortfall.
 
-Then confirm both files changed before moving on:
+**Gate — run this exact command and paste its output into your reply before continuing.**
+Saying "checkpoint 1 verified" without the output below it does not count; a previous run
+asserted both checkpoints without running either.
 
 ```bash
-git diff --stat learner/profile.md learner/readiness.md
+for f in learner/profile.md learner/readiness.md; do
+  git diff --quiet "$f" && echo "NOT WRITTEN: $f" || echo "ok: $f"
+done
 ```
 
-Empty output means nothing was written. Go back and write it.
+Any `NOT WRITTEN` line means that file was never touched — go back and write it, then
+re-run the gate. Two `ok:` lines is the only result that lets you move on.
 
 ## Checkpoint 2 — Study materials (`drills/deck.md`, `learner/glossary.md`)
 
@@ -61,14 +66,22 @@ depends on.
    first. Full rules in §5f, including when a term earns a paragraph over a one-liner.
    Update the session range in the intro line.
 
-Confirm:
+**Gate — run this exact command and paste its output into your reply before continuing.**
 
 ```bash
-git diff --stat drills/deck.md learner/glossary.md
+for f in drills/deck.md learner/glossary.md; do
+  git diff --quiet "$f" && echo "NOT WRITTEN: $f" || echo "ok: $f"
+done
+echo "--- cards now: $(rg -c '^### \[D-' drills/deck.md) ---"
 ```
 
-If the learner missed nothing and the session introduced no new terms, that is possible
-but rare — say so explicitly rather than letting an empty diff pass silently.
+A `NOT WRITTEN` line here is the exact failure this skill exists to catch. Before you
+accept one, answer in writing: did the learner really miss nothing, and did the session
+really introduce no new term? If either answer is no, go back and write the file, then
+re-run the gate.
+
+If the learner missed something, the card count must be higher than it was at the start
+of the session **or** you must name the existing card whose streak you reset instead.
 
 ## Checkpoint 3 — Progress chart and commit
 
