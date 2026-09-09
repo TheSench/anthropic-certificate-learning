@@ -110,6 +110,6 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Escalation and state recovery → session 15
+- Escalation and state recovery → Reliability & Escalation
 - Context engineering at enterprise scale → Tier 3 session 14
 - Cost optimization broadly → Tier 3 session 9

@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Session 8 (prompt engineering diagnosis).
+Prompt Engineering (diagnosis).
 
 ## Why this domain is worth 20% of your score
 
@@ -107,7 +107,7 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Batch processing of extractions → session 10
-- Tool schema design in general → session 11
+- Batch processing of extractions → Batch & Throughput
+- Tool schema design in general → Tool Design
 - Eval design for extraction accuracy → Tier 3 session 7
 - RAG and document pipelines → Tier 3 session 3

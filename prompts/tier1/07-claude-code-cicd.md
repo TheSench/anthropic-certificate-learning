@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Sessions 5–6 (configuration, hooks/skills/commands).
+CLAUDE.md & Settings and Hooks, Skills & Commands.
 
 ## Why this domain is worth 20% of your score
 
@@ -16,7 +16,7 @@ tests whether you know what breaks when you take the human out of the loop.
 
 ## Session focus
 
-This session covers non-interactive Claude Code in a pipeline. The crux is that **removing the human removes the safety net every design decision was implicitly relying on** — no one approves a permission prompt, untrusted PR content lands in the context, and cost scales with PR volume. Spend the most time on the permission problem and the propose/act boundary, and let the learner reach least-privilege allowlisting themselves rather than being told. Ground the propose/act judgment in reversibility; that same rule returns in session 15 and in two scenario archetypes.
+This session covers non-interactive Claude Code in a pipeline. The crux is that **removing the human removes the safety net every design decision was implicitly relying on** — no one approves a permission prompt, untrusted PR content lands in the context, and cost scales with PR volume. Spend the most time on the permission problem and the propose/act boundary, and let the learner reach least-privilege allowlisting themselves rather than being told. Ground the propose/act judgment in reversibility; that same rule returns in the Reliability & Escalation session and in two scenario archetypes.
 
 ## Authoritative sources
 

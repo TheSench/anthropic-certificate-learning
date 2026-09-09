@@ -101,8 +101,16 @@ For every question, state:
 6. Record per `.agents/TUTORIAL.md` Step 5. Every miss becomes a drill card. Update the F1
    and F5 readiness rows using this session's measured accuracy.
 
+**End of Tier 2 — this runs last, immediately before the gate.** It is the final pass over
+F1 and F5 before the mock, which is why it sits here rather than first. Next is the
+Foundations mock gate (60 questions, 120 minutes, closed-book). Report readiness across all
+five F domains and name the weakest; if any is below 60%, recommend drilling it before
+sitting the mock rather than proceeding immediately.
+
 ## Out of scope
 
-Don't teach new material. If a miss reveals a genuine knowledge gap rather than a
-recognition failure, note it and queue a review session — don't turn the drill into a
-Tier 1 re-run.
+No broad re-teaching — this is a drill, not a Tier 1 re-run. The one exception is a
+**knowledge hole**: if the learner can't explain a concept when asked (as opposed to
+misreading a question), stop, re-teach that single concept in 5 minutes, re-drill it, then
+resume. See `.agents/TUTORIAL.md` § Teaching inside a drill for the distinction and the
+two-per-session cap. Queue the review either way — the inline fix doesn't replace it.

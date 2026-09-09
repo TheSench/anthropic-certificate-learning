@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Sessions 1–3. The learner knows the orchestration primitives; this session is the
+Agentic Foundations through Orchestration Patterns. The learner knows the orchestration primitives; this session is the
 analytical skill of splitting work so those primitives apply cleanly.
 
 ## Why this domain is worth 27% of your score
@@ -96,7 +96,7 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Orchestration primitives themselves → session 3
-- Tool design for subtasks → session 11
-- Context budgeting math → session 14
+- Orchestration primitives themselves → Orchestration Patterns
+- Tool design for subtasks → Tool Design
+- Context budgeting math → Context Management
 - Enterprise program-level decomposition → Tier 3 session 5

@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Sessions 1–4 (F1). The learner has used Claude Code but may not have a precise model of
+The four F1 sessions, plus Context Management and Reliability & Escalation (F5). The learner has used Claude Code but may not have a precise model of
 which configuration file wins when several disagree.
 
 ## Why this domain is worth 20% of your score
@@ -107,7 +107,7 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Hooks, skills, slash commands → session 6
-- CI/CD and headless use → session 7
-- MCP server configuration → session 12
+- Hooks, skills, slash commands → Hooks, Skills & Commands
+- CI/CD and headless use → Claude Code & CI/CD
+- MCP server configuration → MCP Integration
 - Org-wide rollout strategy and change management → Tier 4 capstone 1

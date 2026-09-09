@@ -107,6 +107,6 @@ By the end, the learner can:
 
 ## Out of scope
 
-- CI/CD integration → session 7
-- MCP servers as an extension mechanism → session 12
+- CI/CD integration → Claude Code & CI/CD
+- MCP servers as an extension mechanism → MCP Integration
 - Team rollout and adoption → Tier 3 session 16, Tier 4 capstone 1

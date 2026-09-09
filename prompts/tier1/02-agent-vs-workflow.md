@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Session 1 (action loop, the three agentic properties, harness vs. model). The learner can
+Agentic Foundations. The learner can
 classify a system as agentic; this session is about whether it *should* be.
 
 ## Why this domain is worth 27% of your score
@@ -96,7 +96,7 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Multi-agent coordination mechanics → session 3
-- How to split an agentic task → session 4
+- Multi-agent coordination mechanics → Orchestration Patterns
+- How to split an agentic task → Task Decomposition
 - Model choice within a pattern → Tier 3 session 4 (Solution Design)
 - Cost modeling in depth → Tier 3 session 9 (Cost and Latency Optimization)

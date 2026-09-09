@@ -65,7 +65,7 @@ Check these in order. The first that matches wins.
 Show the summary, then start immediately without waiting for confirmation.
 
 ```
-**Progress:** [N] of 31 sessions · Foundations [F%] · Professional [P%]
+**Progress:** [N] of 43 sessions · Foundations [F%] · Professional [P%]
 **Readiness:** Foundations [projected score] / 720 to pass
 Last completed: [Topic] ([date])
 
@@ -125,6 +125,26 @@ A short (5–10 min) session for one flagged gap, not a full curriculum session.
 2. Re-teach it a *different* way than the original session — new analogy or example, not a repeat.
 3. Ask 1–2 targeted questions on just that concept, in exam format.
 4. Score mastery, then either clear the queue entry (3+) or re-queue it (≤2).
+
+### Teaching inside a drill
+
+Tier 2 prompt files say to teach nothing new. That rule is right for a **recognition
+failure** — the learner knows the material and misread the question — where the fix is the
+distractor autopsy and another rep. It is wrong for a **knowledge hole**, where deferring to
+a review session three sessions out means sitting the mock with the hole still open.
+
+Distinguish them by asking the learner to explain the concept, not just re-answer:
+
+- **Recognition failure** — they can explain it correctly once prompted. Autopsy, drill card,
+  move on. Do not re-teach.
+- **Knowledge hole** — they can't explain it, or explain it wrongly. Stop the drill, re-teach
+  the single concept in 5 minutes, then **re-drill that concept immediately** with a fresh
+  question before resuming. Log it as a gap and still queue the review; the inline fix
+  doesn't replace the spaced repetition, it just stops the bleeding now.
+
+Cap this at two inline re-teaches per drill session. A third means the tier's material
+didn't land, and the right call is to say so plainly and recommend re-running the relevant
+Tier 1 session rather than continuing to patch inside a drill.
 
 ### Drill mode
 
@@ -351,7 +371,7 @@ If the learner asks for an entry mid-session, add it then.
 
 Regenerate `learner/progress.md`:
 
-**Header:** `**[N] of 31 sessions complete** · Foundations [X]% · Professional [Y]% · Updated [YYYY-MM-DD]`
+**Header:** `**[N] of 43 sessions complete** · Foundations [X]% · Professional [Y]% · Updated [YYYY-MM-DD]`
 
 **Readiness chart** (`xychart-beta`) — projected scaled score per exam against the 720 bar:
 
@@ -468,9 +488,16 @@ The Foundations pool. Tier 2 has one session per archetype; mocks draw 4 at rand
 Complete a tier before advancing. `GATE` rows are mock exams and are mandatory —
 see [gate policy](#mock-exam-mode).
 
-### Tier 1 — Foundations breadth (14 sessions)
+### Tier 1 — Foundations breadth (15 sessions + 2 interleaved drills)
 
-Session counts are proportional to domain weight.
+Session counts are proportional to domain weight. Two scenario drills are **interleaved**
+into Tier 1 at the points where enough material exists to support them — see
+[Interleaved drills](#interleaved-drills) for why.
+
+Domain teaching order is **F1 → F5 → F2 → F3 → F4**, not weight order. F5 moves up
+deliberately: the two F1-heavy archetypes (S1, S3) also need F5, so leaving F5 until last
+would make it impossible to drill the 27% domain before session 18. Pairing F1 with F5
+early unlocks the highest-value drill at session 7.
 
 | # | File | Session | Domain | Wt |
 |---|------|---------|--------|-----|
@@ -478,32 +505,67 @@ Session counts are proportional to domain weight.
 | 2 | `prompts/tier1/02-agent-vs-workflow.md` | Agent vs. Workflow vs. Chat: Choosing | F1 | 27% |
 | 3 | `prompts/tier1/03-orchestration-patterns.md` | Orchestration: Subagents, Forks, Teams | F1 | 27% |
 | 4 | `prompts/tier1/04-task-decomposition.md` | Task Decomposition & Delegation | F1 | 27% |
-| 5 | `prompts/tier1/05-claude-md-config.md` | CLAUDE.md, Settings, and Precedence | F2 | 20% |
-| 6 | `prompts/tier1/06-hooks-skills-commands.md` | Hooks, Skills, and Slash Commands | F2 | 20% |
-| 7 | `prompts/tier1/07-claude-code-cicd.md` | Headless Claude Code and CI/CD | F2 | 20% |
-| 8 | `prompts/tier1/08-prompt-engineering-core.md` | Prompt Engineering That Survives Production | F3 | 20% |
-| 9 | `prompts/tier1/09-structured-output.md` | Structured Output and Schema Validation | F3 | 20% |
-| 10 | `prompts/tier1/10-batch-and-throughput.md` | Batch, Streaming, and Throughput Choices | F3 | 20% |
-| 11 | `prompts/tier1/11-tool-design.md` | Designing Tools Claude Uses Correctly | F4 | 18% |
-| 12 | `prompts/tier1/12-mcp-integration.md` | MCP: Servers, Transports, Configuration | F4 | 18% |
-| 13 | `prompts/tier1/13-tool-errors-retries.md` | Tool Errors, Retries, and Failure Modes | F4 | 18% |
-| 14 | `prompts/tier1/14-context-management.md` | Context Windows, Caching, and Compaction | F5 | 15% |
-| 15 | `prompts/tier1/15-reliability-escalation.md` | Reliability, State, and Escalation | F5 | 15% |
+| 5 | `prompts/tier1/14-context-management.md` | Context Windows, Caching, and Compaction | F5 | 15% |
+| 6 | `prompts/tier1/15-reliability-escalation.md` | Reliability, State, and Escalation | F5 | 15% |
+| **7** | `prompts/tier2/03-scenario-multi-agent-research.md` | **DRILL — Scenario: Multi-Agent Research** | S3 · F1+F5 | — |
+| 8 | `prompts/tier1/05-claude-md-config.md` | CLAUDE.md, Settings, and Precedence | F2 | 20% |
+| 9 | `prompts/tier1/06-hooks-skills-commands.md` | Hooks, Skills, and Slash Commands | F2 | 20% |
+| 10 | `prompts/tier1/07-claude-code-cicd.md` | Headless Claude Code and CI/CD | F2 | 20% |
+| **11** | `prompts/tier2/02-scenario-claude-code-team.md` | **DRILL — Scenario: Claude Code Team Config** | S2 · F2 | — |
+| 12 | `prompts/tier1/08-prompt-engineering-core.md` | Prompt Engineering That Survives Production | F3 | 20% |
+| 13 | `prompts/tier1/09-structured-output.md` | Structured Output and Schema Validation | F3 | 20% |
+| 14 | `prompts/tier1/10-batch-and-throughput.md` | Batch, Streaming, and Throughput Choices | F3 | 20% |
+| 15 | `prompts/tier1/11-tool-design.md` | Designing Tools Claude Uses Correctly | F4 | 18% |
+| 16 | `prompts/tier1/12-mcp-integration.md` | MCP: Servers, Transports, Configuration | F4 | 18% |
+| 17 | `prompts/tier1/13-tool-errors-retries.md` | Tool Errors, Retries, and Failure Modes | F4 | 18% |
 
-### Tier 2 — Foundations exam hardening (7 sessions)
+### Tier 2 — Foundations exam hardening (4 sessions + gate)
 
-One session per scenario archetype, then the gate. Teaching is minimal here; these are
-drill sessions at exam difficulty.
+The four remaining archetypes, then the gate. Teaching is minimal here; these are drill
+sessions at exam difficulty. S3 and S2 already ran inside Tier 1.
 
 | # | File | Session | Covers |
 |---|------|---------|--------|
-| 16 | `prompts/tier2/01-scenario-support-escalation.md` | Scenario: Support & Escalation | S1 |
-| 17 | `prompts/tier2/02-scenario-claude-code-team.md` | Scenario: Claude Code Team Config | S2 |
-| 18 | `prompts/tier2/03-scenario-multi-agent-research.md` | Scenario: Multi-Agent Research | S3 |
-| 19 | `prompts/tier2/04-scenario-devtools.md` | Scenario: Developer Productivity Tooling | S4 |
-| 20 | `prompts/tier2/05-scenario-code-review-cicd.md` | Scenario: Code Review in CI/CD | S5 |
-| 21 | `prompts/tier2/06-scenario-data-extraction.md` | Scenario: Structured Data Extraction | S6 |
+| 18 | `prompts/tier2/04-scenario-devtools.md` | Scenario: Developer Productivity Tooling | S4 |
+| 19 | `prompts/tier2/05-scenario-code-review-cicd.md` | Scenario: Code Review in CI/CD | S5 |
+| 20 | `prompts/tier2/06-scenario-data-extraction.md` | Scenario: Structured Data Extraction | S6 |
+| 21 | `prompts/tier2/01-scenario-support-escalation.md` | Scenario: Support & Escalation | S1 |
 | 22 | **GATE-F** | Foundations Mock Exam (60q / 120 min) | all |
+
+S1 runs last deliberately — it revisits F1 and F5 immediately before the mock, which is
+where that 27% domain most needs a final pass.
+
+#### Interleaved drills
+
+Sessions 7 and 11 are Tier 2 archetype drills pulled forward into Tier 1, and F5's position
+in the teaching order exists to make session 7 possible.
+
+The problem being solved is spacing. In strict tier order, F1 is taught in sessions 1–4 and
+not drilled at archetype scale until session 18 — a fourteen-session decay window on the
+exam's largest domain — and the learner's first sustained exam-format block arrives
+two-thirds of the way to the mock, which is too late to build the stamina a 15-question
+scenario demands. Moving F5 up and running **S3 at session 7** cuts F1's gap from fourteen
+sessions to three, and starts exam-format work at roughly five hours in rather than ten.
+**S2 at session 11** does the same for F2, one session after it finishes.
+
+Note what this does *not* fix: S1 still sits fourteen sessions after F1's teaching. That's
+acceptable because S3 already rehearsed F1 at session 7 and the drill deck keeps it warm
+in between — S1's late position is now a deliberate pre-mock refresher rather than a gap.
+
+Run both exactly as their prompt files specify, with one amendment — see
+[Teaching inside a drill](#teaching-inside-a-drill). Their domain-mix targets assume all
+five F domains are taught, which isn't true this early, so **narrow the set to covered
+domains and say so**:
+
+- At session 7, only F1 and F5 are taught. Draw entirely from those two, and shorten to
+  8–10 questions rather than padding with unseen material. This suits S3, whose own mix is
+  already ~8 F1 and ~3 F5.
+- At session 11, F1, F5 and F2 are taught. Run S2's full set; its F4 questions become F2
+  or F1 ones.
+
+Score these as normal drill sessions: readiness rows updated from measured accuracy, misses
+become drill cards. Note in the log that the session ran interleaved and which domains were
+excluded, so a later reading of the record doesn't mistake a narrowed set for weak coverage.
 
 ### Tier 3 — Professional breadth (16 sessions)
 

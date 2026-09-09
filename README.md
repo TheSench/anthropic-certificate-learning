@@ -58,10 +58,18 @@ weight**, so study time tracks what's actually scored.
 
 | Tier | Sessions | What it is |
 |---|---|---|
-| 1 | 15 | Foundations breadth — all five F domains |
-| 2 | 6 + mock gate | Foundations hardening — one drill per exam scenario archetype |
+| 1 | 15 + 2 drills | Foundations breadth — all five F domains |
+| 2 | 4 + mock gate | Foundations hardening — the remaining scenario archetypes |
 | 3 | 16 | Professional breadth — all seven P domains |
 | 4 | 4 + mock gate | Professional capstones — full architecture problems |
+
+**Two scenario drills are interleaved into Tier 1**, at sessions 7 and 11, and F5 is taught
+early (right after F1) to make that possible. Run strictly in tier order, F1 — the exam's
+largest domain at 27% — is taught in sessions 1–4 and not drilled at scenario scale until
+session 18. That's a fourteen-session decay window, and you wouldn't hit sustained
+exam-format conditions until two-thirds of the way to the mock. Teaching F5 early unlocks
+the Multi-Agent Research drill at session 7, cutting F1's gap from fourteen sessions to
+three. Each interleaved drill narrows its question set to domains you've actually covered.
 
 Mock gates are mandatory. Score under 720 and the system queues your weakest domains for
 review instead of advancing you.

@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Sessions 1–2. The learner knows what an agentic loop is and when to choose one.
+Agentic Foundations and Agent vs. Workflow. The learner knows what an agentic loop is and when to choose one.
 
 ## Why this domain is worth 27% of your score
 
@@ -103,7 +103,7 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Decomposition method itself → session 4
-- Context window mechanics and compaction → session 14
-- Session state persistence and recovery → session 15
+- Decomposition method itself → Task Decomposition
+- Context window mechanics and compaction → Context Management
+- Session state persistence and recovery → Reliability & Escalation
 - Enterprise-scale orchestration economics → Tier 3 sessions 5 and 9

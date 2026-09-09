@@ -27,8 +27,8 @@ experience, production exposure, self-reported weak areas, target exam date]
 
 | Tier | Sessions | Complete |
 |---|---|---|
-| Tier 1 — Foundations breadth | 15 | 0 |
-| Tier 2 — Foundations hardening | 6 + gate | 0 |
+| Tier 1 — Foundations breadth | 15 + 2 interleaved drills | 0 |
+| Tier 2 — Foundations hardening | 4 + gate | 0 |
 | Tier 3 — Professional breadth | 16 | 0 |
 | Tier 4 — Professional capstones | 4 + gate | 0 |
 

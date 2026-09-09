@@ -100,11 +100,10 @@ provides. That word is the whole discrimination in this domain.
 7. Record per `.agents/TUTORIAL.md` Step 5. Misses become drill cards; update F3 and F4
    readiness. Log any doc discrepancy found while verifying.
 
-**End of Tier 2.** Next is the Foundations mock gate (60 questions, 120 minutes,
-closed-book). Report current readiness across all five F domains and name the weakest.
-If any domain is below 60%, recommend drilling it before sitting the mock rather than
-proceeding immediately.
-
 ## Out of scope
 
-No new teaching. Genuine gaps get queued as review sessions.
+No broad re-teaching — this is a drill, not a Tier 1 re-run. The one exception is a
+**knowledge hole**: if the learner can't explain a concept when asked (as opposed to
+misreading a question), stop, re-teach that single concept in 5 minutes, re-drill it, then
+resume. See `.agents/TUTORIAL.md` § Teaching inside a drill for the distinction and the
+two-per-session cap. Queue the review either way — the inline fix doesn't replace it.

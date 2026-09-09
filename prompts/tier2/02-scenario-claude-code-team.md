@@ -97,5 +97,13 @@ not just the answer — a right answer from a wrong rule will fail on the next v
 
 ## Out of scope
 
-No new teaching. A genuine knowledge gap gets queued as a review session rather than
-re-taught inline.
+No broad re-teaching — this is a drill, not a Tier 1 re-run. The one exception is a
+**knowledge hole**: if the learner can't explain a concept when asked (as opposed to
+misreading a question), stop, re-teach that single concept in 5 minutes, re-drill it, then
+resume. See `.agents/TUTORIAL.md` § Teaching inside a drill for the distinction and the
+two-per-session cap. Queue the review either way — the inline fix doesn't replace it.
+
+**This session normally runs interleaved inside Tier 1, at session 11** (see
+`.agents/TUTORIAL.md` § Interleaved drills). At that point F1, F5 and F2 are taught but F3
+and F4 are not — run the full set, converting its F4 questions to F2 or F1 ones, and note
+the substitution in the log.

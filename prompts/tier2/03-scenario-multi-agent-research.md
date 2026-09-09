@@ -12,7 +12,7 @@ It is the highest-value drill in Tier 2.
 
 ## Session focus
 
-Drill the multi-agent research archetype. This is the **highest-value drill in Tier 2** — it carries the heaviest F1 weighting of the six archetypes, and F1 is 27% of the exam. The crux is over-orchestration: more agents where fewer would do, and parallelization across a real dependency. On decomposition items, make the learner name which of the four well-formed-subtask tests their answer turns on. If F1 accuracy lands below 75% here, say plainly that it's the primary risk to passing.
+Drill the multi-agent research archetype. This is the **highest-value drill in the curriculum** — it carries the heaviest F1 weighting of the six archetypes, F1 is 27% of the exam, and it runs interleaved at session 7 specifically so that domain gets drilled while it's still fresh. The crux is over-orchestration: more agents where fewer would do, and parallelization across a real dependency. On decomposition items, make the learner name which of the four well-formed-subtask tests their answer turns on. If F1 accuracy lands below 75% here, say plainly that it's the primary risk to passing.
 
 ## Format
 
@@ -73,7 +73,7 @@ transferable form.
 
 ## How to run this session
 
-1. **Frame** — highest-value drill in Tier 2, because F1 is 27%. Say so.
+1. **Frame** — highest-value drill in the curriculum, because F1 is 27%. Say so.
 2. Present the brief; scenario-clarifying questions only.
 3. Run the batches with autopsies.
 4. **Final scoring:**
@@ -89,6 +89,20 @@ transferable form.
 6. Record per `.agents/TUTORIAL.md` Step 5. Misses become drill cards; update F1 and F5
    readiness from measured accuracy.
 
+**This session normally runs interleaved inside Tier 1, at session 7** (see
+`.agents/TUTORIAL.md` § Interleaved drills). At that point only F1 and F5 are taught, which
+suits this archetype — its mix is already ~8 F1 and ~3 F5. Drop the F3/F4 questions, shorten
+to 8–10 total, and note the narrowing in the log.
+
 ## Out of scope
 
-No new teaching. Genuine gaps get queued as review sessions.
+No broad re-teaching — this is a drill, not a Tier 1 re-run. The one exception is a
+**knowledge hole**: if the learner can't explain a concept when asked (as opposed to
+misreading a question), stop, re-teach that single concept in 5 minutes, re-drill it, then
+resume. See `.agents/TUTORIAL.md` § Teaching inside a drill for the distinction and the
+two-per-session cap. Queue the review either way — the inline fix doesn't replace it.
+
+**This session normally runs interleaved inside Tier 1, at session 7** (see
+`.agents/TUTORIAL.md` § Interleaved drills). At that point only F1 and F5 are taught, which
+suits this archetype — its mix is already ~8 F1 and ~3 F5. Drop the F3/F4 questions, shorten
+to 8–10 total, and note the narrowing in the log.

@@ -108,7 +108,7 @@ By the end, the learner can:
 
 ## Out of scope
 
-- MCP specifics → session 12
-- Error responses and retries → session 13
-- Context budgeting → session 14
+- MCP specifics → MCP Integration
+- Error responses and retries → Tool Errors & Retries
+- Context budgeting → Context Management
 - Enterprise tool governance → Tier 3 sessions 1 and 11

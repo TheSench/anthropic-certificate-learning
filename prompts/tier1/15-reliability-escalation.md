@@ -4,8 +4,8 @@
 
 ## What this session assumes
 
-Sessions 1–14. Last session of Tier 1 — it also serves as the bridge into the Tier 2
-scenario drills, especially the support/escalation archetype.
+The four F1 sessions and Context Management. This is the second F5 session; together the
+two complete F5 and unlock the interleaved Multi-Agent Research drill that follows.
 
 ## Why this domain is worth 15% of your score
 
@@ -18,7 +18,7 @@ scenarios you draw. Escalation questions are scored on whether you can identify 
 
 ## Session focus
 
-This session closes Tier 1 with escalation, state, and distributed failure, and feeds directly into the support scenario archetype. The crux is that **escalation is decided by irreversibility and stakes, not by difficulty** — a hard-but-reversible action is safer to attempt than an easy-but-irreversible one. The second crux, close behind: a model cannot reliably self-assess when it has misunderstood, so escalation triggers should be structural (this action type always escalates; no progress after N attempts) rather than left to model-judged confidence. Both are named exam skills; spend the session's weight there.
+This session completes F5 with escalation, state, and distributed failure, and feeds directly into the interleaved Multi-Agent Research drill that follows it. The crux is that **escalation is decided by irreversibility and stakes, not by difficulty** — a hard-but-reversible action is safer to attempt than an easy-but-irreversible one. The second crux, close behind: a model cannot reliably self-assess when it has misunderstood, so escalation triggers should be structural (this action type always escalates; no progress after N attempts) rather than left to model-judged confidence. Both are named exam skills; spend the session's weight there.
 
 ## Authoritative sources
 
@@ -83,7 +83,7 @@ By the end, the learner can:
 ## How to run this session
 
 1. **Frame** — this is a named exam skill and appears in one of the six scenario
-   archetypes. Also flag that it closes Tier 1 and feeds directly into the Tier 2 drills.
+   archetypes. Also flag that it completes F5, so the next session is a full scenario drill.
 2. **Teach the escalation factors** by having the learner sort actions first. Give eight
    support-agent actions (issue a refund under $10, issue one over $10,000, reset a
    password, close an account, explain a policy, change a billing address, waive a fee,
@@ -112,8 +112,9 @@ By the end, the learner can:
     model-judged confidence trusted where a structural rule was needed.
 13. Record per `.agents/TUTORIAL.md` Step 5.
 
-**End of Tier 1.** Tell the learner Tier 2 shifts to scenario drilling at exam difficulty
-across the six archetypes, then the Foundations mock gate. Report current readiness.
+**Next is an interleaved drill.** F1 and F5 are now both complete, so the session after
+this one is the Multi-Agent Research scenario drill (S3) at exam difficulty, narrowed to
+those two domains. Tell the learner that's coming and report current F1/F5 readiness.
 
 ## Out of scope
 

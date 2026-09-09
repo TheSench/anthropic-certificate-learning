@@ -19,7 +19,7 @@ AGENTS.md             ← Development routing
 
 prompts/
   tier1/  (15)        ← Foundations breadth, one session per domain slice
-  tier2/  (6)         ← Foundations hardening, one per scenario archetype
+  tier2/  (6)         ← Scenario-archetype drills; 2 run interleaved inside Tier 1
   tier3/  (16)        ← Professional breadth, one session per domain slice
   tier4/  (4)         ← Professional capstones
 
@@ -79,6 +79,28 @@ multiple-choice exams sat closed-book. Understanding alone doesn't build answer
 recognition under time pressure, and drilling alone doesn't transfer to unseen scenarios.
 Every session does both, and the distractor autopsy is treated as the highest-value
 segment, because on a well-written exam the wrong answers are where the discrimination is.
+
+**Domain order is F1 → F5 → F2 → F3 → F4, and two drills are interleaved into Tier 1** —
+strict tier order left a fourteen-session gap between teaching F1 (sessions 1–4) and drilling
+it at scenario scale, and put the first sustained exam-format block at session 18. Both are
+bad for a recognition-under-pressure exam. The fix required reordering, not just moving
+drills: both F1-heavy archetypes (S1, S3) also need F5, so with F5 taught last no F1 drill
+could run early at all. Teaching F5 second unlocks S3 at session 7, cutting F1's gap from
+fourteen sessions to three; S2 follows at session 11 for F2. S1 deliberately stays last in
+Tier 2 as a final F1/F5 pass immediately before the mock. The tier boundary still means what
+it did — Tier 2 is drilling, Tier 1 is teaching — the drills just start earlier.
+
+The first attempt at this moved S2 and S4 forward without reordering domains, and measuring
+it showed the worst gap going from 14 to 15 sessions: inserting drills pushed later teaching
+down, and neither chosen archetype touched F1. Placement alone couldn't fix a gap that came
+from the domain order.
+
+**A drill may teach, but only into a knowledge hole** — the "teach nothing new" rule is
+correct for a recognition failure, where another rep and the autopsy are the fix. It's wrong
+when the learner simply doesn't know the material: deferring to a review session several
+sessions out means reaching the mock with the hole open. So a drill stops, re-teaches one
+concept, re-drills it, and continues — capped at two per session, because a third means the
+tier didn't land and the honest call is to re-run the source session.
 
 **Readiness is estimated and labeled as such** — the projected scaled score exists to
 answer "which domain do I study next", using weight × shortfall. Untaught domains count

@@ -97,4 +97,8 @@ the misfire. "The description is bad" is not an answer; the exam wants the mecha
 
 ## Out of scope
 
-No new teaching. Genuine gaps get queued as review sessions.
+No broad re-teaching — this is a drill, not a Tier 1 re-run. The one exception is a
+**knowledge hole**: if the learner can't explain a concept when asked (as opposed to
+misreading a question), stop, re-teach that single concept in 5 minutes, re-drill it, then
+resume. See `.agents/TUTORIAL.md` § Teaching inside a drill for the distinction and the
+two-per-session cap. Queue the review either way — the inline fix doesn't replace it.

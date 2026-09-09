@@ -101,7 +101,7 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Tool error semantics → session 13
+- Tool error semantics → Tool Errors & Retries
 - Deep enterprise networking and gateways → Tier 3 session 2
 - Compliance and data residency → Tier 3 session 10
 - Prompt injection defenses in depth → Tier 3 session 11

@@ -96,8 +96,8 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 ## Out of scope
 
 Defer and say where it's covered:
-- Subagents, forks, agent teams → session 3 (Orchestration)
-- How to decompose a task → session 4 (Task Decomposition)
-- Tool schema design → session 11 (Tool Design)
-- Context window mechanics → session 14 (Context Management)
-- Whether to build agentic at all → session 2 (Agent vs. Workflow)
+- Subagents, forks, agent teams → Orchestration Patterns (Orchestration)
+- How to decompose a task → Task Decomposition (Task Decomposition)
+- Tool schema design → Tool Design (Tool Design)
+- Context window mechanics → Context Management (Context Management)
+- Whether to build agentic at all → Agent vs. Workflow (Agent vs. Workflow)

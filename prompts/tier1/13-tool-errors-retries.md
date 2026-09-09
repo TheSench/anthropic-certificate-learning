@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Sessions 11–12 (tool design, MCP).
+Tool Design and MCP Integration.
 
 ## Why this domain is worth 18% of your score
 
@@ -16,7 +16,7 @@ distinction, and knowing which errors the model should *not* be asked to handle.
 
 ## Session focus
 
-This session applies session 11's framing to failure: **an error message is a prompt**. The model reads it and chooses what to do next, so its wording decides whether the model recovers or loops. The crux is the **four-way failure classification** — transient, malformed arguments, permanent/semantic, systemic — and routing each to the right handler, because the F4 domain description names structured error responses with retry logic explicitly. Spend the most time on the classification drill, and make sure the code-vs-model retry boundary lands: letting the model retry a rate limit burns context on a wait it cannot perform.
+This session applies the Tool Design session's framing to failure: **an error message is a prompt**. The model reads it and chooses what to do next, so its wording decides whether the model recovers or loops. The crux is the **four-way failure classification** — transient, malformed arguments, permanent/semantic, systemic — and routing each to the right handler, because the F4 domain description names structured error responses with retry logic explicitly. Spend the most time on the classification drill, and make sure the code-vs-model retry boundary lands: letting the model retry a rate limit burns context on a wait it cannot perform.
 
 ## Authoritative sources
 
@@ -103,9 +103,13 @@ By the end, the learner can:
     unbounded retry as an implied default.
 13. Record per `.agents/TUTORIAL.md` Step 5.
 
+**End of Tier 1.** All five F domains are now taught. Tell the learner Tier 2 is four
+remaining scenario drills at exam difficulty, then the Foundations mock gate. Report
+readiness across all five F domains and name the weakest.
+
 ## Out of scope
 
-- Session state and recovery → session 15
-- Human escalation policy design → session 15
+- Session state and recovery → Reliability & Escalation
+- Human escalation policy design → Reliability & Escalation
 - Production reliability at scale → Tier 3 session 6
 - Observability and alerting → Tier 3 session 16

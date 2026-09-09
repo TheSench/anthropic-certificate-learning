@@ -4,7 +4,7 @@
 
 ## What this session assumes
 
-Sessions 8–9. The learner can design a reliable single call; this session is about
+Prompt Engineering and Structured Output. The learner can design a reliable single call; this session is about
 running it at volume.
 
 ## Why this domain is worth 20% of your score
@@ -103,7 +103,7 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Prompt caching mechanics in depth → session 14
+- Prompt caching mechanics in depth → Context Management
 - Model selection reasoning → Tier 3 session 4
 - Full cost optimization → Tier 3 session 9
 - Enterprise spend governance → Tier 3 session 10

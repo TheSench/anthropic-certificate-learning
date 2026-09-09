@@ -106,8 +106,8 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Schema enforcement and JSON validation → session 9
-- Batch and throughput → session 10
-- Prompt caching mechanics → session 14
+- Schema enforcement and JSON validation → Structured Output
+- Batch and throughput → Batch & Throughput
+- Prompt caching mechanics → Context Management
 - Eval design to measure prompt changes → Tier 3 session 7
 - Prompt portfolios across models → Tier 3 session 15
