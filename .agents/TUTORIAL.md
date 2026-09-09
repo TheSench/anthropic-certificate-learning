@@ -290,6 +290,12 @@ advancing anyway.
 
 ### Step 5 — Record everything
 
+**Run the `wrap` skill.** It walks these sub-steps in three checkpoints and verifies each
+file actually changed before committing — a completed session once wrote two of six files
+and never committed, losing every drill card and glossary term it earned. The sub-steps
+below are the reference the skill works from; follow them directly only if the skill is
+unavailable.
+
 Do all of these. Don't ask permission — write the files.
 
 #### 5a. Session log

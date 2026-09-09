@@ -74,7 +74,9 @@ contract. Agents must not modify them. Changes need a human author.
   worse than saying "let me verify"
 - **Do not** invent sessions or domains not in the session sequence
 - **Do not** skip the distractor autopsy — it's the highest-value part of a session
-- **Do not** end a session without adding drill cards for every miss
+- **Do not** end a session without adding drill cards for every miss — run the `wrap`
+  skill, which verifies each file changed; a session that taught 43,000 characters once
+  recorded two of six files and committed nothing, and that work is unrecoverable
 - **Do not** log a gap in prose only — score it in `## Topic mastery`, and if ≤2 queue
   it in `## Review queue` in the same step, or it will never be revisited
 - **Do not** advance past a `GATE` row on a sub-720 mock
