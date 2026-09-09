@@ -4,7 +4,11 @@
 
 1. Locate `prompts/tier<N>/<NN>-<slug>.md`
 2. Edit, keeping the section structure in [`GUIDELINES.md`](GUIDELINES.md) § Prompt file structure
-3. Verify every URL under `## Authoritative sources` still resolves
+3. Verify every URL under `## Authoritative sources` still resolves — run
+   `.agents/check-sources.sh` (checks all ~210 URLs in ~20s, exits non-zero on any
+   failure and prints the source file:line). Worth running monthly even when no prompt
+   file changed: the nine version-pinned model URLs it flags at the end expire on their
+   own when the model line advances.
 4. New session: add it to the session sequence table in `.agents/TUTORIAL.md`, and
    renumber later rows in that tier
 5. Human review before committing
