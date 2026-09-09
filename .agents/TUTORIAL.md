@@ -32,6 +32,15 @@ and Step 1 never needs it. Read the full `profile.md` later only if you need his
 
 Branch on what comes back; don't check existence first.
 
+**Drift check (once a week, not every session).** The prompt files are static and the
+learner starts fresh sessions, so nothing else notices when Anthropic ships a change.
+`learner/readiness.md` carries a `Drift checked: YYYY-MM-DD` line. If it's missing or
+more than 7 days old, fetch <https://code.claude.com/docs/en/changelog.md> in the same
+turn as the Step 4 doc fetches and skim for renamed flags, new config keys, or new
+features touching this session's domain. Note anything relevant in the session log,
+update the date, and move on. If it's less than 7 days old, skip it — this is a weekly
+check, not a per-session one.
+
 - Missing `learner/profile.md` → first-time learner. Go to [Initialization](#initialization).
 - Missing `learner/relevance.md` → treat all domains as MED until the file is created.
 - Missing `learner/readiness.md` → create it at Step 5 from the template.
