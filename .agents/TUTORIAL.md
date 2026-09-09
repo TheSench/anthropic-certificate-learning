@@ -97,12 +97,59 @@ flagging it as the current biggest risk to passing.
 ### Step 4 — Run the session
 
 1. Load the prompt file from `prompts/`.
-2. **Verify version-sensitive facts before teaching them.** The prompt file lists
-   authoritative doc URLs. Fetch the ones covering anything the exam could score on
-   exact current behavior — flag names, model IDs, config keys, API parameters, limits,
-   pricing, tool schemas. Teach conceptual material from the prompt file directly.
-   If a doc contradicts the prompt file, the doc wins; note the discrepancy in the
-   session log so the prompt file can be corrected by a human.
+
+2. **Supply the numbers the prompt file deliberately withholds.**
+
+   These files do not state model IDs, prices, discounts, TTLs, window sizes, rate
+   limits, hook event names, or flag names. That is on purpose — they'd rot. Instead the
+   file *names the facts it expects you to bring*, in a **Verify …** sentence near the
+   top and again in the closing instructions. For example:
+
+   > "Verify the current batch discount, size limits, and turnaround window from live
+   > docs before teaching any number. Do not state a percentage from memory."
+
+   So the rule is mechanical — no judgment about which URLs look important:
+
+   - **`rg -i 'verify|do not (state|recite|quote)|never (assert|quote)' <prompt file>`.**
+     No hits → **fetch nothing.** 19 of the 41 sessions are pure decision-rule pedagogy
+     with no runtime facts at all; fetching for them is wasted turns and wasted context.
+   - Hits → the sentences name the specific facts. Fetch **only** the doc pages carrying
+     those facts, in **one parallel turn**, and read the named quantity off each page.
+     Two or three pages covers it; you are looking up specific values, not reading around
+     the topic.
+
+   Pick those pages from `## Authoritative sources` when the slug obviously matches
+   (`prompt-caching` for cache TTLs, `pricing` for rates). When it doesn't, don't guess
+   down the list — fetch the docs index once and select from its descriptions:
+   <https://code.claude.com/docs/llms.txt> for Claude Code, and
+   <https://platform.claude.com/docs/llms.txt> for the API and models. Both are annotated
+   `- [Name](URL): description`, so one fetch tells you exactly which page holds the fact.
+
+   State the date checked when you teach a number, and tell the learner to re-verify near
+   their exam. If a doc contradicts the prompt file, the doc wins; note the discrepancy in
+   the session log so the prompt file can be corrected by a human.
+
+   **Don't fetch to reassure yourself.** A fetch you never quote in the session was a
+   wasted turn — if you can't name the fact you're going after before calling, skip it.
+
+   **Expect the big reference pages to overflow, and plan to extract.** WebFetch returns
+   the whole converted page, so size is a property of the page, not of your question — a
+   narrow prompt does not prevent it. `permission-modes` returned 78KB against the ~30KB
+   tool-result limit on two separate runs, the second time from a prompt asking only for
+   "the exact permission mode names, and which mode is documented for CI". `cli-reference`
+   and `settings` are the same shape. Ask for one fact anyway — it keeps the answer usable
+   — but budget a turn for the extract.
+
+   An overflowed result is saved to a file and the path is in the message. Don't re-fetch
+   and don't `cat` it — that re-truncates. Pull just the section you need:
+
+   ```bash
+   sed -n '/## Available modes/,/^## /p' <saved-path> | head -60
+   ```
+
+   Anchor the range on a heading you expect from the page's structure, and keep the
+   `head` bound so a bad anchor can't dump the file back into context.
+
 3. Apply [depth calibration](#depth-calibration).
 4. Teach Socratically — see [Session shape](#session-shape).
 5. Before presenting any analogy, silently trace it end-to-end: does every mapped
