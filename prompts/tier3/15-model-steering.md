@@ -15,7 +15,7 @@ on treating prompts as code rather than as configuration strings.
 
 ## Session focus
 
-This session treats prompts as a **portfolio asset managed like code** — versioned, owned, evaluated, migrated — rather than as configuration strings. The crux is the steering lever order: instruction clarity, examples, output structure, effort/thinking, then model change. Cheapest and most targeted first; reaching for a model change before the prompt is unambiguous is this domain's bias trap. The session also owns the domain's **technique vocabulary** — zero-shot, few-shot, chain-of-thought — and **Skills as a prompt-reuse mechanism**, both named directly in CCAR-P Domain 2. Teach the techniques as *failure-matched interventions*, never as a list to recall, and verify the chain-of-thought guidance against live docs: on current models manual step-by-step prompting is the fallback for when thinking is off, not the default. Also teach A/B statistics honestly — in a probabilistic system, small samples mislead, and a difference must clear variance before it's real.
+This session treats prompts as a **portfolio asset managed like code** — versioned, owned, evaluated, migrated — rather than as configuration strings. The crux is the steering lever order: instruction clarity, examples, output structure, effort/thinking, then model change. Cheapest and most targeted first; reaching for a model change before the prompt is unambiguous is this domain's bias trap. The session also owns the domain's **technique vocabulary** — zero-shot, few-shot, chain-of-thought — and **Skills as a prompt-reuse mechanism**, both named directly in CCAR-P Domain 2. Teach the techniques as *failure-matched interventions*, never as a list to recall, and verify the chain-of-thought guidance against live docs: on current models manual step-by-step prompting is the fallback for when thinking is off, not the default. Close on the **surface-availability trap** — Skills do not sync across surfaces and claude.ai offers no central admin management of custom Skills — because it turns a plausible enterprise rollout plan into an undeliverable one, and the exam rewards noticing before the plan is written. Also teach A/B statistics honestly — in a probabilistic system, small samples mislead, and a difference must clear variance before it's real.
 
 ## Authoritative sources
 
@@ -106,6 +106,26 @@ By the end, the learner can:
 - Recognize the **Skill description as the trigger mechanism** — it must say what the Skill
   does *and* when to use it, which is the same load-bearing-description principle as tool
   design in Tier 1 session 11, and the same failure mode when over-broad
+- Recognize that **Skills behave differently per surface**, and that the differences decide
+  whether a standardization plan is deliverable at all. Verify these against live docs
+  before teaching — they move — but know the shape:
+  - **Custom Skills do not sync across surfaces.** A Skill uploaded to claude.ai is not
+    available via the API and vice versa; Claude Code Skills are filesystem-based and
+    separate from both. Each surface is managed and uploaded separately
+  - **Sharing scope differs.** API custom Skills are workspace-wide; Claude Code Skills are
+    personal (`~/.claude/skills/`) or project (`.claude/skills/`) and can also ship through
+    plugins; **claude.ai custom Skills are per-user, not shared org-wide, and cannot be
+    centrally managed by admins**
+  - **Runtime differs.** API Skills run sandboxed with no network access and no runtime
+    package installation; Claude Code Skills have the same network access as any local
+    program; claude.ai network access varies with user and admin settings
+- Draw the consequence for **enterprise standardization**: "roll one Skill out to the whole
+  org" is not uniformly achievable, and which surface the org standardizes on determines
+  whether central distribution is possible. An org whose users work in claude.ai cannot
+  centrally manage custom Skills for them today, so the answer is a different surface or a
+  different distribution mechanism — not a policy document asking people to upload it
+  themselves. This is the same surface-parity discipline as session 2, applied to Skills:
+  **parity must be verified per surface, never assumed**
 - Manage **prompt sprawl**: duplicated near-identical prompts across teams, and the
   consolidation and ownership answer
 - Explain the interaction between steering choices and cost: raising effort, adding
@@ -124,6 +144,7 @@ By the end, the learner can:
 | Zero-shot vs. add examples | Is the failure target-ambiguity, or reasoning capacity? |
 | Manual chain-of-thought vs. extended thinking | Is thinking available on this model, and at what effort? |
 | Cache vs. modularize vs. package as a Skill | Is the cost in repetition, authoring duplication, or always-loaded context? |
+| Which surface to standardize a Skill on | Does the rollout need central management, and does that surface support it? |
 
 ## How to run this session
 
@@ -160,30 +181,44 @@ By the end, the learner can:
    discovery applied to instructions instead of tools.
 8. **Teach the Skill description as trigger**, and have them critique an over-broad one.
    Same principle as tool descriptions in Tier 1 session 11, same failure mode.
-9. **Teach the steering lever order.** Give four failures and have them pick the cheapest
+9. **Teach the surface-availability trap.** Verify the current per-surface behavior first,
+   then set the problem: an enterprise wants one reviewed, approved Skill used identically
+   by 400 engineers. Ask how they'd distribute it. Most learners will assume a Skill is a
+   Skill. Then reveal the asymmetries — no cross-surface sync, per-user-only on claude.ai
+   with no central admin management, workspace-wide on the API, filesystem-and-plugins in
+   Claude Code — and have them redo the plan. The point that transfers: the rollout
+   mechanism is decided by the surface, so surface choice is upstream of the enablement
+   plan, not a detail inside it. Connect explicitly to session 2's elimination exercise and
+   forward to session 16's standardize-vs-delegate split.
+10. **Teach the steering lever order.** Give four failures and have them pick the cheapest
    sufficient lever. Reject reaching for a model change first — that's the domain's bias trap.
-10. **Teach model-specific differences** and the per-model validation requirement.
-11. **Teach the change process** as a code-change analogue, and have them write it.
-12. **Teach A/B statistics honestly.** Ask how many samples they'd need to detect a 3%
+11. **Teach model-specific differences** and the per-model validation requirement.
+12. **Teach the change process** as a code-change analogue, and have them write it.
+13. **Teach A/B statistics honestly.** Ask how many samples they'd need to detect a 3%
    difference. The answer being "more than you'd think" is the lesson; connect to session 7's
    eval sizing arithmetic.
-13. **Teach system-prompt placement** and the secrets rule from session 8.
-14. **Teach prompt sprawl** with an org that has 200 prompts and no inventory; connect to
+14. **Teach system-prompt placement** and the secrets rule from session 8.
+15. **Teach prompt sprawl** with an org that has 200 prompts and no inventory; connect to
     session 13's prompt inventory.
-15. **Decision table** — walk all rows.
-16. **Scenario drill — 6 questions**, standalone Professional format. Include a lever-order
+16. **Decision table** — walk all rows.
+17. **Scenario drill — 6 questions**, standalone Professional format. Include a lever-order
     question, a technique-matching question (a failure where examples are the wrong fix), a
-    reuse-mechanism choice (caching vs. modular vs. Skill), a shared-component
-    blast-radius question, an A/B validity question, and one multiple-response on prompt
-    governance.
-17. **Distractor autopsy** — expect model upgrades chosen before prompt clarity,
+    reuse-mechanism choice (caching vs. modular vs. Skill), a Skill-distribution question
+    where the stated surface makes central management impossible, an A/B validity question,
+    and one multiple-response on prompt governance.
+18. **Distractor autopsy** — expect model upgrades chosen before prompt clarity,
     production A/B results trusted at sample sizes that can't support them, few-shot
-    examples offered for a reasoning failure, and manual chain-of-thought scaffolding where
-    extended thinking at a lower effort was the current-model answer.
-18. Record per `.agents/TUTORIAL.md` Step 5.
+    examples offered for a reasoning failure, manual chain-of-thought scaffolding where
+    extended thinking at a lower effort was the current-model answer, and Skill
+    distribution plans that assume cross-surface sync or org-wide management the surface
+    doesn't provide.
+19. Record per `.agents/TUTORIAL.md` Step 5.
 
 ## Out of scope
 
+- Deployment surface choice itself → session 2 (this session covers only how surface
+  choice constrains Skill distribution)
+- Org rollout, adoption, and enablement mechanics → session 16
 - Context architecture → session 14
 - Eval construction → session 7
 - Model migration → session 13
