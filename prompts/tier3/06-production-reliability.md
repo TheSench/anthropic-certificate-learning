@@ -58,6 +58,10 @@ By the end, the learner can:
   does that retry alone doesn't
 - Design **idempotency** across the whole agentic flow, not just single tools, so a
   replayed invocation can't double-execute
+- Diagnose a failure to its cause across the categories CCAR-P names — **prompt failure,
+  hallucination, model mismatch** — where "model mismatch" means the model is wrong for the
+  task (too small for the reasoning required, or too large and slow for a trivial one)
+  rather than misbehaving, and is the category most often misdiagnosed as a prompt problem
 - Distinguish the failure classes and their distinct handling: API errors, rate limits,
   refusals, truncation, malformed output, semantically-wrong-but-well-formed output, and
   agent non-termination

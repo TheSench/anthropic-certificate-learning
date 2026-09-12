@@ -62,7 +62,14 @@ By the end, the learner can:
 - Design **context budgets per component** — system, tools, retrieved content, history,
   output reserve — and enforce them rather than discovering exhaustion in production
 - Explain why **tool definitions are a scaling problem** and how tool search or per-task
-  scoping addresses it
+  scoping addresses it — the guide's term for this trade is **progressive discovery vs.
+  monolithic context** (load everything up front, or let the agent discover what it needs).
+  Our retrieve-on-demand, tool-search, and per-task-scoping material *is* progressive
+  discovery; know the phrase, because an exam item may use it without explanation
+- Recognize **capability bloat** (the guide's term) as the failure mode behind an
+  overlarge tool surface: more tools than the task needs degrades selection accuracy,
+  inflates every request's prefix, and widens the blast radius — the same problem Tier 1
+  session 11 taught as overlapping descriptions and too many tools
 - Connect context strategy to **cost** (accumulated input dominates), **quality** (relevant
   content must survive), and **compliance** (what enters the window is a data-handling event)
 - Diagnose a context problem in a production system to its cause, and pick the fix that
@@ -76,6 +83,7 @@ By the end, the learner can:
 | Summarize vs. externalize state | Is fidelity over time required, or is a gist enough? |
 | Memory tool vs. application-owned store | Who needs to read, audit, and delete it? |
 | Retrieve on demand vs. carry in context | How often is it actually needed per session? |
+| Progressive discovery vs. monolithic context | Is the full surface needed every turn, or discoverable on demand? |
 | Tool search vs. curated per-task tools | Is the tool surface large and task-dependent? |
 | Raise the budget vs. redesign the flow | Is growth bounded, or unbounded by construction? |
 

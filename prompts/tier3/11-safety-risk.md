@@ -16,7 +16,7 @@ listing safety features.
 
 ## Session focus
 
-This session covers risk management as an organizational discipline, framed as an architecture review board would ask it. The crux is **least privilege for agents**: an agent's blast radius is the union of its tool permissions, so restricting tools beats hardening instructions. Insist the learner explicitly *accept* at least one risk — an architect who mitigates everything hasn't prioritized. Also land the agent-specific risk that traditional appsec misses: the action set is chosen at runtime by a probabilistic process influenced by untrusted input.
+This session covers risk management as an organizational discipline, framed as an architecture review board would ask it. The crux is **least privilege for agents**: an agent's blast radius is the union of its tool permissions, so restricting tools beats hardening instructions. Insist the learner explicitly *accept* at least one risk — an architect who mitigates everything hasn't prioritized. Also land the agent-specific risk that traditional appsec misses: the action set is chosen at runtime by a probabilistic process influenced by untrusted input. This session also owns **ethical AI — bias, fairness, transparency** — which CCAR-P names as its own task statement. Teach it as an engineering concern with the same likelihood × impact discipline as any other risk, not as a values discussion: where bias enters, how you would *detect* it, and what disclosure the deployment owes its users.
 
 ## Authoritative sources
 
@@ -42,6 +42,16 @@ This session covers risk management as an organizational discipline, framed as a
 **Policy and acceptable use**
 - <https://www.anthropic.com/legal/aup>
 - <https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks>
+
+**Ethical AI and model behavior**
+- <https://www.anthropic.com/legal/aup>
+- <https://platform.claude.com/docs/en/about-claude/use-case-guides/content-moderation>
+- <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
+
+> Anthropic's docs cover safety controls thoroughly but treat bias and fairness mainly as
+> model-behavior and policy concerns rather than as an architect's checklist. Teach this
+> objective as risk engineering — detection, measurement, disclosure — and keep it concrete.
+> The exam asks what an architect *does* about bias, not what bias is.
 
 ## Teaching objectives
 
@@ -69,6 +79,30 @@ By the end, the learner can:
 - Explain the **kill switch requirement** — the ability to stop an agent fleet quickly — and
   why it must be tested rather than assumed
 - Explain **acceptable use** obligations and their implications for what an org may build
+- Identify **where bias enters a Claude system** and treat each as a distinct risk with its
+  own control: the model's own tendencies, the prompt (examples and criteria that encode an
+  assumption), the retrieval corpus (an index over historical decisions carries their
+  pattern forward), and the human process around it (who reviews what, and whose cases get
+  escalated). Naming the entry point is what makes it addressable
+- Explain why **disparate outcomes across groups are measurable** and therefore an
+  engineering problem: define the segments that matter for the use case, evaluate per
+  segment rather than in aggregate, and recognize that a strong aggregate score can hide a
+  failure concentrated in one group — an eval suite that only reports a mean cannot detect
+  this, which connects directly to session 7
+- Apply **proportionality**: bias risk scales with consequence and reversibility, so a
+  system ranking support tickets and a system screening job applicants or loan
+  applications warrant different controls. Name the high-consequence domains where a
+  disparate-outcome failure is also a *regulatory* failure, connecting to session 10
+- Design **transparency** at the right level for each audience: disclosure that a user is
+  interacting with an AI system, an explanation a decision *subject* can act on, and an
+  audit trail a reviewer can inspect — and explain honestly that a model's reasoning is not
+  reliably introspectable, so "explainability" in a Claude system means logged inputs,
+  retrieved sources, citations, and decision records rather than an account of why the
+  model produced what it did
+- Explain why **a human in the loop is not automatically a fairness control** — a reviewer
+  who rubber-stamps at volume, or who inherits the model's framing, launders the outcome
+  rather than checking it — and what makes oversight real: sampling, disagreement rates
+  tracked, and authority to overturn
 - Present a risk position honestly: residual risk stated, not hidden — which also rehearses
   session 12
 
@@ -82,6 +116,9 @@ By the end, the learner can:
 | Sandbox vs. direct access | Could the agent reach anything outside its task? |
 | Human in the loop vs. fully autonomous | What's the blast radius of a wrong action at volume? |
 | Block the use case vs. constrain it | Is the risk in the capability or the configuration? |
+| Aggregate eval vs. per-segment eval | Could a failure be concentrated in one group? |
+| Disclose AI involvement vs. not | Does the user's decision change if they know? |
+| Human review vs. automated decision | What's the consequence to the decision subject, and is it reversible? |
 
 ## How to run this session
 
@@ -105,11 +142,32 @@ By the end, the learner can:
    can revoke permissions at 2am, how would you know it's happening, what do the logs need
    to contain, and has the kill switch been tested?
 9. **Teach acceptable use** and its architectural implications.
-10. **Teach honest risk presentation** — residual risk named explicitly.
-11. **Decision table** — walk all six rows.
-12. **Scenario drill — 5 questions**, standalone Professional format. Include a risk
-    prioritization, a least-privilege question, an oversight proportionality question, an
-    incident-response question, and one multiple-response on the agent-specific risk surface.
+10. **Teach bias as an entry-point problem.** Don't open with definitions. Give one
+    system — a CV screener, or a system triaging benefit claims — and ask where bias could
+    enter. Take their answers, then supply the four entry points they missed (model, prompt,
+    retrieval corpus, human process). The retrieval one lands hardest: an index built over
+    five years of historical decisions carries those decisions' pattern forward, and nothing
+    in the prompt reveals it.
+11. **Teach detection as measurement.** Ask how they would *know* the system is biased.
+    Push past "review the outputs" to per-segment evaluation, and make the arithmetic point:
+    a 94% aggregate score can be 98% for one group and 71% for another. Connect to session
+    7 — an eval suite reporting only a mean cannot detect this, which is an eval *design*
+    defect, not a bias-specific tool.
+12. **Teach proportionality**, connecting to session 10. Ask which decisions warrant which
+    controls, and where a disparate-outcome failure becomes a regulatory one.
+13. **Teach transparency honestly.** Distinguish the three audiences (user, decision
+    subject, auditor). Then do the hard part: ask what they would tell a rejected applicant
+    who asks why. Reject any answer implying the model can explain itself — the honest
+    answer is the logged inputs, the retrieved sources, the criteria applied, and the
+    human's decision record. Overclaiming explainability is the distractor here.
+14. **Teach the rubber-stamp failure** — why a human in the loop can launder an outcome
+    rather than check it, and what makes oversight real.
+15. **Teach honest risk presentation** — residual risk named explicitly.
+16. **Decision table** — walk all rows.
+17. **Scenario drill — 5 questions**, standalone Professional format. Include a risk
+    prioritization, a least-privilege question, an oversight proportionality question, a
+    bias-detection question (per-segment vs. aggregate), and one multiple-response on what
+    transparency a high-consequence deployment owes.
 13. **Distractor autopsy** — expect instruction-hardening chosen where privilege reduction
     was the control, and oversight assigned by task difficulty rather than reversibility.
 14. Record per `.agents/TUTORIAL.md` Step 5. Score conservatively — this domain is absent

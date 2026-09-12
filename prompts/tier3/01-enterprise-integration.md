@@ -49,6 +49,14 @@ This session raises tool and MCP design to enterprise systems integration — to
 
 By the end, the learner can:
 
+- Select the **connection protocol** against what sits on the other end, which CCAR-P
+  states as "evaluate connection protocols and select the appropriate integration mechanism
+  (MCP, API/CLI, agent-to-agent)": **MCP** where a reusable tool surface is exposed to a
+  model, **API/CLI** where a service is called directly by code, and **agent-to-agent**
+  where the peer is itself an autonomous system with its own loop and judgment. The
+  agent-to-agent case is the one to think hardest about — a peer that can refuse,
+  misinterpret, or take its own actions is not a function call, and the failure modes are
+  those of delegation rather than those of a request
 - Choose the **integration topology** for a Claude system inside an existing enterprise:
   synchronous request/response, async job with webhook callback, event-driven off a queue
   or bus, or scheduled batch — and justify it on the consuming system's expectations
@@ -78,6 +86,7 @@ By the end, the learner can:
 | Federated identity vs. static credential | Does the credential outlive the workload? |
 | Agent identity vs. user delegation | Could the agent do something the requesting user cannot? |
 | Direct connection vs. tunnel/gateway | Does traffic cross a network or trust boundary? |
+| MCP vs. API/CLI vs. agent-to-agent | What is on the other end — a tool surface, a service, or another agent? |
 | Managed agents vs. self-hosted | Who must own the runtime, data path, and compliance evidence? |
 | Direct integration vs. anti-corruption layer | Is the downstream system stable and well-modeled? |
 

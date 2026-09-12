@@ -70,7 +70,12 @@ By the end, the learner can:
 - Explain why **policy in a document is not a control**, and identify which of a set of
   stated policies are actually enforced
 - Map a **regulatory requirement to a technical control** — GDPR data subject requests,
-  HIPAA handling of PHI, PCI scope, SOC 2 evidence — without overclaiming compliance
+  HIPAA handling of PHI, PCI scope, SOC 2 evidence, **FedRAMP** authorization for US
+  federal workloads — without overclaiming compliance. CCAR-P names GDPR, HIPAA, and
+  FedRAMP explicitly, so know what each *constrains*: GDPR drives residency, deletion, and
+  subject access; HIPAA drives PHI handling and business-associate terms; FedRAMP drives
+  which deployment surfaces are authorized at all, making it an elimination constraint of
+  the same kind as residency in session 2
 - Design the **data classification gate**: what may enter a prompt, what must be redacted
   or tokenized first, and where that decision is enforced
 - Explain the **shared responsibility** split: what the provider is accountable for versus

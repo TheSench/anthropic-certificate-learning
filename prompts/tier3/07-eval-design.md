@@ -42,6 +42,10 @@ This session answers the question behind most P3 items: **"how would you know if
 
 By the end, the learner can:
 
+- Build test frameworks using **mixed methodologies** (the guide's phrase) — combining
+  programmatic assertions, LLM-judged criteria, and human review in one suite rather than
+  committing to a single grading mode, because different criteria in the same task are
+  checkable in different ways
 - Build an eval suite from real production data — the failure cases you've actually seen —
   rather than synthetic happy paths, and explain why that ordering matters
 - Choose the **grading method** per criterion and justify it: exact match, programmatic

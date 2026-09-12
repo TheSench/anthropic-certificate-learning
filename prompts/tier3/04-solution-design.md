@@ -52,6 +52,18 @@ By the end, the learner can:
 
 - Run a **requirements-to-architecture** pass: from stated business need, quality bar,
   volume, latency budget, cost ceiling, and compliance posture to a defensible design
+- Name which **business value pillar** a solution is actually serving — CCAR-P lists five:
+  **efficiency** (same outcome, less input), **transformation** (something previously
+  impossible, not merely faster), **productivity** (people accomplishing more per unit
+  time), **cost** (direct spend reduction), and **performance SLAs** (a commitment about
+  latency, throughput, or availability). Use them as the exam's vocabulary for *why* a
+  system is being built, and recognize that they pull against each other: a transformation
+  case tolerates cost that an efficiency case cannot, and an SLA commitment constrains
+  designs that a productivity case would happily accept
+- Detect the **stated-versus-real pillar mismatch**: a sponsor who says "efficiency" but
+  measures headcount reduction, or one who asks for transformation and supplies an
+  efficiency budget. The architecture that follows differs, so the mismatch has to surface
+  before design, not after
 - Select a model from **constraints rather than capability ranking**: identify the binding
   constraint first, then choose the cheapest/fastest model that clears the quality bar
 - Explain the **tiered-model pattern**: a cheap model handling the common path with
@@ -79,6 +91,7 @@ By the end, the learner can:
 | Messages API vs. Agent SDK vs. managed agents | Who owns the loop, the tools, and the operations? |
 | Claude Code vs. a built application | Is the user an engineer in a repo, or an end user in a product? |
 | Simplest sufficient design vs. flexible one | Is the requirement stable, or genuinely expected to change? |
+| Which value pillar governs | Is this efficiency, transformation, productivity, cost, or an SLA commitment? |
 
 ## How to run this session
 
@@ -87,27 +100,33 @@ By the end, the learner can:
 2. **Verify the model lineup** before teaching any name, ID, price, or limit. Tell the
    learner explicitly that model IDs and prices must be checked, since a confidently stated
    stale ID is exactly what an exam question can punish.
-3. **Teach the requirements-to-architecture pass** as a repeatable order: quality bar,
-   volume, latency, cost, compliance, then design. Work one example end to end.
-4. **Teach constraint-first model selection.** Give four workloads with different binding
+3. **Teach the value pillars first**, because they decide what "good" means before any
+   constraint is weighed. Give five one-line project briefs and have the learner name the
+   governing pillar for each, then say what changes in the design if the pillar were
+   different. Include one brief where the stated pillar and the stated success metric
+   disagree — that mismatch is the exam-relevant case, and the architect's job is to
+   surface it rather than design past it.
+4. **Teach the requirements-to-architecture pass** as a repeatable order: pillar, quality
+   bar, volume, latency, cost, compliance, then design. Work one example end to end.
+5. **Teach constraint-first model selection.** Give four workloads with different binding
    constraints and have them choose, naming the constraint each time. Include one where the
    cheapest model is right and one where it genuinely isn't.
-5. **Teach the tiered pattern** with its full cost, not just its savings. Ask what breaks
+6. **Teach the tiered pattern** with its full cost, not just its savings. Ask what breaks
    when the router misclassifies.
-6. **Teach the effort dimension** as a third axis besides model and prompt.
-7. **Teach API surface choice** as an ownership question.
-8. **Teach over-engineering detection.** Present three over-built designs and have the
+7. **Teach the effort dimension** as a third axis besides model and prompt.
+8. **Teach API surface choice** as an ownership question.
+9. **Teach over-engineering detection.** Present three over-built designs and have the
    learner simplify each, stating what's lost. Then ask for the one case where the complex
    version was justified.
-9. **Teach justification.** Have them defend a design in three sentences to a skeptical
+10. **Teach justification.** Have them defend a design in three sentences to a skeptical
    engineering director — this rehearses P5 as well.
-10. **Decision table** — walk all six rows.
-11. **Scenario drill — 5 questions**, standalone Professional format. Include a
+11. **Decision table** — walk all six rows.
+12. **Scenario drill — 5 questions**, standalone Professional format. Include a
     constraint-driven model choice, a tiered-pattern trade-off, an API surface decision, an
     over-engineering identification, and one multiple-response on selection criteria.
-12. **Distractor autopsy** — expect the most capable model chosen by default, and complexity
+13. **Distractor autopsy** — expect the most capable model chosen by default, and complexity
     chosen for hypothetical future needs.
-13. Record per `.agents/TUTORIAL.md` Step 5. Glossary every model ID and price verified,
+14. Record per `.agents/TUTORIAL.md` Step 5. Glossary every model ID and price verified,
     with the date.
 
 ## Out of scope

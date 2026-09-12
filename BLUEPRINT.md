@@ -28,6 +28,21 @@ the exam."
 - [CCAR-F Exam Guide (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1783542750/Claude+Certified+Architect+%E2%80%93+Foundations+Exam+Guide.pdf)
 - [CCAR-P Exam Guide (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1783542810/Claude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf)
 
+**Our P-codes are not the guide's domain numbers.** This file orders the Professional
+domains by weight and labels them P1–P7; the guide lists them in its own order as Domain
+1–7. The domains, names, and weights are identical — only the numbering differs. Read
+across when comparing this file to the guide:
+
+| Ours | Guide | Domain | Weight |
+|---|---|---|---|
+| P1 | Domain 3 | Integration | 19% |
+| P2 | Domain 1 | Solution Design & Architecture | 17% |
+| P3 | Domain 4 | Evaluation, Testing & Optimization | 16% |
+| P4 | Domain 5 | Governance, Safety & Risk Management | 14% |
+| P5 | Domain 6 | Stakeholder Communication & Lifecycle Management | 14% |
+| P6 | Domain 2 | Claude Models, Prompting & Context Engineering | 13% |
+| P7 | Domain 7 | Developer Productivity & Operational Enablement | 7% |
+
 CCAR-F's § 17 Appendix carries three lists that define scope precisely —
 **Technologies and Concepts**, **In-Scope Topics**, and **Out-of-Scope Topics**.
 CCAR-P has no appendix and no equivalent lists; its scope is the Domain 1–7 task

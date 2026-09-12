@@ -17,7 +17,7 @@ communication of uncertainty consistently beats confident overclaiming.
 
 ## Session focus
 
-This is the least technical domain and the one engineers most under-prepare, which at 14% makes it disproportionately worth studying. The crux is **audience translation** — the same decision explained to a CFO, a CISO, a staff engineer, and a product owner — and the session's core work is the role-play, where you play a skeptical stakeholder who pushes back at least twice per exchange. Do not let a vague answer pass. Also teach the recommend-against case: advising against a Claude solution when a deterministic system fits better is scored as competence, not as failure to deliver.
+This is the least technical domain and the one engineers most under-prepare, which at 14% makes it disproportionately worth studying. The crux is **audience translation** — the same decision explained to a CFO, a CISO, a staff engineer, and a product owner — and the session's core work is the role-play, where you play a skeptical stakeholder who pushes back at least twice per exchange. The session opens with the other half of the domain: **structured discovery**, the requirement-gathering that happens *before* any design exists. Every other session in this tier starts from a stated requirement; this is where the learner practices producing one. Teach it as elicitation under the assumption that the stated ask is rarely the real one. Do not let a vague answer pass. Also teach the recommend-against case: advising against a Claude solution when a deterministic system fits better is scored as competence, not as failure to deliver.
 
 ## Authoritative sources
 
@@ -46,6 +46,23 @@ documents let you *promise*, and what they don't.
 
 By the end, the learner can:
 
+- Run **structured discovery** on a vague request: establish the decision or task being
+  automated today and who owns it, the volume and the shape of the inputs, what "correct"
+  means and who adjudicates it, the tolerance for being wrong and the cost of each error
+  direction, the constraints already fixed (budget, deadline, compliance posture, systems
+  that cannot change), and how success will be measured after launch
+- Distinguish the **stated ask from the underlying need** — "we want a chatbot on our
+  docs" is a proposed solution, not a requirement — and ask the questions that recover the
+  need without dismissing the sponsor's framing
+- Identify the **missing stakeholder**: the team that owns the data, the reviewer whose
+  workload changes, the compliance function that will gate launch. A requirement set
+  gathered from the sponsor alone is incomplete by construction, and the omission usually
+  surfaces at the worst moment
+- Surface **unstated assumptions** early — expected accuracy, acceptable latency, who sees
+  failures, whether a human stays in the loop — because these are the requirements that go
+  unrecorded and then decide whether the delivered system is judged a success
+- Recognize when discovery should conclude that **the problem is not worth solving this
+  way**, and connect that to the recommend-against case below
 - Translate an architecture decision for the **audience that's asking**: an executive wants
   cost, risk, and timeline; a security reviewer wants controls and evidence; an engineering
   team wants mechanism and constraints; a product owner wants capability and limits
@@ -78,6 +95,8 @@ By the end, the learner can:
 
 | Decision | The tell that decides it |
 |---|---|
+| Ask more discovery questions vs. start designing | Do you know what "correct" means and who decides it? |
+| Take the stated ask vs. reframe it | Is the request a need, or a proposed solution? |
 | Which framing to use | Who is asking, and what decision do they own? |
 | Quantify vs. qualify | Is there measured evidence, or only judgment? |
 | Commit to a number vs. state a range | Do you have eval data supporting the number? |
@@ -89,30 +108,40 @@ By the end, the learner can:
 
 1. **Frame** — the least technical and most under-prepared domain, at 14%. That combination
    makes it high-value study. Say so directly.
-2. **Teach audience translation.** Give one architecture decision and have the learner
+2. **Teach structured discovery by making them do it.** Give a deliberately thin request —
+   "leadership wants AI to handle our support tickets" — and have the learner interview you
+   as the sponsor. Answer only what's asked, vaguely, the way a real sponsor would. Do not
+   volunteer the constraints. Afterwards, name what they never asked: who adjudicates a
+   correct answer, what a wrong one costs in each direction, what volume, what's already
+   fixed, who else must sign off. Then reveal a constraint that invalidates their implied
+   design — a compliance gate, or a data owner who won't grant access — and make the point
+   that it was discoverable by asking. This is the session's second core exercise.
+3. **Teach the stated-ask-versus-need distinction** and the missing-stakeholder check as
+   the two habits that most reliably prevent a late-stage surprise.
+4. **Teach audience translation.** Give one architecture decision and have the learner
    explain it four times — to a CFO, a CISO, a staff engineer, and a product owner — and
    critique each for the wrong altitude or the wrong concern. This is the session's core work.
-3. **Teach the trade-off-with-an-owner form** and have them restate three decisions from
+5. **Teach the trade-off-with-an-owner form** and have them restate three decisions from
    earlier sessions in it.
-4. **Teach honest uncertainty.** Ask them to answer "can you guarantee it won't make things
+6. **Teach honest uncertainty.** Ask them to answer "can you guarantee it won't make things
    up?" Reject any answer that overclaims; reject any that's so hedged it's useless. The
    target is a truthful answer a stakeholder can act on.
-5. **Role-play the hard conversations.** Take all five above, with the agent playing a
+7. **Role-play the hard conversations.** Take all five above, with the agent playing a
    skeptical stakeholder who pushes back at least twice per exchange. Do not let a vague
    answer pass — this is the rehearsal that transfers to the exam.
-6. **Teach the recommend-against case.** Give a scenario where a deterministic system is the
+8. **Teach the recommend-against case.** Give a scenario where a deterministic system is the
    right answer and have them make that recommendation to a sponsor who wants AI in the
    product. Name that the exam scores this as competence.
-7. **Teach decision records** and have them write one for a decision from session 4 or 5.
-8. **Teach honest status reporting** with an underperforming pilot: what they'd say, what
+9. **Teach decision records** and have them write one for a decision from session 4 or 5.
+10. **Teach honest status reporting** with an underperforming pilot: what they'd say, what
    options they'd present, and what they would not claim.
-9. **Decision table** — walk all six rows.
-10. **Scenario drill — 5 questions**, standalone Professional format. Include an audience-
+11. **Decision table** — walk all six rows.
+12. **Scenario drill — 5 questions**, standalone Professional format. Include an audience-
     framing question, an uncertainty-communication question, a recommend-against question, a
     decision-record question, and one multiple-response on what a stakeholder brief must contain.
-11. **Distractor autopsy** — expect overclaiming certainty to satisfy a stakeholder, and
+13. **Distractor autopsy** — expect overclaiming certainty to satisfy a stakeholder, and
     technical depth delivered to an audience that needed the business framing.
-12. Record per `.agents/TUTORIAL.md` Step 5. Score conservatively — absent from Foundations.
+14. Record per `.agents/TUTORIAL.md` Step 5. Score conservatively — absent from Foundations.
 
 ## Out of scope
 
