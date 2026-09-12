@@ -57,6 +57,27 @@ User sends "Start" / "Continue" / "mock" / "drill"
 
 ## Key design decisions
 
+**Progress on a branch, harness on `main`** — the learner commits `learner/` and
+`drills/` to a `learning` branch; curriculum and protocol updates arrive on `main` and
+are merged in at Step 0.5 of `TUTORIAL.md`. This works only because the ownership split
+is disjoint: the learner writes `learner/` and `drills/`, the maintainer writes
+`prompts/`, `.agents/`, `BLUEPRINT.md`, and `README.md`. Nothing is written by both, so
+the recurring merge is conflict-free in practice. A conflict is a signal the split was
+violated, which is why the sync aborts and hands it to a human rather than resolving it.
+
+**Merge, never rebase** — rebasing would rewrite progress commits every session, forcing
+a force-push on any published branch and diverging a learner who studies on two machines.
+The session log is an append-only record; its hashes are expected to be stable.
+
+**Sync reads the fork's `upstream`, not `origin`** — most learners arrive by forking, so
+`origin` is their own copy and carries none of the updates. Fetching `origin` on a fork
+"succeeds" and reports up-to-date forever, which is a silent failure: the learner studies
+a frozen curriculum believing it is current. The sync detects a non-canonical `origin`
+with no `upstream` and emits the one-time `git remote add` fix.
+
+**Sync never blocks a session** — a failed fetch prints one line and proceeds. Studying
+offline matters more than being current.
+
 **State in files, not memory** — everything is written to `learner/` and `drills/` and
 committed after each session, so progress survives across conversations and machines.
 

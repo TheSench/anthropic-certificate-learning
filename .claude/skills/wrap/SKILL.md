@@ -140,6 +140,13 @@ of the session **or** you must name the existing card whose streak you reset ins
 
    Only stage modified files. Don't ask — just commit.
 
+   **Branch.** This commits to whatever branch is checked out — normally the learner's
+   `learning` branch, created at Step 0.5 / Initialization. Being on `main` is not an
+   error and never blocks the commit: record the session first, then mention once that
+   moving to a learning branch (`git checkout -b learning`) makes harness updates merge
+   cleanly. Never switch branches yourself mid-wrap — an uncommitted session is exactly
+   what must not be moved. Do not `git push`; publishing is the learner's call.
+
 4. **Confirm the commit landed:**
 
    ```bash
