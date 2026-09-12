@@ -67,6 +67,25 @@ By the end, the learner can:
   you notice
 - Maintain a **prompt inventory** with ownership, so an org knows what prompts exist, which
   model each targets, and who maintains them — an unowned prompt is a latent outage
+- Name the **lifecycle phases in the exam's vocabulary** — discovery, design, **handoff**,
+  monitoring, iteration — and say what each produces and who owns it. Sessions 12 and 7
+  cover discovery, design, and monitoring; handoff is the one architects skip
+- Execute a **handoff** to the team that will operate the system, and treat it as a
+  deliverable rather than a meeting. Name what actually transfers:
+  - The **eval suite** and its baseline — without it the receiving team cannot safely
+    change a prompt or a model
+  - The **prompt inventory**, with which model each targets and why the prompt is shaped
+    the way it is
+  - A **runbook**: the known failure modes, what each looks like in the logs, the
+    escalation path, and the rollback procedure
+  - The **decision record** — what was tried and rejected, so the new owners don't relitigate
+    settled trade-offs or reintroduce a design that already failed
+  - A **named owner** on the receiving side, and the monitoring dashboards and alerts
+  Say plainly why a handoff without the eval suite is the common failure: the system
+  freezes, because nobody can prove a change is safe
+- Distinguish this **lifecycle handoff** (transferring a system to an owning team) from the
+  **escalation handoff** taught in Tier 1 (passing one case to a human mid-conversation).
+  Same word, different scope — the exam uses it in the lifecycle sense
 - Plan for **deprecation of a system you built**: what happens to it when the owner leaves
   or the business need ends
 - Communicate a migration to stakeholders: what could change, what you'll validate, and the
@@ -84,6 +103,7 @@ By the end, the learner can:
 | Canary vs. full cutover | Is the failure detectable quickly and reversible? |
 | Build evals first vs. migrate under deadline | Is there a forced retirement date? |
 | Monitor drift vs. periodic re-evaluation | Does the input distribution move continuously? |
+| Hand off now vs. keep operating it | Does the receiving team have the eval suite and a runbook? |
 
 ## How to run this session
 
@@ -106,15 +126,23 @@ By the end, the learner can:
 10. **Teach the inherited-no-evals situation**, which is the realistic case: what do you do
     when a retirement date is fixed and you have no suite? Have them sequence it under the
     deadline.
-11. **Teach migration communication**, connecting to session 12.
-12. **Decision table** — walk all six rows.
-13. **Scenario drill — 5 questions**, standalone Professional format. Include a
+11. **Teach the phases and the handoff.** Name the five phases, then spend the time on
+    handoff: have the learner list what they'd transfer to an operating team, and hold them
+    to artifacts rather than activities — "a walkthrough session" is not a deliverable.
+    Supply whatever they miss, and make sure the eval suite is in the list; then ask what
+    the receiving team can and cannot do without it. The answer — they can't safely change
+    anything, so the system freezes — is the lesson. Note the vocabulary collision with
+    Tier 1's escalation handoff explicitly.
+12. **Teach migration communication**, connecting to session 12.
+13. **Decision table** — walk all seven rows.
+14. **Scenario drill — 6 questions**, standalone Professional format. Include a
     pinning decision, a migration sequencing question under a retirement deadline, a
-    regression-triage question, a drift-detection question, and one multiple-response on
+    regression-triage question, a drift-detection question, a handoff-completeness item
+    where the eval suite or runbook is the missing piece, and one multiple-response on
     what a migration plan must include.
-14. **Distractor autopsy** — expect migration without eval evidence, and stronger-model
-    upgrades assumed safe.
-15. Record per `.agents/TUTORIAL.md` Step 5. Score conservatively — absent from Foundations.
+15. **Distractor autopsy** — expect migration without eval evidence, stronger-model
+    upgrades assumed safe, and handoffs treated as documentation delivery.
+16. Record per `.agents/TUTORIAL.md` Step 5. Score conservatively — absent from Foundations.
 
 ## Out of scope
 

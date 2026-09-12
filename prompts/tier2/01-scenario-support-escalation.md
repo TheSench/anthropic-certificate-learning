@@ -1,6 +1,6 @@
 # Scenario: Support & Escalation — S1
 
-**Foundations scenario archetype 1 of 6 · primary domains F1, F5**
+**Foundations scenario archetype 1 of 6 · primary domains F1, F4, F5**
 
 ## What this session is
 
@@ -29,8 +29,9 @@ Mirror the real exam's scenario structure:
 4. After each batch: score it, then run a **full distractor autopsy** on every question,
    including the ones answered correctly (the learner may have been right for the wrong
    reason — probe that).
-5. Domain mix, approximating the real weighting for this archetype: ~6 F1, ~4 F5, ~2 F3,
-   ~2 F4.
+5. Domain mix, approximating the real weighting for this archetype: ~6 F1, ~4 F4, ~4 F5,
+   ~1 F3. The guide names Tool Design & MCP a primary domain for this archetype — the
+   scenario runs entirely on MCP tools — so it carries real weight here, not a token item.
 
 ## Building the scenario brief
 
@@ -93,7 +94,7 @@ For every question, state:
 
    ```
    S1 Support & Escalation — [N]/[total] ([%])
-   F1 [n]/[n] · F5 [n]/[n] · F3 [n]/[n] · F4 [n]/[n]
+   F1 [n]/[n] · F4 [n]/[n] · F5 [n]/[n] · F3 [n]/[n]
    ```
 
 5. Name the **two most transferable weaknesses** revealed, in terms of the decision they'd

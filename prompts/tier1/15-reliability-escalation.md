@@ -55,6 +55,26 @@ By the end, the learner can:
 - Recognize that an agent cannot reliably self-assess confidence, so escalation triggers
   should be **structural** (this action type always escalates; no progress after N
   attempts; a required field is missing) rather than purely model-judged
+- Apply the three triggers that decide most support items, and say why each is structural
+  rather than a judgment call:
+  - **The customer asks for a human.** Escalate immediately — don't investigate first,
+    don't attempt one more resolution. If they're frustrated but *haven't* asked and the
+    issue is within the agent's capability, acknowledging the frustration while offering
+    the fix is correct; escalate if they then repeat the preference
+  - **Policy is silent or ambiguous** on what's being asked — not merely that the case is
+    complex. A policy covering price adjustments on your own site says nothing about
+    matching a competitor's price; that gap is the trigger, and a confident guess in the
+    gap is how an agent invents policy
+  - **No meaningful progress** — the agent is looping, repeating tool calls, or has run
+    out of approaches
+- Name the two unreliable proxies the exam offers as distractors: **customer sentiment**
+  (frustration is not complexity — angry customers often have simple problems, and calm
+  ones can have intractable ones) and **self-reported confidence scores** (the model is
+  least able to flag the cases where it has misunderstood, which are exactly the ones
+  needing a human)
+- Handle **ambiguous identity resolution**: when a lookup returns multiple matches, ask for
+  an additional identifier rather than picking by heuristic. Acting on the wrong record is
+  the failure mode, and "most recent" or "closest name" is a guess wearing a rule's clothes
 - Design the **escalation handoff**: what the human receives — what was attempted, what
   was learned, what's blocked, and the recommendation — so escalation isn't a reset
 - Distinguish **escalate** (hand off), **ask** (block for input, keep the task), and
@@ -76,6 +96,9 @@ By the end, the learner can:
 | Escalate vs. handle autonomously | Is the action reversible, and are the stakes bounded? |
 | Escalate vs. ask for input | Does the human need to *take over*, or just *decide one thing*? |
 | Structural trigger vs. model judgment | Can the model reliably know it's wrong here? |
+| Escalate now vs. attempt first | Has the customer actually asked for a human? |
+| Policy gap vs. merely complex | Does the policy *address* this case at all? |
+| Ask for an identifier vs. pick a match | Would acting on the wrong record be recoverable? |
 | Checkpoint vs. restart | Is the completed work expensive to redo? |
 | Degrade vs. fail | Is a partial result useful to the requester? |
 | Retry the subagent vs. escalate | Is the failure in the worker, or in the plan? |
@@ -91,26 +114,39 @@ By the end, the learner can:
    time. Then ask which factor did the most work: irreversibility, not difficulty.
 3. **Teach the self-assessment limit.** Ask whether a model can tell when it has
    misunderstood. Lead them to structural triggers.
-4. **Teach the handoff.** Have them draft what the human receives, then critique it: could
+4. **Teach the named triggers**, since exam items turn on these specifically. Run four
+   short vignettes and have the learner call escalate-or-resolve with a reason: a customer
+   who says "just get me a person" over a trivially fixable issue (escalate immediately —
+   the request itself is the trigger); a furious customer with a standard, in-policy
+   replacement (acknowledge and resolve; escalate only if they repeat the ask); a request
+   the policy simply doesn't address, such as matching a competitor's price when policy
+   covers only your own site (escalate — the gap is the trigger, and guessing invents
+   policy); and a lookup returning three customers with the same name (ask for another
+   identifier, don't pick). Then name the two distractors directly — sentiment and
+   self-reported confidence — and why each is unreliable.
+5. **Teach the handoff.** Have them draft what the human receives, then critique it: could
    the human act without re-reading the whole transcript? A bad handoff makes escalation
    worse than useless.
-5. **Teach the three-way distinction** — escalate vs. ask vs. defer — with a scenario for
+6. **Teach the three-way distinction** — escalate vs. ask vs. defer — with a scenario for
    each.
-6. **Teach session state.** Ask what must survive a crash mid-task, and what can be
+7. **Teach session state.** Ask what must survive a crash mid-task, and what can be
    recomputed. Then teach checkpointing against that.
-7. **Teach distributed failure** — dead subagent, missing tool, partial results — and the
+8. **Teach distributed failure** — dead subagent, missing tool, partial results — and the
    retry/degrade/escalate choice.
-8. **Teach the stuck detector** as distinct from error handling.
-9. **Teach observability** — the decision points are what you need later.
-10. **Decision table** — walk all six rows.
-11. **Scenario drill — 5 questions.** Use a support agent for a subscription service:
+9. **Teach the stuck detector** as distinct from error handling.
+10. **Teach observability** — the decision points are what you need later.
+11. **Decision table** — walk all nine rows.
+12. **Scenario drill — 6 questions.** Use a support agent for a subscription service:
     tiered refund authority, a compliance rule about account deletion, an integration that
     intermittently fails, and a requirement that escalations arrive actionable. Ask about
     the policy design, structural vs. judged triggers, the handoff contents, state
-    durability, and a distributed failure choice. Include one multiple-response.
-12. **Distractor autopsy** — expect difficulty used as the escalation criterion, and
-    model-judged confidence trusted where a structural rule was needed.
-13. Record per `.agents/TUTORIAL.md` Step 5.
+    durability, a distributed failure choice, and one turning on a policy gap or an
+    explicit request for a human. Include one multiple-response.
+13. **Distractor autopsy** — expect difficulty used as the escalation criterion,
+    model-judged confidence trusted where a structural rule was needed, sentiment offered
+    as a routing signal, and an investigation attempted after an explicit request for a
+    human.
+14. Record per `.agents/TUTORIAL.md` Step 5.
 
 **Next is an interleaved drill.** F1 and F5 are now both complete, so the session after
 this one is the Multi-Agent Research scenario drill (S3) at exam difficulty, narrowed to

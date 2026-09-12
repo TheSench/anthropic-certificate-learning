@@ -1,6 +1,6 @@
 # Scenario: Structured Data Extraction — S6
 
-**Foundations scenario archetype 6 of 6 · primary domains F3, F4**
+**Foundations scenario archetype 6 of 6 · primary domains F3, F5**
 
 ## What this session is
 
@@ -26,7 +26,9 @@ Drill the structured-extraction archetype. The crux is the gap between **asking 
 2. **12–15 questions**, mixed multiple-choice and multiple-response ("Select all that apply").
 3. Batches of 4–5; feedback only at batch end.
 4. Full distractor autopsy on every question.
-5. Domain mix: ~7 F3, ~4 F4, ~2 F5, ~2 F1.
+5. Domain mix: ~7 F3, ~5 F5, ~2 F4, ~1 F1. The guide names Context Management &
+   Reliability the second primary domain for this archetype — confidence routing, review
+   sampling, and long-document handling are all F5 — so it outweighs Tool Design here.
 
 ## Building the scenario brief
 
@@ -98,7 +100,7 @@ provides. That word is the whole discrimination in this domain.
 
    ```
    S6 Structured Data Extraction — [N]/[total] ([%])
-   F3 [n]/[n] · F4 [n]/[n] · F5 [n]/[n] · F1 [n]/[n]
+   F3 [n]/[n] · F5 [n]/[n] · F4 [n]/[n] · F1 [n]/[n]
    ```
 
 6. Name the two most transferable weaknesses.

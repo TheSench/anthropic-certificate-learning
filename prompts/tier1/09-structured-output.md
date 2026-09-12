@@ -61,11 +61,38 @@ By the end, the learner can:
   but no enum case fits. This is the top cause of silent extraction errors
 - Add **confidence or provenance** to extracted output, and use citations to make an
   extraction auditable against its source
+- Design the **human review workflow** around that confidence, rather than reviewing
+  everything or nothing:
+  - Have the model emit **field-level** confidence, not one score per document — the
+    document is rarely uniformly hard, and per-field scores are what let you route
+  - **Calibrate** the review threshold against a **labeled validation set**. A raw model
+    confidence is not a probability until you've checked it against known answers
+  - Route the low-confidence and the internally contradictory to humans first, so limited
+    reviewer capacity lands where it changes outcomes
+- Explain why an **aggregate accuracy number can hide a broken segment**: 97% overall is
+  consistent with one document type or one field failing badly. Before reducing human
+  review, **segment accuracy by document type and by field** and check each
+- Use **stratified random sampling** of the *high-confidence* extractions as an ongoing
+  control — the population nobody is reviewing is exactly where a new error pattern will
+  go unnoticed, and sampling it is what surfaces drift
 - Design the **validation and retry layer**: validate against the schema (**Pydantic** is
   the reference implementation — distinguish its *syntactic* schema failures from
   *semantic* validation errors), and on failure decide between retry, retry-with-the-error,
   route to a stronger model, or escalate to a human — and set a retry ceiling
 - Explain why the retry must feed the validation error back, not just re-ask
+- State the limit of schema enforcement plainly: a strict schema eliminates **syntax**
+  errors but not **semantic** ones. Line items that don't sum to the stated total, a date
+  in the right format but the wrong field, a plausible invented vendor name — all pass
+  validation. Guaranteed shape is not guaranteed meaning
+- Build **self-checking into the schema** so semantic errors surface as data rather than
+  requiring a reader to notice them: extract a computed value alongside the stated one
+  (a calculated total next to the document's stated total) so a mismatch is visible, and
+  add an explicit flag field for internally inconsistent sources instead of forcing the
+  model to silently pick one reading
+- Know when a retry **cannot** help: if the information simply isn't in the source
+  document, no number of retries will produce it, and the correct design is an explicit
+  null plus a route to human review. Retries fix format and structure problems, not
+  absent facts
 - Recognize when a schema is too complex for one call and should be split into passes
 - Handle refusals and truncation as distinct failure modes from invalid schema
 
@@ -79,6 +106,9 @@ By the end, the learner can:
 | Retry vs. escalate | Is the failure transient/format, or a genuine ambiguity in the source? |
 | One call vs. multi-pass extraction | Does the schema exceed what one pass fills reliably? |
 | Add citations vs. add confidence | Must a human verify it, or must code route it? |
+| Retry vs. explicit null | Is the information in the source at all? |
+| Aggregate accuracy vs. per-segment | Could one document type be failing inside a good average? |
+| Review everything vs. confidence routing | Is reviewer capacity the binding constraint? |
 
 ## How to run this session
 
@@ -95,19 +125,35 @@ By the end, the learner can:
    produce something plausible. Then have them design the schema and prompt so absence is
    representable and detectable.
 6. **Teach provenance and citations** — how an extraction becomes auditable.
-7. **Teach the validation/retry layer.** Have the learner design it end to end: what's
+7. **Teach the semantic-error limit.** Show an extraction that passes strict validation and
+   is still wrong — line items that don't sum to the stated total. Ask what caught it; the
+   answer is nothing, and that's the point. Then have them redesign the schema so it
+   catches itself: a calculated total beside the stated one, a flag field for contradictory
+   sources. This is the bridge to Tier 3's semantically-wrong-but-well-formed material.
+8. **Teach the validation/retry layer.** Have the learner design it end to end: what's
    validated, what's retried, how many times, what happens after the ceiling, and what gets
-   logged. Push on the retry prompt: does it include the validation error?
-8. **Teach failure-mode discrimination** — invalid schema vs. refusal vs. truncation are
-   three different bugs with three different fixes.
-9. **Decision table** — walk all six rows.
-10. **Scenario drill — 5 questions.** Use invoice extraction from mixed-quality scanned
+   logged. Push on the retry prompt: does it include the validation error? Then ask which
+   failures a retry *cannot* fix — the fact absent from the source — and what the design
+   does instead.
+9. **Teach confidence routing and its measurement.** Field-level scores, not per-document;
+   calibrated against a labeled set, not taken at face value. Then the audit question: the
+   pipeline reports 97% accuracy and the team wants to cut human review — what do you check
+   first? Drive to per-document-type and per-field segmentation, and to stratified sampling
+   of the high-confidence population nobody is reviewing. This is the F5 half of the
+   extraction archetype.
+10. **Teach failure-mode discrimination** — invalid schema vs. refusal vs. truncation are
+    three different bugs with three different fixes.
+11. **Decision table** — walk all nine rows.
+12. **Scenario drill — 6 questions.** Use invoice extraction from mixed-quality scanned
     PDFs feeding an accounting system, with a stated accuracy requirement and a human
     review queue that must stay small. Ask about approach choice, missing-field handling,
-    the retry ladder, provenance, and when to split passes. Include one multiple-response.
-11. **Distractor autopsy** — expect "prompt it more firmly" chosen where enforcement is
-    required, and unbounded retries.
-12. Record per `.agents/TUTORIAL.md` Step 5.
+    the retry ladder, provenance, and when to split passes. Add one item on reducing review
+    volume safely, where the tempting answer is a global confidence threshold on a strong
+    aggregate number. Include one multiple-response.
+13. **Distractor autopsy** — expect "prompt it more firmly" chosen where enforcement is
+    required, unbounded retries, retrying for a fact that isn't in the document, and an
+    aggregate accuracy figure accepted without segmentation.
+14. Record per `.agents/TUTORIAL.md` Step 5.
 
 ## Out of scope
 

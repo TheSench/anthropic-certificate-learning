@@ -66,7 +66,26 @@ By the end, the learner can:
   happens in a child, only the conclusion returns — the built-in **Explore** subagent is
   the canonical instance of this
 - Name the **lost-in-the-middle** effect and order inputs position-aware: what must be
-  attended to goes at the edges, not buried mid-context
+  attended to goes at the edges, not buried mid-context. State the remedy concretely —
+  put a key-findings summary **first** in an aggregated input and give the detail explicit
+  section headers, rather than trusting the model to find the middle
+- Protect **transactional facts from summarization**. Compaction condenses exactly what
+  must stay exact: amounts, dates, order numbers, statuses, and what the customer was
+  promised. Maintain those in a **separate facts block** carried in every prompt, outside
+  the summarized history, so a lossy summary can't blur them
+- **Trim verbose tool results to the fields that matter** before they accumulate — an
+  order lookup returning 40 fields when 5 are relevant spends the window on noise, and
+  the trimming belongs at the tool boundary, not in a later cleanup pass
+- Preserve **provenance through synthesis**, which is where attribution is usually lost:
+  - Require upstream agents to return structured **claim-to-source mappings** — the claim,
+    the supporting excerpt, and the source URL or document name — rather than prose that
+    has already dissolved the link
+  - Require **publication or collection dates** on each finding, so a downstream agent
+    reads two different-year figures as a time series rather than a contradiction
+  - Handle **conflicting sources** by annotating both values with their attribution and
+    letting the coordinator reconcile — never by silently picking one
+  - Annotate **coverage gaps**: say which conclusions are well-supported and which topics
+    went unsourced, so a confident-sounding synthesis can't hide a hole
 - Use **scratchpad files** to move working state out of the window and read it back on
   demand, and say why that beats keeping it in conversation history
 - Manage session continuity by mechanism: **`--resume`**, named sessions, and
@@ -84,6 +103,8 @@ By the end, the learner can:
 | Compaction vs. context editing | Do you need a narrative summary, or just to drop stale results? |
 | Memory tool vs. instruction file | Is it learned-and-changing, or authored-and-stable? |
 | Summarize tool output vs. return full | Will the model need the raw detail again? |
+| Summarized history vs. a pinned facts block | Would a blurred number change a decision? |
+| Annotate a conflict vs. resolve it upstream | Does the resolver have the context to judge? |
 | Bigger window vs. better architecture | Is the growth bounded, or unbounded by design? |
 
 ## How to run this session
@@ -105,15 +126,30 @@ By the end, the learner can:
    mechanisms.
 9. **Teach the context-firewall pattern** and connect it explicitly back to the Orchestration Patterns
    fork-vs-subagent decision. Ask them to restate that decision in context-budget terms.
-10. **Teach diagnosis** — four context failures, four different causes and fixes.
-11. **Decision table** — walk all six rows.
-12. **Scenario drill — 4 questions.** Use a long-running research agent that degrades after
+10. **Teach what summarization destroys.** Give a support transcript with a promised
+    refund amount, an order number, and a date, then show a plausible compaction of it and
+    ask what a downstream agent can no longer do. Drive to the pinned facts block held
+    outside the summary. Then generalize one step: the same loss hits tool results
+    (40 fields where 5 matter — trim at the boundary) and multi-agent synthesis.
+11. **Teach provenance through synthesis.** Hand the learner three subagent findings —
+    two with conflicting statistics from credible sources, one from a different year — and
+    ask for the synthesis. The instinct is to pick the better number; make them defend it,
+    then establish the alternative: annotate both with attribution, carry dates so a time
+    difference doesn't read as a contradiction, and mark which conclusions are unsourced.
+    Close on the structural rule — claim-to-source mappings must be produced upstream,
+    because no downstream agent can recover attribution that was already dissolved.
+12. **Teach diagnosis** — four context failures, four different causes and fixes.
+13. **Decision table** — walk all eight rows.
+14. **Scenario drill — 6 questions.** Use a long-running research agent that degrades after
     ~40 tool calls and starts repeating searches. Ask for the diagnosis, the caching fix,
     compaction vs. delegation, and the persistence choice for findings across sessions.
+    Add one item where a compacted history has blurred a figure a later step depends on,
+    and one where a synthesis reports a single number drawn from two conflicting sources.
     Include one multiple-response.
-13. **Distractor autopsy** — expect compaction chosen where delegation was right, and
-    "use a bigger window" for unbounded growth.
-14. Record per `.agents/TUTORIAL.md` Step 5. Glossary every verified limit.
+15. **Distractor autopsy** — expect compaction chosen where delegation was right, "use a
+    bigger window" for unbounded growth, and a conflict silently resolved to the
+    more-credible-sounding source.
+16. Record per `.agents/TUTORIAL.md` Step 5. Glossary every verified limit.
 
 ## Out of scope
 

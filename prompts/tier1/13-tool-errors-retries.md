@@ -16,7 +16,7 @@ distinction, and knowing which errors the model should *not* be asked to handle.
 
 ## Session focus
 
-This session applies the Tool Design session's framing to failure: **an error message is a prompt**. The model reads it and chooses what to do next, so its wording decides whether the model recovers or loops. The crux is the **four-way failure classification** — transient, malformed arguments, permanent/semantic, systemic — and routing each to the right handler, because the F4 domain description names structured error responses with retry logic explicitly. Spend the most time on the classification drill, and make sure the code-vs-model retry boundary lands: letting the model retry a rate limit burns context on a wait it cannot perform.
+This session applies the Tool Design session's framing to failure: **an error message is a prompt**. The model reads it and chooses what to do next, so its wording decides whether the model recovers or loops. The crux is the **four-way failure classification** — transient, validation, business, permission — and routing each to the right handler, because the F4 domain description names structured error responses with retry logic explicitly. Teach those four by name and carry them in structured metadata (a category, a retryable flag, a readable description); *business* is the one learners collapse into "it failed", and it's the category with a customer-facing consequence. Spend the most time on the classification drill, and make sure the code-vs-model retry boundary lands: letting the model retry a rate limit burns context on a wait it cannot perform.
 
 ## Authoritative sources
 
@@ -49,12 +49,30 @@ By the end, the learner can:
 - Signal failure through the protocol correctly: an MCP tool result sets the **`isError`**
   flag rather than returning a success payload describing a failure, so the model can tell
   a failed call from a successful one that returned bad news
-- Classify failures and route each correctly:
-  - **Transient** (timeout, rate limit, upstream 503) → retry with backoff, in code
-  - **Malformed arguments** → return to the model with the specific validation problem
-  - **Permanent/semantic** (record doesn't exist, no permission) → tell the model plainly
-    so it stops retrying and adapts
-  - **Systemic** (dependency down, credential expired) → escalate; the model can't fix it
+- Classify failures into the **four categories the tool contract names**, and route each:
+  - **Transient** (timeout, service unavailable, upstream 503, rate limit) → retryable;
+    retry with backoff, in code
+  - **Validation** (invalid or malformed input) → not retryable as-is; return to the model
+    with the specific problem so it can correct the arguments and try again
+  - **Business** (policy violation — refund over the limit, account ineligible) → not
+    retryable; the call was well-formed and the system refused it on *rules*. Return a
+    customer-safe explanation the agent can relay, plus the alternative path (escalate,
+    offer a different remedy). This is the category teams most often collapse into a
+    generic failure, and doing so leaves the agent retrying a decision that will never
+    change
+  - **Permission** (caller not authorized for this record or action) → not retryable;
+    say so plainly so the model stops and adapts rather than probing
+- Carry that classification in **structured metadata on the error**, not just prose: a
+  category field, a retryable boolean, and a human-readable description. Name why the
+  boolean matters — it prevents wasted retries against errors that can never succeed.
+  Verify the exact field names and error-shape conventions against the live tool-use and
+  MCP docs before teaching them; teach the four-way distinction as the durable part
+- Separate **systemic** failures (dependency down, credential expired) from the four: they
+  present as transient but escalate instead, because the model can't fix them and retrying
+  only burns the loop
+- Distinguish an **access failure** from a **valid empty result** — a search that errored
+  and a search that legitimately found nothing are different facts, and returning empty
+  for both destroys the agent's ability to decide what to do next
 - Explain why transient retries belong in **code, not the model's loop**, and what happens
   when you let the model retry a rate limit
 - Set **retry ceilings** at both levels — per tool call and per agent loop — and say what
@@ -73,7 +91,9 @@ By the end, the learner can:
 | Decision | The tell that decides it |
 |---|---|
 | Retry in code vs. return to the model | Would the *same* call plausibly succeed next time? |
-| Retry vs. fail fast | Is the failure transient or semantic? |
+| Retry vs. fail fast | Is the failure transient, or one of the three that never self-heal? |
+| Business refusal vs. permission denial | Did the *rules* reject it, or the *caller's* access? |
+| Error vs. valid empty result | Did the lookup fail, or succeed and find nothing? |
 | Verbose error vs. redacted | Could the text leak internals or other users' data? |
 | Idempotency key vs. plain retry | Does the tool have a side effect? |
 | Escalate to human vs. degrade gracefully | Can the task complete usefully without this tool? |
@@ -85,9 +105,16 @@ By the end, the learner can:
    failure.
 2. **Teach the error-as-context idea** with a direct comparison: show `Error: 500` and a
    structured alternative for the same failure, and ask what the model can do with each.
-3. **Teach the four-way classification.** Give eight concrete failures and have the learner
-   route each. This is the session's core drill — include an ambiguous one (a 429 that
-   *could* be transient or could mean a hard quota) and discuss how you'd know.
+3. **Teach the four-way classification** — transient, validation, business, permission —
+   by name. Give eight concrete failures and have the learner route each and say whether
+   it's retryable. This is the session's core drill. Include an ambiguous one (a 429 that
+   *could* be transient or could mean a hard quota) and discuss how you'd know; include a
+   business refusal (a refund above the policy limit) and a permission denial on the same
+   tool, since separating those two is the distinction learners most often miss; and
+   include a lookup that legitimately returns nothing, to force the error-vs-empty
+   discrimination. Then have them write the structured error payload for three of the
+   eight — category, retryable, description — and check that the description would make
+   sense if the agent read it aloud to a customer.
 4. **Teach the code-vs-model retry boundary.** Ask what happens if the model retries a rate
    limit itself: it burns tokens and context on a wait it can't perform. Let them reach it.
 5. **Teach retry loops** by presenting one in a transcript and asking what would break the
@@ -97,13 +124,15 @@ By the end, the learner can:
    is the reason.
 8. **Teach failure-mode discrimination** — tool error vs. refusal vs. truncation.
 9. **Teach the degraded path.** Ask what the agent should do when a tool is just gone.
-10. **Decision table** — walk all six rows.
-11. **Scenario drill — 5 questions.** Use an order-management agent with tools for
+10. **Decision table** — walk all eight rows.
+11. **Scenario drill — 6 questions.** Use an order-management agent with tools for
     inventory (flaky upstream), payments (side-effecting), and customer lookup (strict
     permissions). Ask about classification, where each retry lives, idempotency, an error
-    rewrite, and the degraded path. Include one multiple-response.
-12. **Distractor autopsy** — expect model-loop retries for transient failures, and
-    unbounded retry as an implied default.
+    rewrite, and the degraded path. Add one item turning on a business refusal returned as
+    a generic failure, where the agent retries a decision that will never change. Include
+    one multiple-response.
+12. **Distractor autopsy** — expect model-loop retries for transient failures, unbounded
+    retry as an implied default, and business refusals treated as retryable.
 13. Record per `.agents/TUTORIAL.md` Step 5.
 
 **End of Tier 1.** All five F domains are now taught. Tell the learner Tier 2 is four

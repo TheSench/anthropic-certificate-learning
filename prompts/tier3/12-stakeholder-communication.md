@@ -135,7 +135,7 @@ By the end, the learner can:
 9. **Teach decision records** and have them write one for a decision from session 4 or 5.
 10. **Teach honest status reporting** with an underperforming pilot: what they'd say, what
    options they'd present, and what they would not claim.
-11. **Decision table** — walk all six rows.
+11. **Decision table** — walk all eight rows.
 12. **Scenario drill — 5 questions**, standalone Professional format. Include an audience-
     framing question, an uncertainty-communication question, a recommend-against question, a
     decision-record question, and one multiple-response on what a stakeholder brief must contain.

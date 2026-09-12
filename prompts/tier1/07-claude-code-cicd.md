@@ -65,6 +65,16 @@ By the end, the learner can:
   federation over long-lived API keys — and say why
 - Structure output for a pipeline: exit codes, machine-readable results, and how to make
   a review comment or a failed check out of a run
+- Explain why a model is a weak reviewer **of its own output in the same session**: it
+  retains the reasoning that produced the code, so it is less likely to question the
+  decisions it just made. An **independent review instance**, without that reasoning
+  context, catches more than a self-review instruction or more thinking budget does
+- Design a **multi-pass review** for a change too large to review in one pass: a per-file
+  local pass for issues contained in each file, then a separate cross-file integration
+  pass for data flow between them — and name what a single pass loses (attention diluted
+  across files, contradictory findings)
+- Have the reviewer **self-report confidence** alongside each finding so the pipeline can
+  route high-confidence findings straight to comments and hold the rest
 - Set **cost and time bounds** so a runaway agent can't consume the budget, and explain
   what happens without them
 - Decide what a pipeline agent may do autonomously vs. what it must only *propose*: post
@@ -79,6 +89,8 @@ By the end, the learner can:
 | Interactive vs. headless | Is a human present to approve and steer? |
 | Permission mode for CI | What's the blast radius if the model picks wrong? |
 | Comment/propose vs. commit/merge | Is the action reversible without a human? |
+| Same session vs. independent review instance | Did this session write the code under review? |
+| Single review pass vs. per-file + cross-file | Is the diff big enough to dilute attention? |
 | Long-lived key vs. federated identity | Does the credential outlive the job? |
 | Sandbox vs. direct runner access | Could the job touch anything outside its workspace? |
 | Run on every PR vs. on demand | What's the per-run cost times PR volume? |
@@ -101,14 +113,24 @@ By the end, the learner can:
 7. **Teach prompt injection in CI.** A PR body is untrusted input that lands in the
    context. Ask what a malicious PR description could attempt, and what limits the damage.
 8. **Teach cost bounds** — per-run and aggregate, and the arithmetic of PR volume.
-9. **Decision table** — walk all six rows.
-10. **Scenario drill — 5 questions.** Use automated PR review on a repo taking outside
+9. **Teach review architecture.** Ask first: "the same session wrote the code — is it a
+   good reviewer of it?" Draw out *why* not (it kept the reasoning that produced the
+   code), then establish that an independent instance beats both a "review your work
+   carefully" instruction and more thinking budget. Then scale it: hand them a 40-file
+   change and ask how to review it without diluting attention — per-file local passes
+   plus a cross-file integration pass. Close on confidence self-reporting as the routing
+   signal.
+10. **Decision table** — walk all eight rows.
+11. **Scenario drill — 6 questions.** Use automated PR review on a repo taking outside
     contributions: ~200 PRs/week, a stated monthly ceiling, and one compliance requirement
     for audit trails. Ask about permission mode, the propose/act boundary, credential
-    design, injection exposure, and cost control. Include one multiple-response.
-11. **Distractor autopsy** — expect broad permissions chosen for convenience, and
-    autonomous merge chosen because it's technically possible.
-12. Record per `.agents/TUTORIAL.md` Step 5.
+    design, injection exposure, and cost control. Add one review-architecture item where
+    the generating session is offered as the reviewer, or where a 40-file diff is reviewed
+    in a single pass. Include one multiple-response.
+12. **Distractor autopsy** — expect broad permissions chosen for convenience, autonomous
+    merge chosen because it's technically possible, and "tell it to review its own work
+    more carefully" or "give it more thinking budget" chosen over an independent instance.
+13. Record per `.agents/TUTORIAL.md` Step 5.
 
 ## Out of scope
 

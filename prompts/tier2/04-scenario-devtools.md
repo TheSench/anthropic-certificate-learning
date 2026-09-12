@@ -57,6 +57,12 @@ At least once each:
 - Context cost of a large tool surface, and the mitigation
 - Tool error classification and where the retry belongs
 - Whether a tool should return full payload or a summary
+- **Built-in tool selection** — the guide's framing for this archetype names Read, Write,
+  Bash, Grep, and Glob explicitly, so drill choosing among them: searching file *contents*
+  versus matching file *paths*, and the `Edit`-anchor-not-unique → `Read` + `Write`
+  fallback
+- **Incremental codebase exploration** — `Grep` for entry points and follow imports, versus
+  reading the tree up front and exhausting the context window
 - One question where **two designs are defensible** and a stated constraint decides it
 
 ## Known traps to build distractors from

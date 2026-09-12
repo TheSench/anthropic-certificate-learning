@@ -100,12 +100,16 @@ site-wide. Consult these pages manually; do not scrape them.
 |---|---|
 | Items | 60 |
 | Duration | 120 minutes |
-| Format | **Scenario-based** — 4 scenarios drawn from a pool of 6, 15 questions each |
+| Format | **Scenario-based** — 4 scenarios drawn from a pool of 6 (~15 questions each*) |
 | Question types | Multiple choice, multiple response |
 | Passing score | 720 scaled (100–1000) |
 | Conditions | Proctored, closed-book, no AI assistance |
 | Validity | 12 months |
 | Prerequisites | None |
+
+\* **Derived, not stated.** The guide gives 60 items and "4 scenarios drawn from a bank of
+6"; 15 per scenario is our arithmetic, and the guide does not commit to an even split.
+Everything else in this table is verbatim.
 
 ### Domains
 
@@ -118,6 +122,19 @@ site-wide. Consult these pages manually; do not scrape them.
 | F5 | Context Management & Reliability | **15%** | 2 |
 
 Session counts are proportional to weight — study time tracks what is scored.
+
+**Our F-codes are not the guide's domain numbers**, for the same reason as the P-codes
+below: this file orders domains by weight, the guide uses its own order. F1 and F5 happen
+to coincide; F2, F3, and F4 do not. The score report is per-domain, so read across before
+comparing a result to the guide:
+
+| Ours | Guide | Domain | Weight |
+|---|---|---|---|
+| F1 | Domain 1 | Agentic Architecture & Orchestration | 27% |
+| F2 | Domain 3 | Claude Code Configuration & Workflows | 20% |
+| F3 | Domain 4 | Prompt Engineering & Structured Output | 20% |
+| F4 | Domain 2 | Tool Design & MCP Integration | 18% |
+| F5 | Domain 5 | Context Management & Reliability | 15% |
 
 ### The six scenario archetypes
 

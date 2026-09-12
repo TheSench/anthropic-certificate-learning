@@ -61,6 +61,16 @@ By the end, the learner can:
 - Explain what a large tool surface costs — token overhead in every request plus
   selection difficulty — and the mitigations (tool search, scoping the set per task)
 - Decide when to reuse a **built-in or server tool** rather than writing a custom one
+- Select the right **built-in tool** for a task and say why the alternatives are wrong:
+  **`Grep`** searches file *contents* for a pattern (callers of a function, an error
+  string, an import); **`Glob`** matches file *paths* by name or extension
+  (`**/*.test.tsx`); **`Read`**/**`Write`** operate on a whole file; **`Edit`** makes a
+  targeted change anchored on text that must be **unique** in the file. Name the standard
+  fallback: when `Edit` fails because its anchor text isn't unique, `Read` the file and
+  `Write` it back
+- Explore a codebase **incrementally** rather than reading everything up front: `Grep` for
+  entry points, then `Read` to follow imports and trace a flow — and trace a name across
+  wrapper modules by first listing the exported names, then searching each one
 - Recognize when the model should call tools **in parallel**, and what precludes it
 - Explain when a tool should return a *summary* rather than raw payload, and connect that
   to context management
@@ -73,6 +83,8 @@ By the end, the learner can:
 |---|---|
 | Few broad tools vs. many narrow | Does selection or parameterization carry the judgment? |
 | Custom tool vs. built-in/server tool | Does the platform already do this well? |
+| `Grep` vs. `Glob` | Are you searching *inside* files, or *for* files? |
+| `Edit` vs. `Read` + `Write` | Is there text that's unique enough to anchor on? |
 | Add a tool vs. fix a description | Is the model missing a capability, or misreading one? |
 | Full payload vs. summarized return | Will the parent need the detail, or just the answer? |
 | Tool search vs. a curated tool set | Is the surface large *and* task-dependent? |
@@ -95,17 +107,28 @@ By the end, the learner can:
    belongs and an ambiguous date field.
 6. **Teach the cost of a large surface** and its mitigations. Ask what 60 tools does to
    every single request.
-7. **Teach summarized returns** and connect forward to context management.
-8. **Teach parallel tool use** and what blocks it.
-9. **Decision table** — walk all six rows.
-10. **Scenario drill — 5 questions.** Use an internal assistant with 25 tools across
+7. **Teach the built-in tools by name.** Verify the current surface against
+   `code.claude.com/docs/en/tools-reference` first. Then drill selection, not definitions:
+   give five concrete tasks — "find every caller of `parse_config`", "find all
+   `.test.tsx` files", "change one line in a file where that line appears three times",
+   "understand an unfamiliar 200-file service", "rename a symbol across wrapper modules" —
+   and have the learner name the tool and justify it. The two that matter: `Grep` vs.
+   `Glob` (contents vs. paths) and the `Edit`-anchor-not-unique → `Read` + `Write`
+   fallback. Finish on the incremental-exploration habit: `Grep` for entry points and
+   follow imports, rather than reading the tree up front.
+8. **Teach summarized returns** and connect forward to context management.
+9. **Teach parallel tool use** and what blocks it.
+10. **Decision table** — walk all eight rows.
+11. **Scenario drill — 6 questions.** Use an internal assistant with 25 tools across
     ticketing, docs, deploys, and metrics, where it keeps calling the docs search for
     questions the metrics tool should answer. Ask for the diagnosis, the description fix,
     a granularity judgment, the surface-size mitigation, and what to return vs. summarize.
+    Add one built-in-selection item where the tempting answer is `Glob` for a
+    search-inside-files task, or a repeated `Edit` against a non-unique anchor.
     Include one multiple-response.
-11. **Distractor autopsy** — expect stronger-model and system-prompt answers to
-    description bugs.
-12. Record per `.agents/TUTORIAL.md` Step 5.
+12. **Distractor autopsy** — expect stronger-model and system-prompt answers to
+    description bugs, and `Glob`-for-`Grep` confusion on the built-in item.
+13. Record per `.agents/TUTORIAL.md` Step 5. Glossary each built-in tool name.
 
 ## Out of scope
 

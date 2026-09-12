@@ -106,7 +106,7 @@ By the end, the learner can:
 8. **Teach the tool-definition scaling problem** and its mitigations.
 9. **Teach the three-way connection** — cost, quality, compliance — with one example each.
 10. **Teach diagnosis**: four production context symptoms, four different causes and fixes.
-11. **Decision table** — walk all six rows.
+11. **Decision table** — walk all seven rows.
 12. **Scenario drill — 5 questions**, standalone Professional format. Include a
     multi-tenant safety question, a cache-layout question, a memory strategy choice, a
     budget allocation question, and one multiple-response on summarization risks.

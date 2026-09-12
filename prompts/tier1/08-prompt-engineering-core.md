@@ -61,6 +61,17 @@ By the end, the learner can:
   edge-case handling, conflicting instructions, or genuinely needing a stronger model —
   and pick the matching intervention
 - Explain why "add more instructions" often makes a prompt worse, and what to do instead
+- Tune a prompt for **precision** when the cost of a wrong output is a false positive:
+  state **specific categorical criteria** for what to report and what to skip (e.g. "flag
+  a comment only when the behavior it claims contradicts the code's actual behavior", not
+  "check that comments are accurate") — and explain why calibration language like "be
+  conservative" or "only report high-confidence findings" does *not* move precision, since
+  it gives the model no new boundary to apply
+- Name the **trust cost** of false positives in any review or flagging system: one noisy
+  category trains users to dismiss the accurate ones too, so the remedy is disabling that
+  category until its criteria are fixed — not asking for more caution across the board
+- Define **severity levels with a concrete example at each level**, and say why an
+  abstract severity ladder produces inconsistent labels across runs
 - Handle refusals and unexpected stop reasons as design considerations, not surprises
 - Explain what belongs in a **system prompt** vs. a per-request message, on caching and
   stability grounds
@@ -74,6 +85,8 @@ By the end, the learner can:
 | Stronger model vs. better prompt | Does the prompt already state the task unambiguously? |
 | System prompt vs. per-request context | Is it stable across requests (cacheable) or per-call? |
 | More instruction vs. less | Are the current instructions conflicting or diluted? |
+| Categorical criteria vs. "be conservative" | Does the model have a boundary, or just a mood? |
+| Fix a noisy category vs. disable it meanwhile | Is it eroding trust in the accurate ones? |
 | Prompt fix vs. output validation | Must correctness be *guaranteed*, or improved on average? |
 
 ## How to run this session
@@ -93,16 +106,27 @@ By the end, the learner can:
    different way. For each: what's the cause, and what's the minimal fix? Do not let the
    learner answer "add few-shot examples" to all four — that's the exact bias the exam
    punishes.
-7. **Teach the prompt-vs-validation boundary.** Prompting improves the distribution; it
+7. **Teach precision tuning.** Give a flagging prompt with a vague criterion ("check that
+   comments are accurate") producing findings developers dismiss. Ask for the fix; if the
+   learner reaches for "tell it to be conservative" or a confidence threshold, let them,
+   then ask what boundary that actually gives the model — the answer is none, and that
+   realization is the lesson. Land the replacement: a criterion naming what qualifies and
+   what doesn't. Then add the trust argument (a noisy category discredits the accurate
+   ones) and the severity ladder with a concrete example per level. This is the F3 half of
+   the code-review archetype, so make it stick.
+8. **Teach the prompt-vs-validation boundary.** Prompting improves the distribution; it
    never guarantees. Anything requiring a guarantee needs validation (Structured Output).
-8. **Decision table** — walk all six rows.
-9. **Scenario drill — 4 questions.** Use a support-ticket classifier at 92% accuracy with
-   a 98% requirement, where errors cluster in ambiguous multi-issue tickets. Ask for the
-   diagnosis, the intervention, what to change about the examples, and where prompting
-   stops being the answer. Include one multiple-response.
-10. **Distractor autopsy** — expect technique-shotgunning (apply everything) and reaching
-    for a stronger model before the prompt is unambiguous.
-11. Record per `.agents/TUTORIAL.md` Step 5.
+9. **Decision table** — walk all eight rows.
+10. **Scenario drill — 5 questions.** Use a support-ticket classifier at 92% accuracy with
+    a 98% requirement, where errors cluster in ambiguous multi-issue tickets. Ask for the
+    diagnosis, the intervention, what to change about the examples, and where prompting
+    stops being the answer. Add one precision item where a category over-flags and the
+    tempting answers are a confidence threshold or a "be strict" instruction. Include one
+    multiple-response.
+11. **Distractor autopsy** — expect technique-shotgunning (apply everything), reaching for
+    a stronger model before the prompt is unambiguous, and calibration language chosen
+    over categorical criteria.
+12. Record per `.agents/TUTORIAL.md` Step 5.
 
 ## Out of scope
 

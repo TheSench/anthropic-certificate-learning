@@ -1,6 +1,6 @@
 # Scenario: Multi-Agent Research — S3
 
-**Foundations scenario archetype 3 of 6 · primary domains F1, F5**
+**Foundations scenario archetype 3 of 6 · primary domains F1, F4, F5**
 
 ## What this session is
 
@@ -20,7 +20,9 @@ Drill the multi-agent research archetype. This is the **highest-value drill in t
 2. **12–15 questions**, mixed multiple-choice and multiple-response ("Select all that apply").
 3. Batches of 4–5; no feedback mid-batch.
 4. Full distractor autopsy on every question, correct ones included.
-5. Domain mix: ~8 F1, ~3 F5, ~2 F4, ~2 F3.
+5. Domain mix: ~7 F1, ~4 F4, ~3 F5, ~1 F3. The guide names Tool Design & MCP a primary
+   domain for this archetype — subagent tool distribution and scoped cross-role tools are
+   the Tool-Design questions that live inside a research pipeline.
 
 ## Building the scenario brief
 
@@ -80,7 +82,7 @@ transferable form.
 
    ```
    S3 Multi-Agent Research — [N]/[total] ([%])
-   F1 [n]/[n] · F5 [n]/[n] · F4 [n]/[n] · F3 [n]/[n]
+   F1 [n]/[n] · F4 [n]/[n] · F5 [n]/[n] · F3 [n]/[n]
    ```
 
 5. Name the two most transferable weaknesses. Given F1's weight, an F1 accuracy below 75%
@@ -98,6 +100,13 @@ resume. See `.agents/TUTORIAL.md` § Teaching inside a drill for the distinction
 two-per-session cap. Queue the review either way — the inline fix doesn't replace it.
 
 **This session normally runs interleaved inside Tier 1, at session 7** (see
-`.agents/TUTORIAL.md` § Interleaved drills). At that point only F1 and F5 are taught, which
-suits this archetype — its mix is already ~8 F1 and ~3 F5. Drop the F3/F4 questions, shorten
-to 8–10 total, and note the narrowing in the log.
+`.agents/TUTORIAL.md` § Interleaved drills). At that point only F1 and F5 are taught, and
+F1+F5 are this archetype's largest share of the full mix (~7 F1, ~3 F5). Defer the F4 and
+F3 items — the guide names Tool Design & MCP a primary domain here, but it isn't taught
+until sessions 15–17, so those items can't be asked yet — giving ~10 questions. Note the
+narrowing in the log.
+
+When the archetype is re-run at full scale in Tier 2, the deferred F4 items are the point:
+subagent tool distribution and scoped cross-role tools are Tool-Design decisions that only
+appear inside a research pipeline, and they're untested if this drill is only ever run in
+its narrowed form.

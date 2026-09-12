@@ -168,9 +168,9 @@ By the end, the learner can:
     prioritization, a least-privilege question, an oversight proportionality question, a
     bias-detection question (per-segment vs. aggregate), and one multiple-response on what
     transparency a high-consequence deployment owes.
-13. **Distractor autopsy** — expect instruction-hardening chosen where privilege reduction
+18. **Distractor autopsy** — expect instruction-hardening chosen where privilege reduction
     was the control, and oversight assigned by task difficulty rather than reversibility.
-14. Record per `.agents/TUTORIAL.md` Step 5. Score conservatively — this domain is absent
+19. Record per `.agents/TUTORIAL.md` Step 5. Score conservatively — this domain is absent
     from Foundations.
 
 ## Out of scope

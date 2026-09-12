@@ -64,6 +64,25 @@ By the end, the learner can:
   measures headcount reduction, or one who asks for transformation and supplies an
   efficiency budget. The architecture that follows differs, so the mismatch has to surface
   before design, not after
+- Name the three **architectural patterns in the exam's own vocabulary** and place a given
+  problem in one:
+  - **Augmented LLM** — a single model call enhanced with what it needs to answer:
+    retrieval, tools, memory. One turn, no control flow to speak of; the augmentation is
+    the architecture. This is the right shape far more often than its reputation suggests,
+    and it's the baseline the other two must beat
+  - **Workflow** — predetermined steps orchestrated in code, with model calls at fixed
+    points. Control flow is yours, so it's testable, boundable, and debuggable
+  - **Agentic** — the model directs control flow, choosing tools and sequence at runtime
+  Tier 1 taught this distinction as conversational/workflow/agentic; the exam's third term
+  is **augmented LLM**, which is not the same idea as a conversational assistant. Teach the
+  exam's vocabulary here and say plainly that it differs, so a question naming "augmented
+  LLM" reads as familiar rather than novel
+- Lay out an **end-to-end architecture as four stages — input → processing → output →
+  feedback loop** — and treat the fourth as load-bearing rather than decorative: what
+  production signal is captured (corrections, dismissals, escalations, thumbs-down), where
+  it goes, and what consumes it (the eval set, the prompt, the routing thresholds). A
+  design that can't say how it improves after launch is incomplete, and the feedback stage
+  is the one architects most often leave off the diagram
 - Select a model from **constraints rather than capability ranking**: identify the binding
   constraint first, then choose the cheapest/fastest model that clears the quality bar
 - Explain the **tiered-model pattern**: a cheap model handling the common path with
@@ -92,6 +111,9 @@ By the end, the learner can:
 | Claude Code vs. a built application | Is the user an engineer in a repo, or an end user in a product? |
 | Simplest sufficient design vs. flexible one | Is the requirement stable, or genuinely expected to change? |
 | Which value pillar governs | Is this efficiency, transformation, productivity, cost, or an SLA commitment? |
+| Augmented LLM vs. workflow vs. agentic | Can you enumerate the steps — and does anything need to choose them at runtime? |
+| Decompose vs. keep one agent | Do the parts have genuinely different tool needs or context budgets? |
+| Feedback loop now vs. later | Will you be able to tell, post-launch, whether it's getting better? |
 
 ## How to run this session
 
@@ -107,26 +129,41 @@ By the end, the learner can:
    disagree — that mismatch is the exam-relevant case, and the architect's job is to
    surface it rather than design past it.
 4. **Teach the requirements-to-architecture pass** as a repeatable order: pillar, quality
-   bar, volume, latency, cost, compliance, then design. Work one example end to end.
-5. **Teach constraint-first model selection.** Give four workloads with different binding
+   bar, volume, latency, cost, compliance, then design. Work one example end to end, and
+   draw it as the four stages — input, processing, output, feedback loop. When the learner
+   stops at "output", ask how they'd know in three months whether it was getting better;
+   the missing fourth stage is the teaching moment. Make them name the signal, where it's
+   stored, and what consumes it.
+5. **Teach the pattern trio in the exam's vocabulary** — augmented LLM, workflow, agentic.
+   Give six problems and have them place each, starting from the augmented-LLM baseline
+   and requiring a reason to move up. Flag the vocabulary difference from Tier 1 out loud:
+   the third pattern there was *conversational*; the exam's third term is *augmented LLM*,
+   and they are not the same idea. Then push one step further on the agentic cases: if it
+   decomposes, what are the parts, and do they differ enough in tools or context budget to
+   justify separate agents? Tier 1 taught the primitives; the Professional judgment is
+   whether to decompose at all.
+6. **Teach constraint-first model selection.** Give four workloads with different binding
    constraints and have them choose, naming the constraint each time. Include one where the
    cheapest model is right and one where it genuinely isn't.
-6. **Teach the tiered pattern** with its full cost, not just its savings. Ask what breaks
+7. **Teach the tiered pattern** with its full cost, not just its savings. Ask what breaks
    when the router misclassifies.
-7. **Teach the effort dimension** as a third axis besides model and prompt.
-8. **Teach API surface choice** as an ownership question.
-9. **Teach over-engineering detection.** Present three over-built designs and have the
+8. **Teach the effort dimension** as a third axis besides model and prompt.
+9. **Teach API surface choice** as an ownership question.
+10. **Teach over-engineering detection.** Present three over-built designs and have the
    learner simplify each, stating what's lost. Then ask for the one case where the complex
    version was justified.
-10. **Teach justification.** Have them defend a design in three sentences to a skeptical
+11. **Teach justification.** Have them defend a design in three sentences to a skeptical
    engineering director — this rehearses P5 as well.
-11. **Decision table** — walk all six rows.
-12. **Scenario drill — 5 questions**, standalone Professional format. Include a
+12. **Decision table** — walk all ten rows.
+13. **Scenario drill — 6 questions**, standalone Professional format. Include a
     constraint-driven model choice, a tiered-pattern trade-off, an API surface decision, an
-    over-engineering identification, and one multiple-response on selection criteria.
-13. **Distractor autopsy** — expect the most capable model chosen by default, and complexity
-    chosen for hypothetical future needs.
-14. Record per `.agents/TUTORIAL.md` Step 5. Glossary every model ID and price verified,
+    over-engineering identification, one item that turns on placing a problem in the
+    augmented-LLM / workflow / agentic trio, and one multiple-response on selection
+    criteria.
+14. **Distractor autopsy** — expect the most capable model chosen by default, complexity
+    chosen for hypothetical future needs, and an agentic design offered where an augmented
+    LLM answers the question.
+15. Record per `.agents/TUTORIAL.md` Step 5. Glossary every model ID and price verified,
     with the date.
 
 ## Out of scope

@@ -1,6 +1,6 @@
 # Scenario: Claude Code Team Config — S2
 
-**Foundations scenario archetype 2 of 6 · primary domain F2**
+**Foundations scenario archetype 2 of 6 · primary domains F2, F5**
 
 ## What this session is
 
@@ -24,7 +24,9 @@ Drill the Claude Code team-configuration archetype. This is the most **precision
 2. **12–15 questions**, mixed multiple-choice and multiple-response ("Select all that apply").
 3. Batches of 4–5; no feedback until the batch is complete.
 4. Full distractor autopsy on every question after each batch, including correct answers.
-5. Domain mix: ~9 F2, ~2 F4, ~2 F1, ~1 F5.
+5. Domain mix: ~8 F2, ~4 F5, ~2 F4, ~1 F1. The guide names Context Management &
+   Reliability a primary domain for this archetype; long sessions in a large codebase are
+   where it bites, so it earns more than a single item.
 
 ## Building the scenario brief
 
@@ -56,6 +58,16 @@ At least once each:
 - Permission mode and allowlist design for CI
 - Plugin vs. per-repo duplication for distributing config
 - Diagnosing why a configured rule isn't taking effect
+- **Plan mode vs. direct execution** on a stated task — the guide names this in the
+  archetype's own framing, so it must appear: a single-file fix with a clear stack trace
+  against a multi-file migration or a change with several defensible approaches
+- **Context management in a long session** (F5 is a primary domain here): what to do when
+  a session in a large codebase starts giving inconsistent answers — `/compact`, a
+  scratchpad file, delegating exploration to a subagent, or starting fresh with a summary
+- **Session continuity** — `--resume` a named session vs. starting fresh when prior tool
+  results are stale, and informing a resumed session which files changed
+- **Iterative refinement**: the developer who has re-described the same transformation
+  three times, versus one who should be writing tests first or running the interview pattern
 - One question where **two placements are defensible** and a stated constraint decides it
 
 ## Known traps to build distractors from
@@ -87,7 +99,7 @@ not just the answer — a right answer from a wrong rule will fail on the next v
 
    ```
    S2 Claude Code Team Config — [N]/[total] ([%])
-   F2 [n]/[n] · F4 [n]/[n] · F1 [n]/[n] · F5 [n]/[n]
+   F2 [n]/[n] · F5 [n]/[n] · F4 [n]/[n] · F1 [n]/[n]
    ```
 
 6. Name the two most transferable weaknesses. If precedence rules were the problem, say so

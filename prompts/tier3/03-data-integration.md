@@ -227,8 +227,10 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Eval design for retrieval quality → session 7 (retrieval has its own metrics —
-  recall@k, precision, faithfulness; name that they exist, teach them there)
+- Eval design for retrieval quality → session 7, which teaches the stage-separated
+  metrics (recall@k, precision@k, rank position, faithfulness) and the localization rule
+  that follows from them. Name here that retrieval is measured separately from generation
+  and that recall@k caps everything downstream; leave the metrics themselves to session 7
 - Vector database product selection and operations → out of scope for the exam entirely;
   the task statements ask for strategy, not vendor choice
 - Compliance and residency program → session 10

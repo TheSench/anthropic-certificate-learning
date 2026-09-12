@@ -108,7 +108,7 @@ By the end, the learner can:
    reach idempotency, connect it back to Tier 1 session 13.
 7. **Teach managed vs. self-hosted** as an ownership question, not a technology preference.
 8. **Teach contract versioning** and the anti-corruption layer.
-9. **Decision table** — walk all seven rows, scenario-first.
+9. **Decision table** — walk all eight rows, scenario-first.
 10. **Scenario drill — 5 questions** at Professional altitude (standalone items, not
     scenario-bundled, matching CCAR-P format). Include: a topology choice, a delegation/
     privilege question, a credential design, a boundary-crossing question, and one
