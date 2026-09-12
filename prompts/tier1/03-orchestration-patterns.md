@@ -59,6 +59,11 @@ By the end, the learner can:
   that the original intent is lost by the bottom
 - Explain why parallel agents editing the same files need isolation (worktrees) and what
   breaks without it
+- Name the mechanism that makes delegation possible in the Agent SDK: subagents are
+  spawned via the **Task tool**, so a coordinator's **`allowedTools`** must include
+  `"Task"` or it silently cannot delegate at all. Distinguish this SDK-level
+  `allowedTools` from the **`allowed-tools`** key in `SKILL.md` frontmatter — different
+  layers, different syntax, and each subagent still needs its own tool grant
 - State when orchestration cost exceeds its benefit — the coordination overhead is real,
   and a single agent is often correct
 

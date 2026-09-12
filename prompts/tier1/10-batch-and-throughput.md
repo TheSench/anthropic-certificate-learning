@@ -59,7 +59,11 @@ By the end, the learner can:
   configuration fits, and identify which lever closes the gap
 - Design for **rate limits** — concurrency, backoff, and queueing — and recognize that
   hitting limits is a capacity design problem, not an error to retry blindly
-- Handle partial batch failures: some requests fail, and the pipeline must reconcile
+- Handle partial batch failures: some requests fail, and the pipeline must reconcile —
+  correlate each response to its request by **`custom_id`**, since batch results are not
+  order-guaranteed, and poll for completion rather than expecting a synchronous return
+- State the Batch API's hard limits that decide fit: no multi-turn tool calling, and a
+  processing window measured in hours — verify the current discount and window live
 - Choose the right split when a workload has both interactive and bulk components
 
 ## Decisions the exam actually tests

@@ -53,6 +53,9 @@ By the end, the learner can:
 - Distinguish the **harness** (tools, permissions, context assembly, stop conditions) from
   the **model**, and explain why most production failures are harness failures
 - Identify stop conditions and why an agent without one is a defect, not a feature
+- Drive loop control flow from the API's **`stop_reason`** — branch on `"tool_use"`
+  (execute the call, append the result, continue) vs. `"end_turn"` (the turn is complete)
+  — and state why reading `stop_reason` beats inferring intent from the text
 - Read a system description and state whether it is agentic, and what would have to change
   to make it so (or to make it not need to be)
 

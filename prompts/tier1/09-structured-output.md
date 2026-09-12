@@ -46,21 +46,25 @@ Verify parameter names, supported models, and current limitations before teachin
 By the end, the learner can:
 
 - Distinguish the three ways to get structured data and choose among them: **prompt-and-parse**
-  (ask for JSON, validate yourself), **tool/function schema**, and **native structured
-  outputs / strict schema enforcement**
+  (ask for JSON, validate yourself), **tool/function schema** (`tool_use` with a JSON
+  schema), and **native structured outputs / strict schema enforcement** (strict mode)
+- Use `tool_choice` deliberately — `"auto"`, `"any"`, or forcing one named tool — and say
+  what each guarantees about whether a tool is called and which one
 - State what each guarantees. Prompting improves the odds; schema enforcement constrains
   the generation. Knowing which of these is a *guarantee* is the scored distinction
 - Design a schema the model fills reliably: flat over deeply nested, explicit enums over
   free strings, required vs. optional chosen deliberately, and field names that carry
   their own meaning
 - Handle the **unextractable field** — the value genuinely isn't in the source. Design for
-  an explicit null/unknown rather than letting the model invent one. This is the top cause
-  of silent extraction errors
+  an explicit null/unknown rather than letting the model invent one — **nullable fields**
+  to prevent hallucination, and the `"other"` + detail-string pattern when the value exists
+  but no enum case fits. This is the top cause of silent extraction errors
 - Add **confidence or provenance** to extracted output, and use citations to make an
   extraction auditable against its source
-- Design the **validation and retry layer**: validate against the schema, and on failure
-  decide between retry, retry-with-the-error, route to a stronger model, or escalate to
-  a human — and set a retry ceiling
+- Design the **validation and retry layer**: validate against the schema (**Pydantic** is
+  the reference implementation — distinguish its *syntactic* schema failures from
+  *semantic* validation errors), and on failure decide between retry, retry-with-the-error,
+  route to a stronger model, or escalate to a human — and set a retry ceiling
 - Explain why the retry must feed the validation error back, not just re-ask
 - Recognize when a schema is too complex for one call and should be split into passes
 - Handle refusals and truncation as distinct failure modes from invalid schema

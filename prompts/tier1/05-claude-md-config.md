@@ -55,6 +55,11 @@ By the end, the learner can:
   and directory-scoped files — and state which applies where and how they combine
 - Explain **path-scoped instructions**: a CLAUDE.md deeper in the tree governing work in
   that subtree, and why a monorepo needs this
+- Use **`.claude/rules/`** files with YAML frontmatter to scope instructions by glob
+  pattern, and say when a rule file is the right tool versus a directory-level CLAUDE.md
+- Use **`@import` patterns** to compose CLAUDE.md from shared fragments rather than
+  duplicating instructions across projects
+- Manage memory in-session: the **`/memory`** command to inspect and edit what is loaded
 - State the **settings precedence order** across managed, user, project, and local
   settings files, and predict the effective value when several set the same key
 - Distinguish what belongs in CLAUDE.md (durable instructions the model should follow)

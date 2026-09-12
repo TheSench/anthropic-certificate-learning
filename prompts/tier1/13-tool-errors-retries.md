@@ -46,6 +46,9 @@ By the end, the learner can:
 - Write a structured error the model can act on — what failed, why, whether retrying could
   help, and what to do instead — and contrast it with an opaque error (`Error: 500`) that
   gives the model nothing to work with
+- Signal failure through the protocol correctly: an MCP tool result sets the **`isError`**
+  flag rather than returning a success payload describing a failure, so the model can tell
+  a failed call from a successful one that returned bad news
 - Classify failures and route each correctly:
   - **Transient** (timeout, rate limit, upstream 503) → retry with backoff, in code
   - **Malformed arguments** → return to the model with the specific validation problem

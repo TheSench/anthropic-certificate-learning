@@ -48,7 +48,11 @@ By the end, the learner can:
 - Detect hidden dependencies — shared mutable state, ordering requirements, and
   subtasks whose prompts implicitly assume something only the parent knows
 - Write a delegation prompt that carries its own context: the task, the constraints, the
-  output shape expected, and the definition of done
+  output shape expected, and the definition of done — **explicit context passing**, since
+  a subagent inherits nothing the parent does not hand it
+- Persist subtask state structurally so a long run survives interruption: a **manifest**
+  recording what was dispatched, what returned, and what is outstanding, enabling
+  **crash recovery** without redoing completed work
 - Recognize over-decomposition — splitting so finely that coordination and context
   re-establishment cost more than the work
 - Recognize under-decomposition — one agent holding a task whose context requirements

@@ -62,6 +62,10 @@ At least once each:
 - Cost arithmetic against the ceiling, and the lever that closes a gap
 - Provenance and citations for auditability
 - Routing to the human queue without exceeding its capacity
+- **Field-level confidence** as the routing signal, and **calibrating** it against a
+  labeled validation set rather than trusting the raw score
+- **Stratified sampling** to measure the error rate, and segmenting accuracy by document
+  type and field rather than reporting one aggregate number
 - Splitting one complex extraction into multiple passes
 - One question where **two approaches are defensible** and a stated constraint decides it
 

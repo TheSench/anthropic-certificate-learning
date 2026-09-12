@@ -50,6 +50,12 @@ By the end, the learner can:
 
 - Run Claude Code non-interactively and describe what changes: no interactive approval,
   output must be machine-consumable, and every permission decision is pre-declared
+- Name the flags that make this work — **`-p` / `--print`** for non-interactive mode,
+  **`--output-format json`**, and **`--json-schema`** for structured CI output a
+  downstream job can parse — verifying each against the current CLI reference
+- Distinguish **plan mode** from direct execution and choose between them on complexity:
+  architectural decisions and multi-file work earn a plan first; a single-file change
+  does not
 - Choose the right **permission mode** for CI and justify it — and explain why the
   convenient answer (allow everything) is the wrong one and what to do instead
 - Design the **least-privilege allowlist** for a pipeline job: what the job actually needs

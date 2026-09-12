@@ -48,8 +48,15 @@ By the end, the learner can:
   and prompts to a model host, so an integration is written once rather than per-client
 - Distinguish **local (stdio)** from **remote (HTTP/SSE)** servers and choose correctly
   based on where the data lives, who else needs the server, and what credentials it holds
-- Place a server in the right **configuration scope** — personal, project (committed and
-  shared), or enterprise-managed — and say who can override each
+- Place a server in the right **configuration scope** — personal (user), project
+  (`.mcp.json`, committed and shared), or enterprise-managed — and say who can override each
+- Configure a server without committing secrets: **environment variable expansion** in
+  `.mcp.json`, so the file is shareable while credentials stay per-developer
+- Distinguish MCP **resources** (content catalogs the model can pull from — issue
+  summaries, documentation hierarchies, database schemas) from MCP **tools** (actions),
+  and explain why exposing a catalog as a resource reduces exploratory tool calls
+- Run **multiple servers simultaneously** and reason about name collisions and tool
+  ambiguity across them
 - Reason about the **trust boundary**: a third-party MCP server sees the arguments sent to
   it and returns content that enters the model's context, which makes its responses an
   injection surface as well as its tools a capability grant

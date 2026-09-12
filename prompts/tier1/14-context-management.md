@@ -63,7 +63,14 @@ By the end, the learner can:
   tool, external storage the agent reads, or session resumption — and say what each
   guarantees
 - Use the **subagent-as-context-firewall** pattern deliberately: expensive exploration
-  happens in a child, only the conclusion returns
+  happens in a child, only the conclusion returns — the built-in **Explore** subagent is
+  the canonical instance of this
+- Name the **lost-in-the-middle** effect and order inputs position-aware: what must be
+  attended to goes at the edges, not buried mid-context
+- Use **scratchpad files** to move working state out of the window and read it back on
+  demand, and say why that beats keeping it in conversation history
+- Manage session continuity by mechanism: **`--resume`**, named sessions, and
+  **`fork_session`** to branch a session without contaminating the parent's context
 - Diagnose a context problem to a cause: too many tools, unsummarized tool output,
   over-long instruction files, or work that should have been delegated
 - Explain why "the model forgot" is usually a context-architecture defect

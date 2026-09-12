@@ -52,14 +52,19 @@ By the end, the learner can:
   or may not act on
 - Name the practical consequence: anything that must happen every time — formatting,
   secret scanning, blocking a path, audit logging — belongs in a hook, not a prompt
-- Describe the hook event surface (what fires before/after tool use, on session
-  lifecycle, on stop) and how a hook can *block* an action rather than just react
+- Describe the hook event surface by its event names — **`PostToolUse`** and its
+  siblings firing before/after tool use, on session lifecycle, and on stop — and how a
+  hook can *block* or intercept a tool call rather than just react to it
 - Explain what a **skill** is: a packaged, model-invoked procedure with a description
   that governs when it triggers — and why the description is the load-bearing part
 - Explain **skill context restrictions** — limiting which tools or files a skill may touch
   — and why that matters for least-privilege
-- Distinguish a **slash command** (user-invoked, explicit) from a **skill**
-  (model-invoked, discretionary) and choose between them
+- Read and write `SKILL.md` frontmatter by field: **`context: fork`** (run in an isolated
+  child context), **`allowed-tools`** (least-privilege tool grant), and
+  **`argument-hint`** (how the skill advertises its arguments)
+- Distinguish a **slash command** (user-invoked, explicit, `.claude/commands/`) from a
+  **skill** (model-invoked, discretionary, `.claude/skills/`) and choose between them,
+  including the project-vs-user scope decision for each
 - Choose among hook / skill / slash command / CLAUDE.md instruction for a given
   requirement, and justify it on the guarantee axis
 - Explain how **plugins** package these for distribution across a team, and why that
