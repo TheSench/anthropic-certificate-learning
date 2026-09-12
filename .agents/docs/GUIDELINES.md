@@ -67,6 +67,27 @@ Manual correction: [brief description]
 `prompts/`, `.agents/TUTORIAL.md`, `BLUEPRINT.md`, and `README.md` define the learning
 contract. Agents must not modify them. Changes need a human author.
 
+## Vocabulary collisions
+
+Two words in this curriculum also name competencies in Anthropic's **AI Fluency
+Framework** — four interconnected competencies, the "4 D's": Delegation,
+Description, Discernment, Diligence. The framework is not exam scope (see
+BLUEPRINT.md § Not a source). When authoring or teaching, the architecture sense
+is always the tested one:
+
+| Term | This curriculum (tested) | AI Fluency (not tested) |
+|---|---|---|
+| **Delegation** | Agent-to-subagent handoff — delegation briefs, subagent economics, the three-column ledger (F1) | Deciding what to hand to an AI vs. keep human |
+| **Description** | The text a model reads to choose a tool; "a tool description is a prompt" (F4) | Communicating intent to an AI precisely |
+
+The other two collide with nothing here: **Discernment** (critically evaluating
+AI output) is the personal-competency analogue of our validation boundary and
+semantically-wrong-but-well-formed output (T3-06); **Diligence** (responsible,
+accountable AI use) is the individual-conduct analogue of P4/P5 governance.
+
+If a learner raises any of the four, name the collision and move on — do not
+teach the framework as scope.
+
 ## Anti-patterns
 
 - **Do not** teach a version-sensitive fact (flag, model ID, config key, limit, price,
@@ -90,3 +111,5 @@ contract. Agents must not modify them. Changes need a human author.
   the learner discover where it breaks
 - **Do not** compress a high-weight domain for pace; compress only where relevance is LOW
 - **Do not** create files in `learner/` or `drills/` beyond the documented structure
+- **Do not** teach a framework or vocabulary that isn't traceable to a domain or
+  task statement in `BLUEPRINT.md` — adjacent Anthropic material is not scope
