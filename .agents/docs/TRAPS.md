@@ -215,6 +215,10 @@ transferable form, and it's what makes the autopsy stick.
 | Letting a required field be filled with a plausible invention | The schema permits a value the source never supported | S6 |
 | Unbounded retries, or retries that don't feed the error back | A retry with identical input reproduces the identical failure | T1-09, S6 |
 | A deeply nested schema where a flat one would fill more reliably | Nesting depth is the failure correlate, not field count | S6 |
+| Calibration language over specific categorical criteria | "Be conservative" gives the model a mood, not a boundary | T1-08, S5 |
+| A noisy category left enabled while "improving the prompt" | It erodes trust in the accurate categories in the meantime | S5 |
+| Single-pass review of a 40-file change | Attention dilutes across files; per-file plus a cross-file pass is the shape | S5 |
+| Findings parsed out of prose instead of enforced by a schema | The consumer is a program, and prose parsing fails silently on rewording | T1-09, S5 |
 
 ### F4 Tools, MCP & Integrations (18%)
 
