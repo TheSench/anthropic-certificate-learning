@@ -31,6 +31,35 @@ Agents don't edit `TRAPS.md`; a human promotes the durable ones.
 Deletions matter too: a distractor that's no longer tempting because the product changed
 is a throwaway option, and leaving it listed degrades every item that draws on it.
 
+### Re-harvest after editing prompt files
+
+`TRAPS.md` is *downstream* of `prompts/` — it was built by harvesting the
+`**Distractor autopsy**` lines and `## Known traps` lists out of the session files. The
+dependency is one-way, so a curriculum edit can silently leave the inventory behind, and
+nothing in the repo will notice.
+
+Do this in the same commit as any change to an autopsy line or a Known-traps list:
+
+```bash
+rg -n -A4 '\*\*Distractor autopsy\*\*' prompts/    # the numbered autopsy steps
+rg -n -A12 '^## Known traps' prompts/tier2/        # the archetype trap lists
+```
+
+(The `**…**` anchor matters: a bare `Distractor autopsy` also matches the
+`## Distractor autopsy requirements` headings in Tier 2, which carry no traps.)
+
+Then, for each trap that's new or reworded, `rg -i "<keyword>" .agents/docs/TRAPS.md`
+before adding it — the inventory is deduplicated, and a near-duplicate row is worse than
+a missing one because it splits the same confusion across two entries.
+
+Prefer adding to one of the seven **bias families** over opening an eighth. A trap that
+won't fit any family is worth a second look: usually it's an instance of one stated at the
+wrong altitude, and occasionally it's genuinely new.
+
+Check the `Source` codes too. They cite session files (`T1-15`, `S5`), so a renumbered or
+re-scoped session invalidates them — if an archetype's primary domains change, the traps
+harvested from it may belong under a different domain heading.
+
 ## Refresh the exam blueprint
 
 Do this before any exam booking, and whenever Anthropic announces certification changes.

@@ -670,12 +670,15 @@ The Foundations pool. Tier 2 has one session per archetype; mocks draw 4 at rand
 
 | # | Archetype | Primary domains |
 |---|---|---|
-| S1 | Customer support resolution with escalation logic | F1, F5 |
-| S2 | Claude Code team configuration and workflows | F2 |
-| S3 | Multi-agent research system orchestration | F1, F5 |
+| S1 | Customer support resolution with escalation logic | F1, F4, F5 |
+| S2 | Claude Code team configuration and workflows | F2, F5 |
+| S3 | Multi-agent research system orchestration | F1, F4, F5 |
 | S4 | Developer productivity tooling with built-in utilities | F2, F4 |
-| S5 | Automated code review inside CI/CD | F2, F4 |
-| S6 | Structured data extraction from unstructured sources | F3, F4 |
+| S5 | Automated code review inside CI/CD | F2, F3 |
+| S6 | Structured data extraction from unstructured sources | F3, F5 |
+
+Each archetype's prompt file is authoritative for its own domains and question mix; this
+table is the index. If the two disagree, the prompt file wins and this table is stale.
 
 ---
 
@@ -753,11 +756,16 @@ Run both exactly as their prompt files specify, with one amendment — see
 five F domains are taught, which isn't true this early, so **narrow the set to covered
 domains and say so**:
 
-- At session 7, only F1 and F5 are taught. Draw entirely from those two, and shorten to
-  8–10 questions rather than padding with unseen material. This suits S3, whose own mix is
-  already ~8 F1 and ~3 F5.
-- At session 11, F1, F5 and F2 are taught. Run S2's full set; its F4 questions become F2
-  or F1 ones.
+- At session 7, only F1 and F5 are taught. Draw entirely from those two, giving ~10
+  questions rather than padding with unseen material. This suits S3, whose full mix is
+  ~7 F1, ~4 F4, ~3 F5, ~1 F3 — the F1 and F5 items alone carry the archetype. Defer the
+  F4 items because that domain isn't taught until sessions 15–17, not because the
+  archetype doesn't need them: subagent tool distribution and scoped cross-role tools are
+  Tool-Design decisions that only surface inside a research pipeline, and they are much of
+  the point of the full-scale Tier 2 re-run.
+- At session 11, F1, F5 and F2 are taught. Run S2's full set — its mix is ~8 F2, ~4 F5,
+  ~2 F4, ~1 F1, and only the ~2 F4 items fall outside what's covered; convert those to F2
+  or F1.
 
 Score these as normal drill sessions: readiness rows updated from measured accuracy, misses
 become drill cards. Note in the log that the session ran interleaved and which domains were
