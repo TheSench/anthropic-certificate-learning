@@ -54,7 +54,9 @@ correct. The most common single failure on both exams.
 | "Use a stronger model" for a description, prompt, or harness bug | The fault is locatable in text the model was given, not in its reasoning |
 | Model upgrade chosen before prompt clarity | The prompt is still ambiguous; the upgrade masks it without fixing it |
 | An agentic loop where the steps are knowable in advance | The step count is fixed and the sequence doesn't branch on results |
+| An agentic design where an augmented LLM answers the question | Retrieval plus a single call covers it; nothing needs to branch on a result |
 | Complexity chosen for hypothetical future needs | No stated requirement demands it; the scenario names present constraints |
+| "More thinking budget" or "review its own work more carefully" | Self-review shares the blind spot that produced the output; an independent instance doesn't |
 
 ### 2. Guidance where enforcement is required
 
@@ -70,6 +72,10 @@ compliance or safety requirement.
 | Injection treated as prompt hardening rather than privilege reduction | The model can be made to *want* the bad action; only privilege stops it |
 | Documented policy accepted as a control | Nothing in the system enforces the document |
 | A hook doing model-judgment work, or a skill doing enforcement work | Deterministic check vs. judgment call — match the mechanism to which it is |
+| Calibration language ("be conservative", "only high-confidence") for a precision target | It asks the model to self-rate; a categorical criterion states what qualifies |
+| Few-shot examples where a prerequisite gate is the only real guarantee | Examples shape the usual case; they don't make the step impossible to skip |
+| A noisy category left enabled while "improving the prompt" | The category can simply be turned off, which is exact |
+| Findings parsed out of prose instead of enforced by a schema | The consumer is a program, and prose parsing fails silently on rewording |
 
 ### 3. Over-orchestration
 
@@ -85,6 +91,8 @@ which is 27% of Foundations.
 | A step given an agent that needs no judgment | The selection is fixed; only the execution varies |
 | Autonomous commit / push / merge where propose-only is correct | The wrong action is expensive to reverse and no human sees it first |
 | Connecting every MCP server rather than scoping per task | Tools the task can't use still consume context and widen the trust surface |
+| A shared tool surface across roles, defended as "simpler" | Selection degrades with surface size, and an agent holding a neighbour's tool will eventually use it |
+| Reviewing a 40-file change in one pass | Attention per file falls as the diff grows; the split is the fix, not a better prompt |
 
 ### 4. Symptom fix over cause fix
 
@@ -100,6 +108,10 @@ is being hit.
 | Post-generation filtering as a leak "fix" | The data was already retrieved into a context that shouldn't have it |
 | "Add more context" as the answer to a precision problem | Recall is fine; precision is the failure, and more context worsens it |
 | Model-loop retries for a transient tool failure | Deterministic, cheap retry at the tool layer without model tokens |
+| Prompt fixes offered for a retrieval failure | The passage never reached the model; no wording change retrieves it |
+| Retrying for a fact the source doesn't contain | The retry re-reads the same document; absence isn't a transient failure |
+| Business refusals treated as retryable | The system returned a decision, not an error — retrying re-asks a settled question |
+| Re-posting the same findings each push because prior ones aren't in context | State belongs in the system, not in the model's memory of a past run |
 
 ### 5. Unverifiable elegance
 
@@ -116,6 +128,8 @@ eval items, where the tidy split is the tempting one.
 | Eval sets too small for the claim being made | The claimed difference is smaller than the sample can resolve |
 | Compliance overclaimed from a single technical measure | One control, many requirements |
 | Activity metrics reported as productivity | The metric counts actions, not outcomes |
+| An aggregate accuracy figure accepted without segmentation | A good average hides a class that fails nearly always |
+| Handoffs treated as documentation delivery | A document transfers facts, not the ability to operate the thing |
 
 ### 6. Right technique, wrong condition
 
@@ -130,6 +144,7 @@ hardest distractors to rule out, because the option is not wrong in general.
 | A model call for a check a linter does deterministically | The rule is exact, so the cheap deterministic tool is strictly better |
 | Few-shot examples offered for a reasoning failure | The model's format is right and its logic is wrong |
 | Dense retrieval for exact-identifier lookup | The query is a literal key; lexical match is exact and cheaper |
+| `Glob` where `Grep` is the built-in that answers it | Glob matches path names; the question is about file *contents* |
 | A fixed chunk size regardless of document structure | The documents have structure the chunker is destroying |
 | Manual chain-of-thought scaffolding where extended thinking was the answer | The current model exposes a thinking budget for exactly this |
 | Technique-shotgunning — apply every technique at once | No diagnosis; nothing identifies which one addresses the stated failure |
@@ -220,6 +235,9 @@ transferable form, and it's what makes the autopsy stick.
 | "Use a bigger window" for unbounded growth | Growth is per-iteration | T1-14 |
 | Difficulty used as the escalation criterion | Escalate on *reversibility* and cost of a wrong action, not hardness | T1-15 |
 | Model-judged confidence trusted where a structural rule was needed | Self-reported confidence isn't calibrated | T1-15 |
+| Sentiment offered as a routing signal | Sentiment tracks how the user feels, not whether the case needs a human | T1-15 |
+| An investigation attempted after an explicit request for a human | The request is itself the routing decision; continuing overrides it | T1-15 |
+| A conflict silently resolved to the more-credible-sounding source | Two sources disagree and the design hides it instead of surfacing it | T1-14 |
 | Traceability lost in synthesis | The deliverable must cite sources and the design drops provenance | S3 |
 
 ---
