@@ -68,6 +68,17 @@ than the scenario justifies". These are exam risks; drills should target them di
 
 [Populated over time]
 
+## Instructor corrections
+
+Standing rules for the instructor, earned from logged errors. Everything above
+`## Session log` is loaded every session; everything below it is not, which is why these
+live here. **Keep this section bounded** — a few durable rules, not an incident log. The
+full history stays in git and in the session logs below. Add a rule only when an error
+recurs or a graded miss is voided; fold a new instance into the existing rule rather than
+appending a new bullet.
+
+[Populated as errors are found. Empty is the correct state for a new learner.]
+
 ## Session log
 
 [Sessions appended here until the log passes ~12 entries, then split to learner/sessions/]

@@ -51,6 +51,10 @@ session 1"), so the agent knows how deep to go rather than guessing.
 - Mark multiple-response questions explicitly: "Select all that apply."
 - Write the distractor tell before finalizing the question. If you can't name what makes
   a wrong option tempting, it isn't a good distractor.
+- Validate every item against the four gates in `TUTORIAL.md` § Cross-cutting
+  requirements before administering it — intended answer present verbatim, no option
+  restating the premise, keyed defect in the source definition's own words, distractor
+  tell writable.
 
 ## Session commit format
 
@@ -95,6 +99,12 @@ teach the framework as scope.
   worse than saying "let me verify"
 - **Do not** invent sessions or domains not in the session sequence
 - **Do not** skip the distractor autopsy — it's the highest-value part of a session
+- **Do not** administer an item without confirming the intended answer is among the
+  options and that no option restates the question's premise — three of five items in one
+  recorded session were defective this way, and the misgrading fabricated a weakness that
+  fed depth calibration until the learner challenged it
+- **Do not** score a weighed answer as a wavering one, or defend a claim under pushback by
+  restating it more narrowly — both are recorded, repeated instructor errors
 - **Do not** end a session without adding drill cards for every miss — run the `wrap`
   skill, which verifies each file changed; a session that taught 43,000 characters once
   recorded two of six files and committed nothing, and that work is unrecoverable

@@ -36,6 +36,14 @@ Follow `.agents/TUTORIAL.md` §5a–5d for exact formats. In brief:
 4. **Readiness** — update `learner/readiness.md`, recompute
    `projected = 100 + 9 × Σ(weight × confidence)`, and name the domain with the largest
    weight × shortfall.
+5. **Instructor corrections** — if you voided a drill item, retracted a claim, or
+   withdrew a graded miss this session, update `## Instructor corrections` in
+   `learner/profile.md` (above `## Session log`, so Step 1's loader reads it back).
+
+   **Fold the new instance into an existing rule wherever one covers it** — sharpen the
+   rule or extend its evidence line. Add a bullet only for a genuinely new failure mode.
+   This section is read at the start of every session, so it is bounded by design; the
+   full history belongs in the commit message and the session log, not here.
 
 **Gate — run this exact command and paste its output into your reply before continuing.**
 Saying "checkpoint 1 verified" without the output below it does not count; a previous run
@@ -45,10 +53,31 @@ asserted both checkpoints without running either.
 for f in learner/profile.md learner/readiness.md; do
   git diff --quiet "$f" && echo "NOT WRITTEN: $f" || echo "ok: $f"
 done
+
+# Corrections section, compared against HEAD. profile.md changes every session,
+# so whole-file diff cannot see this section. Folding a new instance into an
+# existing rule counts as updated — that is the intended shape, not appending.
+sec() { sed -n '/^## Instructor corrections$/,/^## Session log$/p' "$1"; }
+if diff <(git show HEAD:learner/profile.md | sec /dev/stdin) <(sec learner/profile.md) >/dev/null; then
+  echo "corrections: UNCHANGED (ok only if nothing was voided or retracted)"
+else
+  echo "corrections: updated"
+fi
 ```
 
 Any `NOT WRITTEN` line means that file was never touched — go back and write it, then
 re-run the gate. Two `ok:` lines is the only result that lets you move on.
+
+For the corrections line, the question is not whether the section changed — it is whether
+anything happened this session that *should* have changed it. Did you void a drill item,
+retract a claim, or withdraw a graded miss?
+
+- **No** — `corrections: UNCHANGED` is the correct result. Move on; most sessions are this.
+- **Yes**, and `corrections: updated` — good. Folding the instance into an existing rule
+  satisfies this; do not add a bullet to clear the gate.
+- **Yes**, but `corrections: UNCHANGED` — stop. Answer in writing why that did not produce
+  an update. A voided item with no corrections update is the same class of bug as a missed
+  question with no drill card.
 
 ## Checkpoint 2 — Study materials (`drills/deck.md`, `learner/glossary.md`)
 

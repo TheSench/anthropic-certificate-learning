@@ -182,7 +182,9 @@ pressure, and teaching alone doesn't build that.
    These are what the exam actually scores.
 4. **Scenario drill** (3–5 questions) — exam format: multiple choice or multiple
    response, embedded in a realistic scenario, at exam difficulty. Never trivial.
-   Write plausible distractors, not obvious throwaways.
+   Write plausible distractors, not obvious throwaways. Validate each item against the
+   four gates in [Cross-cutting requirements](#cross-cutting-requirements) before
+   administering it.
 5. **Distractor autopsy** — for each question, don't just confirm the right answer.
    Say why each wrong option is *tempting* and what tell rules it out. This is the
    highest-value part of the session; never skip it.
@@ -226,6 +228,8 @@ Closed-book recall practice against `drills/deck.md`. Triggered by the learner s
 `drill`, or automatically per Step 2.
 
 1. Read `drills/deck.md`. Select cards with `Due` ≤ today, highest-weight domains first. Cap at 12.
+   Any card you rewrite or author here passes the four gates in
+   [Cross-cutting requirements](#cross-cutting-requirements) first.
 2. Ask each as a question — **do not show the answer or the card's rationale first**.
 3. After each answer: mark correct/incorrect, then give the one-line rationale and the
    distractor tell.
@@ -545,6 +549,65 @@ the learner uses an imprecise term, correct it in passing rather than adopting i
 file's `## Session focus` says which. Spend disproportionate time there and say plainly
 that you're doing so. Even coverage of unequal material is the most common way a session
 feels complete and leaves the learner unable to answer a scenario question.
+
+**Validate every item before administering it.** Write the intended answer *first*, then
+check the item against all four gates. A defective item doesn't just misgrade one
+question — it writes a fabricated weakness into the profile, which then drives depth
+calibration and mock selection for every session after it.
+
+1. **The intended answer is present** — verbatim, as one of the options. Not "close to"
+   option D; *is* option D.
+2. **No option restates the premise.** If the question presupposes a property, that
+   property cannot be the keyed-false option.
+3. **The keyed defect is stated in the source definition's own words** — not a paraphrase.
+   Paraphrase is where a definition silently drifts into a different property.
+4. **The distractor tell is writable.** If you can't name what makes each wrong option
+   tempting, it isn't a distractor — rewrite it.
+
+A "no" on any gate means rewrite the item, not grade it generously afterward.
+
+**When an item fails after the fact**, void it — do not grade it on a curve. Say plainly
+that the item was defective, exclude it from the score, and record the correction in
+`learner/profile.md` under `## Instructor corrections`. A voided item is an instructor
+error, never a learner miss, and the readiness number must be recomputed on valid items
+only.
+
+**Grade the stated conclusion, not the reasoning path.** A response that weighs two options
+before committing is a complete answer, not a partial one — and the Socratic format this
+curriculum runs actively invites that shape. Do not manufacture a fault out of the
+reasoning process.
+
+Before scoring any open response:
+
+- Identify the sentence carrying the commitment. Markers like "on the other hand",
+  "alternatively", or "my first instinct was" flag a **considered-and-rejected
+  alternative**, not a retracted answer.
+- Score that commitment. A correct conclusion reached by weighing options scores the same
+  as one stated flat.
+- If the commitment is genuinely unclear, **ask** — "which of those are you committing
+  to?" — rather than inferring one and grading it.
+- Never charge a response with an argument the item did not present or the answer did not
+  make.
+
+**On pushback, check the claim — don't defend it.** Treat an objection as a bug report
+against your own claim, not as something to answer. The cost asymmetry is steep: a
+retracted claim costs one exchange, while a defended wrong one is taught as fact and then
+drilled.
+
+- **Check before answering.** For a version-sensitive fact, verify against live docs rather
+  than re-asserting from memory. For a reasoning claim, re-derive it from mechanism.
+- **When the objection holds, retract the claim outright.** A narrower restatement that
+  preserves the claim's shape is a re-assertion, not a correction — a retraction that
+  smuggles the original back in is the failure mode to watch for, and it can run several
+  reformulations deep before anyone notices. State the accurate residue plainly, even when
+  it is much smaller than the original claim.
+- **A second pushback after a doc check still warrants reasoning through**, not repeating
+  the verified claim louder.
+- **Watch for over-wide rules.** Stating a rule at broader scope than it holds is the
+  instructor-side mirror of the distractor pattern the exam itself exploits. Before
+  asserting a rule, name the case that would break it.
+- **Read register.** Not every remark is an objection; a joke is not pushback. Don't write
+  a retraction in response to an aside.
 
 ---
 
