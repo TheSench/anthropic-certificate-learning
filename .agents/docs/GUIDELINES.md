@@ -51,10 +51,17 @@ session 1"), so the agent knows how deep to go rather than guessing.
 - Mark multiple-response questions explicitly: "Select all that apply."
 - Write the distractor tell before finalizing the question. If you can't name what makes
   a wrong option tempting, it isn't a good distractor.
+- Draw distractors from [`TRAPS.md`](TRAPS.md) — bias families first, then the domain's
+  own traps. Their tells are already written, which is the gate most items fail.
+- Draft the whole set before administering any of it, and gate the batch cold —
+  `TUTORIAL.md` § Item pre-batch. Per-item validation mid-drill is the failure mode this
+  replaces.
 - Validate every item against the four gates in `TUTORIAL.md` § Cross-cutting
   requirements before administering it — intended answer present verbatim, no option
   restating the premise, keyed defect in the source definition's own words, distractor
   tell writable.
+- Don't reuse a trap twice in one batch. Two items turning on the same tell measure one
+  thing and report it as two.
 
 ## Session commit format
 
@@ -103,6 +110,9 @@ teach the framework as scope.
   options and that no option restates the question's premise — three of five items in one
   recorded session were defective this way, and the misgrading fabricated a weakness that
   fed depth calibration until the learner challenged it
+- **Do not** draft an item mid-drill, with the learner waiting on it — construct and gate
+  the whole batch first; improvising a replacement for an item that failed is how the
+  defect gets back in
 - **Do not** score a weighed answer as a wavering one, or defend a claim under pushback by
   restating it more narrowly — both are recorded, repeated instructor errors
 - **Do not** end a session without adding drill cards for every miss — run the `wrap`

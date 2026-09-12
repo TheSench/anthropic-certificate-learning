@@ -16,6 +16,7 @@ AGENTS.md             ← Development routing
 .agents/
   TUTORIAL.md         ← Session protocol: teach → drill → score → record → commit
   docs/               ← Architecture, development playbooks, conventions, templates
+    TRAPS.md          ← Distractor inventory: bias families + per-domain traps
 
 prompts/
   tier1/  (15)        ← Foundations breadth, one session per domain slice
@@ -113,6 +114,27 @@ instead of advancing a tier. This is the one place the system is designed to say
 **Missed questions become durable artifacts** — every miss becomes a drill card with its
 distractor tell, on a spacing schedule. Missed questions are the highest-signal study
 material available, and losing them to conversation scrollback wastes the session.
+
+**Questions are generated per session; traps are stored** — prompt files specify a
+*generator* (scenario shape, domain mix, coverage list, trap inventory) rather than a bank
+of written items, and `docs/TRAPS.md` stores the reusable half. A committed question bank
+is the obvious alternative and it's worse here for three reasons. There is one learner and
+they read the repo, so a stored item is an item they've seen — which is why Tier 2 briefs
+are regenerated fresh and `GATE-F` draws 4 of 6 archetypes at random. Stored items are also
+frozen at authoring time and can't respond to depth calibration or a readiness number that
+says push harder in F1. And they rot: the docs move often enough to need
+`check-sources.sh` and a weekly changelog check, so a static bank would silently drill
+stale behavior. What *doesn't* rot is the reasoning error a distractor exploits, so that's
+what's stored — at the level of the bias, never the flag name or the limit.
+
+**Items are constructed before they're administered** — the four gates are a cold check
+and don't work applied to an item you're already committed to asking, so the whole drill is
+drafted and gated as a batch before question one (`TUTORIAL.md` § Item pre-batch). The cost
+asymmetry drives this: a rewrite during drafting is free, while a defective item misgrades
+a question *and* writes a fabricated weakness into the profile that then steers calibration
+and mock selection indefinitely. One recorded session administered five items of which
+three were defective, and the phantom weakness fed calibration until the learner challenged
+it.
 
 **Glossary as a flat running index** — one file, topic-sectioned rather than per-session,
 so each term has exactly one entry that later sessions deepen in place. Written at the

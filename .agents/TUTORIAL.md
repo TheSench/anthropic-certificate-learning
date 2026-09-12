@@ -180,18 +180,59 @@ pressure, and teaching alone doesn't build that.
    hook vs. system prompt, Sonnet vs. Opus, Batch vs. streaming), end the teaching block
    with an explicit "when to use which, and the tell that distinguishes them" summary.
    These are what the exam actually scores.
-4. **Scenario drill** (3–5 questions) — exam format: multiple choice or multiple
+4. **Item pre-batch** (silent) — draft the whole drill before asking any of it. See
+   [Item pre-batch](#item-pre-batch). Never surface this step; the learner sees only
+   the finished questions.
+5. **Scenario drill** (3–5 questions) — exam format: multiple choice or multiple
    response, embedded in a realistic scenario, at exam difficulty. Never trivial.
-   Write plausible distractors, not obvious throwaways. Validate each item against the
-   four gates in [Cross-cutting requirements](#cross-cutting-requirements) before
-   administering it.
-5. **Distractor autopsy** — for each question, don't just confirm the right answer.
+   Write plausible distractors, not obvious throwaways. Administer the items the
+   pre-batch validated — don't improvise a replacement mid-drill.
+6. **Distractor autopsy** — for each question, don't just confirm the right answer.
    Say why each wrong option is *tempting* and what tell rules it out. This is the
    highest-value part of the session; never skip it.
-6. **Score and record** — [readiness](#readiness-scoring), mastery, drill cards, glossary.
+7. **Score and record** — [readiness](#readiness-scoring), mastery, drill cards, glossary.
 
 Target 35–50 minutes. If the learner is moving fast, add drill questions rather than
 cutting the teaching checks.
+
+### Item pre-batch
+
+Construct every item in the drill **before administering any of them**, then validate the
+batch as a batch. Do this silently and in one pass — the learner sees finished questions,
+never the drafting.
+
+This exists because drafting an item, asking it, grading it, and drafting the next one
+under conversational pressure is where the four gates get skipped. The gates are a cold
+check; they don't work applied to an item you have already half-committed to asking. And a
+defective item is expensive out of proportion to its size: it writes a fabricated weakness
+into the profile, which then drives depth calibration and mock selection for every session
+after it. Three of five items in one recorded session were defective this way.
+
+1. **Draft all items at once**, with the intended answer written first for each — as
+   [Cross-cutting requirements](#cross-cutting-requirements) already demands.
+2. **Pull distractors from [`docs/TRAPS.md`](docs/TRAPS.md).** One per item should come
+   from a bias family, plus the domain-specific traps for this session's material. Check
+   `learner/profile.md` § Recurring gaps and recent `Distractor patterns` lines: a family
+   this learner has fallen for before is worth building an item around deliberately.
+3. **Run the four gates over the whole batch**, item by item, before asking the first one.
+   A "no" on any gate means rewrite that item now, while rewriting is still free.
+4. **Check the batch for redundancy** — two items turning on the same tell is one item
+   asked twice, and it inflates or deflates the domain's measured accuracy on a single
+   piece of evidence. Replace one.
+5. **Confirm each item's constraints decide it.** A scenario question whose stated
+   constraints don't rule out the distractors has no defensible key, whatever the gates say.
+
+**Mid-drill.** If an item turns out defective once asked, void it per
+[Cross-cutting requirements](#cross-cutting-requirements) — don't patch it live and don't
+grade it on a curve. Improvising a replacement re-introduces exactly the failure the
+pre-batch removes, so continue with the remaining validated items and, if the drill is
+left short, note it in the log rather than padding.
+
+**Where this applies.** Every scenario drill, drill block, review session, and mock. For a
+mock, batch per scenario (`GATE-F`) or per group of 5–10 (`GATE-P`) rather than all 60+ at
+once — the point is that no item is drafted while the learner waits, not that the whole
+exam exists before question one. For [Drill mode](#drill-mode), cards from the deck are
+already-validated items; pre-batch applies only to cards you rewrite or author on the spot.
 
 ### Review sessions
 
@@ -199,7 +240,10 @@ A short (5–10 min) session for one flagged gap, not a full curriculum session.
 
 1. State plainly what's being reviewed: "Quick review — last time [concept] needed reinforcement."
 2. Re-teach it a *different* way than the original session — new analogy or example, not a repeat.
-3. Ask 1–2 targeted questions on just that concept, in exam format.
+3. Ask 1–2 targeted questions on just that concept, in exam format. Draft and gate them
+   before asking — see [Item pre-batch](#item-pre-batch). Two items is still a batch, and
+   a review session's whole purpose is a clean re-measurement of one concept, which a
+   defective item destroys.
 4. Score mastery, then either clear the queue entry (3+) or re-queue it (≤2).
 
 ### Teaching inside a drill
@@ -228,8 +272,9 @@ Closed-book recall practice against `drills/deck.md`. Triggered by the learner s
 `drill`, or automatically per Step 2.
 
 1. Read `drills/deck.md`. Select cards with `Due` ≤ today, highest-weight domains first. Cap at 12.
-   Any card you rewrite or author here passes the four gates in
-   [Cross-cutting requirements](#cross-cutting-requirements) first.
+   Deck cards are already-validated items — serve them as written. Any card you rewrite or
+   author here goes through [Item pre-batch](#item-pre-batch) first, before the drill
+   starts, not at the moment you reach it.
 2. Ask each as a question — **do not show the answer or the card's rationale first**.
 3. After each answer: mark correct/incorrect, then give the one-line rationale and the
    distractor tell.
@@ -261,6 +306,10 @@ saying `mock`.
 P2 17% (~11), P3 16% (~10), P4 14% (~9), P5 14% (~9), P6 13% (~8), P7 7% (~4).
 
 **During the mock:**
+- **Pre-batch every group before presenting it** — see [Item pre-batch](#item-pre-batch).
+  Batch per scenario for `GATE-F`, per group of 5–10 for `GATE-P`. A defective item in a
+  gate is the worst case in the system: mock results are authoritative, override estimated
+  readiness, and decide whether the learner advances a tier.
 - Present questions in batches of 5–10. Take answers, give **no feedback** until the end.
 - If the learner asks for a hint or a lookup, decline once and continue — this is the
   condition being trained.
@@ -554,6 +603,10 @@ feels complete and leaves the learner unable to answer a scenario question.
 check the item against all four gates. A defective item doesn't just misgrade one
 question — it writes a fabricated weakness into the profile, which then drives depth
 calibration and mock selection for every session after it.
+
+Run this as a batch, before the drill starts — see [Item pre-batch](#item-pre-batch).
+Gate 4 is the one that fails most often; [`docs/TRAPS.md`](docs/TRAPS.md) is the inventory
+of distractors whose tell is already named.
 
 1. **The intended answer is present** — verbatim, as one of the options. Not "close to"
    option D; *is* option D.

@@ -16,6 +16,7 @@
 | Session wrap-up procedure | [`.claude/skills/wrap/SKILL.md`](.claude/skills/wrap/SKILL.md) |
 | Checking doc URLs still resolve | [`.agents/check-sources.sh`](.agents/check-sources.sh) |
 | Conventions + anti-patterns | [`.agents/docs/GUIDELINES.md`](.agents/docs/GUIDELINES.md) |
+| Distractors for drill questions | [`.agents/docs/TRAPS.md`](.agents/docs/TRAPS.md) |
 
 ## Working rules
 

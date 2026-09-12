@@ -13,6 +13,24 @@
    renumber later rows in that tier
 5. Human review before committing
 
+## Promote a trap into the inventory
+
+Sessions log the wrong answers that tempted the learner under `**Distractor patterns:**`.
+Agents don't edit `TRAPS.md`; a human promotes the durable ones.
+
+1. Read the `Distractor patterns` lines across recent session logs. A pattern that appears
+   in two or more sessions, or in a domain the learner is weak in, is worth promoting
+2. Decide whether it's an instance of an existing **bias family** — add it as a row there
+   if so, and only open a new family if it genuinely doesn't fit one of the seven
+3. Write the **tell**, not just the trap. An entry without a tell fails gate 4 for every
+   item built from it, which defeats the purpose
+4. Keep it at the level of the reasoning error. Traps naming a flag, limit, price, or
+   model ID rot with the product — those belong in the prompt file's cited docs
+5. Commit: `Traps: [what was added]`
+
+Deletions matter too: a distractor that's no longer tempting because the product changed
+is a throwaway option, and leaving it listed degrades every item that draws on it.
+
 ## Refresh the exam blueprint
 
 Do this before any exam booking, and whenever Anthropic announces certification changes.

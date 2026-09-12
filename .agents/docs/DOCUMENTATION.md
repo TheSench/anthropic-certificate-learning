@@ -13,6 +13,7 @@
 | `.agents/docs/DEVELOPMENT.md` | Change playbooks | Human | No |
 | `.agents/docs/GUIDELINES.md` | Conventions + anti-patterns | Human | No |
 | `.agents/docs/TEMPLATES.md` | Learner file templates | Human | No |
+| `.agents/docs/TRAPS.md` | Distractor inventory for writing drill items | Human | No |
 | `.agents/docs/DOCUMENTATION.md` | This file | Human | No |
 | `prompts/**` | Session curriculum | Human | No |
 | `learner/**` | Learner state | Agent | Yes |
@@ -30,6 +31,7 @@ owns none of the *curriculum or protocol*. See `ARCHITECTURE.md` § Key design d
 | Why is it built this way? | `.agents/docs/ARCHITECTURE.md` |
 | How do I change X? | `.agents/docs/DEVELOPMENT.md` |
 | What are the naming/writing rules? | `.agents/docs/GUIDELINES.md` |
+| What distractor should this item use? | `.agents/docs/TRAPS.md` |
 | Where is the learner right now? | `learner/profile.md`, `learner/readiness.md` |
 | What should the learner study next? | `learner/readiness.md` § Highest-leverage next study |
 
