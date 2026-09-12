@@ -15,7 +15,7 @@ on treating prompts as code rather than as configuration strings.
 
 ## Session focus
 
-This session treats prompts as a **portfolio asset managed like code** — versioned, owned, evaluated, migrated — rather than as configuration strings. The crux is the steering lever order: instruction clarity, examples, output structure, effort/thinking, then model change. Cheapest and most targeted first; reaching for a model change before the prompt is unambiguous is this domain's bias trap. Also teach A/B statistics honestly — in a probabilistic system, small samples mislead, and a difference must clear variance before it's real.
+This session treats prompts as a **portfolio asset managed like code** — versioned, owned, evaluated, migrated — rather than as configuration strings. The crux is the steering lever order: instruction clarity, examples, output structure, effort/thinking, then model change. Cheapest and most targeted first; reaching for a model change before the prompt is unambiguous is this domain's bias trap. The session also owns the domain's **technique vocabulary** — zero-shot, few-shot, chain-of-thought — and **Skills as a prompt-reuse mechanism**, both named directly in CCAR-P Domain 2. Teach the techniques as *failure-matched interventions*, never as a list to recall, and verify the chain-of-thought guidance against live docs: on current models manual step-by-step prompting is the fallback for when thinking is off, not the default. Also teach A/B statistics honestly — in a probabilistic system, small samples mislead, and a difference must clear variance before it's real.
 
 ## Authoritative sources
 
@@ -35,6 +35,15 @@ This session treats prompts as a **portfolio asset managed like code** — versi
 - <https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages>
 - <https://platform.claude.com/docs/en/release-notes/system-prompts/overview>
 
+**Prompt technique vocabulary (Domain 2 names these explicitly)**
+- <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices>
+- <https://platform.claude.com/docs/en/build-with-claude/extended-thinking>
+
+**Skills as a prompt-reuse mechanism**
+- <https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview>
+- <https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices>
+- <https://platform.claude.com/docs/en/build-with-claude/skills-guide>
+
 **Consistency and output shaping**
 - <https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency>
 - <https://platform.claude.com/docs/en/build-with-claude/structured-outputs>
@@ -51,6 +60,24 @@ By the end, the learner can:
 - Explain the trade-off in shared prompt components: a single edit propagates everywhere,
   which is the benefit and the blast radius — and connect it to session 14's cache
   invalidation cost
+- Name the **technique vocabulary** CCAR-P uses, because items are written in it:
+  **zero-shot** (instruction only, no examples — the correct default when the task is
+  unambiguous and the output shape is stated), **few-shot / multishot** (examples supplied
+  to fix format, tone, or edge-case handling), and **chain-of-thought** (the model reasons
+  before answering). Know which failure each addresses: examples fix *target ambiguity*,
+  not reasoning capacity, and adding them to a reasoning failure spends tokens without
+  fixing it
+- Explain **what good examples require** — relevant to the actual use case, diverse enough
+  to cover edge cases without teaching an unintended pattern, and structurally delimited so
+  the model can tell example from instruction — and why a few well-chosen examples beat
+  many near-identical ones
+- Place **chain-of-thought against extended thinking correctly**, which is where stale
+  knowledge shows: on current models, manual "think step by step" prompting is the
+  *fallback for when thinking is off*, not the default technique. Prefer thinking enabled
+  at a lower effort level over hand-written reasoning scaffolds, and know that prescriptive
+  step-by-step instructions often underperform a general instruction to reason thoroughly.
+  Verify this against the current best-practices page before teaching it — the guidance is
+  model-specific and moves
 - Use the **steering levers** in the right order for a given failure: instruction clarity,
   examples, output structure, effort/thinking level, then model change — cheapest and most
   targeted first
@@ -62,6 +89,23 @@ By the end, the learner can:
   variance means small samples mislead, so a difference must clear noise before it's real
 - Decide what goes in the **system prompt** versus per-request content, on caching,
   stability, and security grounds — and never put secrets in either
+- Explain **Skills as the packaging answer to prompt reuse**, which is how CCAR-P frames
+  them ("prompt reuse strategies: caching, modular prompts, Skills"): a Skill packages
+  instructions and resources so guidance isn't repeated across conversations, and its
+  metadata is matched against the request to decide whether it loads at all
+- Explain **progressive disclosure** as what makes Skills cheap to install broadly: only
+  name and description occupy context until a Skill triggers, the instruction body loads
+  on trigger, and bundled resources load only when read — so many Skills can exist without
+  a per-request context penalty. This is the same idea s14 teaches as progressive discovery
+  vs. monolithic context, applied to instructions rather than tools
+- Choose among the **three reuse mechanisms** on what each actually does: **caching** makes
+  a repeated prefix cheap but doesn't reduce what's sent, **modular prompt composition**
+  removes duplication at authoring time, and **Skills** defer loading until relevance is
+  established. They compose, and the exam-relevant judgment is which one addresses the
+  stated problem
+- Recognize the **Skill description as the trigger mechanism** — it must say what the Skill
+  does *and* when to use it, which is the same load-bearing-description principle as tool
+  design in Tier 1 session 11, and the same failure mode when over-broad
 - Manage **prompt sprawl**: duplicated near-identical prompts across teams, and the
   consolidation and ownership answer
 - Explain the interaction between steering choices and cost: raising effort, adding
@@ -77,6 +121,9 @@ By the end, the learner can:
 | A/B in production vs. offline eval | Is the difference large enough to clear variance at your volume? |
 | Per-model prompt variants vs. one portable prompt | Does the portfolio span models with different guidance? |
 | Consolidate prompts vs. leave them | Is the duplication causing divergent behavior or unowned drift? |
+| Zero-shot vs. add examples | Is the failure target-ambiguity, or reasoning capacity? |
+| Manual chain-of-thought vs. extended thinking | Is thinking available on this model, and at what effort? |
+| Cache vs. modularize vs. package as a Skill | Is the cost in repetition, authoring duplication, or always-loaded context? |
 
 ## How to run this session
 
@@ -90,23 +137,50 @@ By the end, the learner can:
 4. **Teach prompt architecture.** Have them design a composition scheme for five related
    tasks sharing tone and format requirements, then ask what a change to the shared
    component costs — behaviorally and in cache terms.
-5. **Teach the steering lever order.** Give four failures and have them pick the cheapest
+5. **Teach the technique vocabulary against failures, not as a list.** Name zero-shot,
+   few-shot/multishot, and chain-of-thought, then immediately make the distinction that
+   matters: give three failing prompts — one where the model doesn't know the target format,
+   one where it reasons wrongly, one that's simply ambiguous — and have the learner pick the
+   technique. Examples fix the first and nothing else. Reject "add examples" for the
+   reasoning failure and make them say why it won't help. Then teach example *quality*:
+   relevant, diverse, delimited. This connects straight back to Tier 1 session 8's
+   technique-shotgunning trap, now with the guide's vocabulary attached.
+6. **Teach chain-of-thought at current-model altitude.** Verify the best-practices page
+   first. The point to land: manual "think step by step" scaffolding is the fallback for
+   when thinking is unavailable, and prescriptive step-by-step instructions often
+   underperform a general instruction to reason thoroughly. A candidate who reaches for
+   hand-written CoT where raising effort was available is answering from an older
+   generation's playbook.
+7. **Teach Skills as prompt reuse**, which is the framing Domain 2 uses. Ask how they'd
+   stop five teams from each maintaining their own copy of the same 800-word analysis
+   procedure. Elicit the three mechanisms and make them distinguish what each solves:
+   caching makes repetition cheap, modular composition removes authoring duplication,
+   Skills defer loading until relevance is established. Then teach progressive disclosure
+   with the three levels, and make the connection to session 14 — this is progressive
+   discovery applied to instructions instead of tools.
+8. **Teach the Skill description as trigger**, and have them critique an over-broad one.
+   Same principle as tool descriptions in Tier 1 session 11, same failure mode.
+9. **Teach the steering lever order.** Give four failures and have them pick the cheapest
    sufficient lever. Reject reaching for a model change first — that's the domain's bias trap.
-6. **Teach model-specific differences** and the per-model validation requirement.
-7. **Teach the change process** as a code-change analogue, and have them write it.
-8. **Teach A/B statistics honestly.** Ask how many samples they'd need to detect a 3%
+10. **Teach model-specific differences** and the per-model validation requirement.
+11. **Teach the change process** as a code-change analogue, and have them write it.
+12. **Teach A/B statistics honestly.** Ask how many samples they'd need to detect a 3%
    difference. The answer being "more than you'd think" is the lesson; connect to session 7's
    eval sizing arithmetic.
-9. **Teach system-prompt placement** and the secrets rule from session 8.
-10. **Teach prompt sprawl** with an org that has 200 prompts and no inventory; connect to
+13. **Teach system-prompt placement** and the secrets rule from session 8.
+14. **Teach prompt sprawl** with an org that has 200 prompts and no inventory; connect to
     session 13's prompt inventory.
-11. **Decision table** — walk all six rows.
-12. **Scenario drill — 5 questions**, standalone Professional format. Include a lever-order
-    question, a shared-component blast-radius question, an A/B validity question, a
-    per-model portability question, and one multiple-response on prompt governance.
-13. **Distractor autopsy** — expect model upgrades chosen before prompt clarity, and
-    production A/B results trusted at sample sizes that can't support them.
-14. Record per `.agents/TUTORIAL.md` Step 5.
+15. **Decision table** — walk all rows.
+16. **Scenario drill — 6 questions**, standalone Professional format. Include a lever-order
+    question, a technique-matching question (a failure where examples are the wrong fix), a
+    reuse-mechanism choice (caching vs. modular vs. Skill), a shared-component
+    blast-radius question, an A/B validity question, and one multiple-response on prompt
+    governance.
+17. **Distractor autopsy** — expect model upgrades chosen before prompt clarity,
+    production A/B results trusted at sample sizes that can't support them, few-shot
+    examples offered for a reasoning failure, and manual chain-of-thought scaffolding where
+    extended thinking at a lower effort was the current-model answer.
+18. Record per `.agents/TUTORIAL.md` Step 5.
 
 ## Out of scope
 
