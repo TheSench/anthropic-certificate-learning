@@ -3,12 +3,79 @@
 The two target exams, their official domain weights, and the documentation each
 domain is drawn from. Everything in `prompts/` traces back to a domain here.
 
-> **Verification note.** Domain weights and formats below were gathered from
-> published exam-guide sources in September 2026. Anthropic revises blueprints;
-> before your exam date, re-verify against the official program page
-> (<https://www.pearsonvue.com/us/en/anthropic.html>) and update this file.
-> Session prompts cite live documentation, so product detail stays current even
-> if a weight shifts.
+> **Verification note.** Every structural figure below (domains, weights, item
+> counts, durations, passing scores, scenario bank) was verified verbatim against
+> the official Anthropic exam guides on 2026-09-11 — see § Sources. Anthropic
+> revises blueprints; re-verify against those PDFs before your exam date. Do
+> *not* re-verify against <https://www.pearsonvue.com/us/en/anthropic.html>: that
+> page lists exam names only and contains none of these figures.
+
+---
+
+## Sources
+
+Provenance splits into two layers with different authority. Be precise about
+which is which when describing this system.
+
+### Layer 1 — Exam structure (authoritative)
+
+Domains, weights, item counts, durations, passing scores, and the CCAR-F scenario
+bank come from Anthropic's official exam guides. Both are v1.0, effective July
+2026, and are publicly fetchable without login from the Partner Academy CDN.
+Each states it "is the authoritative reference for candidates preparing to sit
+the exam."
+
+- [CCAR-F Exam Guide (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1783542750/Claude+Certified+Architect+%E2%80%93+Foundations+Exam+Guide.pdf)
+- [CCAR-P Exam Guide (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1783542810/Claude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf)
+
+CCAR-F's § 17 Appendix carries three lists that define scope precisely —
+**Technologies and Concepts**, **In-Scope Topics**, and **Out-of-Scope Topics**.
+CCAR-P has no appendix and no equivalent lists; its scope is the Domain 1–7 task
+statements in § 6 and nothing else.
+
+### Layer 2 — Documentation map (editorial)
+
+**The exam guides cite no documentation URLs and provide no reading list.** The
+~210 pages in § Documentation map are *our* selections, chosen to cover the
+guides' domains, task statements, and CCAR-F's appendix lists. No official source
+prescribes them.
+
+The only guide text pointing at documentation at all is CCAR-P § 7: "Review
+official Anthropic documentation for the Claude API, models, prompt engineering,
+MCP, and Skills." It names areas, not pages. CCAR-F never mentions documentation
+as a prep resource; its § 7 is hands-on build tasks only.
+
+### Secondary — Anthropic Partner Academy prep courses
+
+A parallel interpretation of the same blueprints, useful as a cross-check but
+*not* authoritative: CCAR-P § 7 states "There is no single required course.
+Anthropic does not guarantee that any particular resource ensures a passing
+result." Public without login (module titles, objectives, durations, CCAR-F
+lesson lists); actual lesson content is gated.
+
+- [Prep courses index](https://anthropic-partners.skilljar.com/page/claude-certification-exam-prep-courses)
+- [CCAR-F prep courses](https://anthropic-partners.skilljar.com/page/claude-certified-architect-foundations-prep-courses)
+- [CCAR-P prep path](https://anthropic-partners.skilljar.com/path/claude-certified-architect-professional)
+- [Partner Academy catalog](https://anthropic-partners.skilljar.com/)
+
+Note: the Academy's `robots.txt` disallows ClaudeBot and other AI crawlers
+site-wide. Consult these pages manually; do not scrape them.
+
+### Not a source
+
+- <https://www.pearsonvue.com/us/en/anthropic.html> — confirms the exams exist
+  and handles scheduling. Contains no weights, item counts, durations, or scores.
+- Third-party prep sites (findskill.ai, prepgenaicerts.com and similar) — sell
+  unofficial material; their claimed exam structure is unverified marketing.
+- Anthropic's **AI Fluency Framework** and its "4 D's" (Delegation, Description,
+  Discernment, Diligence) — a real Anthropic-published framework, but not exam
+  scope. Verified 2026-09-11: `fluency`, `Delegation`, `Discernment`, and
+  `Diligence` appear nowhere in either exam guide, and CCAR-P's scope is its § 6
+  task statements alone. Reaches the Partner Academy catalog as education-sector
+  material (developed with Rick Dakan, Ringling College of Art and Design;
+  student and educator assignment guides), and the Academy lists it as
+  recommended, not required. Two of its terms collide with this curriculum's
+  core vocabulary — see GUIDELINES.md § Vocabulary collisions.
 
 ---
 
