@@ -32,6 +32,44 @@ mock      — a timed, full-length, closed-book practice exam
 
 ---
 
+## Staying up to date
+
+The curriculum moves — prompts get sharpened, blueprints get re-verified, doc URLs change.
+Two things keep you current without losing progress.
+
+**1. Study on a branch, not `main`.** Your progress (`learner/`, `drills/`) is committed
+after every session. Keeping it on its own branch lets updates keep landing on `main`:
+
+```bash
+git checkout -b learning
+```
+
+First run does this for you. If you already have progress on `main`, you'll be offered the
+move once — nothing is lost, the branch just names the commits you already have.
+
+**2. If you forked, add the upstream remote.** A fork's `origin` is *your* copy and never
+receives updates, so this is the step that actually matters:
+
+```bash
+git remote add upstream https://github.com/TheSench/anthropic-certificate-learning.git
+```
+
+From then on, every session start fetches `upstream/main` and merges it into your branch
+before teaching. It's silent when there's nothing new, and it never pushes anything. If
+you're offline it says so and teaches anyway.
+
+To pull updates by hand at any time:
+
+```bash
+git fetch upstream && git merge upstream/main
+```
+
+This stays conflict-free as long as you only edit `learner/` and `drills/` and leave
+`prompts/`, `.agents/`, and `BLUEPRINT.md` to the maintainer. If you do want to change the
+curriculum, keep those edits in their own branch.
+
+---
+
 ## What a session looks like
 
 Roughly 35–50 minutes, in two halves.

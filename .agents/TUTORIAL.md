@@ -16,6 +16,72 @@ The exception is Step 1, which is a single prepared command precisely so it cann
 become four turns. Where a step gives you one command, run that command — don't
 decompose it into per-file reads.
 
+### Step 0.5 — Sync the harness (silently, unless something changed)
+
+The curriculum, protocol, and blueprint are updated upstream between sessions. The
+learner's progress lives on a **learning branch**; harness updates arrive on `main` and
+are merged in. Run this **exact command** — one call, same reason as Step 1.
+
+```bash
+CANON=TheSench/anthropic-certificate-learning
+UP=$(git remote | grep -qx upstream && echo upstream || echo origin)
+if [ "$UP" = origin ] && ! git remote get-url origin | grep -q "$CANON"; then
+  echo "SYNC: no 'upstream' remote and origin is not the canonical repo."
+  echo "SYNC: run once, then re-send your trigger:"
+  echo "      git remote add upstream https://github.com/$CANON.git"
+elif ! git fetch --quiet "$UP" main 2>/dev/null; then
+  echo "SYNC: offline or fetch failed — continuing on the local copy."
+else
+  BR=$(git branch --show-current)
+  N=$(git rev-list --count HEAD.."$UP"/main)
+  if [ "$N" = 0 ]; then echo "SYNC: harness up to date ($UP/main, branch $BR)."
+  elif [ -n "$(git status --porcelain learner drills)" ]; then
+    echo "SYNC: $N update(s) available but learner/ or drills/ is dirty — skipping merge."
+    git status --short learner drills
+  else
+    CHANGED=$(git diff --name-only HEAD.."$UP"/main | cut -d/ -f1 | sort -u | tr '\n' ' ')
+    if git merge --no-edit --quiet "$UP"/main >/dev/null 2>&1; then
+      echo "SYNC: merged $N harness update(s) into '$BR'. Changed: $CHANGED"
+    else
+      git merge --abort 2>/dev/null
+      echo "SYNC: $N update(s) available but the merge conflicts — resolve manually:"
+      echo "      git merge $UP/main"
+    fi
+  fi
+fi
+```
+
+**Act on what it prints, then go to Step 1 regardless.** This step must never block a
+session — a learner offline or with a broken remote still studies.
+
+| Output | What to do |
+|---|---|
+| `up to date` | Nothing. Don't mention it. |
+| `merged N update(s)` | If `Changed:` includes `prompts` or `.agents`, tell the learner in one line at Step 3 — the syllabus moved under them. |
+| `offline or fetch failed` | Nothing. Don't mention it; it is not the learner's problem mid-session. |
+| `no 'upstream' remote` | Show the `git remote add` line and stop. This is a fork whose `origin` carries none of the updates; without it the learner studies a frozen curriculum indefinitely. |
+| `dirty — skipping merge` | Say a previous session may not have been wrapped, and offer to run `wrap`. Do not merge over it. |
+| `merge conflicts` | Show the command. A conflict means a harness file was edited locally — see [Working rules](../AGENTS.md) on who owns what. |
+
+**Never `git push` in this step.** The learning branch is the learner's; publishing it is
+their call, not the harness's.
+
+**Branch check.** `git branch --show-current` is in the output above.
+
+- On a learning branch (anything but `main`) → normal. Proceed.
+- On `main` **and** `learner/profile.md` exists → the learner has progress on `main`.
+  Offer the one-time move **once**:
+
+  ```bash
+  git checkout -b learning
+  ```
+
+  Nothing is lost — the commits are already there and the branch just names them. If they
+  decline, add `Branch: main (declined move, YYYY-MM-DD)` under `## Instructor corrections`
+  in `learner/profile.md` and never ask again. Working on `main` still works; it just makes
+  every future harness update a manual merge.
+- On `main` with no profile → first run. [Initialization](#initialization) creates the branch.
+
 ### Step 1 — Load context (silently, without narrating)
 
 Run this **exact command**. It is one call by design: it loads every file routing needs
@@ -51,6 +117,16 @@ large. They are worked against directly at Step 5.
 ### Initialization
 
 Run only when `learner/profile.md` doesn't exist.
+
+0. **Create the learning branch before writing any file.** Progress belongs on its own
+   branch so harness updates can keep arriving on `main` (Step 0.5).
+
+   ```bash
+   git branch --show-current   # if this prints main:
+   git checkout -b learning
+   ```
+
+   Say one line: progress is committed to `learning`, harness updates come from `main`.
 
 1. Ask the learner these background questions (all at once, not one at a time):
    - What's your engineering background, and how many years in architecture or platform work?
