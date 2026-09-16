@@ -9,7 +9,7 @@
    failure and prints the source file:line). Worth running monthly even when no prompt
    file changed: the nine version-pinned model URLs it flags at the end expire on their
    own when the model line advances.
-4. New session: add it to the session sequence table in `.agents/TUTORIAL.md`, and
+4. New session: add it to the session sequence table in `.agents/SEQUENCE.md`, and
    renumber later rows in that tier
 5. Human review before committing
 
@@ -69,7 +69,7 @@ Do this before any exam booking, and whenever Anthropic announces certification 
 2. Update `BLUEPRINT.md` — including the verification-note date
 3. If weights moved materially, re-check that session counts per domain are still
    roughly proportional; add or drop sessions as needed
-4. If a domain was added or removed, update: the session sequence in `.agents/TUTORIAL.md`,
+4. If a domain was added or removed, update: the session sequence in `.agents/SEQUENCE.md`,
    the relevance and readiness templates, and the domain codes in `GUIDELINES.md`
 
 ## Refresh the documentation map
@@ -104,9 +104,10 @@ Recompute `learner/readiness.md`'s projected score if you change any confidence 
 
 Only if the exam's scenario pool changes.
 
-1. Add it to `BLUEPRINT.md` § Scenario archetypes and `.agents/TUTORIAL.md` § Scenario archetypes
+1. Add it to `BLUEPRINT.md` § Scenario archetypes and `.agents/SEQUENCE.md` § Scenario archetypes
 2. Add a Tier 2 prompt file for it, and renumber later Tier 2 rows
-3. Update the mock-exam draw count in `.agents/TUTORIAL.md` if the pool size changed
+3. Update the mock-exam draw count in `.agents/TUTORIAL.md` § Mock exam mode if the pool
+   size changed
 
 ## Validation
 

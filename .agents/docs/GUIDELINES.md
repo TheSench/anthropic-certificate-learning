@@ -2,7 +2,10 @@
 
 ## File naming
 
-- Prompt files: `<NN>-<kebab-topic>.md`, zero-padded, matching the session sequence
+- Prompt files: `<NN>-<kebab-topic>.md`, zero-padded. `NN` numbers the file **within its
+  tier**, restarting at `01` each tier — it equals the session number only in Tier 1.
+  Tier 3 runs at an offset of 27 (session 28 is `tier3/01-…`), Tier 4 at 43. The mapping
+  is the sequence table in [`SEQUENCE.md`](../SEQUENCE.md)
 - Session logs: `tier<N>-<NN>-<kebab-topic>.md`
 - Learner files: fixed names (`profile.md`, `relevance.md`, `readiness.md`,
   `glossary.md`, `progress.md`) — do not rename
@@ -53,13 +56,10 @@ session 1"), so the agent knows how deep to go rather than guessing.
   a wrong option tempting, it isn't a good distractor.
 - Draw distractors from [`TRAPS.md`](TRAPS.md) — bias families first, then the domain's
   own traps. Their tells are already written, which is the gate most items fail.
-- Draft the whole set before administering any of it, and gate the batch cold —
-  `TUTORIAL.md` § Item pre-batch. Per-item validation mid-drill is the failure mode this
-  replaces.
-- Validate every item against the five gates in `TUTORIAL.md` § Cross-cutting
-  requirements before administering it — intended answer present verbatim, no option
-  restating the premise, keyed defect in the source definition's own words, distractor
-  tell writable.
+- Draft the whole set before administering any of it, then validate the batch cold against
+  the five gates — [`TUTORIAL.md` § Item pre-batch](../TUTORIAL.md#item-pre-batch), which
+  states the gates and is the only copy of them. Per-item validation mid-drill is the
+  failure mode the pre-batch replaces.
 - Don't reuse a trap twice in one batch. Two items turning on the same tell measure one
   thing and report it as two.
 
@@ -116,8 +116,8 @@ teach the framework as scope.
 - **Do not** score a weighed answer as a wavering one, or defend a claim under pushback by
   restating it more narrowly — both are recorded, repeated instructor errors
 - **Do not** end a session without adding drill cards for every miss — run the `wrap`
-  skill, which verifies each file changed; a session that taught 43,000 characters once
-  recorded two of six files and committed nothing, and that work is unrecoverable
+  skill, which verifies each file changed. See
+  [`wrap/SKILL.md`](../../.claude/skills/wrap/SKILL.md) for the failure that motivates it
 - **Do not** log a gap in prose only — score it in `## Topic mastery`, and if ≤2 queue
   it in `## Review queue` in the same step, or it will never be revisited
 - **Do not** advance past a `GATE` row on a sub-720 mock

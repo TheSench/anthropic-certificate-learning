@@ -91,8 +91,8 @@ cards for anything you missed, and glossary entries for new terms — then commi
 
 ## The curriculum
 
-43 sessions across four tiers. Sessions per domain are **proportional to official exam
-weight**, so study time tracks what's actually scored.
+46 sessions and two mandatory mock gates, across four tiers. Sessions per domain are
+**proportional to official exam weight**, so study time tracks what's actually scored.
 
 | Tier | Sessions | What it is |
 |---|---|---|
@@ -107,7 +107,7 @@ loop comes first because everything speaks its vocabulary, and tool *design* wai
 session 14 because nothing before it authors a tool interface — orchestration needs only
 `allowedTools`, context management only the shape of tool results, reliability only that a
 tool can fail. Every one of the exam guide's 30 task statements is owned by exactly one
-session.
+session. The full map is [`.agents/SEQUENCE.md`](.agents/SEQUENCE.md).
 
 **Four scenario drills are interleaved**, at sessions 5, 10, 18 and 22. Two run on partial
 coverage deliberately: drilling F1 at session 5 on F1 material alone beats waiting for full
@@ -191,8 +191,9 @@ Two things still go stale on their own and need a manual refresh:
 
 ## Development
 
-See [`AGENTS.md`](AGENTS.md) for routing, [`.agents/docs/ARCHITECTURE.md`](.agents/docs/ARCHITECTURE.md)
-for design rationale.
+See [`AGENTS.md`](AGENTS.md) for routing and file ownership,
+[`.agents/SEQUENCE.md`](.agents/SEQUENCE.md) for the curriculum map, and
+[`.agents/docs/ARCHITECTURE.md`](.agents/docs/ARCHITECTURE.md) for design rationale.
 
 The split that matters: the agent owns everything about *your progress* and none of the
 *curriculum or protocol*. `prompts/`, `.agents/`, `BLUEPRINT.md`, and this file need a
