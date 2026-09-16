@@ -65,6 +65,11 @@ By the end, the learner can:
   "done" or treating any assistant text as a completion signal. The tell: if hitting the
   ceiling is a routine outcome rather than evidence something went wrong, it is being used
   as the plan instead of the backstop
+- Describe **tool use** as the loop's other half: the model emits a `tool_use` block, the
+  harness executes the call, and the **result is appended to the conversation history** so
+  the next iteration can reason about it. Name **`allowedTools`** as the harness-side
+  restriction on what an agent may call at all — the mechanism later sessions use to scope
+  a subagent to its role
 - Read a system description and state whether it is agentic, and what would have to change
   to make it so (or to make it not need to be)
 
@@ -116,8 +121,14 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 ## Out of scope
 
 Defer and say where it's covered:
-- Subagents, forks, agent teams → Orchestration Patterns (Orchestration)
-- How to decompose a task → Task Decomposition (Task Decomposition)
-- Tool schema design → Tool Design (Tool Design)
-- Context window mechanics → Context Management (Context Management)
-- Whether to build agentic at all → Agent vs. Workflow (Agent vs. Workflow)
+- How to decompose a task, and prompt chaining vs. adaptive plans → session 2
+- Subagents, the Task tool, `AgentDefinition`, `fork_session` → session 3
+- Enforcement gates, structured handoff, session resumption → session 4
+- Context window mechanics and what summarization destroys → session 6
+- Authoring a tool interface — descriptions, naming, splitting → session 14
+- The hook mechanism (`PostToolUse`, interception) → session 15
+
+Tool *use* is in scope here and taught above: the loop returns `stop_reason: "tool_use"`,
+results are appended to history, and `allowedTools` restricts what an agent may call. Tool
+*design* is a different skill and waits for session 14 — say so if the learner reaches for
+it, because the distinction is what lets sessions 2–13 proceed without it.

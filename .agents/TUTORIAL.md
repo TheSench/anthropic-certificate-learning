@@ -862,30 +862,30 @@ Each session owns the § 6 task statements listed, and every one of the 30 is ow
 once. Session counts track exam weight (F1 5 of 18 against 27%, F3 4 against 20%, F2/F4/F5
 3 each against 20/18/15%).
 
-| # | Session | Domain | Owns | Builds on |
-|---|---------|--------|------|-----------|
-| 1 | The Agentic Loop and `stop_reason` | F1 | 1.1 | — |
-| 2 | Task Decomposition: Fixed Pipelines vs. Adaptive Plans | F1 | 1.6 | 1 |
-| 3 | Coordinator-Subagent Orchestration and the Task Tool | F1 | 1.2, 1.3 | 1, 2 |
-| 4 | Enforcement, Handoff, and Session State | F1 | 1.4, 1.7 | 1, 3 |
-| **5** | **DRILL — S3 Multi-Agent Research** (partial: F1 only) | S3 | — | 1–4 |
-| 6 | Conversation Context and What Summarization Destroys | F5 | 5.1 | 1, 3 |
-| 7 | Reliability Across Agents: Errors, Crash Recovery, Provenance | F5 | 5.3, 5.4, 5.6 | 1, 3, 4, 6 |
-| 8 | Explicit Criteria and Few-Shot Prompting | F3 | 4.1, 4.2 | 1 |
-| 9 | Escalation and Ambiguity Resolution | F5 | 5.2 | 1, 8 |
-| **10** | **DRILL — S1 Customer Support Resolution** | S1 | — | 1–9 |
-| 11 | Structured Output via Tool Use and JSON Schemas | F3 | 4.3 | 1, 8 |
-| 12 | Validation, Retry, and Confidence Calibration | F3 | 4.4, 5.5 | 11 |
-| 13 | Multi-Pass Review and Batch Processing | F3 | 4.6, 4.5 | 2, 3, 11, 12 |
-| 14 | Designing Tool Interfaces | F4 | 2.1 | 1, 8 |
-| 15 | Agent SDK Hooks for Interception and Normalization | F1 | 1.5 | 1, 14 |
-| 16 | Tool Errors and Tool Distribution | F4 | 2.2, 2.3 | 3, 7, 11, 14 |
-| 17 | MCP Servers and Built-in Tools | F4 | 2.4, 2.5 | 14, 16 |
-| **18** | **DRILL — S3 Multi-Agent Research** (full) | S3 | — | 1–17 |
-| 19 | CLAUDE.md Hierarchy and Path-Specific Rules | F2 | 3.1, 3.3 | 1, 14 |
-| 20 | Skills, Slash Commands, and Plan Mode | F2 | 3.2, 3.4 | 2, 3, 14, 19 |
-| 21 | Iterative Refinement and CI/CD Integration | F2 | 3.5, 3.6 | 8, 11, 13, 19, 20 |
-| **22** | **DRILL — S2 Claude Code Team Config** | S2 | — | 1–21 |
+| # | File | Session | Domain | Owns | Builds on |
+|---|------|---------|--------|------|-----------|
+| 1 | `prompts/tier1/01-agentic-loop.md` | The Agentic Loop and `stop_reason` | F1 | 1.1 | — |
+| 2 | `prompts/tier1/02-task-decomposition.md` | Task Decomposition: Fixed Pipelines vs. Adaptive Plans | F1 | 1.6 | 1 |
+| 3 | `prompts/tier1/03-orchestration-subagents.md` | Coordinator-Subagent Orchestration and the Task Tool | F1 | 1.2, 1.3 | 1, 2 |
+| 4 | `prompts/tier1/04-enforcement-handoff-session.md` | Enforcement, Handoff, and Session State | F1 | 1.4, 1.7 | 1, 3 |
+| **5** | `prompts/tier2/03-scenario-multi-agent-research.md` | **DRILL — S3 Multi-Agent Research** (partial: F1 only) | S3 | — | 1–4 |
+| 6 | `prompts/tier1/06-conversation-context.md` | Conversation Context and What Summarization Destroys | F5 | 5.1 | 1, 3 |
+| 7 | `prompts/tier1/07-reliability-across-agents.md` | Reliability Across Agents: Errors, Crash Recovery, Provenance | F5 | 5.3, 5.4, 5.6 | 1, 3, 4, 6 |
+| 8 | `prompts/tier1/08-criteria-and-fewshot.md` | Explicit Criteria and Few-Shot Prompting | F3 | 4.1, 4.2 | 1 |
+| 9 | `prompts/tier1/09-escalation.md` | Escalation and Ambiguity Resolution | F5 | 5.2 | 1, 8 |
+| **10** | `prompts/tier2/01-scenario-support-escalation.md` | **DRILL — S1 Customer Support Resolution** | S1 | — | 1–9 |
+| 11 | `prompts/tier1/11-structured-output.md` | Structured Output via Tool Use and JSON Schemas | F3 | 4.3 | 1, 8 |
+| 12 | `prompts/tier1/12-validation-and-calibration.md` | Validation, Retry, and Confidence Calibration | F3 | 4.4, 5.5 | 11 |
+| 13 | `prompts/tier1/13-review-and-batch.md` | Multi-Pass Review and Batch Processing | F3 | 4.6, 4.5 | 2, 3, 11, 12 |
+| 14 | `prompts/tier1/14-tool-interfaces.md` | Designing Tool Interfaces | F4 | 2.1 | 1, 8 |
+| 15 | `prompts/tier1/15-hooks.md` | Agent SDK Hooks for Interception and Normalization | F1 | 1.5 | 1, 14 |
+| 16 | `prompts/tier1/16-tool-errors-distribution.md` | Tool Errors and Tool Distribution | F4 | 2.2, 2.3 | 3, 7, 11, 14 |
+| 17 | `prompts/tier1/17-mcp-and-builtins.md` | MCP Servers and Built-in Tools | F4 | 2.4, 2.5 | 14, 16 |
+| **18** | `prompts/tier2/03-scenario-multi-agent-research.md` | **DRILL — S3 Multi-Agent Research** (full) | S3 | — | 1–17 |
+| 19 | `prompts/tier1/19-claude-md-and-rules.md` | CLAUDE.md Hierarchy and Path-Specific Rules | F2 | 3.1, 3.3 | 1, 14 |
+| 20 | `prompts/tier1/20-skills-commands-planmode.md` | Skills, Slash Commands, and Plan Mode | F2 | 3.2, 3.4 | 2, 3, 14, 19 |
+| 21 | `prompts/tier1/21-refinement-and-cicd.md` | Iterative Refinement and CI/CD Integration | F2 | 3.5, 3.6 | 8, 11, 13, 19, 20 |
+| **22** | `prompts/tier2/02-scenario-claude-code-team.md` | **DRILL — S2 Claude Code Team Config** | S2 | — | 1–21 |
 
 Session 12 owns one task from each of two domains (4.4 and 5.5) — the extraction result
 and the decision of whether to trust it are one lesson. Its `Domain` label is F3 for
