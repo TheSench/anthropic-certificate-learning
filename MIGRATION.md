@@ -33,8 +33,11 @@ Paste this to your tutor agent in this repo:
 Read MIGRATION.md and migrate my learner files to the current curriculum structure.
 ```
 
-The agent does the work. The rest of this file is the procedure it follows — read on if you
-want to check it, or if you are doing it by hand.
+The agent does the work, commits it, and stops — migrating is a session of its own, not a
+preamble to teaching. Read the commit, then send `Continue` to study.
+
+The rest of this file is the procedure it follows — read on if you want to check it, or if
+you are doing it by hand.
 
 **Before starting:** commit or stash anything uncommitted in `learner/` and `drills/`, and
 tag your current state so the migration is reversible.
@@ -168,6 +171,17 @@ Commit:
 ```bash
 git add learner/ drills/ && git commit -m "Migrate learner state to restructured curriculum"
 ```
+
+### 5. Stop — the migration is the whole session
+
+Do not go on to teach. Report what changed — the session map, the corrected projection, any
+backfill gaps — and end, so the learner sends `Continue` for a fresh session.
+
+The migration rewrote their record, and some of it was judgment: which sessions paired to
+which rows, whether a partially-covered statement counts. That deserves a commit they can
+read and object to, not a decision buried under a drill block they are already answering.
+Routing is cleaner too — the next session is chosen from numbers this migration just
+changed, so Step 2 should re-run against the migrated files rather than around them.
 
 ---
 

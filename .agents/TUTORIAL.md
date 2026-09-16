@@ -51,8 +51,11 @@ else
 fi
 ```
 
-**Act on what it prints, then go to Step 1 regardless.** This step must never block a
-session — a learner offline or with a broken remote still studies.
+**Act on what it prints, then go to Step 1.** A failed sync must never block a session — a
+learner offline or with a broken remote still studies. The two exceptions are the rows that
+say to stop below: a fork with no upstream, which would study a frozen curriculum, and a
+restructure, which would study the wrong material. Both end the turn and ask the learner to
+re-send their trigger; neither is a network problem.
 
 | Output | What to do |
 |---|---|
@@ -92,15 +95,34 @@ Having paired them, you are looking for three things:
   moved material *behind* the learner, and it was never taught. These are the ones that
   matter most, because later sessions assume that material is in place.
 
-If any of the three holds, **stop before Step 1.** Tell the learner the sequence changed
-under their progress, name what you found, and offer to migrate per
-[`MIGRATION.md`](../MIGRATION.md). Do not teach until learner state is migrated or they
-explicitly decline — a session taught against stale numbering re-teaches covered material
-while the real gap stays open. If they decline, note it under `## Instructor corrections`
-in `learner/profile.md` and don't re-offer every session.
-
 Silent when nothing moved: if every completed session pairs to a number below the next one,
 say nothing and go to Step 1.
+
+If any of the three holds, **stop before Step 1.** Tell the learner the sequence changed
+under their progress, name what you found, and offer to migrate per
+[`MIGRATION.md`](../MIGRATION.md). Do not teach against stale numbering — it re-teaches
+covered material while the real gap stays open. If they decline, note it under
+`## Instructor corrections` in `learner/profile.md` and don't re-offer every session.
+
+**A migration ends the session.** Commit it, tell the learner what changed, and stop —
+they send `Continue` again for a fresh one. Do not go on to teach in the same session.
+
+Three reasons, in order of weight:
+
+1. **The migration is the learner's to review.** It rewrites their record — confidences,
+   projection, what counts as complete — and some of it is judgment they may disagree with.
+   Rolling straight into a drill block buries that decision under a session they are now
+   mid-way through. Ending gives them a commit to read and a natural place to object.
+2. **The next session is routed off numbers the migration just changed.** Step 2 reads
+   `learner/progress.md`; re-running it from the top on migrated files is the honest way
+   to pick what comes next, and it costs one message.
+3. **Context.** A migration reads task tables, prompt-file headers, old session-log bodies,
+   and the deck. A real one measured ~98K tokens, so teaching afterward starts from a
+   context whose bulk is bookkeeping the tutor will never need again. A fresh session starts
+   clean.
+
+This is the same stop-and-re-send shape as the `no 'upstream' remote` row above: the
+harness fixed something structural, and the learner re-sends their trigger.
 
 **The trap this exists to catch.** The recorded next-session number is *evidence about the
 old sequence*, not about the new one. It is the one field a restructure is guaranteed to
