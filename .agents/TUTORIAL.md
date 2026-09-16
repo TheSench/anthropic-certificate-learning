@@ -308,8 +308,27 @@ after it. Three of five items in one recorded session were defective this way.
      `--batch` flag, `.claude/config.json`). Authoring one means verifying against live
      docs that the feature really doesn't exist — invent a plausible flag without checking
      and you will eventually invent a real one.
-4. **Run the five gates over the whole batch**, item by item, before asking the first one.
-   A "no" on any gate means rewrite that item now, while rewriting is still free.
+4. **Run these five gates over the whole batch**, item by item, before asking the first
+   one. A "no" on any gate means rewrite that item now, while rewriting is still free.
+
+   1. **The intended answer is present** — verbatim, as one of the options. Not "close
+      to" option D; *is* option D.
+   2. **No option restates the premise.** If the question presupposes a property, that
+      property cannot be the keyed-false option.
+   3. **The keyed defect is stated in the source definition's own words** — not a
+      paraphrase. Paraphrase is where a definition silently drifts into a different
+      property.
+   4. **The distractor tell is writable.** If you can't name what makes each wrong option
+      tempting, it isn't a distractor — rewrite it. This is the gate that fails most
+      often; [`docs/TRAPS.md`](docs/TRAPS.md) is the inventory of distractors whose tell
+      is already named.
+   5. **The key's position is not predictable.** Across a batch, no single letter may hold
+      more than half the keys, and every batch of four or more must use at least three
+      distinct letters. Assign positions *after* writing the items — the correct answer
+      tends to land in the same slot when written first and never moved. A deck keyed 58%
+      to one letter can be beaten without reading the question. The official sample items
+      are themselves skewed (10 of 12 keyed A); do **not** imitate that — the exam can
+      afford a skew because its pool is unseen, a deck that re-serves cards cannot.
 5. **Check the batch for redundancy** — two items turning on the same tell is one item
    asked twice, and it inflates or deflates the domain's measured accuracy on a single
    piece of evidence. Replace one.
@@ -724,34 +743,8 @@ that you're doing so. Even coverage of unequal material is the most common way a
 feels complete and leaves the learner unable to answer a scenario question.
 
 **Validate every item before administering it.** Write the intended answer *first*, then
-check the item against all five gates. A defective item doesn't just misgrade one
-question — it writes a fabricated weakness into the profile, which then drives depth
-calibration and mock selection for every session after it.
-
-Run this as a batch, before the drill starts — see [Item pre-batch](#item-pre-batch).
-Gate 4 is the one that fails most often; [`docs/TRAPS.md`](docs/TRAPS.md) is the inventory
-of distractors whose tell is already named.
-
-1. **The intended answer is present** — verbatim, as one of the options. Not "close to"
-   option D; *is* option D.
-2. **No option restates the premise.** If the question presupposes a property, that
-   property cannot be the keyed-false option.
-3. **The keyed defect is stated in the source definition's own words** — not a paraphrase.
-   Paraphrase is where a definition silently drifts into a different property.
-4. **The distractor tell is writable.** If you can't name what makes each wrong option
-   tempting, it isn't a distractor — rewrite it.
-5. **The key's position is not predictable.** Across a batch, no single letter may hold
-   more than half the keys, and every batch of four or more must use at least three
-   distinct letters. Assign positions *after* writing the items — the correct answer
-   tends to land in the same slot when written first and never moved.
-
-A "no" on any gate means rewrite the item, not grade it generously afterward.
-
-Gate 5 is mechanical but not optional: a deck keyed 58% to one letter can be beaten
-without reading the question, and a learner who farms the pattern measures nothing. Note
-that the official sample items are themselves skewed (10 of 12 keyed A) — do **not**
-imitate that. The exam can afford a skew because its pool is unseen; a deck that re-serves
-the same cards cannot.
+run the five gates over the whole batch before the drill starts — both are specified in
+[Item pre-batch](#item-pre-batch), which is where they execute.
 
 **When an item fails after the fact**, void it — do not grade it on a curve. Say plainly
 that the item was defective, exclude it from the score, and record the correction in
