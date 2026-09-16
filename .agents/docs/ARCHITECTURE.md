@@ -148,7 +148,7 @@ says push harder in F1. And they rot: the docs move often enough to need
 stale behavior. What *doesn't* rot is the reasoning error a distractor exploits, so that's
 what's stored — at the level of the bias, never the flag name or the limit.
 
-**Items are constructed before they're administered** — the four gates are a cold check
+**Items are constructed before they're administered** — the five gates are a cold check
 and don't work applied to an item you're already committed to asking, so the whole drill is
 drafted and gated as a batch before question one (`TUTORIAL.md` § Item pre-batch). The cost
 asymmetry drives this: a rewrite during drafting is free, while a defective item misgrades

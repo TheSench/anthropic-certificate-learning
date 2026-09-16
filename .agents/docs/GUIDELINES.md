@@ -56,7 +56,7 @@ session 1"), so the agent knows how deep to go rather than guessing.
 - Draft the whole set before administering any of it, and gate the batch cold —
   `TUTORIAL.md` § Item pre-batch. Per-item validation mid-drill is the failure mode this
   replaces.
-- Validate every item against the four gates in `TUTORIAL.md` § Cross-cutting
+- Validate every item against the five gates in `TUTORIAL.md` § Cross-cutting
   requirements before administering it — intended answer present verbatim, no option
   restating the premise, keyed defect in the source definition's own words, distractor
   tell writable.

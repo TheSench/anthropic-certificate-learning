@@ -278,7 +278,7 @@ batch as a batch. Do this silently and in one pass — the learner sees finished
 never the drafting.
 
 This exists because drafting an item, asking it, grading it, and drafting the next one
-under conversational pressure is where the four gates get skipped. The gates are a cold
+under conversational pressure is where the gates get skipped. The gates are a cold
 check; they don't work applied to an item you have already half-committed to asking. And a
 defective item is expensive out of proportion to its size: it writes a fabricated weakness
 into the profile, which then drives depth calibration and mock selection for every session
@@ -290,12 +290,26 @@ after it. Three of five items in one recorded session were defective this way.
    from a bias family, plus the domain-specific traps for this session's material. Check
    `learner/profile.md` § Recurring gaps and recent `Distractor patterns` lines: a family
    this learner has fallen for before is worth building an item around deliberately.
-3. **Run the four gates over the whole batch**, item by item, before asking the first one.
+3. **Calibrate against the official sample items.** CCAR-F § 9 carries twelve items drawn
+   from the real practice test — the only authentic specimens available, and the reference
+   for what "exam difficulty" means here. Match their shape, not their answer key:
+   - Every stem states an **observed production symptom with a number** — "in 12% of
+     cases", "55% first-contact resolution against an 80% target", "adds 2-3 round trips
+     and 40% latency". A scenario with constraints but no symptom is softer than the exam.
+   - The ask is **"most effective" / "most likely root cause" / "most effective first
+     step"**, not "which is correct". Several turn on proportionality: an option can be "a
+     valid architectural choice" and still wrong as a *first* step.
+   - Wrong options are mostly **correct-but-disproportionate**, not false.
+   - The exam does use **non-existent features** as distractors (`CLAUDE_HEADLESS`, a
+     `--batch` flag, `.claude/config.json`). Authoring one means verifying against live
+     docs that the feature really doesn't exist — invent a plausible flag without checking
+     and you will eventually invent a real one.
+4. **Run the five gates over the whole batch**, item by item, before asking the first one.
    A "no" on any gate means rewrite that item now, while rewriting is still free.
-4. **Check the batch for redundancy** — two items turning on the same tell is one item
+5. **Check the batch for redundancy** — two items turning on the same tell is one item
    asked twice, and it inflates or deflates the domain's measured accuracy on a single
    piece of evidence. Replace one.
-5. **Confirm each item's constraints decide it.** A scenario question whose stated
+6. **Confirm each item's constraints decide it.** A scenario question whose stated
    constraints don't rule out the distractors has no defensible key, whatever the gates say.
 
 **Mid-drill.** If an item turns out defective once asked, void it per
@@ -348,9 +362,11 @@ Closed-book recall practice against `drills/deck.md`. Triggered by the learner s
 `drill`, or automatically per Step 2.
 
 1. Read `drills/deck.md`. Select cards with `Due` ≤ today, highest-weight domains first. Cap at 12.
-   Deck cards are already-validated items — serve them as written. Any card you rewrite or
-   author here goes through [Item pre-batch](#item-pre-batch) first, before the drill
-   starts, not at the moment you reach it.
+   Deck cards are already-validated items. Serve a card with `Seen` < 3 as written; rewrite
+   the vignette of any card at `Seen` ≥ 3 per [Drill deck](#drill-deck), keeping its
+   `Tests` and `Distractor tell` intact. Every rewritten or newly authored card goes
+   through [Item pre-batch](#item-pre-batch) before the drill starts — not at the moment
+   you reach it.
 2. Ask each as a question — **do not show the answer or the card's rationale first**.
 3. After each answer: mark correct/incorrect, then give the one-line rationale and the
    distractor tell.
@@ -491,11 +507,21 @@ Update `learner/readiness.md`. One row per exam domain:
 `Confidence` is 0–100 for that domain. Derive it from drill and mock accuracy, discounted
 for coverage:
 
-- Sessions not yet run in a domain contribute **0**, not "unknown" — an untaught domain
+- **Coverage is measured in task statements, never sessions.** The denominator is the
+  domain's § 6 task statements in `BLUEPRINT.md`; the numerator is how many have been
+  taught *and* drilled. A task statement taught in a session belonging to another domain
+  still counts for the domain that owns it — content is credited where `BLUEPRINT.md`
+  assigns it, not where it happens to be taught.
+- Task statements not yet covered contribute **0**, not "unknown" — an untaught objective
   is not a neutral one.
 - A mock result is authoritative and replaces estimates for that domain.
-- Otherwise: mean drill accuracy across the domain's sessions × (sessions completed ÷
-  sessions in domain).
+- Otherwise: mean drill accuracy on the domain's *own* task statements × (task statements
+  covered ÷ task statements in domain).
+
+Counting sessions instead of task statements is how a domain reports itself closed while
+objectives sit untouched: F1 once read `98 · 4 of 4 sessions` while three of its seven
+task statements had no drill card anywhere, because the sessions teaching them were
+labelled F2 and F5. The projection is only as honest as its denominator.
 
 `Basis` records what the number came from (`3 drills`, `mock 2026-09-20`) so it's auditable.
 
@@ -522,7 +548,10 @@ Format:
 
 ```markdown
 ### [D-NNN] [Short question title]
-**Domain:** F1 · **Added:** YYYY-MM-DD · **Due:** YYYY-MM-DD · **Streak:** 0 · **Seen:** 1
+**Domain:** F1 · **Task:** 1.1 · **Added:** YYYY-MM-DD · **Due:** YYYY-MM-DD · **Streak:** 0 · **Seen:** 1
+
+**Tests:** [The one thing this card measures, as a decision — "whether a cap is the
+primary stop condition or a backstop". This is the card's identity.]
 
 **Q:** [The question, exam-phrased, with options if multiple choice]
 
@@ -532,6 +561,21 @@ Format:
 
 **Distractor tell:** [What makes the wrong answer tempting, and the cue that rules it out]
 ```
+
+`Task` is the § 6 task statement the card measures — see `BLUEPRINT.md` § Task statements.
+It is what makes per-domain accuracy mean something: a card tagged `F5` that actually
+tests Task 1.4 inflates F5 and hides an F1 gap.
+
+**`Tests` is the durable asset; `Q` is disposable.** At `Seen` 3 or more, rewrite the
+vignette before serving — new domain, new numbers, same decision and same tell. A card
+served verbatim every time stops measuring the concept and starts measuring recall of the
+card, while the spacing schedule reads that as mastery and retires it. Rewriting is
+cheap because `Tests` and `Distractor tell` already say exactly what the new vignette
+must preserve; a rewritten vignette goes through [Item pre-batch](#item-pre-batch) with
+the rest of the batch, gate 5 included.
+
+Keep `Streak` across a rewrite — the learner's history is with the *concept*, which is
+what `Tests` names. Reset it only on a miss.
 
 Spacing on review — `Due` = today + interval by `Streak`:
 
@@ -676,7 +720,7 @@ that you're doing so. Even coverage of unequal material is the most common way a
 feels complete and leaves the learner unable to answer a scenario question.
 
 **Validate every item before administering it.** Write the intended answer *first*, then
-check the item against all four gates. A defective item doesn't just misgrade one
+check the item against all five gates. A defective item doesn't just misgrade one
 question — it writes a fabricated weakness into the profile, which then drives depth
 calibration and mock selection for every session after it.
 
@@ -692,14 +736,39 @@ of distractors whose tell is already named.
    Paraphrase is where a definition silently drifts into a different property.
 4. **The distractor tell is writable.** If you can't name what makes each wrong option
    tempting, it isn't a distractor — rewrite it.
+5. **The key's position is not predictable.** Across a batch, no single letter may hold
+   more than half the keys, and every batch of four or more must use at least three
+   distinct letters. Assign positions *after* writing the items — the correct answer
+   tends to land in the same slot when written first and never moved.
 
 A "no" on any gate means rewrite the item, not grade it generously afterward.
+
+Gate 5 is mechanical but not optional: a deck keyed 58% to one letter can be beaten
+without reading the question, and a learner who farms the pattern measures nothing. Note
+that the official sample items are themselves skewed (10 of 12 keyed A) — do **not**
+imitate that. The exam can afford a skew because its pool is unseen; a deck that re-serves
+the same cards cannot.
 
 **When an item fails after the fact**, void it — do not grade it on a curve. Say plainly
 that the item was defective, exclude it from the score, and record the correction in
 `learner/profile.md` under `## Instructor corrections`. A voided item is an instructor
 error, never a learner miss, and the readiness number must be recomputed on valid items
 only.
+
+**Record which gate the item failed**, as a one-line entry under `## Voided items` in
+`learner/profile.md`:
+
+```
+YYYY-MM-DD · [session] · gate [N] · [one line: what was wrong]
+```
+
+The gate number is the point. A voided item that leaves only a prose rule teaches nothing
+about *why* items fail here; a tally does. Three voids on gate 1 means intended answers
+are being written after the options rather than before, and the fix is the pre-batch
+order, not more care. Three on gate 4 means distractors are being drawn from imagination
+rather than `docs/TRAPS.md`. Check the tally whenever a session voids anything — a
+repeated gate is a process defect, and process defects are fixable in a way that
+individual bad items are not.
 
 **Grade the stated conclusion, not the reasoning path.** A response that weighs two options
 before committing is a complete answer, not a partial one — and the Socratic format this
@@ -737,6 +806,24 @@ drilled.
   asserting a rule, name the case that would break it.
 - **Read register.** Not every remark is an objection; a joke is not pushback. Don't write
   a retraction in response to an aside.
+
+**When the learner disputes a keyed answer, resolve it against a source — not against
+your own judgment.** Conceding because the learner pushed back and conceding because they
+are right are indistinguishable from the outside, and a learner who cannot tell which
+happened has no reason to trust either. Remove the judgment call:
+
+1. **Name the authority first.** A keyed answer on exam scope is settled by the § 6 task
+   statement or a § 17 appendix list, quoted — both are in `BLUEPRINT.md`. A
+   version-sensitive fact is settled by the cited doc, fetched now.
+2. **Quote it.** Not "the docs support this" — the sentence, verbatim.
+3. **If no source settles it, the item is defective.** Void it per the rule above. An item
+   whose key rests only on instructor reasoning is one whose key the exam would not
+   defend either.
+4. **Say which of the three happened.** "The guide says X, so the key stands"; "the guide
+   says Y, so you're right and I was wrong"; "nothing settles this, so the item is void."
+
+This converts an unfalsifiable exchange into a checkable one, and it costs nothing when
+the key is correct — a quotable source is what a good item has anyway.
 
 ---
 

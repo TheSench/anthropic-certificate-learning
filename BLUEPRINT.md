@@ -136,6 +136,112 @@ comparing a result to the guide:
 | F4 | Domain 2 | Tool Design & MCP Integration | 18% |
 | F5 | Domain 5 | Context Management & Reliability | 15% |
 
+### Task statements — the real scope
+
+Domain weights say how much is scored; **§ 6 task statements say what is scored**, and
+exam items are written against them ("Exam items are written against these objectives").
+A session aligned to a domain but not to its task statements teaches the right subject
+and the wrong material.
+
+Every task statement below is quoted from the guide. Curriculum coverage is measured
+per task statement, not per session — see `.agents/TUTORIAL.md` § Coverage scoring.
+
+| ID | Task statement | Owning session |
+|---|---|---|
+| **1.1** | Design and implement agentic loops for autonomous task execution | T1-01 |
+| **1.2** | Orchestrate multi-agent systems with coordinator-subagent patterns | T1-03 |
+| **1.3** | Configure subagent invocation, context passing, and spawning | T1-03 |
+| **1.4** | Implement multi-step workflows with enforcement and handoff patterns | T1-02 |
+| **1.5** | Apply Agent SDK hooks for tool call interception and data normalization | T1-06 |
+| **1.6** | Design task decomposition strategies for complex workflows | T1-04 |
+| **1.7** | Manage session state, resumption, and forking | T1-03 |
+| **2.1** | Design effective tool interfaces with clear descriptions and boundaries | T1-11 |
+| **2.2** | Implement structured error responses for MCP tools | T1-13 |
+| **2.3** | Distribute tools appropriately across agents and configure tool choice | T1-11 |
+| **2.4** | Integrate MCP servers into Claude Code and agent workflows | T1-12 |
+| **2.5** | Select and apply built-in tools (Read, Write, Edit, Bash, Grep, Glob) effectively | T1-12 |
+| **3.1** | Configure CLAUDE.md files with appropriate hierarchy, scoping, and modular organization | T1-05 |
+| **3.2** | Create and configure custom slash commands and skills | T1-06 |
+| **3.3** | Apply path-specific rules for conditional convention loading | T1-05 |
+| **3.4** | Determine when to use plan mode vs direct execution | T1-07 |
+| **3.5** | Apply iterative refinement techniques for progressive improvement | T1-07 |
+| **3.6** | Integrate Claude Code into CI/CD pipelines | T1-07 |
+| **4.1** | Design prompts with explicit criteria to improve precision and reduce false positives | T1-08 |
+| **4.2** | Apply few-shot prompting to improve output consistency and quality | T1-08 |
+| **4.3** | Enforce structured output using tool use and JSON schemas | T1-09 |
+| **4.4** | Implement validation, retry, and feedback loops for extraction quality | T1-09 |
+| **4.5** | Design efficient batch processing strategies | T1-10 |
+| **4.6** | Design multi-instance and multi-pass review architectures | T1-10 |
+| **5.1** | Manage conversation context to preserve critical information across long interactions | T1-14 |
+| **5.2** | Design effective escalation and ambiguity resolution patterns | T1-15 |
+| **5.3** | Implement error propagation strategies across multi-agent systems | T1-15 |
+| **5.4** | Manage context effectively in large codebase exploration | T1-14 |
+| **5.5** | Design human review workflows and confidence calibration | T1-09 |
+| **5.6** | Preserve information provenance and handle uncertainty in multi-source synthesis | T1-14 |
+
+Owning session is where the task statement is *taught and drilled*. A session may
+support others, but exactly one owns each statement, and drill cards carry the
+statement ID so per-domain accuracy measures the domain's own objectives.
+
+### § 17 Appendix — the scope boundary
+
+CCAR-F's appendix is the arbiter when something looks adjacent-but-tested, or
+tested-but-adjacent. All three lists are quoted verbatim.
+
+#### Technologies and Concepts — "might appear on the exam"
+
+- **Claude Agent SDK** — agent definitions, agentic loops, `stop_reason` handling, hooks
+  (`PostToolUse`, tool call interception), subagent spawning via Task tool, `allowedTools`
+- **MCP** — servers, tools, resources, `isError` flag, tool descriptions, tool
+  distribution, `.mcp.json`, environment variable expansion
+- **Claude Code** — CLAUDE.md hierarchy (user/project/directory), `.claude/rules/` with
+  YAML frontmatter path-scoping, `.claude/commands/`, `.claude/skills/` with SKILL.md
+  frontmatter (`context: fork`, `allowed-tools`, `argument-hint`), plan mode, direct
+  execution, `/memory`, `/compact`, `--resume`, `fork_session`, Explore subagent
+- **Claude Code CLI** — `-p` / `--print`, `--output-format json`, `--json-schema`
+- **Claude API** — `tool_use` with JSON schemas, `tool_choice` (`"auto"`, `"any"`, forced),
+  `stop_reason` values (`"tool_use"`, `"end_turn"`), `max_tokens`, system prompts
+- **Message Batches API** — 50% cost savings, up to 24-hour window, `custom_id`, polling,
+  no multi-turn tool calling support
+- **JSON Schema** — required vs optional, enums, nullable, `"other"` + detail string,
+  strict mode
+- **Pydantic** — schema validation, semantic validation errors, validation-retry loops
+- **Built-in tools** — Read, Write, Edit, Bash, Grep, Glob
+- **Few-shot prompting**, **prompt chaining**
+- **Context window management** — token budgets, progressive summarization,
+  lost-in-the-middle, context extraction, scratchpad files
+- **Session management** — resumption, `fork_session`, named sessions, session context
+  isolation
+- **Confidence scoring** — field-level, calibration with labeled validation sets,
+  stratified sampling
+
+#### Out-of-Scope Topics — "will not appear on the exam"
+
+Teaching these costs exam points twice: the time spent, and the confidence that the
+material was worth it.
+
+- Fine-tuning or training custom models
+- Claude API authentication, billing, or account management
+- Detailed implementation of specific languages or frameworks (beyond tool/schema config)
+- **Deploying or hosting MCP servers** (infrastructure, networking, container orchestration)
+- Claude's internal architecture, training process, or model weights
+- Constitutional AI, RLHF, or safety training methodologies
+- Embedding models or vector database implementation details
+- Computer use (browser automation, desktop interaction)
+- Vision/image analysis
+- **Streaming API implementation** or server-sent events
+- **Rate limiting, quotas, or API pricing calculations**
+- **OAuth, API key rotation, or authentication protocol details**
+- **Specific cloud provider configurations** (AWS, GCP, Azure)
+- Performance benchmarking or model comparison metrics
+- **Prompt caching implementation details (beyond knowing it exists)**
+- Token counting algorithms or tokenization specifics
+
+The bolded entries are ones this curriculum has taught or is adjacent to. Prompt caching
+is the sharpest: the permitted depth is *that it exists*. Cache prefixes, write premiums,
+read discounts, TTL selection, and break-even arithmetic are all excluded — correct
+arithmetic on an excluded topic is still wasted study.
+
 ### The six scenario archetypes
 
 The exam pool. Tier 2 drills these directly; each Tier 2 session owns one.
