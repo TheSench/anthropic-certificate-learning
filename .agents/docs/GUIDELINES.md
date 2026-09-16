@@ -57,7 +57,7 @@ session 1"), so the agent knows how deep to go rather than guessing.
 - Draw distractors from [`TRAPS.md`](TRAPS.md) — bias families first, then the domain's
   own traps. Their tells are already written, which is the gate most items fail.
 - Draft the whole set before administering any of it, then validate the batch cold against
-  the five gates — [`TUTORIAL.md` § Item pre-batch](../TUTORIAL.md#item-pre-batch), which
+  the six gates — [`TUTORIAL.md` § Item pre-batch](../TUTORIAL.md#item-pre-batch), which
   states the gates and is the only copy of them. Per-item validation mid-drill is the
   failure mode the pre-batch replaces.
 - Don't reuse a trap twice in one batch. Two items turning on the same tell measure one
