@@ -278,7 +278,7 @@ batch as a batch. Do this silently and in one pass — the learner sees finished
 never the drafting.
 
 This exists because drafting an item, asking it, grading it, and drafting the next one
-under conversational pressure is where the four gates get skipped. The gates are a cold
+under conversational pressure is where the gates get skipped. The gates are a cold
 check; they don't work applied to an item you have already half-committed to asking. And a
 defective item is expensive out of proportion to its size: it writes a fabricated weakness
 into the profile, which then drives depth calibration and mock selection for every session
@@ -290,12 +290,26 @@ after it. Three of five items in one recorded session were defective this way.
    from a bias family, plus the domain-specific traps for this session's material. Check
    `learner/profile.md` § Recurring gaps and recent `Distractor patterns` lines: a family
    this learner has fallen for before is worth building an item around deliberately.
-3. **Run the four gates over the whole batch**, item by item, before asking the first one.
+3. **Calibrate against the official sample items.** CCAR-F § 9 carries twelve items drawn
+   from the real practice test — the only authentic specimens available, and the reference
+   for what "exam difficulty" means here. Match their shape, not their answer key:
+   - Every stem states an **observed production symptom with a number** — "in 12% of
+     cases", "55% first-contact resolution against an 80% target", "adds 2-3 round trips
+     and 40% latency". A scenario with constraints but no symptom is softer than the exam.
+   - The ask is **"most effective" / "most likely root cause" / "most effective first
+     step"**, not "which is correct". Several turn on proportionality: an option can be "a
+     valid architectural choice" and still wrong as a *first* step.
+   - Wrong options are mostly **correct-but-disproportionate**, not false.
+   - The exam does use **non-existent features** as distractors (`CLAUDE_HEADLESS`, a
+     `--batch` flag, `.claude/config.json`). Authoring one means verifying against live
+     docs that the feature really doesn't exist — invent a plausible flag without checking
+     and you will eventually invent a real one.
+4. **Run the five gates over the whole batch**, item by item, before asking the first one.
    A "no" on any gate means rewrite that item now, while rewriting is still free.
-4. **Check the batch for redundancy** — two items turning on the same tell is one item
+5. **Check the batch for redundancy** — two items turning on the same tell is one item
    asked twice, and it inflates or deflates the domain's measured accuracy on a single
    piece of evidence. Replace one.
-5. **Confirm each item's constraints decide it.** A scenario question whose stated
+6. **Confirm each item's constraints decide it.** A scenario question whose stated
    constraints don't rule out the distractors has no defensible key, whatever the gates say.
 
 **Mid-drill.** If an item turns out defective once asked, void it per
@@ -348,9 +362,11 @@ Closed-book recall practice against `drills/deck.md`. Triggered by the learner s
 `drill`, or automatically per Step 2.
 
 1. Read `drills/deck.md`. Select cards with `Due` ≤ today, highest-weight domains first. Cap at 12.
-   Deck cards are already-validated items — serve them as written. Any card you rewrite or
-   author here goes through [Item pre-batch](#item-pre-batch) first, before the drill
-   starts, not at the moment you reach it.
+   Deck cards are already-validated items. Serve a card with `Seen` < 3 as written; rewrite
+   the vignette of any card at `Seen` ≥ 3 per [Drill deck](#drill-deck), keeping its
+   `Tests` and `Distractor tell` intact. Every rewritten or newly authored card goes
+   through [Item pre-batch](#item-pre-batch) before the drill starts — not at the moment
+   you reach it.
 2. Ask each as a question — **do not show the answer or the card's rationale first**.
 3. After each answer: mark correct/incorrect, then give the one-line rationale and the
    distractor tell.
@@ -491,11 +507,21 @@ Update `learner/readiness.md`. One row per exam domain:
 `Confidence` is 0–100 for that domain. Derive it from drill and mock accuracy, discounted
 for coverage:
 
-- Sessions not yet run in a domain contribute **0**, not "unknown" — an untaught domain
+- **Coverage is measured in task statements, never sessions.** The denominator is the
+  domain's § 6 task statements in `BLUEPRINT.md`; the numerator is how many have been
+  taught *and* drilled. A task statement taught in a session belonging to another domain
+  still counts for the domain that owns it — content is credited where `BLUEPRINT.md`
+  assigns it, not where it happens to be taught.
+- Task statements not yet covered contribute **0**, not "unknown" — an untaught objective
   is not a neutral one.
 - A mock result is authoritative and replaces estimates for that domain.
-- Otherwise: mean drill accuracy across the domain's sessions × (sessions completed ÷
-  sessions in domain).
+- Otherwise: mean drill accuracy on the domain's *own* task statements × (task statements
+  covered ÷ task statements in domain).
+
+Counting sessions instead of task statements is how a domain reports itself closed while
+objectives sit untouched: F1 once read `98 · 4 of 4 sessions` while three of its seven
+task statements had no drill card anywhere, because the sessions teaching them were
+labelled F2 and F5. The projection is only as honest as its denominator.
 
 `Basis` records what the number came from (`3 drills`, `mock 2026-09-20`) so it's auditable.
 
@@ -522,7 +548,10 @@ Format:
 
 ```markdown
 ### [D-NNN] [Short question title]
-**Domain:** F1 · **Added:** YYYY-MM-DD · **Due:** YYYY-MM-DD · **Streak:** 0 · **Seen:** 1
+**Domain:** F1 · **Task:** 1.1 · **Added:** YYYY-MM-DD · **Due:** YYYY-MM-DD · **Streak:** 0 · **Seen:** 1
+
+**Tests:** [The one thing this card measures, as a decision — "whether a cap is the
+primary stop condition or a backstop". This is the card's identity.]
 
 **Q:** [The question, exam-phrased, with options if multiple choice]
 
@@ -532,6 +561,21 @@ Format:
 
 **Distractor tell:** [What makes the wrong answer tempting, and the cue that rules it out]
 ```
+
+`Task` is the § 6 task statement the card measures — see `BLUEPRINT.md` § Task statements.
+It is what makes per-domain accuracy mean something: a card tagged `F5` that actually
+tests Task 1.4 inflates F5 and hides an F1 gap.
+
+**`Tests` is the durable asset; `Q` is disposable.** At `Seen` 3 or more, rewrite the
+vignette before serving — new domain, new numbers, same decision and same tell. A card
+served verbatim every time stops measuring the concept and starts measuring recall of the
+card, while the spacing schedule reads that as mastery and retires it. Rewriting is
+cheap because `Tests` and `Distractor tell` already say exactly what the new vignette
+must preserve; a rewritten vignette goes through [Item pre-batch](#item-pre-batch) with
+the rest of the batch, gate 5 included.
+
+Keep `Streak` across a rewrite — the learner's history is with the *concept*, which is
+what `Tests` names. Reset it only on a miss.
 
 Spacing on review — `Due` = today + interval by `Streak`:
 
@@ -676,7 +720,7 @@ that you're doing so. Even coverage of unequal material is the most common way a
 feels complete and leaves the learner unable to answer a scenario question.
 
 **Validate every item before administering it.** Write the intended answer *first*, then
-check the item against all four gates. A defective item doesn't just misgrade one
+check the item against all five gates. A defective item doesn't just misgrade one
 question — it writes a fabricated weakness into the profile, which then drives depth
 calibration and mock selection for every session after it.
 
@@ -692,14 +736,39 @@ of distractors whose tell is already named.
    Paraphrase is where a definition silently drifts into a different property.
 4. **The distractor tell is writable.** If you can't name what makes each wrong option
    tempting, it isn't a distractor — rewrite it.
+5. **The key's position is not predictable.** Across a batch, no single letter may hold
+   more than half the keys, and every batch of four or more must use at least three
+   distinct letters. Assign positions *after* writing the items — the correct answer
+   tends to land in the same slot when written first and never moved.
 
 A "no" on any gate means rewrite the item, not grade it generously afterward.
+
+Gate 5 is mechanical but not optional: a deck keyed 58% to one letter can be beaten
+without reading the question, and a learner who farms the pattern measures nothing. Note
+that the official sample items are themselves skewed (10 of 12 keyed A) — do **not**
+imitate that. The exam can afford a skew because its pool is unseen; a deck that re-serves
+the same cards cannot.
 
 **When an item fails after the fact**, void it — do not grade it on a curve. Say plainly
 that the item was defective, exclude it from the score, and record the correction in
 `learner/profile.md` under `## Instructor corrections`. A voided item is an instructor
 error, never a learner miss, and the readiness number must be recomputed on valid items
 only.
+
+**Record which gate the item failed**, as a one-line entry under `## Voided items` in
+`learner/profile.md`:
+
+```
+YYYY-MM-DD · [session] · gate [N] · [one line: what was wrong]
+```
+
+The gate number is the point. A voided item that leaves only a prose rule teaches nothing
+about *why* items fail here; a tally does. Three voids on gate 1 means intended answers
+are being written after the options rather than before, and the fix is the pre-batch
+order, not more care. Three on gate 4 means distractors are being drawn from imagination
+rather than `docs/TRAPS.md`. Check the tally whenever a session voids anything — a
+repeated gate is a process defect, and process defects are fixable in a way that
+individual bad items are not.
 
 **Grade the stated conclusion, not the reasoning path.** A response that weighs two options
 before committing is a complete answer, not a partial one — and the Socratic format this
@@ -738,6 +807,24 @@ drilled.
 - **Read register.** Not every remark is an objection; a joke is not pushback. Don't write
   a retraction in response to an aside.
 
+**When the learner disputes a keyed answer, resolve it against a source — not against
+your own judgment.** Conceding because the learner pushed back and conceding because they
+are right are indistinguishable from the outside, and a learner who cannot tell which
+happened has no reason to trust either. Remove the judgment call:
+
+1. **Name the authority first.** A keyed answer on exam scope is settled by the § 6 task
+   statement or a § 17 appendix list, quoted — both are in `BLUEPRINT.md`. A
+   version-sensitive fact is settled by the cited doc, fetched now.
+2. **Quote it.** Not "the docs support this" — the sentence, verbatim.
+3. **If no source settles it, the item is defective.** Void it per the rule above. An item
+   whose key rests only on instructor reasoning is one whose key the exam would not
+   defend either.
+4. **Say which of the three happened.** "The guide says X, so the key stands"; "the guide
+   says Y, so you're right and I was wrong"; "nothing settles this, so the item is void."
+
+This converts an unfalsifiable exchange into a checkable one, and it costs nothing when
+the key is correct — a quotable source is what a good item has anyway.
+
 ---
 
 ## Scenario archetypes
@@ -763,110 +850,140 @@ table is the index. If the two disagree, the prompt file wins and this table is 
 Complete a tier before advancing. `GATE` rows are mock exams and are mandatory —
 see [gate policy](#mock-exam-mode).
 
-### Tier 1 — Foundations breadth (15 sessions + 2 interleaved drills)
+### Tier 1 — Foundations breadth (18 sessions + 4 interleaved drills)
 
-Session counts are proportional to domain weight. Two scenario drills are **interleaved**
-into Tier 1 at the points where enough material exists to support them — see
-[Interleaved drills](#interleaved-drills) for why.
+**Sequenced by dependency, not by domain.** A session may only use mechanisms an earlier
+session has already built. Domains interleave as a consequence — F1 material appears at
+sessions 1–4 and again at 13, F5 at 5–6 and 8 — because the ordering follows what builds
+on what. Every session's prerequisites are taught before it; there are no forward
+references.
 
-Domain teaching order is **F1 → F5 → F2 → F3 → F4**, not weight order. F5 moves up
-deliberately: the two F1-heavy archetypes (S1, S3) also need F5, so leaving F5 until last
-would make it impossible to drill the 27% domain before session 18. Pairing F1 with F5
-early unlocks the highest-value drill at session 7.
+Each session owns the § 6 task statements listed, and every one of the 30 is owned exactly
+once. Session counts track exam weight (F1 5 of 18 against 27%, F3 4 against 20%, F2/F4/F5
+3 each against 20/18/15%).
 
-| # | File | Session | Domain | Wt |
-|---|------|---------|--------|-----|
-| 1 | `prompts/tier1/01-agentic-foundations.md` | What Makes a System Agentic | F1 | 27% |
-| 2 | `prompts/tier1/02-agent-vs-workflow.md` | Agent vs. Workflow vs. Chat: Choosing | F1 | 27% |
-| 3 | `prompts/tier1/03-orchestration-patterns.md` | Orchestration: Subagents, Forks, Teams | F1 | 27% |
-| 4 | `prompts/tier1/04-task-decomposition.md` | Task Decomposition & Delegation | F1 | 27% |
-| 5 | `prompts/tier1/14-context-management.md` | Context Windows, Caching, and Compaction | F5 | 15% |
-| 6 | `prompts/tier1/15-reliability-escalation.md` | Reliability, State, and Escalation | F5 | 15% |
-| **7** | `prompts/tier2/03-scenario-multi-agent-research.md` | **DRILL — Scenario: Multi-Agent Research** | S3 · F1+F5 | — |
-| 8 | `prompts/tier1/05-claude-md-config.md` | CLAUDE.md, Settings, and Precedence | F2 | 20% |
-| 9 | `prompts/tier1/06-hooks-skills-commands.md` | Hooks, Skills, and Slash Commands | F2 | 20% |
-| 10 | `prompts/tier1/07-claude-code-cicd.md` | Headless Claude Code and CI/CD | F2 | 20% |
-| **11** | `prompts/tier2/02-scenario-claude-code-team.md` | **DRILL — Scenario: Claude Code Team Config** | S2 · F2 | — |
-| 12 | `prompts/tier1/08-prompt-engineering-core.md` | Prompt Engineering That Survives Production | F3 | 20% |
-| 13 | `prompts/tier1/09-structured-output.md` | Structured Output and Schema Validation | F3 | 20% |
-| 14 | `prompts/tier1/10-batch-and-throughput.md` | Batch, Streaming, and Throughput Choices | F3 | 20% |
-| 15 | `prompts/tier1/11-tool-design.md` | Designing Tools Claude Uses Correctly | F4 | 18% |
-| 16 | `prompts/tier1/12-mcp-integration.md` | MCP: Servers, Transports, Configuration | F4 | 18% |
-| 17 | `prompts/tier1/13-tool-errors-retries.md` | Tool Errors, Retries, and Failure Modes | F4 | 18% |
+| # | File | Session | Domain | Owns | Builds on |
+|---|------|---------|--------|------|-----------|
+| 1 | `prompts/tier1/01-agentic-loop.md` | The Agentic Loop and `stop_reason` | F1 | 1.1 | — |
+| 2 | `prompts/tier1/02-task-decomposition.md` | Task Decomposition: Fixed Pipelines vs. Adaptive Plans | F1 | 1.6 | 1 |
+| 3 | `prompts/tier1/03-orchestration-subagents.md` | Coordinator-Subagent Orchestration and the Task Tool | F1 | 1.2, 1.3 | 1, 2 |
+| 4 | `prompts/tier1/04-enforcement-handoff-session.md` | Enforcement, Handoff, and Session State | F1 | 1.4, 1.7 | 1, 3 |
+| **5** | `prompts/tier2/03-scenario-multi-agent-research.md` | **DRILL — S3 Multi-Agent Research** (partial: F1 only) | S3 | — | 1–4 |
+| 6 | `prompts/tier1/06-conversation-context.md` | Conversation Context and What Summarization Destroys | F5 | 5.1 | 1, 3 |
+| 7 | `prompts/tier1/07-reliability-across-agents.md` | Reliability Across Agents: Errors, Crash Recovery, Provenance | F5 | 5.3, 5.4, 5.6 | 1, 3, 4, 6 |
+| 8 | `prompts/tier1/08-criteria-and-fewshot.md` | Explicit Criteria and Few-Shot Prompting | F3 | 4.1, 4.2 | 1 |
+| 9 | `prompts/tier1/09-escalation.md` | Escalation and Ambiguity Resolution | F5 | 5.2 | 1, 8 |
+| **10** | `prompts/tier2/01-scenario-support-escalation.md` | **DRILL — S1 Customer Support Resolution** | S1 | — | 1–9 |
+| 11 | `prompts/tier1/11-structured-output.md` | Structured Output via Tool Use and JSON Schemas | F3 | 4.3 | 1, 8 |
+| 12 | `prompts/tier1/12-validation-and-calibration.md` | Validation, Retry, and Confidence Calibration | F3 | 4.4, 5.5 | 11 |
+| 13 | `prompts/tier1/13-review-and-batch.md` | Multi-Pass Review and Batch Processing | F3 | 4.6, 4.5 | 2, 3, 11, 12 |
+| 14 | `prompts/tier1/14-tool-interfaces.md` | Designing Tool Interfaces | F4 | 2.1 | 1, 8 |
+| 15 | `prompts/tier1/15-hooks.md` | Agent SDK Hooks for Interception and Normalization | F1 | 1.5 | 1, 14 |
+| 16 | `prompts/tier1/16-tool-errors-distribution.md` | Tool Errors and Tool Distribution | F4 | 2.2, 2.3 | 3, 7, 11, 14 |
+| 17 | `prompts/tier1/17-mcp-and-builtins.md` | MCP Servers and Built-in Tools | F4 | 2.4, 2.5 | 14, 16 |
+| **18** | `prompts/tier2/03-scenario-multi-agent-research.md` | **DRILL — S3 Multi-Agent Research** (full) | S3 | — | 1–17 |
+| 19 | `prompts/tier1/19-claude-md-and-rules.md` | CLAUDE.md Hierarchy and Path-Specific Rules | F2 | 3.1, 3.3 | 1, 14 |
+| 20 | `prompts/tier1/20-skills-commands-planmode.md` | Skills, Slash Commands, and Plan Mode | F2 | 3.2, 3.4 | 2, 3, 14, 19 |
+| 21 | `prompts/tier1/21-refinement-and-cicd.md` | Iterative Refinement and CI/CD Integration | F2 | 3.5, 3.6 | 8, 11, 13, 19, 20 |
+| **22** | `prompts/tier2/02-scenario-claude-code-team.md` | **DRILL — S2 Claude Code Team Config** | S2 | — | 1–21 |
+
+Session 12 owns one task from each of two domains (4.4 and 5.5) — the extraction result
+and the decision of whether to trust it are one lesson. Its `Domain` label is F3 for
+routing, but 5.5 credits F5 under [Readiness scoring](#readiness-scoring), which counts
+task statements rather than session labels, so the mixed ownership costs nothing.
+
+**Why tool design sits at 14, not earlier.** Sessions 1–13 need only tool *use* —
+`stop_reason` returning `"tool_use"`, results appended to history, `allowedTools`
+restricting an agent — which session 1 establishes. None of them authors a tool
+interface. Orchestration needs restriction, context management needs the shape of
+accumulated results, reliability needs only that a tool can fail. Authorship (2.1) is a
+specialised skill that Tasks 2.2, 2.3, 2.4 and hooks (1.5) all extend, so it sits
+immediately before them — and the learner meets it having already watched selection go
+wrong from the outside.
 
 ### Tier 2 — Foundations exam hardening (4 sessions + gate)
 
-The four remaining archetypes, then the gate. Teaching is minimal here; these are drill
-sessions at exam difficulty. S3 and S2 already ran inside Tier 1.
+The three archetypes not yet drilled at full coverage, a final S1 pass, then the gate.
+Teaching is minimal here; these are drill sessions at exam difficulty. S3 and S2 already
+ran inside Tier 1 (sessions 18 and 22).
 
 | # | File | Session | Covers |
 |---|------|---------|--------|
-| 18 | `prompts/tier2/04-scenario-devtools.md` | Scenario: Developer Productivity Tooling | S4 |
-| 19 | `prompts/tier2/05-scenario-code-review-cicd.md` | Scenario: Code Review in CI/CD | S5 |
-| 20 | `prompts/tier2/06-scenario-data-extraction.md` | Scenario: Structured Data Extraction | S6 |
-| 21 | `prompts/tier2/01-scenario-support-escalation.md` | Scenario: Support & Escalation | S1 |
-| 22 | **GATE-F** | Foundations Mock Exam (60q / 120 min) | all |
+| 23 | `prompts/tier2/04-scenario-devtools.md` | Scenario: Developer Productivity Tooling | S4 |
+| 24 | `prompts/tier2/06-scenario-data-extraction.md` | Scenario: Structured Data Extraction | S6 |
+| 25 | `prompts/tier2/05-scenario-code-review-cicd.md` | Scenario: Code Review in CI/CD | S5 |
+| 26 | `prompts/tier2/01-scenario-support-escalation.md` | Scenario: Support & Escalation | S1 |
+| 27 | **GATE-F** | Foundations Mock Exam (60q / 120 min) | all |
+
+S5 runs at 25 rather than earlier because 3.6 lands at session 21 — it is the last
+archetype to become drillable, and gets the least spacing of any. That is the ordering's
+one real cost; it is accepted because hoisting CI earlier would mean teaching it before
+CLAUDE.md, structured output, and independent review instances exist.
 
 S1 runs last deliberately — it revisits F1 and F5 immediately before the mock, which is
-where that 27% domain most needs a final pass.
+where that 27% domain most needs a final pass. It is S1's second full pass; the first was
+session 10.
 
 #### Interleaved drills
 
-Sessions 7 and 11 are Tier 2 archetype drills pulled forward into Tier 1, and F5's position
-in the teaching order exists to make session 7 possible.
+Four Tier 2 archetype drills are pulled forward into Tier 1 (sessions 5, 10, 18, 22). Two
+run on **partial coverage** by design.
 
-The problem being solved is spacing. In strict tier order, F1 is taught in sessions 1–4 and
-not drilled at archetype scale until session 18 — a fourteen-session decay window on the
-exam's largest domain — and the learner's first sustained exam-format block arrives
-two-thirds of the way to the mock, which is too late to build the stamina a 15-question
-scenario demands. Moving F5 up and running **S3 at session 7** cuts F1's gap from fourteen
-sessions to three, and starts exam-format work at roughly five hours in rather than ten.
-**S2 at session 11** does the same for F2, one session after it finishes.
+The problem is spacing. F1 is taught in sessions 1–4; without interleaving, its first
+archetype-scale drill would fall after session 22 — an eighteen-session decay window on the
+exam's largest domain, and a first sustained exam-format block arriving too late to build
+the stamina a 15-question scenario demands.
 
-Note what this does *not* fix: S1 still sits fourteen sessions after F1's teaching. That's
-acceptable because S3 already rehearsed F1 at session 7 and the drill deck keeps it warm
-in between — S1's late position is now a deliberate pre-mock refresher rather than a gap.
+**A partial drill is worth more than a delayed one.** Running S3 at session 5 on F1 material
+alone cuts F1's gap from eighteen sessions to one. The F4 items it would otherwise carry
+(subagent tool distribution, scoped cross-role tools) are deferred to the full re-run at
+18 — those are authorship decisions that need session 14, and the archetype rehearses fine
+without them.
 
-Run both exactly as their prompt files specify, with one amendment — see
-[Teaching inside a drill](#teaching-inside-a-drill). Their domain-mix targets assume all
-five F domains are taught, which isn't true this early, so **narrow the set to covered
-domains and say so**:
+| # | Archetype | Coverage | What it rehearses |
+|---|---|---|---|
+| 5 | S3 Multi-Agent Research | Partial — F1 only | Decomposition, delegation, coordinator aggregation. Defer F4 and F5 items. |
+| 10 | S1 Customer Support Resolution | Full for S1's domains | Loop, subagents, context preservation, error propagation, escalation. |
+| 18 | S3 Multi-Agent Research | Full | The same archetype with tool distribution, structured errors, and provenance in place. |
+| 22 | S2 Claude Code Team Config | Full | CLAUDE.md scope, skills, plan mode, CI. |
 
-- At session 7, only F1 and F5 are taught. Draw entirely from those two, giving ~10
-  questions rather than padding with unseen material. This suits S3, whose full mix is
-  ~7 F1, ~4 F4, ~3 F5, ~1 F3 — the F1 and F5 items alone carry the archetype. Defer the
-  F4 items because that domain isn't taught until sessions 15–17, not because the
-  archetype doesn't need them: subagent tool distribution and scoped cross-role tools are
-  Tool-Design decisions that only surface inside a research pipeline, and they are much of
-  the point of the full-scale Tier 2 re-run.
-- At session 11, F1, F5 and F2 are taught. Run S2's full set — its mix is ~8 F2, ~4 F5,
-  ~2 F4, ~1 F1, and only the ~2 F4 items fall outside what's covered; convert those to F2
-  or F1.
+Repeating S3 at 5 and 18 is deliberate: the second pass measures what the first could not,
+and spacing the same archetype beats massing it. S1 at 10 lands one session after escalation
+(9) completes its last prerequisite.
+
+Run each as its prompt file specifies, with one amendment — see
+[Teaching inside a drill](#teaching-inside-a-drill). Where coverage is partial, **narrow the
+set to covered domains and say so** rather than padding with unseen material: at session 5,
+draw entirely from F1 for ~10 questions instead of S3's full ~7 F1 / ~4 F4 / ~3 F5 / ~1 F3
+mix.
 
 Score these as normal drill sessions: readiness rows updated from measured accuracy, misses
 become drill cards. Note in the log that the session ran interleaved and which domains were
 excluded, so a later reading of the record doesn't mistake a narrowed set for weak coverage.
 
+S4, S5 and S6 are not interleaved — each needs a prerequisite that lands late (S5 needs 3.6
+at session 21), so they run in Tier 2 where they get full coverage.
+
 ### Tier 3 — Professional breadth (16 sessions)
 
 | # | File | Session | Domain | Wt |
 |---|------|---------|--------|-----|
-| 23 | `prompts/tier3/01-enterprise-integration.md` | Enterprise Integration Patterns | P1 | 19% |
-| 24 | `prompts/tier3/02-deployment-surfaces.md` | Bedrock, Vertex, Foundry, Gateways | P1 | 19% |
-| 25 | `prompts/tier3/03-data-integration.md` | Files, Citations, RAG, and Data Wiring | P1 | 19% |
-| 26 | `prompts/tier3/04-solution-design.md` | Solution Design and Model Selection | P2 | 17% |
-| 27 | `prompts/tier3/05-architecture-tradeoffs.md` | Architecture Trade-offs at Scale | P2 | 17% |
-| 28 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P2 | 17% |
-| 29 | `prompts/tier3/07-eval-design.md` | Designing Evals That Catch Regressions | P3 | 16% |
-| 30 | `prompts/tier3/08-guardrails-quality.md` | Guardrails: Hallucination, Jailbreak, Leak | P3 | 16% |
-| 31 | `prompts/tier3/09-cost-latency-optimization.md` | Cost and Latency Optimization | P3 | 16% |
-| 32 | `prompts/tier3/10-governance-compliance.md` | Governance, Residency, and Compliance | P4 | 14% |
-| 33 | `prompts/tier3/11-safety-risk.md` | Safety Controls and Risk Management | P4 | 14% |
-| 34 | `prompts/tier3/12-stakeholder-communication.md` | Defending Architecture Decisions | P5 | 14% |
-| 35 | `prompts/tier3/13-lifecycle-management.md` | Lifecycle: Migration and Deprecation | P5 | 14% |
-| 36 | `prompts/tier3/14-context-engineering-scale.md` | Context Engineering at Scale | P6 | 13% |
-| 37 | `prompts/tier3/15-model-steering.md` | Model Steering and Prompt Portfolios | P6 | 13% |
-| 38 | `prompts/tier3/16-developer-enablement.md` | Developer Productivity and Enablement | P7 | 7% |
+| 28 | `prompts/tier3/01-enterprise-integration.md` | Enterprise Integration Patterns | P1 | 19% |
+| 29 | `prompts/tier3/02-deployment-surfaces.md` | Bedrock, Vertex, Foundry, Gateways | P1 | 19% |
+| 30 | `prompts/tier3/03-data-integration.md` | Files, Citations, RAG, and Data Wiring | P1 | 19% |
+| 31 | `prompts/tier3/04-solution-design.md` | Solution Design and Model Selection | P2 | 17% |
+| 32 | `prompts/tier3/05-architecture-tradeoffs.md` | Architecture Trade-offs at Scale | P2 | 17% |
+| 33 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P2 | 17% |
+| 34 | `prompts/tier3/07-eval-design.md` | Designing Evals That Catch Regressions | P3 | 16% |
+| 35 | `prompts/tier3/08-guardrails-quality.md` | Guardrails: Hallucination, Jailbreak, Leak | P3 | 16% |
+| 36 | `prompts/tier3/09-cost-latency-optimization.md` | Cost and Latency Optimization | P3 | 16% |
+| 37 | `prompts/tier3/10-governance-compliance.md` | Governance, Residency, and Compliance | P4 | 14% |
+| 38 | `prompts/tier3/11-safety-risk.md` | Safety Controls and Risk Management | P4 | 14% |
+| 39 | `prompts/tier3/12-stakeholder-communication.md` | Defending Architecture Decisions | P5 | 14% |
+| 40 | `prompts/tier3/13-lifecycle-management.md` | Lifecycle: Migration and Deprecation | P5 | 14% |
+| 41 | `prompts/tier3/14-context-engineering-scale.md` | Context Engineering at Scale | P6 | 13% |
+| 42 | `prompts/tier3/15-model-steering.md` | Model Steering and Prompt Portfolios | P6 | 13% |
+| 43 | `prompts/tier3/16-developer-enablement.md` | Developer Productivity and Enablement | P7 | 7% |
 
 ### Tier 4 — Professional capstones (4 sessions)
 
@@ -874,11 +991,11 @@ Full architecture problems worked end to end, then the gate.
 
 | # | File | Session |
 |---|------|---------|
-| 39 | `prompts/tier4/01-capstone-enterprise-rollout.md` | Capstone: Enterprise Claude Code Rollout |
-| 40 | `prompts/tier4/02-capstone-regulated-agent.md` | Capstone: Agent in a Regulated Industry |
-| 41 | `prompts/tier4/03-capstone-scale-migration.md` | Capstone: Scale and Model Migration |
-| 42 | `prompts/tier4/04-weak-domain-blitz.md` | Weak-Domain Blitz (reads readiness, targets gaps) |
-| 43 | **GATE-P** | Professional Mock Exam (63q / 120 min) | all |
+| 44 | `prompts/tier4/01-capstone-enterprise-rollout.md` | Capstone: Enterprise Claude Code Rollout |
+| 45 | `prompts/tier4/02-capstone-regulated-agent.md` | Capstone: Agent in a Regulated Industry |
+| 46 | `prompts/tier4/03-capstone-scale-migration.md` | Capstone: Scale and Model Migration |
+| 47 | `prompts/tier4/04-weak-domain-blitz.md` | Weak-Domain Blitz (reads readiness, targets gaps) |
+| 48 | **GATE-P** | Professional Mock Exam (63q / 120 min) | all |
 
 ---
 

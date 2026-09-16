@@ -96,18 +96,23 @@ weight**, so study time tracks what's actually scored.
 
 | Tier | Sessions | What it is |
 |---|---|---|
-| 1 | 15 + 2 drills | Foundations breadth — all five F domains |
+| 1 | 18 + 4 drills | Foundations breadth — all 30 exam task statements |
 | 2 | 4 + mock gate | Foundations hardening — the remaining scenario archetypes |
 | 3 | 16 | Professional breadth — all seven P domains |
 | 4 | 4 + mock gate | Professional capstones — full architecture problems |
 
-**Two scenario drills are interleaved into Tier 1**, at sessions 7 and 11, and F5 is taught
-early (right after F1) to make that possible. Run strictly in tier order, F1 — the exam's
-largest domain at 27% — is taught in sessions 1–4 and not drilled at scenario scale until
-session 18. That's a fourteen-session decay window, and you wouldn't hit sustained
-exam-format conditions until two-thirds of the way to the mock. Teaching F5 early unlocks
-the Multi-Agent Research drill at session 7, cutting F1's gap from fourteen sessions to
-three. Each interleaved drill narrows its question set to domains you've actually covered.
+**Tier 1 is ordered by what builds on what, not by domain.** Each session uses only
+mechanisms an earlier session already taught, so the five domains interleave: the agentic
+loop comes first because everything speaks its vocabulary, and tool *design* waits until
+session 14 because nothing before it authors a tool interface — orchestration needs only
+`allowedTools`, context management only the shape of tool results, reliability only that a
+tool can fail. Every one of the exam guide's 30 task statements is owned by exactly one
+session.
+
+**Four scenario drills are interleaved**, at sessions 5, 10, 18 and 22. Two run on partial
+coverage deliberately: drilling F1 at session 5 on F1 material alone beats waiting for full
+coverage eighteen sessions later, when the exam's largest domain would have decayed. Each
+interleaved drill narrows its question set to domains you've actually covered and says so.
 
 Mock gates are mandatory. Score under 720 and the system queues your weakest domains for
 review instead of advancing you.
