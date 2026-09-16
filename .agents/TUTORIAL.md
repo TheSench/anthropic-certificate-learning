@@ -57,11 +57,56 @@ session — a learner offline or with a broken remote still studies.
 | Output | What to do |
 |---|---|
 | `up to date` | Nothing. Don't mention it. |
-| `merged N update(s)` | If `Changed:` includes `prompts` or `.agents`, tell the learner in one line at Step 3 — the syllabus moved under them. Then check that the next session number in `learner/progress.md` still resolves to the same titled row in [`SEQUENCE.md`](SEQUENCE.md); if it does not, the sequence was restructured and learner state needs [`MIGRATION.md`](../MIGRATION.md) before teaching. |
+| `merged N update(s)` | If `Changed:` includes `prompts` or `.agents`, run the [restructure check](#restructure-check) below **before Step 1**, and tell the learner in one line at Step 3 — the syllabus moved under them. |
 | `offline or fetch failed` | Nothing. Don't mention it; it is not the learner's problem mid-session. |
 | `no 'upstream' remote` | Show the `git remote add` line and stop. This is a fork whose `origin` carries none of the updates; without it the learner studies a frozen curriculum indefinitely. |
 | `dirty — skipping merge` | Say a previous session may not have been wrapped, and offer to run `wrap`. Do not merge over it. |
 | `merge conflicts` | Show the command. A conflict means a harness file was edited locally — see [Working rules](../AGENTS.md) on who owns what. |
+
+#### Restructure check
+
+Run this when — and only when — the merge changed `.agents` or `prompts`. It costs one
+command and catches the failure mode a clean merge cannot: the sequence was renumbered
+under committed progress, so the session number in `learner/progress.md` now points at
+different material.
+
+```bash
+echo "===== sessions completed, in order ====="
+rg -o '^### (.+?) · 20' -r '$1' learner/profile.md
+echo "===== current sequence ====="
+rg -o '^\| \*{0,2}([0-9]+)\*{0,2} \| [^|]+ \| ([^|]+) \|' -r '$1  $2' .agents/SEQUENCE.md
+```
+
+**Match completed sessions to sequence rows by their material, not by number and not by
+exact title.** A restructure renames sessions as well as renumbering them, so the log title
+"Reliability, State, and Escalation" and the sequence row "Reliability Across Agents:
+Errors, Crash Recovery, Provenance" are the same material under two names. Only you can
+make that call; no grep can. Read the prompt file if a pairing is unclear.
+
+Having paired them, you are looking for three things:
+
+- **A completed session now numbered ≥ the next session you were about to run** → the
+  sequence was restructured. That number now points at material already covered.
+- **A completed session with no counterpart in the sequence** → its topic was dropped.
+- **A gap**: a number below the highest completed one that nothing pairs to → resequencing
+  moved material *behind* the learner, and it was never taught. These are the ones that
+  matter most, because later sessions assume that material is in place.
+
+If any of the three holds, **stop before Step 1.** Tell the learner the sequence changed
+under their progress, name what you found, and offer to migrate per
+[`MIGRATION.md`](../MIGRATION.md). Do not teach until learner state is migrated or they
+explicitly decline — a session taught against stale numbering re-teaches covered material
+while the real gap stays open. If they decline, note it under `## Instructor corrections`
+in `learner/profile.md` and don't re-offer every session.
+
+Silent when nothing moved: if every completed session pairs to a number below the next one,
+say nothing and go to Step 1.
+
+**The trap this exists to catch.** The recorded next-session number is *evidence about the
+old sequence*, not about the new one. It is the one field a restructure is guaranteed to
+invalidate, and it looks completely normal afterward — it still names a real row with a real
+title. Deriving "next" from it, rather than from which material is actually complete, is how
+a session gets taught twice while the true gap stays open.
 
 **Never `git push` in this step.** The learning branch is the learner's; publishing it is
 their call, not the harness's.
@@ -162,6 +207,11 @@ these in order. The first that matches wins.
 4. **Gate checkpoint** — if the next session is a `GATE` row in the
    [session sequence](SEQUENCE.md#session-sequence), run [Mock exam mode](#mock-exam-mode).
 5. **Otherwise** — the next incomplete session in the [session sequence](SEQUENCE.md#session-sequence).
+
+**"Next incomplete" means the lowest-numbered row whose material no session log covers** —
+derive it from the sequence and the logs, not from a session number recorded in
+`learner/progress.md`. That number is a cache of this derivation, and it goes stale whenever
+the sequence is renumbered. When the two disagree, the sequence and the logs are right.
 
 ### Step 3 — Show the progress summary and begin
 
