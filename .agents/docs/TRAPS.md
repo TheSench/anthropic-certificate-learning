@@ -243,6 +243,7 @@ transferable form, and it's what makes the autopsy stick.
 | An investigation attempted after an explicit request for a human | The request is itself the routing decision; continuing overrides it | T1-15 |
 | A conflict silently resolved to the more-credible-sounding source | Two sources disagree and the design hides it instead of surfacing it | T1-14 |
 | Traceability lost in synthesis | The deliverable must cite sources and the design drops provenance | S3 |
+| Complete logging accepted as an auditable control | The harness already logs every branch; an audit tests whether a *rule* fired consistently, which a per-case model decision can't evidence | S5 |
 
 ---
 
