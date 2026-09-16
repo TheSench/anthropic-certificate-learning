@@ -113,15 +113,18 @@ Everything else in this table is verbatim.
 
 ### Domains
 
-| # | Domain | Weight | Tier 1 sessions |
-|---|--------|--------|-----------------|
-| F1 | Agentic Architecture & Orchestration | **27%** | 4 |
-| F2 | Claude Code Configuration & Workflows | **20%** | 3 |
-| F3 | Prompt Engineering & Structured Output | **20%** | 3 |
-| F4 | Tool Design & MCP Integration | **18%** | 3 |
-| F5 | Context Management & Reliability | **15%** | 2 |
+| # | Domain | Weight | Task statements | Tier 1 sessions |
+|---|--------|--------|-----------------|-----------------|
+| F1 | Agentic Architecture & Orchestration | **27%** | 7 | 5 |
+| F2 | Claude Code Configuration & Workflows | **20%** | 6 | 3 |
+| F3 | Prompt Engineering & Structured Output | **20%** | 6 | 4 |
+| F4 | Tool Design & MCP Integration | **18%** | 5 | 3 |
+| F5 | Context Management & Reliability | **15%** | 6 | 3 |
 
-Session counts are proportional to weight — study time tracks what is scored.
+Session counts are proportional to weight — study time tracks what is scored. **Task
+statement counts are not**: F5 carries six objectives on 15% of the score while F4 carries
+five on 18%, so per-domain coverage must be measured against the statement count, not the
+session count. See `.agents/TUTORIAL.md` § Readiness scoring.
 
 **Our F-codes are not the guide's domain numbers**, for the same reason as the P-codes
 below: this file orders domains by weight, the guide uses its own order. F1 and F5 happen
@@ -146,42 +149,49 @@ and the wrong material.
 Every task statement below is quoted from the guide. Curriculum coverage is measured
 per task statement, not per session — see `.agents/TUTORIAL.md` § Coverage scoring.
 
-| ID | Task statement | Owning session |
+| ID | Task statement | Session |
 |---|---|---|
-| **1.1** | Design and implement agentic loops for autonomous task execution | T1-01 |
-| **1.2** | Orchestrate multi-agent systems with coordinator-subagent patterns | T1-03 |
-| **1.3** | Configure subagent invocation, context passing, and spawning | T1-03 |
-| **1.4** | Implement multi-step workflows with enforcement and handoff patterns | T1-02 |
-| **1.5** | Apply Agent SDK hooks for tool call interception and data normalization | T1-06 |
-| **1.6** | Design task decomposition strategies for complex workflows | T1-04 |
-| **1.7** | Manage session state, resumption, and forking | T1-03 |
-| **2.1** | Design effective tool interfaces with clear descriptions and boundaries | T1-11 |
-| **2.2** | Implement structured error responses for MCP tools | T1-13 |
-| **2.3** | Distribute tools appropriately across agents and configure tool choice | T1-11 |
-| **2.4** | Integrate MCP servers into Claude Code and agent workflows | T1-12 |
-| **2.5** | Select and apply built-in tools (Read, Write, Edit, Bash, Grep, Glob) effectively | T1-12 |
-| **3.1** | Configure CLAUDE.md files with appropriate hierarchy, scoping, and modular organization | T1-05 |
-| **3.2** | Create and configure custom slash commands and skills | T1-06 |
-| **3.3** | Apply path-specific rules for conditional convention loading | T1-05 |
-| **3.4** | Determine when to use plan mode vs direct execution | T1-07 |
-| **3.5** | Apply iterative refinement techniques for progressive improvement | T1-07 |
-| **3.6** | Integrate Claude Code into CI/CD pipelines | T1-07 |
-| **4.1** | Design prompts with explicit criteria to improve precision and reduce false positives | T1-08 |
-| **4.2** | Apply few-shot prompting to improve output consistency and quality | T1-08 |
-| **4.3** | Enforce structured output using tool use and JSON schemas | T1-09 |
-| **4.4** | Implement validation, retry, and feedback loops for extraction quality | T1-09 |
-| **4.5** | Design efficient batch processing strategies | T1-10 |
-| **4.6** | Design multi-instance and multi-pass review architectures | T1-10 |
-| **5.1** | Manage conversation context to preserve critical information across long interactions | T1-14 |
-| **5.2** | Design effective escalation and ambiguity resolution patterns | T1-15 |
-| **5.3** | Implement error propagation strategies across multi-agent systems | T1-15 |
-| **5.4** | Manage context effectively in large codebase exploration | T1-14 |
-| **5.5** | Design human review workflows and confidence calibration | T1-09 |
-| **5.6** | Preserve information provenance and handle uncertainty in multi-source synthesis | T1-14 |
+| **1.1** | Design and implement agentic loops for autonomous task execution | S1 |
+| **1.2** | Orchestrate multi-agent systems with coordinator-subagent patterns | S3 |
+| **1.3** | Configure subagent invocation, context passing, and spawning | S3 |
+| **1.4** | Implement multi-step workflows with enforcement and handoff patterns | S4 |
+| **1.5** | Apply Agent SDK hooks for tool call interception and data normalization | S15 |
+| **1.6** | Design task decomposition strategies for complex workflows | S2 |
+| **1.7** | Manage session state, resumption, and forking | S4 |
+| **2.1** | Design effective tool interfaces with clear descriptions and boundaries | S14 |
+| **2.2** | Implement structured error responses for MCP tools | S16 |
+| **2.3** | Distribute tools appropriately across agents and configure tool choice | S16 |
+| **2.4** | Integrate MCP servers into Claude Code and agent workflows | S17 |
+| **2.5** | Select and apply built-in tools (Read, Write, Edit, Bash, Grep, Glob) effectively | S17 |
+| **3.1** | Configure CLAUDE.md files with appropriate hierarchy, scoping, and modular organization | S19 |
+| **3.2** | Create and configure custom slash commands and skills | S20 |
+| **3.3** | Apply path-specific rules for conditional convention loading | S19 |
+| **3.4** | Determine when to use plan mode vs direct execution | S20 |
+| **3.5** | Apply iterative refinement techniques for progressive improvement | S21 |
+| **3.6** | Integrate Claude Code into CI/CD pipelines | S21 |
+| **4.1** | Design prompts with explicit criteria to improve precision and reduce false positives | S8 |
+| **4.2** | Apply few-shot prompting to improve output consistency and quality | S8 |
+| **4.3** | Enforce structured output using tool use and JSON schemas | S11 |
+| **4.4** | Implement validation, retry, and feedback loops for extraction quality | S12 |
+| **4.5** | Design efficient batch processing strategies | S13 |
+| **4.6** | Design multi-instance and multi-pass review architectures | S13 |
+| **5.1** | Manage conversation context to preserve critical information across long interactions | S6 |
+| **5.2** | Design effective escalation and ambiguity resolution patterns | S9 |
+| **5.3** | Implement error propagation strategies across multi-agent systems | S7 |
+| **5.4** | Manage context effectively in large codebase exploration | S7 |
+| **5.5** | Design human review workflows and confidence calibration | S12 |
+| **5.6** | Preserve information provenance and handle uncertainty in multi-source synthesis | S7 |
 
-Owning session is where the task statement is *taught and drilled*. A session may
-support others, but exactly one owns each statement, and drill cards carry the
-statement ID so per-domain accuracy measures the domain's own objectives.
+`Session` is the Tier 1 session that *owns* the statement — where it is taught and
+drilled. Numbers refer to the sequence in `.agents/TUTORIAL.md` § Tier 1. A session may
+support other statements, but exactly one owns each, and drill cards carry the statement
+ID so per-domain accuracy measures the domain's own objectives.
+
+The IDs run in guide order; the sessions do not, because Tier 1 is sequenced by dependency
+rather than by domain. Task 1.5 (hooks) sits at session 15 because a hook intercepts a tool
+call, so it must follow tool interface design at 14 — a session ordering that groups by
+domain would teach it at 4 and leave the learner reasoning about interception before they
+know what an interface is.
 
 ### § 17 Appendix — the scope boundary
 

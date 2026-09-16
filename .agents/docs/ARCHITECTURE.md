@@ -102,20 +102,37 @@ recognition under time pressure, and drilling alone doesn't transfer to unseen s
 Every session does both, and the distractor autopsy is treated as the highest-value
 segment, because on a well-written exam the wrong answers are where the discrimination is.
 
-**Domain order is F1 → F5 → F2 → F3 → F4, and two drills are interleaved into Tier 1** —
-strict tier order left a fourteen-session gap between teaching F1 (sessions 1–4) and drilling
-it at scenario scale, and put the first sustained exam-format block at session 18. Both are
-bad for a recognition-under-pressure exam. The fix required reordering, not just moving
-drills: both F1-heavy archetypes (S1, S3) also need F5, so with F5 taught last no F1 drill
-could run early at all. Teaching F5 second unlocks S3 at session 7, cutting F1's gap from
-fourteen sessions to three; S2 follows at session 11 for F2. S1 deliberately stays last in
-Tier 2 as a final F1/F5 pass immediately before the mock. The tier boundary still means what
-it did — Tier 2 is drilling, Tier 1 is teaching — the drills just start earlier.
+**Tier 1 is sequenced by dependency, not by domain.** A session may only use mechanisms an
+earlier session has already built, so domains interleave as a consequence — F1 appears at
+sessions 1–4 and again at 15, F5 at 6–7 and 9. Each of the 30 § 6 task statements is owned
+by exactly one session, and no session references a mechanism taught later.
 
-The first attempt at this moved S2 and S4 forward without reordering domains, and measuring
-it showed the worst gap going from 14 to 15 sessions: inserting drills pushed later teaching
-down, and neither chosen archetype touched F1. Placement alone couldn't fix a gap that came
-from the domain order.
+Grouping by domain instead produced forward references that were invisible while sessions
+were the unit of account. Under the old F1 → F5 → F2 → F3 → F4 order, the F2 session
+declared that it assumed F5 — taught nine sessions later — and three task statements were
+taught under a domain label that did not own them, so per-domain accuracy measured the
+wrong objectives entirely.
+
+**Tool use and tool design are different prerequisites.** Tool *use* — `stop_reason`
+returning `"tool_use"`, results appended to history, `allowedTools` restricting an agent —
+is Domain 1 material and is established in session 1, which is all that orchestration,
+context management, and reliability actually need. Tool *design* — descriptions as the
+selection mechanism, naming, splitting, distribution, `tool_choice` — is Domain 2 and sits
+at session 14, immediately before the tasks that extend authorship. Conflating the two
+drags tool design to the front of the curriculum for no reason; the sessions that appear to
+need it need only restriction and result shape.
+
+**Four drills are interleaved into Tier 1, two on partial coverage.** Strict tier order
+left an eighteen-session gap between teaching F1 and drilling it at scenario scale. A
+partial drill beats a delayed one: S3 at session 5 rehearses F1 one session after it
+finishes, deferring the F4 items to the full re-run at 18. S1 at 10, S3 (full) at 18, and
+S2 at 22 follow. The tier boundary still means what it did — Tier 2 is drilling, Tier 1 is
+teaching — the drills just start earlier.
+
+The cost is S5: it needs task 3.6, which legitimately composes CLAUDE.md, structured
+output, and independent review instances, so it cannot be drilled before session 21 and
+gets the least spacing of any archetype. Hoisting it would mean teaching CI on foundations
+that do not yet exist.
 
 **A drill may teach, but only into a knowledge hole** — the "teach nothing new" rule is
 correct for a recognition failure, where another rep and the autopsy are the fix. It's wrong
