@@ -15,12 +15,13 @@ AGENTS.md             ← Development routing
 
 .agents/
   TUTORIAL.md         ← Session protocol: teach → drill → score → record → commit
+  SEQUENCE.md         ← Curriculum map: session sequence, archetypes, ordering rationale
   docs/               ← Architecture, development playbooks, conventions, templates
     TRAPS.md          ← Distractor inventory: bias families + per-domain traps
 
 prompts/
-  tier1/  (15)        ← Foundations breadth, one session per domain slice
-  tier2/  (6)         ← Scenario-archetype drills; 2 run interleaved inside Tier 1
+  tier1/  (18)        ← Foundations breadth, sequenced by dependency
+  tier2/  (6)         ← Scenario-archetype drills; 4 run interleaved inside Tier 1
   tier3/  (16)        ← Professional breadth, one session per domain slice
   tier4/  (4)         ← Professional capstones
 
@@ -40,7 +41,7 @@ drills/
 
 ```
 User sends "Start" / "Continue" / "mock" / "drill"
-  └─ Agent reads .agents/TUTORIAL.md
+  └─ Agent reads .agents/TUTORIAL.md (protocol) and .agents/SEQUENCE.md (what runs next)
   └─ Agent reads learner/{profile,relevance,readiness}.md
        ├─ Missing profile → initialization (background questions, create files)
        └─ Found → decide what runs next, in priority order:
@@ -81,13 +82,13 @@ offline matters more than being current.
 **State in files, not memory** — everything is written to `learner/` and `drills/` and
 committed after each session, so progress survives across conversations and machines.
 
-**Curriculum read-only to agents** — `prompts/`, `.agents/TUTORIAL.md`, `BLUEPRINT.md`,
-and `README.md` are the learning contract. Only humans change them. This keeps an agent
+**Curriculum read-only to agents** — `prompts/`, `.agents/` (including `TUTORIAL.md` and
+`SEQUENCE.md`), `BLUEPRINT.md`, and `README.md` are the learning contract. Only humans change them. This keeps an agent
 from quietly rewriting the syllabus to match what it just happened to teach.
 
 **Weight-proportional session counts** — sessions per domain track the official exam
-percentages rather than the topic's intrinsic interest. A 27% domain gets four sessions;
-a 7% domain gets one. Study time follows what is scored.
+percentages rather than the topic's intrinsic interest. A 27% domain gets five Tier 1
+sessions; a 7% domain gets one. Study time follows what is scored.
 
 **Docs are the source of truth, not the prompt files** — both exams test current product
 behavior across Claude Code, the Agent SDK, the API, and MCP, all of which move faster
@@ -103,9 +104,9 @@ Every session does both, and the distractor autopsy is treated as the highest-va
 segment, because on a well-written exam the wrong answers are where the discrimination is.
 
 **Tier 1 is sequenced by dependency, not by domain.** A session may only use mechanisms an
-earlier session has already built, so domains interleave as a consequence — F1 appears at
-sessions 1–4 and again at 15, F5 at 6–7 and 9. Each of the 30 § 6 task statements is owned
-by exactly one session, and no session references a mechanism taught later.
+earlier session has already built, so domains interleave as a consequence. Each of the 30
+§ 6 task statements is owned by exactly one session, and no session references a mechanism
+taught later. The map is [`../SEQUENCE.md`](../SEQUENCE.md); this file carries only why.
 
 Grouping by domain instead produced forward references that were invisible while sessions
 were the unit of account. Under the old F1 → F5 → F2 → F3 → F4 order, the F2 session
@@ -118,21 +119,21 @@ returning `"tool_use"`, results appended to history, `allowedTools` restricting 
 is Domain 1 material and is established in session 1, which is all that orchestration,
 context management, and reliability actually need. Tool *design* — descriptions as the
 selection mechanism, naming, splitting, distribution, `tool_choice` — is Domain 2 and sits
-at session 14, immediately before the tasks that extend authorship. Conflating the two
-drags tool design to the front of the curriculum for no reason; the sessions that appear to
-need it need only restriction and result shape.
+immediately before the tasks that extend authorship. Conflating the two drags tool design
+to the front of the curriculum for no reason; the sessions that appear to need it need only
+restriction and result shape.
 
 **Four drills are interleaved into Tier 1, two on partial coverage.** Strict tier order
 left an eighteen-session gap between teaching F1 and drilling it at scenario scale. A
-partial drill beats a delayed one: S3 at session 5 rehearses F1 one session after it
-finishes, deferring the F4 items to the full re-run at 18. S1 at 10, S3 (full) at 18, and
-S2 at 22 follow. The tier boundary still means what it did — Tier 2 is drilling, Tier 1 is
-teaching — the drills just start earlier.
+partial drill beats a delayed one: the first S3 pass rehearses F1 one session after it
+finishes, deferring its F4 items to the full re-run. The tier boundary still means what it
+did — Tier 2 is drilling, Tier 1 is teaching — the drills just start earlier. Slots in
+[`../SEQUENCE.md`](../SEQUENCE.md) § Interleaved drills.
 
 The cost is S5: it needs task 3.6, which legitimately composes CLAUDE.md, structured
-output, and independent review instances, so it cannot be drilled before session 21 and
-gets the least spacing of any archetype. Hoisting it would mean teaching CI on foundations
-that do not yet exist.
+output, and independent review instances, so it is the last archetype to become drillable
+and gets the least spacing of any. Hoisting it would mean teaching CI on foundations that
+do not yet exist.
 
 **A drill may teach, but only into a knowledge hole** — the "teach nothing new" rule is
 correct for a recognition failure, where another rep and the autopsy are the fix. It's wrong

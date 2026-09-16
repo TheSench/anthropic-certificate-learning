@@ -12,7 +12,7 @@ tempting; these are the named ones.
 
 **This file is curriculum.** Agents don't edit it during a session — a trap discovered
 while teaching goes in the session log under `**Distractor patterns:**`, and a human
-promotes it here. See [`DOCUMENTATION.md`](DOCUMENTATION.md) § Files.
+promotes it here. See [`AGENTS.md`](../../AGENTS.md) § File ownership.
 
 ---
 
