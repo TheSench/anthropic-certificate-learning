@@ -18,6 +18,7 @@
 | Checking doc URLs still resolve | [`.agents/check-sources.sh`](.agents/check-sources.sh) |
 | Conventions + anti-patterns | [`.agents/docs/GUIDELINES.md`](.agents/docs/GUIDELINES.md) |
 | Distractors for drill questions | [`.agents/docs/TRAPS.md`](.agents/docs/TRAPS.md) |
+| Learner state after a sequence restructure | [`MIGRATION.md`](MIGRATION.md) |
 
 ## File ownership
 

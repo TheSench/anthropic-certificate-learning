@@ -68,6 +68,10 @@ This stays conflict-free as long as you only edit `learner/` and `drills/` and l
 `prompts/`, `.agents/`, and `BLUEPRINT.md` to the maintainer. If you do want to change the
 curriculum, keep those edits in their own branch.
 
+**If the sequence itself was restructured**, a clean merge isn't the whole story — your
+progress files can still point at session numbers that moved. See
+[`MIGRATION.md`](MIGRATION.md); it's a one-time fixup your tutor agent can run for you.
+
 ---
 
 ## What a session looks like

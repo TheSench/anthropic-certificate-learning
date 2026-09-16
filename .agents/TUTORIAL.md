@@ -57,7 +57,7 @@ session — a learner offline or with a broken remote still studies.
 | Output | What to do |
 |---|---|
 | `up to date` | Nothing. Don't mention it. |
-| `merged N update(s)` | If `Changed:` includes `prompts` or `.agents`, tell the learner in one line at Step 3 — the syllabus moved under them. |
+| `merged N update(s)` | If `Changed:` includes `prompts` or `.agents`, tell the learner in one line at Step 3 — the syllabus moved under them. Then check that the next session number in `learner/progress.md` still resolves to the same titled row in [`SEQUENCE.md`](SEQUENCE.md); if it does not, the sequence was restructured and learner state needs [`MIGRATION.md`](../MIGRATION.md) before teaching. |
 | `offline or fetch failed` | Nothing. Don't mention it; it is not the learner's problem mid-session. |
 | `no 'upstream' remote` | Show the `git remote add` line and stop. This is a fork whose `origin` carries none of the updates; without it the learner studies a frozen curriculum indefinitely. |
 | `dirty — skipping merge` | Say a previous session may not have been wrapped, and offer to run `wrap`. Do not merge over it. |
