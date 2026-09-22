@@ -54,6 +54,10 @@ teaching them — but teach the names, not a hedge.
 - <https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-reference>
 - <https://platform.claude.com/docs/en/api/messages>
 
+**The MCP result envelope** — the only non-Anthropic source in this curriculum, cited because
+the protocol-vs-convention boundary cannot be checked against Anthropic docs alone.
+- <https://modelcontextprotocol.io/specification/2025-06-18/server/tools>
+
 **Stop reasons and API-level failure**
 - <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
 - <https://platform.claude.com/docs/en/api/errors>
@@ -82,6 +86,14 @@ By the end, the learner can:
   than returning a success payload whose text describes a failure. Say why the flag matters
   independently of the message — it lets the caller distinguish a failed call from a
   successful call that returned bad news, before anything parses the prose
+- Place the metadata correctly before naming it. **`isError` is the only one of these fields
+  the MCP protocol defines.** A `CallToolResult` carries `content`, `structuredContent`, and
+  `isError` — nothing else. `errorCategory`, `isRetryable`, and the description are an
+  **application-level convention** the exam guide prescribes, carried inside the result
+  (`structuredContent` is where structured data belongs). Teach the names as the guide's
+  required vocabulary, but say plainly that a learner who goes looking for them in the MCP
+  specification will not find them. The distinction matters on any item that asks what the
+  protocol itself guarantees
 - Carry the classification in **structured metadata**, by name:
   - **`errorCategory`** — the enum, with **three** values: **`transient`**, **`validation`**,
     **`permission`**
@@ -186,6 +198,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 | Decision | The tell that decides it |
 |---|---|
 | Generic error vs. structured error payload | Does the agent have to choose a recovery path? (It always does) |
+| MCP protocol field vs. application convention | Is it `isError` — or is it one of the guide's prescribed fields riding inside the result? |
 | Retry in code vs. return to the model | Would the *same* call plausibly succeed next time? |
 | `errorCategory` value vs. `retriable: false` | Is it transient, validation, or permission — or is it a *business rule* refusal? |
 | Business refusal vs. permission denial | Did the *rules* reject it, or the *caller's* access? |
@@ -206,8 +219,12 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
    four genuinely different failures, and ask what the agent can do with each. Drive to the
    stated cause: a uniform generic error prevents the agent from making an appropriate
    recovery decision.
-3. **Teach the payload by name.** Write the structured alternative on the board: `isError`
+3. **Teach the payload by name — and say which layer each name belongs to.** Write the
+   structured alternative on the board: `isError`
    set on the result, plus `errorCategory`, `isRetryable`, and a human-readable description.
+   State that only `isError` is MCP protocol (`CallToolResult` defines `content`,
+   `structuredContent`, `isError`); the rest is the convention the guide prescribes, carried
+   in the result. Learners who have read the MCP spec will notice the gap — get there first.
    Have the learner say what each field buys that the prose alone does not — `isRetryable`
    specifically prevents wasted retries against errors that can never succeed. Make them
    reproduce the field names from memory before moving on.
@@ -271,8 +288,9 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
     through the coordinator; and forced `tool_choice` offered where the choice carries
     judgment.
 17. Record per `.agents/TUTORIAL.md` Step 5. Glossary **`isError`**, **`errorCategory`**,
-    **`isRetryable`**, **`retriable: false`**, **`tool_choice`**, and **scoped cross-role
-    tool**.
+    **`isRetryable`**, **`retriable: false`**, **`CallToolResult`**, **`tool_choice`**, and
+    **scoped cross-role tool**. The `CallToolResult` entry carries the protocol-vs-convention
+    boundary.
 
 ## Out of scope
 
