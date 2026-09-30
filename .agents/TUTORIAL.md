@@ -221,8 +221,10 @@ these in order. The first that matches wins.
 1. **Learner asked for something specific** — a named topic, `mock`, `drill`, or a domain.
    Honor it. See [Mock exam mode](#mock-exam-mode) and [Drill mode](#drill-mode).
 2. **Drill deck is due** — if `drills/deck.md` has ≥5 cards with `Due` ≤ today's date,
-   open the session with a [drill block](#drill-mode) (10 min), then continue to the
-   next curriculum session in the same session. Don't let the deck starve.
+   open the session with a [drill block](#drill-mode) of at most 5 cards, then continue to
+   the next curriculum session in the same session. Due cards the block doesn't serve stay
+   due for a later block or a `drill` session. Don't let the deck starve, and don't let it
+   crowd out the lesson.
 3. **Review queue is due** — if any `## Review queue` entry in `learner/profile.md` has
    `Due at session` ≤ the next session number, run a [review session](#review-sessions)
    for it instead of the curriculum session, then resume the sequence next time.
@@ -467,7 +469,11 @@ Tier 1 session rather than continuing to patch inside a drill.
 Closed-book recall practice against `drills/deck.md`. Triggered by the learner saying
 `drill`, or automatically per Step 2.
 
-1. Read `drills/deck.md`. Select cards with `Due` ≤ today, highest-weight domains first. Cap at 12.
+1. Read `drills/deck.md` and select from the cards with `Due` ≤ today.
+   - **Drill block:** at most 5 — most overdue first, then highest-weight domain, then lowest
+     ID. Weight alone would skip a lower-weight domain's overdue cards every session.
+   - **Drill session:** highest-weight domains first. Cap at 12.
+
    Deck cards are already-validated items. Serve a card with `Seen` < 3 as written; rewrite
    the vignette of any card at `Seen` ≥ 3 per [Drill deck](#drill-deck), keeping its
    `Tests` and `Distractor tell` intact. Every rewritten or newly authored card goes
@@ -479,8 +485,9 @@ Closed-book recall practice against `drills/deck.md`. Triggered by the learner s
 4. Update each card per the [spacing schedule](#drill-deck).
 5. Report: `[N] cards · [X] correct · next due [date]`.
 
-A full drill session is 10–20 cards and stands alone; a drill *block* is ≤12 cards
-prepended to a curriculum session.
+A full drill session is 10–20 cards and stands alone; a drill *block* is ≤5 cards
+prepended to a curriculum session, kept short because it runs before most lessons and would
+otherwise displace them.
 
 ### Mock exam mode
 
