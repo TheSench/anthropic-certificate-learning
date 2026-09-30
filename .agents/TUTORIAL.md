@@ -700,6 +700,12 @@ Check for a near-duplicate card (`rg -i "keyword" drills/deck.md`) before adding
 card per distinct confusion. If a duplicate exists, reset its streak to 0 instead of
 adding a second card.
 
+**Before commit, every new or changed card goes to a reader who has only the card.** The
+`wrap` skill's checkpoint 2 dispatches that reader. The author can't run this check,
+because the scenario the card came from is still in context and fills in whatever the stem
+dropped. This check is what lets [Drill mode](#drill-mode) serve deck cards as already
+validated.
+
 #### 5f. Glossary
 
 Every session ends with `learner/glossary.md` covering every term it introduced. Not

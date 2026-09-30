@@ -1,7 +1,7 @@
 ---
 name: wrap
 description: Record and commit a finished tutorial session — session log, mastery, review queue, readiness, drill cards, glossary, progress chart, then verify every file actually changed before committing. Use at the end of any teaching, drill, or mock session in this repo, or when the learner says "wrap", "save", or "we're done".
-allowed-tools: Bash, Read, Edit, Write
+allowed-tools: Bash, Read, Edit, Write, Agent
 ---
 
 # Wrap a session
@@ -90,7 +90,43 @@ depends on.
    - Check for a near-duplicate (`rg -i "keyword" drills/deck.md`) before adding. If one
      exists, reset its streak to 0 rather than adding a second card.
    - **A session where the learner missed something and no card was added is a bug.**
-2. **Glossary** — every term, acronym, config key, API parameter, and product name the
+2. **Stand-alone check, by a reader who has only the cards.** You cannot run this check
+   yourself. The scenario a card came from is still in your context, and it fills in
+   whatever the stem dropped, so a card the learner cannot decide reads as decidable to
+   you. Checking more carefully does not help: this defect was logged three times with that
+   remedy, and a fresh-context reviewer then found 14 defective cards in one pass.
+
+   List every card whose text changed this session: new cards, rewritten vignettes and
+   edited tells. Streak, due and seen updates are excluded:
+
+   ```bash
+   cards() { awk '/^### \[D-[0-9]+\]/{id=$2} id && NF && !/^\*\*Domain:\*\*/ && !/^-+$/{print id "\t" $0}'; }
+   diff <(git show HEAD:drills/deck.md | cards) <(cards < drills/deck.md) | awk '/^[<>]/{print $2}' | sort -u
+   ```
+
+   If it prints nothing, go on to the glossary. Otherwise dispatch one subagent with the
+   prompt below, filling in the IDs. Tell it nothing about the session. It is useful
+   because it knows only what the learner will see.
+
+   > Read-only review; do not edit files. In `drills/deck.md`, read only cards [IDs]. Each
+   > has a **Q** (stem and options), **A** (key), **Why** and **Distractor tell**, and the
+   > learner sees only the Q. For each card, check:
+   > (1) Is every fact the Why and the tell use to justify the key or kill an option
+   > stated in the Q? Quote the phrase and say whether the Q carries it.
+   > (2) Does the key depend on a quantity the Q omits?
+   > (3) Does the Q state a constraint that decides nothing?
+   > (4) Does the tell give every wrong option a kill?
+   > A fact plainly implied by the Q is not a defect. Report only defective cards: the ID,
+   > the check number, the quoted phrase, what the Q lacks, and a minimal repair. Repair
+   > the Q when the key depends on the missing fact; repair the tell when the tell
+   > over-claims.
+
+   Check each finding against the card before applying it. The reviewer can be wrong, and
+   it can report a problem as tell wording when the key itself depends on the missing fact.
+   Apply what holds, and name what you rejected in the Report. If no subagent tool is
+   available, say in the Report that the cards went unchecked. Do not substitute your own
+   read.
+3. **Glossary** — every term, acronym, config key, API parameter, and product name the
    session introduced or leaned on. Check each with `rg -i "term" learner/glossary.md`
    first. Full rules in §5f, including when a term earns a paragraph over a one-liner.
    Update the session range in the intro line.
@@ -160,7 +196,7 @@ of the session **or** you must name the existing card whose streak you reset ins
 ## Report
 
 State plainly what was recorded — which files changed, how many drill cards were added,
-how many glossary terms. If anything was skipped, say which and why. Never report a
+how many glossary terms, and what the stand-alone check flagged, applied, and rejected. If anything was skipped, say which and why. Never report a
 session as saved without having seen the commit in `git log`.
 
 Then display the Step 6 closing message from `.agents/TUTORIAL.md` exactly as written
