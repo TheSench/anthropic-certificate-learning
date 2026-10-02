@@ -94,6 +94,12 @@ Having paired them, you are looking for three things:
 - **A gap**: a number below the highest completed one that nothing pairs to → resequencing
   moved material *behind* the learner, and it was never taught. These are the ones that
   matter most, because later sessions assume that material is in place.
+- **A completed session whose prompt file gained objectives after it ran** → pairing by
+  material credits the session with objectives it never taught. Compare the session's date
+  with `git log --format='%h %ad' --date=short -- <prompt file>`. For each objective added
+  later and absent from that session's log, add a mastery row at 1 and a review-queue row.
+  Never count it as covered. The 2026-09-16 re-mapping credited slots 1–3, 6 and 9 this way,
+  and one such objective (`stop_reason` loop control) cost points on the real exam.
 
 Silent when nothing moved: if every completed session pairs to a number below the next one,
 say nothing and go to Step 1.
@@ -225,12 +231,16 @@ these in order. The first that matches wins.
    the next curriculum session in the same session. Due cards the block doesn't serve stay
    due for a later block or a `drill` session. Don't let the deck starve, and don't let it
    crowd out the lesson.
-3. **Review queue is due** — if any `## Review queue` entry in `learner/profile.md` has
+3. **Focused sessions are queued** — if `## Focused sessions` in `learner/profile.md` has
+   rows, run the first one as a [focused session](#focused-sessions), instead of the
+   curriculum session. Its linked cards are served inside the lesson, so a drill block that
+   would serve only those cards is skipped.
+4. **Review queue is due** — if any `## Review queue` entry in `learner/profile.md` has
    `Due at session` ≤ the next session number, run a [review session](#review-sessions)
    for it instead of the curriculum session, then resume the sequence next time.
-4. **Gate checkpoint** — if the next session is a `GATE` row in the
+5. **Gate checkpoint** — if the next session is a `GATE` row in the
    [session sequence](SEQUENCE.md#session-sequence), run [Mock exam mode](#mock-exam-mode).
-5. **Otherwise** — the next incomplete session in the [session sequence](SEQUENCE.md#session-sequence).
+6. **Otherwise** — the next incomplete session in the [session sequence](SEQUENCE.md#session-sequence).
 
 **"Next incomplete" means the lowest-numbered row whose material no session log covers** —
 derive it from the sequence and the logs, not from a session number recorded in
@@ -443,6 +453,26 @@ A short (5–10 min) session for one flagged gap, not a full curriculum session.
    a review session's whole purpose is a clean re-measurement of one concept, which a
    defective item destroys.
 4. Score mastery, then either clear the queue entry (3+) or re-queue it (≤2).
+
+### Focused sessions
+
+A teaching session on one objective the learner missed on a real or mock exam, run before the
+curriculum resumes. It is longer than a [review session](#review-sessions) (20–40 min) because
+the objective may never have been taught at all.
+
+1. State the objective, its score, and whether it was taught before (the profile's mastery
+   row says).
+2. Teach that task statement's material from the row's `Teach from` prompt file only: its
+   objectives, decision rows and traps for that task statement. Read the guide's § 6 bullets
+   for it first, and quote them for any term the exam scores. Derivation-first, as in any
+   session.
+3. Serve the row's linked cards inside the lesson, at the point their decision comes up. Then
+   ask 2–3 fresh exam-format items, pre-batched and gated ([Item pre-batch](#item-pre-batch)).
+   Include one item from the objective's opposite pole if it has one (D-041 and D-042 are a
+   pair). Otherwise a learner who over-generalizes the newest card scores well on its pole
+   and misses the other.
+4. Record it with the `wrap` skill. Score mastery, clear or re-queue the linked review-queue
+   row by the usual 3+ rule, and delete the focused-session row.
 
 ### Teaching inside a drill
 
