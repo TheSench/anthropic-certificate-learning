@@ -90,7 +90,9 @@ By the end, the learner can:
 
 - Choose **plan mode** when the task is **large-scale**, has **multiple valid approaches**,
   involves an **architectural decision**, or requires **multi-file modifications** — and name
-  each of those four triggers, because they are the criteria the task statement lists
+  each of those four triggers, because they are the criteria the task statement lists — and
+  when the change is **hard to reverse** or the approach needs **stakeholder review before
+  implementation**: a plan is an artefact someone can approve while nothing has changed
 - Choose **direct execution** for a **simple, well-scoped change** — the guide's own example
   is adding a single validation check to one function. Planning that is overhead, and a
   learner who answers "plan mode" to everything has not learned the discrimination
@@ -119,6 +121,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 | `context: fork` vs. running in the main context | Will the skill generate output the main conversation must not carry? |
 | Plan mode vs. direct execution | Is the scope large, multi-file, architectural, or genuinely multi-approach — or is it one contained change? |
 | Explore subagent vs. searching in the main context | Is the discovery output large enough to crowd out the work it was gathered for? |
+| CLAUDE.md vs. `.claude/rules/` vs. skill vs. hook vs. settings permission | Guidance or guarantee? If guarantee: block a tool or path → permission; act after an event → hook. If guidance: always → CLAUDE.md; path-bound → rules; on demand → skill |
 
 ## How to run this session
 
@@ -162,7 +165,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
     three surfaces, one idea.
 12. **Teach the combination.** Plan mode to investigate and design, direct execution to
     implement. Ask them to describe the migration from step 9 as a sequence across both.
-13. **Decision table** — walk all six rows, scenario-first.
+13. **Decision table** — walk all seven rows, scenario-first.
 14. **Scenario drill — 6 questions.** Use a 40-engineer team on a large service: a
     release-checklist command that must reach everyone, a skill that produces heavy
     intermediate output, a developer wanting a private variant of a shared skill, a

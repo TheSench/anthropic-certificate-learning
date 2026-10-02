@@ -24,7 +24,8 @@ Drill the developer-productivity-tooling archetype. Its signature theme is **reu
    (multiple-response states the count: "Select two.").
 3. Batches of 4–5; feedback only at batch end.
 4. Full distractor autopsy on every question.
-5. Domain mix: ~6 F2, ~5 F4, ~2 F1, ~2 F5.
+5. Domain mix: ~6 F4, ~5 F2, ~3 F1, ~1 F5. The guide names Tool Design & MCP, Claude Code
+   Configuration, and Agentic Architecture as this archetype's primary domains, in that order.
 
 ## Building the scenario brief
 
@@ -37,7 +38,7 @@ Fresh each run. Must include:
   custom tools, and at least one where a **built-in already suffices**
 - A **repeated procedure** that should be a skill
 - A **mandatory** behavior and a **preferred** behavior
-- A **credential or data-sensitivity** consideration
+- A **credential** an integration needs, so where it lives (`${ENV_VAR}` vs. committed) matters
 - A stated **current failure** — e.g. the assistant keeps choosing the wrong tool among
   several overlapping ones
 
@@ -52,8 +53,7 @@ At least once each:
 - Rewriting a tool description so it disambiguates against a sibling
 - Tool granularity: few broad vs. many narrow, under a stated tool-count context
 - Custom tool vs. MCP server vs. built-in
-- MCP transport and configuration scope for a specific integration
-- The trust analysis for a third-party MCP server
+- MCP scope (`.mcp.json` vs `~/.claude.json`) with `${ENV_VAR}` auth, and verifying discovery
 - Skill vs. slash command vs. hook for a stated requirement
 - Context cost of a large tool surface, and the mitigation
 - Tool error classification and where the retry belongs
@@ -71,7 +71,6 @@ At least once each:
 - Building a custom tool where a built-in or server tool already does it
 - "Use a stronger model" or "improve the system prompt" for a tool-description bug
 - Connecting every MCP server rather than scoping per task
-- A third-party server accepted without a trust analysis
 - Personal config scope where an org mandate is required
 - Overlapping tool descriptions left mutually ambiguous
 - Model-loop retries for transient tool failures

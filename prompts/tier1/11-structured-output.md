@@ -70,6 +70,12 @@ By the end, the learner can:
   validate it yourself), **`tool_use` with a JSON schema** (the model's output is
   constrained to the tool's input schema), and **native structured outputs / strict schema
   enforcement** (strict mode)
+- Rank the guide's fourth option, **prefilled responses** — starting the assistant turn
+  (e.g. with `{`) to steer toward JSON. Like prompt-and-parse it raises the odds and
+  guarantees nothing. The exam still lists it; the live docs say prefill on the last
+  assistant turn returns a 400 error starting with Claude 4.6 models, and point to structured
+  outputs instead. Teach it as the weakest option the exam can offer, and note the
+  discrepancy
 - State the ranking, not just the list: **`tool_use` with JSON schemas is the most reliable
   approach** for producing guaranteed schema-compliant output. Prompt-and-parse improves
   the odds and nothing more. Present this as the default answer for an extraction scenario

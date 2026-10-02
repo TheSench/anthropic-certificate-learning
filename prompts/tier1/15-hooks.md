@@ -70,7 +70,8 @@ By the end, the learner can:
 - Explain why normalization in a hook beats normalization in the prompt: the mismatch is
   *mechanical*, so it needs no judgment, and a prompt that explains three timestamp formats
   spends context on every turn to buy a probabilistic result
-- Use a hook that intercepts an **outgoing tool call** to enforce compliance — the canonical
+- Use a **`PreToolUse`** hook — it fires before the tool executes and can deny the call — to
+  intercept an **outgoing tool call** and enforce compliance — the canonical
   case being a refund tool call above a stated threshold — and describe what interception
   can do that a post-hoc check cannot: the action never happens
 - Design the interception to **block *and redirect***, not merely refuse: a blocked
@@ -87,6 +88,11 @@ By the end, the learner can:
 - Connect the mechanism back to session 4: the gate that must hold *every* time between
   steps of a multi-step workflow is implemented as an interception hook, and the deferred
   "how" from that session is answered here
+- Name the Claude Code counterpart: the same **`PostToolUse`** event configured as a Claude
+  Code hook in `.claude/settings.json`, with a matcher on `Edit|Write`, runs the formatter,
+  linter, or tests after **every file edit** whether or not the model remembers — the
+  guaranteed replacement for a CLAUDE.md line saying "run prettier after editing". No § 6
+  Domain 3 statement names it, but the score report tests it, so this session owns it
 
 ## Decisions the exam actually tests
 
@@ -135,7 +141,8 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
    different shapes, and where refunds above $500 require a human. Ask which hook event
    handles the format mismatch, what the prompt-based enforcement of the refund ceiling
    costs, what a block should do besides refuse, and one item where the tempting answer is a
-   hook but the rule needs judgment. Include one multiple-response.
+   hook but the rule needs judgment. Include one multiple-response. Add one item on the
+   Claude Code `PostToolUse` formatter hook versus a CLAUDE.md instruction to format.
 9. **Distractor autopsy** on all five. Expect "add the format rules to the system prompt",
    "give the model clearer instructions about the refund limit", and "check the refund after
    it posts and reverse it if it violates policy" — the last one is the reversibility trap

@@ -91,7 +91,10 @@ By the end, the learner can:
   conversation transcript.** That clause is the whole design constraint — the receiving
   human cannot scroll back, so anything not in the summary is lost. The summary carries
   the customer details, the root cause as far as it was determined, what was already
-  attempted and what it returned, what is blocked, and the recommended actions. Contrast
+  attempted and what it returned, what is blocked, and the recommended actions, plus the
+  **authorization state** — what was verified (identity) and what was approved or blocked —
+  so the receiver neither re-verifies nor exceeds authority. The same package applies when
+  control passes between agent steps, not only to a human. Contrast
   with the failure it replaces: a handoff that says "escalating, see above" resets the
   customer to the start
 - State the general rule both halves of 1.4 share: an agentic system's boundaries — between
@@ -143,6 +146,8 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 | `--resume` vs. fresh session with a summary | Are the prior tool results still true? |
 | `--resume` vs. `fork_session` | Should the new work's context land back in the original session? |
 | Resume silently vs. resume with a change notice | Have any previously analyzed files been modified since? |
+| Targeted re-analysis vs. full re-exploration | Do you know which files changed? Re-analyze only those and keep the rest — re-reading everything repeats prior work |
+| One fork vs. several forks from one baseline | Are you comparing divergent approaches (two testing strategies, two refactors) from the same analysis? |
 
 ## How to run this session
 
@@ -196,7 +201,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 11. **Contrast fork with both.** `fork_session` is for when the context is still true and
     you want a branch; resume continues the trunk; fresh-with-summary discards. One tell
     each, said out loud.
-12. **Decision table** — walk all nine rows, scenario-first.
+12. **Decision table** — walk all eleven rows, scenario-first.
 13. **Scenario drill — 5 questions.** Use a customer support agent that looks up accounts,
     issues refunds, and escalates to humans. Ask which step needs programmatic enforcement
     and why the prompt is insufficient, what the gate actually checks, how a three-concern

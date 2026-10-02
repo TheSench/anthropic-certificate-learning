@@ -77,6 +77,9 @@ By the end, the learner can:
   **interact**, because fixing one alone gets undone by the next; **sequential iteration**
   when the problems are **independent**, because a single message dilutes attention across
   unrelated work. Name the cost of getting it backwards in each direction
+- Fix a specific edge case by handing over **one test case with its example input and expected
+  output** — the guide's case is null values in a migration script — rather than describing
+  the edge case again in prose. This is targeted feedback on a specific failure
 
 ### CI/CD integration (3.6)
 
@@ -119,6 +122,7 @@ Rebuilt around 3.5 and 3.6 only. Surface each as a "when to use which, and the t
 | Interview first vs. implement first | Do *you* actually know the requirements, or is this an unfamiliar domain? |
 | Test-driven iteration vs. describe-and-retry | Are the failures repeatable and checkable by a suite? |
 | One message vs. sequential fixes | Do the fixes interact, or are they independent? |
+| Re-describe the edge case vs. hand over a failing input with expected output | Is one specific case being mishandled repeatedly? |
 | Interactive vs. `-p` headless | Is a human present to approve and steer? |
 | Prose output vs. `--output-format json` / `--json-schema` | Does a downstream step have to parse the result? |
 | Same session vs. an independent review instance | Did this session write the code under review? |
@@ -165,7 +169,7 @@ Rebuilt around 3.5 and 3.6 only. Surface each as a "when to use which, and the t
    in context so it does not propose scenarios already covered.
 8. **Teach the propose/act boundary** briefly, on reversibility: comment vs. commit vs.
    merge. One exercise, not a segment.
-9. **Decision table** — walk all eight rows, scenario-first.
+9. **Decision table** — walk all nine rows, scenario-first.
 10. **Scenario drill — 6 questions.** Use automated PR review on an active repo: a developer
     who has re-explained the same transformation three times, a batch of interacting fixes
     sent one at a time, a pipeline that must hand a structured result to the next job, a

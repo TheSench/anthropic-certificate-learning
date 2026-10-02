@@ -11,9 +11,9 @@ a miss.
 
 The archetype's signature theme is the gap between **asking for structure and guaranteeing
 it**, and what the pipeline does about the residual failures. Verify current
-structured-output support, batch limits, and pricing multipliers against live docs
+structured-output support and batch limits against live docs
 (`platform.claude.com/docs/en/build-with-claude/structured-outputs`,
-`.../batch-processing`, `.../prompt-caching`, `.../citations`) before writing questions
+`.../batch-processing`, `.../citations`) before writing questions
 that turn on a number.
 
 ## Session focus
@@ -61,8 +61,10 @@ At least once each:
 - The validation and retry ladder, including the ceiling and what happens after it
 - Whether the retry prompt includes the validation error
 - Batch vs. synchronous, against the stated turnaround and volume
-- Caching applicability for a repeated extraction prefix
-- Cost arithmetic against the ceiling, and the lever that closes a gap
+- SLA submission-cadence arithmetic for batch, and selective resubmission by `custom_id`
+- **Feedback loop from logged failures**: given validation errors aggregated by field and
+  document type, which artefact changes next — a normalization rule, schema optionality or
+  enum, or a few-shot example for the failing structure
 - Provenance and citations for auditability
 - Routing to the human queue without exceeding its capacity
 - **Field-level confidence** as the routing signal, and **calibrating** it against a

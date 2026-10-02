@@ -148,6 +148,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 | Specific keyword interference vs. "be more careful" | Can you point at the words in the system prompt doing the pulling? |
 | Enum vs. free-text parameter | Is the value set known and closed? |
 | Add a tool vs. fix a description | Is the model missing a capability, or misreading one it has? |
+| Expand descriptions vs. consolidate into one tool (`lookup_entity`) | Is this the *first step*? Consolidation is valid architecture but more effort than an inadequate-description problem warrants |
 
 ## How to run this session
 
@@ -197,7 +198,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 8. **Name the surface-size cost and stop.** One paragraph: definitions cost tokens on every
    request and a large surface degrades selection. Say explicitly that session 16 owns tool
    distribution, `tool_choice`, and the numeric target, so they know how deep to go here.
-9. **Decision table** — walk all eight rows. For each, give a scenario and have them apply it
+9. **Decision table** — walk all nine rows. For each, give a scenario and have them apply it
    before you give the answer.
 10. **Scenario drill — 6 questions.** Use a research assistant with `analyze_content` and
     `analyze_document`, plus a metrics tool and a docs-search tool, misrouting in two distinct
@@ -213,6 +214,8 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
     - **A routing layer in front of the tools** — over-engineering; the ambiguity is in the
       descriptions and belongs there
     - **"Use a stronger model"** — it reads the same ambiguous description
+    - **Consolidate the tools into one** (`lookup_entity`) — sound architecture, but not the
+      first step when the descriptions are inadequate; expanding them is the proportionate fix
     - **"Improve the system prompt" as a vague instruction** — the trap
     - And the inverse: an item where the *correct* answer is reviewing the system prompt for
       a keyword-sensitive instruction, which a learner over-trained on the previous bullet

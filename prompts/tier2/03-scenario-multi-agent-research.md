@@ -12,7 +12,7 @@ It is the highest-value drill in Tier 2.
 
 ## Session focus
 
-Drill the multi-agent research archetype. This is the **highest-value drill in the curriculum** — it carries the heaviest F1 weighting of the six archetypes, F1 is 27% of the exam, and it runs interleaved at session 7 specifically so that domain gets drilled while it's still fresh. The crux is over-orchestration: more agents where fewer would do, and parallelization across a real dependency. On decomposition items, make the learner name which of the four well-formed-subtask tests their answer turns on. If F1 accuracy lands below 75% here, say plainly that it's the primary risk to passing.
+Drill the multi-agent research archetype. This is the **highest-value drill in the curriculum** — it carries the heaviest F1 weighting of the six archetypes, F1 is 27% of the exam, and it runs interleaved at slot 5 (F1 only) specifically so that domain gets drilled while it's still fresh, then again in full at slot 18. The crux is over-orchestration: more agents where fewer would do, and parallelization across a real dependency. On decomposition items, make the learner name which of the four well-formed-subtask tests their answer turns on. If F1 accuracy lands below 75% here, say plainly that it's the primary risk to passing.
 
 ## Format
 
@@ -52,6 +52,9 @@ At least once each:
 - What a worker's delegation prompt must contain to pass the fresh-agent test
 - A subagent failure: retry, degrade, or escalate
 - Traceability of synthesized output back to sources
+- **Misrouting between `analyze_content` and `analyze_document`** and the rename/split
+  remedy; **scoped cross-role `verify_fact`** for synthesis; **over-narrow coordinator
+  decomposition**
 - One question where **two decompositions are defensible** and a stated constraint decides it
 
 ## Known traps to build distractors from
@@ -100,14 +103,12 @@ misreading a question), stop, re-teach that single concept in 5 minutes, re-dril
 resume. See `.agents/TUTORIAL.md` § Teaching inside a drill for the distinction and the
 two-per-session cap. Queue the review either way — the inline fix doesn't replace it.
 
-**This session normally runs interleaved inside Tier 1, at session 7** (see
-`.agents/TUTORIAL.md` § Interleaved drills). At that point only F1 and F5 are taught, and
-F1+F5 are this archetype's largest share of the full mix (~7 F1, ~3 F5). Defer the F4 and
-F3 items — the guide names Tool Design & MCP a primary domain here, but it isn't taught
-until sessions 15–17, so those items can't be asked yet — giving ~10 questions. Note the
-narrowing in the log.
+**This session runs interleaved inside Tier 1 twice** (see `.agents/SEQUENCE.md` § Interleaved
+drills). At **slot 5** only F1 is taught, and F1 is this archetype's largest share of the full
+mix (~7 F1). Defer the F5, F4 and F3 items — the guide names Tool Design & MCP a primary domain
+here, but it isn't taught until slots 14, 16 and 17 — and note the narrowing in the log.
 
-When the archetype is re-run at full scale in Tier 2, the deferred F4 items are the point:
+When the archetype is re-run at full scale at **slot 18**, the deferred F4 items are the point:
 subagent tool distribution and scoped cross-role tools are Tool-Design decisions that only
 appear inside a research pipeline, and they're untested if this drill is only ever run in
 its narrowed form.

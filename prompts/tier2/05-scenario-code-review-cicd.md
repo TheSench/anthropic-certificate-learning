@@ -12,14 +12,14 @@ a miss.
 The archetype has two themes, and the **prompt-design** one carries more items than its
 infrastructure sibling. The exam frames this scenario as designing review prompts that
 give *actionable feedback and minimize false positives*; the pipeline mechanics
-(permissions, injection surface, cost) are the setting that constrains those choices.
+(permissions, the propose/act boundary) are the setting that constrains those choices.
 Verify current CI integration and permission-mode specifics against live docs
 (`code.claude.com/docs/en/github-actions`, `.../gitlab-ci-cd`, `.../code-review`,
-`.../headless`, `.../permission-modes`, `.../sandboxing`) before writing questions.
+`.../headless`, `.../permission-modes`) before writing questions.
 
 ## Session focus
 
-Drill the automated-code-review-in-CI archetype, weighted toward **prompt design**. The crux is **false positives as a trust problem**: a review bot that cries wolf in one category gets ignored in every category, so the fix is specific categorical criteria — not "be conservative", not a confidence threshold. Spend the most time there and on the severity-criteria and independent-review items. The secondary theme is what changes when no human is in the loop — permissions can't be approved interactively, untrusted PR content reaches the context, cost scales with PR volume — where the crux is the propose/act boundary; make the learner state the reversibility argument explicitly, since that rule decides the support archetype too. Verify CI and permission-mode specifics against live docs first. Keep questions at Foundations altitude; enterprise governance depth is Tier 3.
+Drill the automated-code-review-in-CI archetype, weighted toward **prompt design**. The crux is **false positives as a trust problem**: a review bot that cries wolf in one category gets ignored in every category, so the fix is specific categorical criteria — not "be conservative", not a confidence threshold. Spend the most time there and on the severity-criteria and independent-review items. The secondary theme is what changes when no human is in the loop — permissions can't be approved interactively — where the crux is the propose/act boundary; make the learner state the reversibility argument explicitly, since that rule decides the support archetype too. Verify CI and permission-mode specifics against live docs first. Keep questions at Foundations altitude; enterprise governance depth is Tier 3.
 
 ## Format
 
@@ -34,8 +34,7 @@ Drill the automated-code-review-in-CI archetype, weighted toward **prompt design
 
 Fresh each run. Must include:
 
-- A repo with **PR volume figures** and a **monthly cost ceiling**, so the arithmetic matters
-- **Outside or untrusted contributions** (forks, contractors) — the injection surface
+- A repo with **PR volume figures**
 - A **compliance or audit requirement** on automated changes
 - A mix of **desired review behaviors**, some safe to automate and some not
 - A **per-category false-positive breakdown** — one category (say, comment accuracy or
@@ -43,10 +42,9 @@ Fresh each run. Must include:
   plus a stated dismissal rate, so the trust argument has numbers behind it
 - **Inconsistent severity labels** across runs on comparable issues
 - A **large multi-file PR** in the mix, so single-pass review is visibly the wrong shape
-- A **credential** the pipeline needs, with a stated sensitivity
 - A **turnaround expectation** for review feedback
 - A stated **current failure** — e.g. the pipeline was given broad permissions and pushed a
-  commit no one reviewed, or per-PR cost is over budget
+  commit no one reviewed
 
 ## Question coverage
 
@@ -73,10 +71,9 @@ At least once each:
   scenarios, and testing standards/fixtures documented in CLAUDE.md
 - Permission mode and allowlist design for a non-interactive run
 - The propose/act boundary: which actions the pipeline may take autonomously
-- Sandboxing, and what's exposed without it
-- Credential design — long-lived key vs. federated identity
-- Prompt injection via PR body or diff content, and the mitigations
-- Cost arithmetic against the stated ceiling and PR volume, and the lever that closes a gap
+- **`detected_pattern` and the dismissal feedback loop**: findings carry the construct that
+  triggered them, dismissals are aggregated per pattern, and that pattern's criteria or
+  few-shot examples are revised (or the category disabled) — not an overall dismissal rate
 - Structuring output for the pipeline — exit codes, machine-readable results, review comments
 - Which review checks should be deterministic tooling rather than model calls
 - Tool error handling when a CI step's dependency fails
@@ -96,11 +93,7 @@ At least once each:
 - Re-posting the same findings on every push because prior findings aren't in context
 - Broad or bypass-all permissions chosen because CI has no human to approve
 - Autonomous commit, push, or merge where propose-only is correct
-- Long-lived API keys in repo secrets
-- Treating PR-body content as trusted input
-- Running on every PR without checking the cost arithmetic
 - Using a model call for a check a linter does deterministically and cheaply
-- No sandbox on a shared runner
 - Unbounded run time or token spend per job
 
 ## Distractor autopsy requirements

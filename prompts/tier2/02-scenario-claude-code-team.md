@@ -51,13 +51,14 @@ needed.
 At least once each:
 
 - Which configuration layer a given rule belongs in, with a stated override requirement
-- Predicting the **effective value** when three layers set the same key differently
 - Root CLAUDE.md vs. path-scoped file in a monorepo
 - Hook vs. CLAUDE.md instruction, where the requirement is mandatory
 - Skill vs. slash command, on the model-invoked/user-invoked distinction
 - Skill vs. subagent
 - Permission mode and allowlist design for CI
-- Plugin vs. per-repo duplication for distributing config
+- **Settings permission vs. CLAUDE.md** for a must-hold rule; a **`PostToolUse` hook** running
+  the formatter or linter after every edit vs. an instruction to; **`@` reference vs.
+  CLAUDE.md vs. inline** for project context
 - Diagnosing why a configured rule isn't taking effect
 - **Plan mode vs. direct execution** on a stated task — the guide names this in the
   archetype's own framing, so it must appear: a single-file fix with a clear stack trace
@@ -116,7 +117,6 @@ misreading a question), stop, re-teach that single concept in 5 minutes, re-dril
 resume. See `.agents/TUTORIAL.md` § Teaching inside a drill for the distinction and the
 two-per-session cap. Queue the review either way — the inline fix doesn't replace it.
 
-**This session normally runs interleaved inside Tier 1, at session 11** (see
-`.agents/TUTORIAL.md` § Interleaved drills). At that point F1, F5 and F2 are taught but F3
-and F4 are not — run the full set, converting its F4 questions to F2 or F1 ones, and note
-the substitution in the log.
+**This session runs interleaved inside Tier 1, at slot 22** (see `.agents/SEQUENCE.md`
+§ Interleaved drills), straight after F2's three sessions (19–21). Every Foundations domain is
+taught by then, so run the full mix.

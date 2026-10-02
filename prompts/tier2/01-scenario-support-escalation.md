@@ -13,7 +13,7 @@ Teaching happens only in response to a miss.
 
 ## Session focus
 
-Drill the support-and-escalation archetype at exam difficulty. The crux is that **the deciding factor is almost never task difficulty** — it's irreversibility, stakes, or a policy requirement. Build at least three questions where a Tier 1 concept rules out an otherwise-attractive option, and weight the set toward F1 and F5. When the learner misses, name the *pattern* rather than the fact: "you escalated on difficulty again" transfers to a different scenario; "the answer was B" doesn't.
+Drill the support-and-escalation archetype at exam difficulty. The crux is that **the deciding factor is almost never task difficulty** — it's one of the guide's three escalation triggers: the customer asks for a human, policy has an exception or gap for the request, or the agent cannot make meaningful progress. Build at least three questions where a Tier 1 concept rules out an otherwise-attractive option, and weight the set toward F1 and F5. When the learner misses, name the *pattern* rather than the fact: "you escalated on difficulty again" transfers to a different scenario; "the answer was B" doesn't.
 
 ## Format
 
@@ -51,7 +51,8 @@ is recognition, not recall. It must include:
 At least three questions must have a *tempting wrong answer that a Tier 1 concept rules
 out*. Draw candidate confusions from these known traps:
 
-- Escalating on difficulty rather than irreversibility
+- Escalating on complexity or sentiment rather than one of the three triggers (explicit request
+  for a human, policy exception or gap, no meaningful progress)
 - Trusting model self-assessed confidence where a structural trigger is required
 - Adding autonomy to fix a harness problem
 - Compaction where subagent delegation was correct
@@ -72,6 +73,12 @@ Across the set, hit these decisions at least once each:
 - Tool error classification and where the retry belongs
 - Session state durability across an interruption
 - A cost or latency constraint that eliminates an otherwise-good option
+- **Tool selection between `get_customer` and `lookup_order`** with one-line descriptions:
+  the first step is expanding both descriptions, not few-shot routing, a keyword router, or
+  consolidation
+- **Loop control on `stop_reason`**, including text alongside a `tool_use` block and
+  `"max_tokens"`, and what the harness does when the loop exits unresolved (escalate, never
+  end silently)
 - One question where **two options are defensible** and the stated constraint breaks the
   tie — then make the learner name the constraint that decided it
 

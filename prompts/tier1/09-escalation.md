@@ -116,6 +116,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 | Ask for an identifier vs. pick a match | Did the lookup return more than one customer? |
 | Escalate vs. ask vs. defer | Does the human need to take over, decide one thing, or just be told? |
 | Criteria list vs. criteria plus few-shot examples | Is the boundary reproducible from the rule text alone? |
+| Explicit criteria + few-shot vs. a trained escalation classifier | Has prompt optimization been tried? A classifier needs labeled data and ML infrastructure — the prompt is the proportionate first response |
 
 ## How to run this session
 
@@ -157,7 +158,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 8. **Offer irreversibility as a labeled aid**, briefly, for cases that match no trigger
    cleanly — and say in the same breath that it is a curriculum aid, not the guide's
    vocabulary, so they don't produce it where a named trigger is the expected answer.
-9. **Decision table** — walk all ten rows. For each, give a scenario and have them apply it
+9. **Decision table** — walk all eleven rows. For each, give a scenario and have them apply it
    before you give the answer.
 10. **Scenario drill — 6 questions.** Use a support agent for a subscription service:
     tiered refund authority, a policy that addresses own-site price adjustments only, an

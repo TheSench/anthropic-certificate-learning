@@ -107,6 +107,11 @@ By the end, the learner can:
 - Debug a server that isn't working as a discrimination: is it connection, configuration, or
   *selection*? The third is the one learners skip, and after session 14 they should reach for
   it — a connected server whose tools are never chosen is a description problem
+- **Verify discovery** before debugging anything else: `/mcp` in Claude Code lists each
+  configured server with its status (connected, needs authentication, failed, pending
+  approval for a project `.mcp.json` server) and its tool count. Run the guide's exercise — a
+  shared server in `.mcp.json` with `${ENV_VAR}` auth plus a personal one in
+  `~/.claude.json` — and confirm both servers' tools are available at once
 
 *Brief aside, not a teaching block:* a third-party server sees the arguments sent to it and
 returns content that enters the model's context, so its responses and its tool descriptions
@@ -155,6 +160,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 | `Edit` vs. `Read` + `Write` | Is there text unique enough to anchor on? |
 | Incremental `Grep`-then-`Read` vs. reading the tree | Do you know yet which files matter? |
 | Search one name vs. enumerate exports first | Could the calls be routed through wrappers or re-exports? |
+| Rewrite the description vs. verify discovery first | Does `/mcp` show the server connected and its tools listed? |
 
 ## How to run this session
 
@@ -212,7 +218,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
     re-exported through two wrapper modules. Drive to the two-step method: identify all
     exported names first, then search for each name across the codebase. Ask what a
     single-name search would have reported, and why that wrong answer looks complete.
-12. **Decision table** — walk all ten rows. For each, give a scenario and have them apply it
+12. **Decision table** — walk all eleven rows. For each, give a scenario and have them apply it
     before you give the answer.
 13. **Scenario drill — 6 questions.** Use a platform team standing up MCP for a repo: an
     internal service server everyone needs, a vendor Jira integration, a credential that must

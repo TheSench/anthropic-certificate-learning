@@ -100,6 +100,14 @@ By the end, the learner can:
   findings, `detected_pattern` tells you *which construct* the dismissals cluster on, so you
   can fix that category's criteria (session 8) or temporarily disable it rather than
   guessing at the prompt. Without it you have a dismissal rate and no way to act on it
+- Close the **feedback loop** from structured error metadata to the next iteration — the
+  scored objective. Log every failure with machine-readable fields (`detected_pattern` on a
+  dismissed finding; the failing field, document type, and validation error on a rejected
+  extraction; the `"other"` detail strings), aggregate them, and change the artefact the
+  cluster points at: the **criteria or prompt** when one finding category is noisy, the
+  **schema** when one field is repeatedly fabricated or misfiled (make it nullable, add an
+  enum value, split it), and the **few-shot set** when failures cluster on one document
+  structure. An overall error or dismissal rate cannot say which of the three to change
 - Distinguish **validation failures from refusals and truncation** — three different bugs,
   three different fixes, and retry is the right response to only one of them
 
@@ -153,6 +161,7 @@ By the end, the learner can:
 | `stated_total` alone vs. `calculated_total` alongside it | Does a mismatch have to be *noticed*, or can it be *computed*? |
 | Silently picking a reading vs. `conflict_detected` | Does the source contradict itself? |
 | Dismissal rate vs. `detected_pattern` | Do you need to know *which construct* the dismissals cluster on? |
+| Fix the prompt vs. the schema vs. the few-shot set | Where do the logged failures cluster — one finding category, one field, or one document structure? |
 | Aggregate accuracy vs. per-segment accuracy | Could one document type or field be failing inside a good average? |
 | Per-document confidence vs. field-level confidence | Is the document uniformly hard? |
 | Raw model confidence vs. calibrated against a labeled set | Is that number a probability, or a self-report? |
@@ -209,7 +218,7 @@ By the end, the learner can:
     source template produces confident wrong answers. Land both purposes explicitly —
     ongoing error-rate measurement *and* novel error pattern detection — and why the sample
     must be stratified.
-12. **Decision table** — walk all fourteen rows.
+12. **Decision table** — walk all fifteen rows.
 13. **Scenario drill — 6 questions.** Keep the invoice-and-contract extraction pipeline from
     session 11, now in production with a human review queue that must shrink. Ask: what goes
     in the retry request; how many retries for a field that isn't on the page; how to make a

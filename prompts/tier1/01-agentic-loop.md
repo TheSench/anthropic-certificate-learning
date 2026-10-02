@@ -57,6 +57,11 @@ By the end, the learner can:
 - Drive loop control flow from the API's **`stop_reason`** — branch on `"tool_use"`
   (execute the call, append the result, continue) vs. `"end_turn"` (the turn is complete)
   — and state why reading `stop_reason` beats inferring intent from the text
+- Handle the response shapes that break a naive branch: a response can carry **text
+  alongside `tool_use` blocks** (the text is not a completion signal — branch on
+  `stop_reason`); a response can carry **several `tool_use` blocks**, each needing its own
+  `tool_result` (matched by `tool_use_id`) in the next user message; and **`"max_tokens"`**
+  means the output was truncated, not that the task finished — never treat it as `"end_turn"`
 - Separate the **primary stop condition** from the **backstop**, because the exam scores
   the distinction: `stop_reason == "end_turn"` is how a loop is *supposed* to end, and a
   turn or budget ceiling is a circuit breaker for when it doesn't. Ceilings are good
@@ -65,6 +70,11 @@ By the end, the learner can:
   "done" or treating any assistant text as a completion signal. The tell: if hitting the
   ceiling is a routine outcome rather than evidence something went wrong, it is being used
   as the plan instead of the backstop
+- Design the orchestration-layer safeguard: **every session ends in a completed resolution
+  or a human escalation, regardless of how the loop terminated.** When the backstop fires, a
+  tool keeps failing, or the loop exits on anything but a completed `"end_turn"`, the
+  *harness* — not the model — routes the case to escalation with a handoff (session 4). A
+  session that simply stops has silently dropped a customer
 - Describe **tool use** as the loop's other half: the model emits a `tool_use` block, the
   harness executes the call, and the **result is appended to the conversation history** so
   the next iteration can reason about it. Name **`allowedTools`** as the harness-side
@@ -84,6 +94,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 | Bounded iteration vs. open-ended | What's the cost ceiling, and who notices if it runs away? |
 | Primary stop vs. backstop | Is the loop designed to end on `stop_reason`, with the ceiling as a circuit breaker — or is the ceiling doing the stopping? |
 | Autonomy vs. human checkpoint | What's the cost of a wrong action vs. the cost of waiting? |
+| Abnormal loop exit: stop vs. route to escalation | Did the session reach a resolution? If not, the harness escalates — it never just ends |
 
 ## How to run this session
 
@@ -107,7 +118,9 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
    but that a ceiling is standing in for a stop condition. Land the tell: routinely
    reaching the ceiling means it is the plan, not the circuit breaker. Then ask what the
    other two anti-patterns look like in code (grepping the text for "done"; treating any
-   assistant text as completion).
+   assistant text as completion). Then show a response with text *and* a `tool_use` block,
+   and one that ends on `"max_tokens"`, and ask what a text-presence check does with each.
+   Close on what happens after the backstop fires: the harness escalates with a handoff.
 7. **Decision table** — walk the table above. For each row, give a scenario and have them
    apply it before you give the answer.
 8. **Scenario drill — 4 questions.** Use a realistic system: a ticket-triage service that

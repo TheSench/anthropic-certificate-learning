@@ -84,13 +84,21 @@ By the end, the learner can:
 - Place a given convention correctly across all four surfaces — user CLAUDE.md, project
   CLAUDE.md, directory CLAUDE.md, `.claude/rules/` — and justify it on who needs it, where
   the files live, and whether teammates must inherit it
+- Choose how to hand Claude Code project context: an **`@` file reference** in the prompt for
+  this task's specific material, **CLAUDE.md** (or an `@import` from it) for context every
+  session needs, an **inline description** for a one-off detail written down nowhere. The
+  tell is cross-session need — if you'd paste it again tomorrow, it belongs in CLAUDE.md
+- Separate guidance from enforcement in Claude Code configuration: CLAUDE.md and rules
+  *instruct the model*; **settings permissions** (`permissions.deny` / `allow` in the
+  committed `.claude/settings.json`, e.g. `"deny": ["Read(./.env)"]`) and hooks *constrain
+  the harness*. "Never read `.env`" or "never run `git push`" written in CLAUDE.md has a
+  non-zero failure rate — restructure it into a deny rule (or a hook). The score report
+  tests this twice, though no § 6 Domain 3 statement names it
 
-**Labelled aside, not drilled:** `settings.json` and its precedence across managed, user,
-project, and local files is real Claude Code knowledge and worth one minute — but it appears
-in neither § 6 Domain 3 nor the § 17 appendix, so it is not scored. Mention that settings
-constrain the harness while CLAUDE.md instructs the model, note that an enterprise/managed
-layer exists above the three CLAUDE.md levels the appendix names, and move on. Write no
-drill item on precedence order.
+**Labelled aside, not drilled:** `settings.json` *precedence* across managed, command-line,
+local, project, and user files is real Claude Code knowledge and worth one minute, but no
+exam objective scores the order. Note that an enterprise/managed layer exists above the three
+CLAUDE.md levels the appendix names, and move on. Write no drill item on precedence order.
 
 ## Decisions the exam actually tests
 
@@ -103,6 +111,8 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 | `.claude/rules/` glob vs. directory CLAUDE.md | Are the affected files in one directory, or spread across the codebase? |
 | `.claude/rules/` vs. one growing CLAUDE.md | Would every turn pay for conventions most turns don't need? |
 | `@import` vs. duplicating text | Is the same standard needed by several packages that each need a *different* subset? |
+| CLAUDE.md instruction vs. settings permission | Must the rule hold every time? Blocking a tool or path is a `permissions.deny` rule, not a sentence |
+| `@` reference vs. CLAUDE.md vs. inline | Will this context be needed again in other sessions, or only for this task? |
 
 ## How to run this session
 
@@ -141,13 +151,14 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
    that correctly belongs at user level, one team standard that is wrongly at user level
    (the diagnostic again), one directory-bound rule, and one cross-cutting rule needing a
    glob.
-10. **Decision table** — walk all five rows, scenario-first.
+10. **Decision table** — walk all seven rows, scenario-first.
 11. **Scenario drill — 5 questions.** Use a 30-engineer monorepo with four packages: a new
     hire not receiving team conventions, Terraform files under several service directories,
     test conventions for files spread beside their components, and a CLAUDE.md that has
     grown past what anyone reads. Ask which file gets which rule, name the field that scopes
     a rule file, and diagnose one instruction that is not taking effect. Include one
-    multiple-response. Write no item on settings precedence.
+    multiple-response. Include one item where a must-hold rule sits in CLAUDE.md and the
+    fix is a `permissions.deny` rule. Write no item on settings precedence.
 12. **Distractor autopsy** — expect a subdirectory CLAUDE.md offered for a cross-cutting
     convention (the tell: the files are spread, and a directory file is directory-bound),
     and "reword the instruction so it's clearer" offered for the new-hire symptom, where the
@@ -164,5 +175,6 @@ Defer and say where it's covered:
   than re-teaching it
 - MCP server configuration → session 17, already taught
 - `settings.json` precedence, enterprise-managed settings, permission modes → one labelled
-  aside as described above; deeper governance is Tier 3 sessions 10–11
+  aside as described above; deeper governance is Tier 3 sessions 10–11. Permission *rules*
+  as enforcement are in scope and taught above
 - Org-wide rollout and change management → Tier 4 capstone 1

@@ -193,6 +193,20 @@ drilled. Numbers refer to the sequence in `.agents/TUTORIAL.md` § Tier 1. A ses
 support other statements, but exactly one owns each, and drill cards carry the statement
 ID so per-domain accuracy measures the domain's own objectives.
 
+#### Score-report objectives beyond § 6
+
+The CCAR-F score report gives percent correct per *test objective* (29 of them), worded
+differently from the § 6 statements. Most map onto a statement above. These go beyond any
+§ 6 bullet, so each is given an owning session the same way:
+
+| Objective (score report) | Owner |
+|---|---|
+| 1 — every session ends in a completed resolution or human escalation, however the loop terminates | S1 |
+| 10, 11 — settings permissions vs. CLAUDE.md; choosing among CLAUDE.md, `.claude/rules/`, Skills, hooks, settings permissions | S19, S20 |
+| 12 — Claude Code `PostToolUse` hooks running formatting, linting, or tests after every edit | S15 |
+| 16 — `@` references vs. CLAUDE.md vs. inline description for project context | S19 |
+| 21 — prefilled responses as a structured-output method | S11 |
+
 The IDs run in guide order; the sessions do not, because Tier 1 is sequenced by dependency
 rather than by domain. Task 1.5 (hooks) sits at session 15 because a hook intercepts a tool
 call, so it must follow tool interface design at 14 — a session ordering that groups by
