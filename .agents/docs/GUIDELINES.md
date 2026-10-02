@@ -51,7 +51,10 @@ session 1"), so the agent knows how deep to go rather than guessing.
 - Every scenario carries the constraints that decide the answer (cost ceiling, latency
   budget, compliance requirement, team size). Scenario questions without a deciding
   constraint have no defensible answer.
-- Mark multiple-response questions explicitly: "Select all that apply."
+- Every item has exactly four options, A–D, multiple-response included — the real exam's
+  shape ([`BLUEPRINT.md`](../../BLUEPRINT.md) § Exam 1). A multiple-response item states how
+  many to pick ("Select two."), never "Select all that apply"; that count is part of the
+  stem, and an item whose key does not have exactly that many options is defective.
 - Write the distractor tell before finalizing the question. If you can't name what makes
   a wrong option tempting, it isn't a good distractor.
 - Draw distractors from [`TRAPS.md`](TRAPS.md) — bias families first, then the domain's

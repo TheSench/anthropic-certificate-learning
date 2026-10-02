@@ -17,7 +17,8 @@ Drill the multi-agent research archetype. This is the **highest-value drill in t
 ## Format
 
 1. **Scenario brief** (250–400 words) with the deciding constraints.
-2. **12–15 questions**, mixed multiple-choice and multiple-response ("Select all that apply").
+2. **12–15 questions**, mixed multiple-choice and multiple-response, four options each
+   (multiple-response states the count: "Select two.").
 3. Batches of 4–5; no feedback mid-batch.
 4. Full distractor autopsy on every question, correct ones included.
 5. Domain mix: ~7 F1, ~4 F4, ~3 F5, ~1 F3. The guide names Tool Design & MCP a primary

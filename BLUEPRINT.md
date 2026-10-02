@@ -101,7 +101,7 @@ site-wide. Consult these pages manually; do not scrape them.
 | Items | 60 |
 | Duration | 120 minutes |
 | Format | **Scenario-based** — 4 scenarios drawn from a pool of 6 (~15 questions each*) |
-| Question types | Multiple choice, multiple response |
+| Item format | Multiple-choice and multiple-response items; each item states how many responses to select† |
 | Passing score | 720 scaled (100–1000) |
 | Conditions | Proctored, closed-book, no AI assistance |
 | Validity | 12 months |
@@ -110,6 +110,12 @@ site-wide. Consult these pages manually; do not scrape them.
 \* **Derived, not stated.** The guide gives 60 items and "4 scenarios drawn from a bank of
 6"; 15 per scenario is our arithmetic, and the guide does not commit to an even split.
 Everything else in this table is verbatim.
+
+† **Four options per item, scoring unstated.** The guide does not give an option count, but
+all 12 of its sample questions have exactly four (A–D), and the 2026-10-02 sitting matched:
+every item had four options, multiple-response items included. The guide does not say how a
+multiple-response item is scored (all-or-nothing or partial credit); § 10 covers only the
+scaled cut score.
 
 ### Domains
 

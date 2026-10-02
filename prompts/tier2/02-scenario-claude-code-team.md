@@ -21,7 +21,8 @@ Drill the Claude Code team-configuration archetype. This is the most **precision
 ## Format
 
 1. Present a **scenario brief** (250–400 words) with the deciding constraints.
-2. **12–15 questions**, mixed multiple-choice and multiple-response ("Select all that apply").
+2. **12–15 questions**, mixed multiple-choice and multiple-response, four options each
+   (multiple-response states the count: "Select two.").
 3. Batches of 4–5; no feedback until the batch is complete.
 4. Full distractor autopsy on every question after each batch, including correct answers.
 5. Domain mix: ~8 F2, ~4 F5, ~2 F4, ~1 F1. The guide names Context Management &

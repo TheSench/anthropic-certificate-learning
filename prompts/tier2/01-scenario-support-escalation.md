@@ -21,8 +21,8 @@ Mirror the real exam's scenario structure:
 
 1. Present a **substantial scenario brief** (250–400 words) up front, containing the
    constraints that decide the answers. Then work questions against it, referring back.
-2. **12–15 questions**, mixed multiple-choice and multiple-response. Mark multiple-response
-   as "Select all that apply."
+2. **12–15 questions**, mixed multiple-choice and multiple-response, four options each.
+   Mark multiple-response with the count to pick ("Select two.").
 3. Ask questions in **batches of 4–5**. Take answers for the whole batch before giving any
    feedback — this trains sustained closed-book reasoning rather than per-question
    coaching.

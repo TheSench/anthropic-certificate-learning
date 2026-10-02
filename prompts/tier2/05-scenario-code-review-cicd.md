@@ -24,7 +24,8 @@ Drill the automated-code-review-in-CI archetype, weighted toward **prompt design
 ## Format
 
 1. **Scenario brief** (250–400 words) with the deciding constraints.
-2. **12–15 questions**, mixed multiple-choice and multiple-response ("Select all that apply").
+2. **12–15 questions**, mixed multiple-choice and multiple-response, four options each
+   (multiple-response states the count: "Select two.").
 3. Batches of 4–5; feedback only at batch end.
 4. Full distractor autopsy on every question.
 5. Domain mix: ~6 F2, ~5 F3, ~2 F4, ~2 F5.

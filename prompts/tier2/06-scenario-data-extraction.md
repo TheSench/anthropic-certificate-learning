@@ -23,7 +23,8 @@ Drill the structured-extraction archetype. The crux is the gap between **asking 
 ## Format
 
 1. **Scenario brief** (250–400 words) with the deciding constraints.
-2. **12–15 questions**, mixed multiple-choice and multiple-response ("Select all that apply").
+2. **12–15 questions**, mixed multiple-choice and multiple-response, four options each
+   (multiple-response states the count: "Select two.").
 3. Batches of 4–5; feedback only at batch end.
 4. Full distractor autopsy on every question.
 5. Domain mix: ~7 F3, ~5 F5, ~2 F4, ~1 F1. The guide names Context Management &

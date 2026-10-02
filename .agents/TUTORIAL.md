@@ -518,7 +518,8 @@ P2 17% (~11), P3 16% (~10), P4 14% (~9), P5 14% (~9), P6 13% (~8), P7 7% (~4).
 - Present questions in batches of 5–10. Take answers, give **no feedback** until the end.
 - If the learner asks for a hint or a lookup, decline once and continue — this is the
   condition being trained.
-- Mark multiple-response questions clearly: "Select all that apply."
+- Four options per item, A–D. Mark multiple-response questions with the count to pick
+  ("Select two."), as the real exam does.
 
 **Scoring:**
 
