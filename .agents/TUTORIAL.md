@@ -291,6 +291,13 @@ flagging it as the current biggest risk to passing.
      Two or three pages covers it; you are looking up specific values, not reading around
      the topic.
 
+   **Never fetch before the learner has seen something.** Step 3's summary and the
+   session's opening frame come from context you already hold, so render them first and
+   fetch after. A measured cold start spent ~15 of its 42 seconds on a fetch the learner
+   waited through in front of a blank screen; the same fetch behind an opening frame
+   costs nothing they experience. This orders the work — it never licenses teaching a
+   number before verifying it.
+
    Pick those pages from `## Authoritative sources` when the slug obviously matches
    (`prompt-caching` for cache TTLs, `pricing` for rates). When it doesn't, don't guess
    down the list — fetch the docs index once and select from its descriptions:
