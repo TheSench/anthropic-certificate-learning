@@ -268,7 +268,12 @@ the sequence is renumbered. When the two disagree, the sequence and the logs are
 
 ### Step 3 — Show the progress summary and begin
 
-Show the summary, then start immediately without waiting for confirmation.
+Send the summary as its own message as soon as Step 2 has chosen the session, before
+reading the prompt file, then carry on in the same turn without waiting for confirmation.
+It needs only Step 1's output and the session's row in `SEQUENCE.md`. Don't hold it back to
+send with the frame: a slot 6 cold start that put the summary, frame and a newly written
+warm-up scenario in one message showed nothing for 42 seconds, ~20 of them spent writing
+that message.
 
 ```
 **Progress:** Session [N] · Foundations [F%] · Professional [P%]
