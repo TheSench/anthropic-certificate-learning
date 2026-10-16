@@ -12,8 +12,8 @@ Use the **Read tool** for whole files, never `cat` — shell output truncates at
 persists the overflow to a temp file, and re-reading that file truncates again. Two
 wasted turns and two junk blobs in context before you've read anything.
 
-The exception is Step 1, which is a single prepared command precisely so it cannot
-become four turns. Where a step gives you one command, run that command — don't
+The exception is Step 1, whose two prepared commands run in a single turn precisely so it
+cannot become four turns. Where a step gives you one command, run that command — don't
 decompose it into per-file reads.
 
 ### Step 0.5 — Sync the harness (silently, unless something changed)
@@ -157,19 +157,38 @@ their call, not the harness's.
 
 ### Step 1 — Load context (silently, without narrating)
 
-Run this **exact command**. It is one call by design: it loads every file routing needs
-and skips the parts that don't matter at load time.
+Run these **two exact commands as two Bash calls in the same turn**. Two, not one, because
+each tool result is cut off at ~30KB: one command printing everything measured 89KB, and
+reading back its overflow file cost two more turns before the learner saw anything.
+
+Routing context:
 
 ```bash
-for f in learner/profile.md learner/relevance.md learner/readiness.md; do
-  echo "===== $f ====="; sed '/^## Session log$/,$d' "$f"
-done; echo "===== drill due dates ====="; rg '\*\*Due:\*\*' drills/deck.md
+sec() { echo "===== $1 ====="; [ -f "$1" ] || { echo "(missing)"; return 0; }
+  awk -v s="|$2|" 'BEGIN{p=1} /^## Session log$/{exit} /^## /{p=!index(s, "|" substr($0,4) "|")} p' "$1"; }
+sec learner/profile.md 'Topic mastery|Voided items|Instructor corrections|Recurring strengths|Recurring gaps|Distractor patterns'
+sec learner/readiness.md 'Highest-leverage next study'
+sec learner/relevance.md ''
+echo "===== drill cards due by today ====="
+rg -o '\*\*Due:\*\* \d{4}-\d{2}-\d{2}' drills/deck.md 2>/dev/null | awk -v t="$(date +%F)" '$2 <= t' | wc -l
 ```
 
-`sed` drops `## Session log` and everything after it — that section grows every session
-and Step 1 never needs it. Read the full `profile.md` later only if you need history.
+Standing rules for teaching:
 
-Branch on what comes back; don't check existence first.
+```bash
+sec() { echo "===== $1 ====="; [ -f "$1" ] || { echo "(missing)"; return 0; }
+  awk -v k="|$2|" '/^## Session log$/{exit} /^## /{p=index(k, "|" substr($0,4) "|")} p' "$1"; }
+sec learner/profile.md 'Instructor corrections|Recurring strengths|Recurring gaps|Distractor patterns'
+```
+
+Both stop at `## Session log`, which grows every session and Step 1 never needs. The first
+command names what it skips rather than what it keeps, so a section added to the profile
+later is loaded by default instead of silently missing from routing. Its skip list must
+include every section the second command loads. `Topic mastery` and `Voided items` are
+not loaded at all; [depth calibration](#depth-calibration) reads the session's own
+mastery rows. Read the full `profile.md` later only if you need history.
+
+Branch on what comes back; `(missing)` under a header means the file doesn't exist.
 
 **Drift check (once a week, not every session).** The prompt files are static and the
 learner starts fresh sessions, so nothing else notices when Anthropic ships a change.
@@ -221,7 +240,7 @@ Run only when `learner/profile.md` doesn't exist.
 
 ### Step 2 — Determine what to run next
 
-Step 1's command already gave you the drill due dates — don't re-read the deck. Check
+Step 1 already gave you the count of drill cards due — don't re-read the deck. Check
 these in order. The first that matches wins.
 
 1. **Learner asked for something specific** — a named topic, `mock`, `drill`, or a domain.
@@ -249,7 +268,12 @@ the sequence is renumbered. When the two disagree, the sequence and the logs are
 
 ### Step 3 — Show the progress summary and begin
 
-Show the summary, then start immediately without waiting for confirmation.
+Send the summary as its own message as soon as Step 2 has chosen the session, before
+reading the prompt file, then carry on in the same turn without waiting for confirmation.
+It needs only Step 1's output and the session's row in `SEQUENCE.md`. Don't hold it back to
+send with the frame: a slot 6 cold start that put the summary, frame and a newly written
+warm-up scenario in one message showed nothing for 42 seconds, ~20 of them spent writing
+that message.
 
 ```
 **Progress:** Session [N] · Foundations [F%] · Professional [P%]
@@ -809,7 +833,11 @@ Only `Continue` goes inside the code block, so it can be copy-pasted.
 
 Calibrate on three axes before the session.
 
-**Learner history** (`learner/profile.md`) — skip concepts scored 4, dwell on gaps,
+**Learner history** (`learner/profile.md`) — Step 1 doesn't load `## Topic mastery`;
+read this session's rows with
+`awk '/^## Topic mastery$/{p=1;next} /^## /{p=0} p' learner/profile.md | rg '\| F5 \|'`,
+substituting the session's domain code.
+Skip concepts scored 4, dwell on gaps,
 connect to prior strengths, surface carried-forward open questions, match explanation
 style. Watch the `Distractor patterns` notes across sessions: a recurring bias (always
 reaching for the most capable model, always preferring more autonomy) is a systematic
