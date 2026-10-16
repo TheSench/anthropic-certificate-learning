@@ -854,6 +854,11 @@ feels complete and leaves the learner unable to answer a scenario question.
 run the six gates from [`docs/GATES.md`](docs/GATES.md) over the whole batch before the
 drill starts, per [Item pre-batch](#item-pre-batch), which is where they execute.
 
+**Answer-format examples are canned.** When telling the learner how to reply to a set of
+questions, use exactly `e.g. 1A 2BC 3D …` whatever the item count or which items are
+multiple-response. Never write an example from the batch in front of you: you hold the
+key while writing it, and an improvised example leaked a real answer.
+
 **When an item fails after the fact**, void it — do not grade it on a curve. Say plainly
 that the item was defective, exclude it from the score, and record the correction in
 `learner/profile.md` under `## Instructor corrections`. A voided item is an instructor
