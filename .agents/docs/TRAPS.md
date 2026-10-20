@@ -30,6 +30,10 @@ promotes it here. See [`AGENTS.md`](../../AGENTS.md) § File ownership.
 4. **Never use all of one family in one item.** Four options drawn from the same trap
    collapse into one question asked four times, and the learner can pick by elimination
    without engaging the scenario.
+5. **Write the trap's pull into the option.** A distractor stated as a bare action next
+   to a key that carries its reason is found by length alone. The "why it attracts"
+   column is the clause that brings the distractor level with the key — gate 5 in
+   [`GATES.md`](GATES.md) sets the limits.
 
 A trap is not a question. It's the wrong answer plus the reason it attracts — you still
 have to build a scenario whose stated constraints make it wrong, or the item has no

@@ -104,7 +104,11 @@ depends on.
    diff <(git show HEAD:drills/deck.md | cards) <(cards < drills/deck.md) | awk '/^[<>]/{print $2}' | sort -u
    ```
 
-   If it prints nothing, go on to the glossary. Otherwise dispatch one subagent with the
+   If it prints anything, first run `.agents/check-key-length.py` and fix what it flags
+   per `.agents/docs/GATES.md` gate 5, so the reviewer sees the final options. If only
+   the deck-wide rate fails, rebalance the cards you just changed.
+
+   If the list is empty, go on to the glossary. Otherwise dispatch one subagent with the
    prompt below, filling in the IDs. Tell it nothing about the session. It is useful
    because it knows only what the learner will see.
 

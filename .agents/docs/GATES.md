@@ -20,13 +20,24 @@ repo; every reference to them points here.
    tempting, it isn't a distractor — rewrite it. This is the gate that fails most
    often; [`TRAPS.md`](TRAPS.md) is the inventory of distractors whose tell
    is already named.
-5. **The key's position is not predictable.** Across a batch, no single letter may hold
-   more than half the keys, and every batch of four or more must use at least three
-   distinct letters. Assign positions *after* writing the items — the correct answer
-   tends to land in the same slot when written first and never moved. A deck keyed 58%
-   to one letter can be beaten without reading the question. The official sample items
-   are themselves skewed (10 of 12 keyed A); do **not** imitate that — the exam can
-   afford a skew because its pool is unseen, a deck that re-serves cards cannot.
+5. **The key is not findable without reading the stem.** Two surface features give it
+   away, and both come from writing the key first and the distractors as foils:
+   - **Position.** Across a batch, no single letter may hold more than half the keys,
+     and every batch of four or more must use at least three distinct letters. Assign
+     positions *after* writing the items — the correct answer tends to land in the same
+     slot when written first and never moved. A deck keyed 58% to one letter can be
+     beaten without reading the question. The official sample items are themselves
+     skewed (10 of 12 keyed A); do **not** imitate that — the exam can afford a skew
+     because its pool is unseen, a deck that re-serves cards cannot.
+   - **Length.** No key may run more than 1.25× its longest distractor, or carry a
+     second sentence or clause that no distractor has. Across a batch, the longest
+     option may be a key in at most a third of items (rounded up), and likewise the
+     shortest. A deck measured at 72% longest-is-key could be passed by picking the
+     longest option. The qualifier that makes the key airtight belongs in **Why:**, not
+     in the option; a distractor gets the same specificity by stating the reasoning
+     that makes it tempting — the tell gate 4 already makes you write. Don't fix it by
+     padding: an option lengthened with words that decide nothing is a new tell.
+     [`check-key-length.py`](../check-key-length.py) checks drill cards against this.
 6. **The stem decides the item.** A scenario question whose stated constraints don't
    rule out the distractors has no defensible key, whatever the other gates say.
    Answer three questions per item, in writing — the writing is the gate, because an
