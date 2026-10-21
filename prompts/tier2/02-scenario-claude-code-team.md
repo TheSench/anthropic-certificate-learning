@@ -16,7 +16,7 @@ built on a stale detail.
 
 ## Session focus
 
-Drill the Claude Code team-configuration archetype. This is the most **precision-dependent** of the six — precedence and placement questions have exactly one right answer — so verify the current hierarchy against live docs before writing anything. The crux is guidance-vs-enforcement: the archetype's signature question is a rule sitting in CLAUDE.md that developers' agents keep ignoring. On precedence items, make the learner state the *rule* they applied, not just the answer; a right answer from a wrong rule fails on the next variation.
+Drill the Claude Code team-configuration archetype. This is the most **precision-dependent** of the six — precedence and placement questions have exactly one right answer — so verify the current hierarchy against live docs before writing anything. The crux is guidance-vs-enforcement: the archetype's signature question is a rule sitting in CLAUDE.md that developers' agents keep ignoring. On precedence items, give each plausible wrong rule its own distractor, so a right answer from a wrong rule lands on a wrong option instead of passing until the next variation.
 
 ## Format
 
@@ -87,8 +87,12 @@ At least once each:
 Per question: the correct answer plus the deciding rule; for each wrong option what makes
 it tempting and the tell that rules it out; and for any miss, the named trap it maps to.
 
-For precedence questions specifically, make the learner **state the rule** they applied,
-not just the answer — a right answer from a wrong rule will fail on the next variation.
+For precedence questions specifically, **build the distractors from wrong rules**: one option
+per plausible misapplied rule, such as the subdirectory-CLAUDE.md on-demand load applied to a
+settings file, or user scope where a managed mandate is required. A right answer from a wrong
+rule then fails on the item itself rather than on the next variation. Don't ask for the rule in
+free text; the exam never does, and a request attached to a multiple-choice batch reads as a
+trick.
 
 ## How to run this session
 
