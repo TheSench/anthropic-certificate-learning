@@ -5,7 +5,7 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { validateBank, bankStatus, sha256, promptHashOf, gatesHashOf } from "./bank.mjs";
+import { validateBank, bankStatus, sha256, promptHashOf, gatesHashOf, pickItems } from "./bank.mjs";
 
 const SCRIPT = path.join(path.dirname(fileURLToPath(import.meta.url)), "bank.mjs");
 const KEYS = ["A", "B", "C", "D"];
@@ -18,7 +18,7 @@ function item(n, overrides = {}) {
     id,
     task: "5.1",
     objective: n % 5,
-    trapFamilies: ["Over-orchestration"],
+    trapFamilies: [`SECRET-TRAP-${n}`],
     factRefs: [],
     question: {
       type: "multiple_choice",
@@ -29,9 +29,10 @@ function item(n, overrides = {}) {
     answerKey,
     autopsy: KEYS.filter((k) => k !== answerKey).map((option) => ({
       option,
-      tempting: "SECRET-TEMPTING",
-      ruledOutBy: "SECRET-RULED-OUT",
+      tempting: `SECRET-TEMPTING-${n}`,
+      ruledOutBy: `SECRET-RULED-OUT-${n}`,
     })),
+    audit: { note: `SECRET-AUDIT-${n}` },
     ...overrides,
   };
 }
@@ -439,5 +440,246 @@ describe("CLI and status", () => {
   test("no CLI output contained item text", () => {
     assert.ok(outputs.length > 0);
     for (const out of outputs) assert.doesNotMatch(out, /SECRET/);
+  });
+});
+
+function keyed(n, answerKey, objective) {
+  return item(n, {
+    objective,
+    answerKey,
+    autopsy: KEYS.filter((k) => k !== answerKey).map((option) => ({
+      option,
+      tempting: `SECRET-TEMPTING-${n}`,
+      ruledOutBy: `SECRET-RULED-OUT-${n}`,
+    })),
+  });
+}
+
+const objectivesOf = (items) => items.map((i) => i.objective);
+const keysOf = (items) => items.map((i) => i.answerKey);
+
+describe("pickItems", () => {
+  test("spreads a pick across objectives the bank order would repeat", () => {
+    const items = Array.from({ length: 12 }, (_, i) => item(i + 1, { objective: Math.floor(i / 3) }));
+    const { items: picked } = pickItems(items, new Set(), 3);
+    assert.equal(new Set(objectivesOf(picked)).size, 3);
+  });
+
+  test("keeps a pick inside the key-position gate when the bank order would break it", () => {
+    const items = [
+      ...[1, 2, 3, 4].map((n) => keyed(n, "A", n)),
+      ...[5, 6, 7, 8, 9, 10, 11, 12].map((n) => keyed(n, KEYS[1 + (n % 3)], n)),
+    ];
+    const keys = keysOf(pickItems(items, new Set(), 4).items);
+    assert.equal(keys.length, 4);
+    assert.ok(keys.filter((k) => k === "A").length <= 2);
+    assert.ok(new Set(keys).size >= 3);
+  });
+
+  test("still returns a full pick when no subset can pass the key-position gate", () => {
+    const items = [1, 2, 3, 4].map((n) => keyed(n, "A", n));
+    assert.equal(pickItems(items, new Set(), 4).items.length, 4);
+  });
+
+  const extremeIsKey = (it, longest) => {
+    const lens = it.question.options.map((o) => o.text.length);
+    const target = longest ? Math.max(...lens) : Math.min(...lens);
+    return it.question.options.find((o) => o.text.length === target).key === it.answerKey;
+  };
+  const lengthOverride = (n) => {
+    const key = KEYS[n % 4];
+    if (n <= 3) return { [key]: "L".repeat(110) };
+    if (n <= 6) return { [key]: "S".repeat(90) };
+    return {};
+  };
+
+  test("keeps a pick inside the key-length caps when the bank order would break them", () => {
+    const items = Array.from({ length: 12 }, (_, i) => ({ ...withOptions(i + 1, KEYS[(i + 1) % 4], lengthOverride(i + 1)), objective: i }));
+    for (const k of [3, 6]) {
+      const picked = pickItems(items, new Set(), k).items;
+      const cap = Math.ceil(k / 3);
+      assert.equal(picked.length, k);
+      assert.ok(picked.filter((it) => extremeIsKey(it, true)).length <= cap, `longest cap at k=${k}`);
+      assert.ok(picked.filter((it) => extremeIsKey(it, false)).length <= cap, `shortest cap at k=${k}`);
+    }
+  });
+
+  test("still returns a full pick when no subset can pass the key-length caps", () => {
+    const items = [1, 2, 3].map((n) => ({ ...withOptions(n, KEYS[n % 4], { [KEYS[n % 4]]: "L".repeat(110) }), objective: n }));
+    assert.equal(pickItems(items, new Set(), 3).items.length, 3);
+  });
+
+  test("never picks a seen item and reports the shortfall", () => {
+    const items = Array.from({ length: 12 }, (_, i) => item(i + 1));
+    const seen = new Set(items.slice(0, 10).map((i) => i.id));
+    const { items: picked, short } = pickItems(items, seen, 5);
+    assert.deepEqual(picked.map((i) => i.id).sort(), ["t1-06-i11", "t1-06-i12"]);
+    assert.equal(short, 3);
+  });
+});
+
+describe("pick and key", () => {
+  let root;
+  const promptText = "prompt body\n";
+  const BANK = "banks/tier1/06-x.json";
+  const SEEN = "learner/seen-items.jsonl";
+
+  before(() => {
+    root = fs.mkdtempSync(path.join(os.tmpdir(), "bank-pick-test-"));
+    fs.mkdirSync(path.join(root, "prompts/tier1"), { recursive: true });
+    fs.mkdirSync(path.join(root, ".agents/docs"), { recursive: true });
+    fs.mkdirSync(path.join(root, "banks/tier1"), { recursive: true });
+    fs.writeFileSync(path.join(root, PROMPT_FILE), promptText);
+    fs.writeFileSync(path.join(root, ".agents/docs/GATES.md"), "gates\n");
+    fs.writeFileSync(path.join(root, ".agents/docs/TRAPS.md"), "traps\n");
+  });
+
+  after(() => {
+    fs.rmSync(root, { recursive: true, force: true });
+  });
+
+  function run(...args) {
+    return spawnSync(process.execPath, [SCRIPT, ...args], {
+      encoding: "utf8",
+      env: { ...process.env, BANK_REPO_ROOT: root },
+    });
+  }
+
+  function writeBank(meta = {}) {
+    const b = bank(undefined, { promptHash: promptHashOf(root, PROMPT_FILE), gatesHash: gatesHashOf(root), ...meta });
+    fs.writeFileSync(path.join(root, BANK), JSON.stringify(b));
+  }
+
+  function resetSeen(lines) {
+    const file = path.join(root, SEEN);
+    fs.rmSync(file, { force: true });
+    if (lines !== undefined) {
+      fs.mkdirSync(path.dirname(file), { recursive: true });
+      fs.writeFileSync(file, lines.map((id) => JSON.stringify({ id, date: "2026-10-01" }) + "\n").join(""));
+    }
+  }
+
+  const seenIds = () =>
+    fs
+      .readFileSync(path.join(root, SEEN), "utf8")
+      .split("\n")
+      .filter(Boolean)
+      .map((l) => JSON.parse(l).id);
+
+  const pickedIds = (stdout) => [...stdout.matchAll(/^=== (\S+)$/gm)].map((m) => m[1]);
+
+  test("pick prints ids, stems and options and nothing else from the item", () => {
+    writeBank();
+    resetSeen();
+    const r = run("pick", PROMPT_FILE, "--n", "1");
+    assert.equal(r.status, 0);
+    const [id] = pickedIds(r.stdout);
+    const n = Number(id.slice(-2));
+    const expected = [
+      "bank ok · 1 items · short 0",
+      "",
+      `=== ${id}`,
+      `SECRET-STEM-${n}`,
+      ...KEYS.map((k) => `${k}. SECRET-OPTION-${n}-${k}`),
+      "",
+    ].join("\n");
+    assert.equal(r.stdout, expected);
+  });
+
+  test("pick output never carries a key, autopsy, audit or trap family", () => {
+    writeBank();
+    resetSeen();
+    const r = run("pick", PROMPT_FILE, "--n", "5");
+    assert.equal(pickedIds(r.stdout).length, 5);
+    assert.doesNotMatch(r.stdout, /SECRET-(TEMPTING|RULED-OUT|AUDIT|TRAP)|answerKey|\bkey\b/i);
+  });
+
+  test("pick falls back with one reason line and no item text when the bank is unusable", () => {
+    resetSeen();
+    fs.rmSync(path.join(root, BANK), { force: true });
+    assert.equal(run("pick", PROMPT_FILE).stdout, "fallback absent\n");
+    writeBank({ promptHash: "sha256:old" });
+    assert.equal(run("pick", PROMPT_FILE).stdout, "fallback stale-prompt\n");
+    writeBank({ gatesHash: "sha256:old" });
+    assert.equal(run("pick", PROMPT_FILE).stdout, "fallback stale-gates\n");
+    assert.equal(run("pick", "prompts/tier1/99-none.md").stdout, "fallback absent\n");
+  });
+
+  test("pick treats a missing or empty seen file as nothing seen", () => {
+    writeBank();
+    resetSeen();
+    const missing = run("pick", PROMPT_FILE, "--n", "12");
+    resetSeen([]);
+    const empty = run("pick", PROMPT_FILE, "--n", "12");
+    assert.equal(missing.status, 0);
+    assert.equal(pickedIds(missing.stdout).length, 12);
+    assert.equal(empty.stdout, missing.stdout);
+  });
+
+  test("pick skips seen items and reports the shortfall", () => {
+    writeBank();
+    const all = bank().items.map((i) => i.id);
+    resetSeen(all.slice(0, 10));
+    const r = run("pick", PROMPT_FILE, "--n", "5");
+    assert.deepEqual(pickedIds(r.stdout).sort(), all.slice(10));
+    assert.match(r.stdout, /^bank ok · 2 items · short 3$/m);
+  });
+
+  test("pick never writes the seen file", () => {
+    writeBank();
+    resetSeen();
+    run("pick", PROMPT_FILE, "--n", "5");
+    assert.equal(fs.existsSync(path.join(root, SEEN)), false);
+  });
+
+  test("key prints keys and autopsies for the requested ids only", () => {
+    writeBank();
+    resetSeen();
+    const r = run("key", "t1-06-i02", "t1-06-i05");
+    assert.equal(r.status, 0);
+    assert.match(r.stdout, /^=== t1-06-i02 · key C$/m);
+    assert.match(r.stdout, /^=== t1-06-i05 · key B$/m);
+    assert.match(r.stdout, /SECRET-TEMPTING-2\b/);
+    assert.match(r.stdout, /SECRET-RULED-OUT-5\b/);
+    const others = [...r.stdout.matchAll(/SECRET-[A-Z-]+-(\d+)/g)].map((m) => m[1]);
+    assert.deepEqual([...new Set(others)].sort(), ["2", "5"]);
+  });
+
+  test("key marks exactly the requested ids as seen", () => {
+    writeBank();
+    resetSeen();
+    run("key", "t1-06-i02", "t1-06-i05");
+    assert.deepEqual(seenIds(), ["t1-06-i02", "t1-06-i05"]);
+    const line = JSON.parse(fs.readFileSync(path.join(root, SEEN), "utf8").split("\n")[0]);
+    assert.equal(line.date, new Date().toISOString().slice(0, 10));
+  });
+
+  test("key rejects an unknown id, names it, and writes nothing", () => {
+    writeBank();
+    resetSeen(["t1-06-i01"]);
+    const r = run("key", "t1-06-i02", "t1-06-i77");
+    assert.equal(r.status, 1);
+    assert.match(r.stdout, /^FAIL unknown-id t1-06-i77$/m);
+    assert.doesNotMatch(r.stdout, /SECRET/);
+    assert.deepEqual(seenIds(), ["t1-06-i01"]);
+    assert.equal(run("key", "t1-07-i01").status, 1);
+  });
+
+  test("key leaves one seen entry per id however often it runs", () => {
+    writeBank();
+    resetSeen();
+    run("key", "t1-06-i03");
+    run("key", "t1-06-i03", "t1-06-i03");
+    assert.deepEqual(seenIds(), ["t1-06-i03"]);
+  });
+
+  test("seen items drop out of the next pick", () => {
+    writeBank();
+    resetSeen();
+    const first = pickedIds(run("pick", PROMPT_FILE, "--n", "3").stdout);
+    run("key", ...first);
+    const second = pickedIds(run("pick", PROMPT_FILE, "--n", "3").stdout);
+    assert.equal(second.length, 3);
+    assert.equal(second.filter((id) => first.includes(id)).length, 0);
   });
 });

@@ -1,9 +1,10 @@
 # TRAPS.md — Distractor Inventory
 
-The reusable half of a drill question. Items are written fresh every session (see
-[`ARCHITECTURE.md`](ARCHITECTURE.md) § Key design decisions — a committed question bank
-would be a bank this learner has already read). The *traps* are the part that doesn't
-need reinventing: they're properties of the exam and of this learner, not of one session.
+The reusable half of a drill question. Items come from a slot's gated bank or are written
+fresh in the session, and either way an item is asked once (see
+[`ARCHITECTURE.md`](ARCHITECTURE.md) § Key design decisions). The *traps* are the part that
+doesn't need reinventing: they're properties of the exam and of this learner, not of one
+session.
 
 Use this file when writing distractors, at [`TUTORIAL.md`](../TUTORIAL.md) § Item
 pre-batch. Each trap is a wrong answer that a competent candidate would find tempting —

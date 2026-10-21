@@ -406,6 +406,32 @@ defective item is expensive out of proportion to its size: it writes a fabricate
 into the profile, which then drives depth calibration and mock selection for every session
 after it. Three of five items in one recorded session were defective this way.
 
+**A curriculum session's scenario drill starts from the slot's item bank.** Bank items were
+drafted and gated offline, including by a solver that never saw the key, which is a check
+an author cannot run on their own drafts. Run this when the teaching block is done, at
+[Session shape](#session-shape) step 4, never earlier:
+
+```bash
+node .claude/skills/build-bank/scripts/bank.mjs pick <the session's prompt file> --n <drill size>
+```
+
+Nothing before the drill needs the items: the progress summary, frame and teaching come
+from the prompt file and the learner's files.
+
+- `fallback <reason>` → no usable bank. Pre-batch the whole drill by the steps below.
+- `bank ok · <k> items · short <s>` → ask the `k` items exactly as printed; an edited stem or
+  option is no longer the item that passed the gates. Draft only `s` more by the steps below,
+  then run all of gate 5, key position and key length, over the combined batch, changing only
+  the drafted items.
+- `pick` prints no keys. After the learner answers, run `bank.mjs key <id>...` for the items
+  they answered. It prints each stored key and autopsy, which the
+  [distractor autopsy](#session-shape) uses, and records the item in
+  `learner/seen-items.jsonl` so no later session asks it again. **Never run `key` before the
+  learner has answered**: tool output is on their screen. An item picked but not asked stays
+  unseen — don't key it.
+
+Never open `banks/` directly; `pick` and `key` are its only readers.
+
 1. **Draft all items at once**, with the intended answer written first for each — as
    [Cross-cutting requirements](#cross-cutting-requirements) already demands.
 2. **Pull distractors from [`docs/TRAPS.md`](docs/TRAPS.md).** One per item should come
@@ -441,7 +467,8 @@ grade it on a curve. Improvising a replacement re-introduces exactly the failure
 pre-batch removes, so continue with the remaining validated items and, if the drill is
 left short, note it in the log rather than padding.
 
-**Where this applies.** Every scenario drill, drill block, review session, and mock. For a
+**Where this applies.** Every scenario drill, drill block, review session, and mock; only a
+curriculum session's scenario drill draws from the bank. For a
 mock, batch per scenario (`GATE-F`) or per group of 5–10 (`GATE-P`) rather than all 60+ at
 once — the point is that no item is drafted while the learner waits, not that the whole
 exam exists before question one. For [Drill mode](#drill-mode), cards from the deck are
@@ -948,7 +975,8 @@ ready in the first minute.
 
 The one exception is a verdict that depends on a lookup, such as a disputed key settled
 per the rule below or a version-sensitive fact. Do that lookup and only that one, grade,
-and then go on.
+and then go on. Bank items are always this case: you don't hold their keys, so run
+`bank.mjs key` for the answered ids first, per [Item pre-batch](#item-pre-batch).
 
 **On pushback, check the claim — don't defend it.** Treat an objection as a bug report
 against your own claim, not as something to answer. The cost asymmetry is steep: a

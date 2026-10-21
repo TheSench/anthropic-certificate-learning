@@ -10,7 +10,9 @@ const OPTION_KEYS = ["A", "B", "C", "D"];
 const ITEM_ID = /^t[1-4]-\d{2}-i\d{2}$/;
 const DATE = /^\d{4}-\d{2}-\d{2}$/;
 
-const USAGE = "usage: bank.mjs validate <bank.json> | stamp <bank.json> <model> | status <bank.json>";
+const USAGE =
+  "usage: bank.mjs validate <bank.json> | stamp <bank.json> <model> | status <bank.json>\n" +
+  "       bank.mjs pick <prompts/tierT/NN-slug.md> [--n <k>] [--seen <jsonl>] | key [--seen <jsonl>] <id>...";
 
 export function sha256(text) {
   return `sha256:${crypto.createHash("sha256").update(text).digest("hex")}`;
@@ -139,6 +141,14 @@ function tally(values) {
   return counts;
 }
 
+function keyPositionRules(keys) {
+  const rules = [];
+  const keyCounts = tally(keys);
+  if ([...keyCounts.values()].some((n) => n > keys.length / 2)) rules.push("key-skew");
+  if (keys.length >= 4 && keyCounts.size < 3) rules.push("key-variety");
+  return rules;
+}
+
 function batchViolations(items) {
   const v = [];
   const seen = new Set();
@@ -148,9 +158,7 @@ function batchViolations(items) {
   }
   if (items.length < MIN_ITEMS) v.push({ rule: "too-few-items" });
 
-  const keyCounts = tally(items.map((i) => i.answerKey));
-  if ([...keyCounts.values()].some((n) => n > items.length / 2)) v.push({ rule: "key-skew" });
-  if (items.length >= 4 && keyCounts.size < 3) v.push({ rule: "key-variety" });
+  for (const rule of keyPositionRules(items.map((i) => i.answerKey))) v.push({ rule });
   for (const rule of keyExtremeRules(items)) v.push({ rule });
 
   const perObjective = tally(items.map((i) => i.objective));
@@ -193,9 +201,137 @@ export function bankStatus(repoRoot, bankPath) {
   return "ok";
 }
 
+// A bank passes gate 5 as a whole, but a lesson asks a handful of its items, and that
+// handful is a batch the gate applies to as well, for key position and key length alike.
+export function pickItems(items, seenIds, n) {
+  const pool = items.filter((i) => !seenIds.has(i.id));
+  const size = Math.min(n, pool.length);
+  const maxSpread = Math.min(size, new Set(pool.map((i) => i.objective)).size);
+  const score = (combo) => [
+    keyPositionRules(combo.map((i) => i.answerKey)).length === 0 && keyExtremeRules(combo).length === 0 ? 1 : 0,
+    new Set(combo.map((i) => i.objective)).size,
+  ];
+
+  let best = null;
+  let bestScore = [-1, -1];
+  const search = (start, combo) => {
+    if (combo.length === size) {
+      const s = score(combo);
+      if (s[0] > bestScore[0] || (s[0] === bestScore[0] && s[1] > bestScore[1])) {
+        best = [...combo];
+        bestScore = s;
+      }
+      return bestScore[0] === 1 && bestScore[1] === maxSpread;
+    }
+    for (let i = start; i <= pool.length - (size - combo.length); i++) {
+      combo.push(pool[i]);
+      const done = search(i + 1, combo);
+      combo.pop();
+      if (done) return true;
+    }
+    return false;
+  };
+  search(0, []);
+  return { items: best ?? [], short: n - size };
+}
+
+export function bankPathFor(repoRoot, promptFile) {
+  const m = /^prompts\/(tier[1-4])\/(\d{2}-[^/]+)\.md$/.exec(promptFile);
+  return m && path.join(repoRoot, "banks", m[1], `${m[2]}.json`);
+}
+
+function bankPathForItem(repoRoot, id) {
+  const m = /^t([1-4])-(\d{2})-i\d{2}$/.exec(id);
+  if (!m) return null;
+  const dir = path.join(repoRoot, "banks", `tier${m[1]}`);
+  let names;
+  try {
+    names = fs.readdirSync(dir).filter((f) => f.startsWith(`${m[2]}-`) && f.endsWith(".json"));
+  } catch {
+    return null;
+  }
+  return names.length === 1 ? path.join(dir, names[0]) : null;
+}
+
+function readSeen(seenPath) {
+  let text;
+  try {
+    text = fs.readFileSync(seenPath, "utf8");
+  } catch {
+    return new Set();
+  }
+  const ids = new Set();
+  for (const line of text.split("\n")) {
+    try {
+      const { id } = JSON.parse(line);
+      if (typeof id === "string") ids.add(id);
+    } catch {}
+  }
+  return ids;
+}
+
+function pickCommand(repoRoot, promptFile, n, seenPath) {
+  const bankPath = bankPathFor(repoRoot, promptFile);
+  const status = bankPath ? bankStatus(repoRoot, bankPath) : "absent";
+  if (status !== "ok") {
+    console.log(`fallback ${status}`);
+    return;
+  }
+  const { items } = JSON.parse(fs.readFileSync(bankPath, "utf8"));
+  const picked = pickItems(items, readSeen(seenPath), n);
+  const blocks = picked.items.map((it) =>
+    [`=== ${it.id}`, it.question.prompt, ...it.question.options.map((o) => `${o.key}. ${o.text}`)].join("\n"),
+  );
+  console.log([`bank ok · ${picked.items.length} items · short ${picked.short}`, ...blocks].join("\n\n"));
+}
+
+function keyCommand(repoRoot, ids, seenPath) {
+  const found = [];
+  const unknown = [];
+  for (const id of ids) {
+    const bankPath = bankPathForItem(repoRoot, id);
+    let bank = null;
+    try {
+      bank = bankPath && validateBank(JSON.parse(fs.readFileSync(bankPath, "utf8"))).bank;
+    } catch {}
+    const it = bank?.items.find((i) => i.id === id);
+    if (it) found.push(it);
+    else unknown.push(id);
+  }
+  if (unknown.length) {
+    for (const id of unknown) console.log(`FAIL unknown-id ${id}`);
+    process.exit(1);
+  }
+
+  for (const it of found) {
+    console.log(`=== ${it.id} · key ${it.answerKey}`);
+    for (const a of it.autopsy) console.log(`${a.option} · tempting: ${a.tempting} · ruled out by: ${a.ruledOutBy}`);
+  }
+
+  const seen = readSeen(seenPath);
+  const date = new Date().toISOString().slice(0, 10);
+  const fresh = [...new Set(found.map((it) => it.id))].filter((id) => !seen.has(id));
+  if (fresh.length) {
+    fs.mkdirSync(path.dirname(seenPath), { recursive: true });
+    fs.appendFileSync(seenPath, fresh.map((id) => JSON.stringify({ id, date }) + "\n").join(""));
+  }
+}
+
 function main() {
   const repoRoot = process.env.BANK_REPO_ROOT ?? path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../../..");
-  const [command, bankPath, model] = process.argv.slice(2);
+  const args = process.argv.slice(2);
+  const flag = (name, fallback) => {
+    const i = args.indexOf(name);
+    if (i === -1) return fallback;
+    const [, value] = args.splice(i, 2);
+    return value;
+  };
+  const seenPath = path.resolve(flag("--seen", path.join(repoRoot, "learner", "seen-items.jsonl")));
+  const n = Number(flag("--n", "5"));
+  const [command, bankPath, model] = args;
+
+  if (command === "pick" && bankPath && Number.isInteger(n) && n > 0) return pickCommand(repoRoot, bankPath, n, seenPath);
+  if (command === "key" && bankPath) return keyCommand(repoRoot, args.slice(1), seenPath);
 
   if (!bankPath) {
     console.error(USAGE);
