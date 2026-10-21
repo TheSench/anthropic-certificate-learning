@@ -882,6 +882,13 @@ feels complete and leaves the learner unable to answer a scenario question.
 run the six gates from [`docs/GATES.md`](docs/GATES.md) over the whole batch before the
 drill starts, per [Item pre-batch](#item-pre-batch), which is where they execute.
 
+**Scored batches ask for letters only.** Every item in a scenario drill, drill block, review or
+mock is multiple choice or multiple response, because that is all the exam asks. Don't attach a
+free-text request (the rule applied, a kill, a rationale) to a batch: it rides on the
+answer-format line, gets missed, and then reads as a gap. To check that a right answer came from
+the right rule, give each plausible wrong rule its own distractor. Free-text checks belong in
+the teaching half, asked on their own.
+
 **Answer-format examples are canned.** When telling the learner how to reply to a set of
 questions, use exactly `e.g. 1A 2BC 3D …` whatever the item count or which items are
 multiple-response. Never write an example from the batch in front of you: you hold the
