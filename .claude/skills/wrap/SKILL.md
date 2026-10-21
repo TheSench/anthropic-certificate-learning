@@ -33,17 +33,22 @@ Follow `.agents/TUTORIAL.md` §5a–5d for exact formats. In brief:
    performance and follow-ups, never on completion alone. Score 4 requires reasoning
    correctly about why distractors were wrong.
 3. **Review queue** — any topic scoring 1 or 2 gets a row, `Due at session` = current + 3.
-4. **Readiness** — update `learner/readiness.md`, recompute
+   A re-review scoring 3+ **deletes** the row (§5c). Record the clearance in the session
+   log, not as a note left in the queue.
+4. **Progress** — update the `## Progress` table's `Complete` column and the line naming
+   the next session. Rewrite that line; do not append a dated sentence to it. It is a
+   cache of what the session logs say (TUTORIAL Step 2), and the logs keep the history.
+5. **Readiness** — update `learner/readiness.md`, recompute
    `projected = 100 + 9 × Σ(weight × confidence)`, and name the domain with the largest
    weight × shortfall.
-5. **Instructor corrections** — if you voided a drill item, retracted a claim, or
+6. **Instructor corrections** — if you voided a drill item, retracted a claim, or
    withdrew a graded miss this session, update `## Instructor corrections` in
    `learner/profile.md` (above `## Session log`, so Step 1's loader reads it back).
 
    **Fold the new instance into an existing rule wherever one covers it** — sharpen the
-   rule or extend its evidence line. Add a bullet only for a genuinely new failure mode.
-   This section is read at the start of every session, so it is bounded by design; the
-   full history belongs in the commit message and the session log, not here.
+   rule's wording; do not add the incident to it. Add a bullet only for a genuinely new
+   failure mode. This section is read at the start of every session, so it is bounded by
+   design; the incident itself belongs in the commit message and the session log.
 
 **Gate — run this exact command and paste its output into your reply before continuing.**
 Saying "checkpoint 1 verified" without the output below it does not count; a previous run
@@ -63,10 +68,24 @@ if diff <(git show HEAD:learner/profile.md | sec /dev/stdin) <(sec learner/profi
 else
   echo "corrections: updated"
 fi
+
+# Step 1's two load commands, run as TUTORIAL writes them. Each tool result is
+# cut off at ~30,000 characters.
+step1() { awk -v h="$1" '$0==h{f=1;next} f&&/^```bash$/{p=1;next} p&&/^```$/{exit} p' .agents/TUTORIAL.md; }
+for h in 'Routing context:' 'Standing rules for teaching:'; do
+  n=$(bash -c "$(step1 "$h")" | wc -m | tr -d ' ')
+  [ "$n" -lt 25000 ] && echo "size ok: $h $n" || echo "TOO LARGE: $h $n"
+done
 ```
 
 Any `NOT WRITTEN` line means that file was never touched — go back and write it, then
 re-run the gate. Two `ok:` lines is the only result that lets you move on.
+
+A `TOO LARGE` line means the next session's start will spill past the tool-result limit.
+Prune before committing, without touching `## Session log` or anything below it: fold
+`## Instructor corrections` back to its rules, delete cleared `## Review queue` rows,
+and condense dated narrative in `## Progress` and `learner/readiness.md`. Everything cut
+must already be in git or a session log. Re-run the gate until both lines read `size ok`.
 
 For the corrections line, the question is not whether the section changed — it is whether
 anything happened this session that *should* have changed it. Did you void a drill item,
