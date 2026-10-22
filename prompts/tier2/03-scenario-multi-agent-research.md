@@ -1,6 +1,6 @@
 # Scenario: Multi-Agent Research — S3
 
-**Foundations scenario archetype 3 of 6 · primary domains F1, F4, F5**
+**Foundations scenario archetype 3 of 6 · primary domains F1, F2, F5**
 
 ## What this session is
 
@@ -21,7 +21,7 @@ Drill the multi-agent research archetype. This is the **highest-value drill in t
    (multiple-response states the count: "Select two.").
 3. Batches of 4–5; no feedback mid-batch.
 4. Full distractor autopsy on every question, correct ones included.
-5. Domain mix: ~7 F1, ~4 F4, ~3 F5, ~1 F3. The guide names Tool Design & MCP a primary
+5. Domain mix: ~7 F1, ~4 F2, ~3 F5, ~1 F4. The guide names Tool Design & MCP a primary
    domain for this archetype — subagent tool distribution and scoped cross-role tools are
    the Tool-Design questions that live inside a research pipeline.
 
@@ -86,7 +86,7 @@ transferable form.
 
    ```
    S3 Multi-Agent Research — [N]/[total] ([%])
-   F1 [n]/[n] · F4 [n]/[n] · F5 [n]/[n] · F3 [n]/[n]
+   F1 [n]/[n] · F2 [n]/[n] · F5 [n]/[n] · F4 [n]/[n]
    ```
 
 5. Name the two most transferable weaknesses. Given F1's weight, an F1 accuracy below 75%
@@ -105,10 +105,10 @@ two-per-session cap. Queue the review either way — the inline fix doesn't repl
 
 **This session runs interleaved inside Tier 1 twice** (see `.agents/SEQUENCE.md` § Interleaved
 drills). At **slot 5** only F1 is taught, and F1 is this archetype's largest share of the full
-mix (~7 F1). Defer the F5, F4 and F3 items — the guide names Tool Design & MCP a primary domain
+mix (~7 F1). Defer the F2, F4 and F5 items — the guide names Tool Design & MCP a primary domain
 here, but it isn't taught until slots 14, 16 and 17 — and note the narrowing in the log.
 
-When the archetype is re-run at full scale at **slot 18**, the deferred F4 items are the point:
+When the archetype is re-run at full scale at **slot 18**, the deferred F2 items are the point:
 subagent tool distribution and scoped cross-role tools are Tool-Design decisions that only
 appear inside a research pipeline, and they're untested if this drill is only ever run in
 its narrowed form.

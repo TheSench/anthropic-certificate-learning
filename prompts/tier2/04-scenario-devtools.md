@@ -1,11 +1,11 @@
 # Scenario: Developer Productivity Tooling — S4
 
-**Foundations scenario archetype 4 of 6 · primary domains F2, F4**
+**Foundations scenario archetype 4 of 6 · primary domains F2, F3**
 
 ## What this session is
 
 An **exam-difficulty drill** on the developer-productivity-tooling archetype. Not a
-teaching session — the F2 sessions and all three F4 sessions taught this. Teach only on a miss.
+teaching session — the F3 sessions and all three F2 sessions taught this. Teach only on a miss.
 
 The archetype's signature theme is **reuse over reinvention**: the exam rewards knowing
 which built-in tool, skill, or platform capability already does the job. Before drilling,
@@ -24,7 +24,7 @@ Drill the developer-productivity-tooling archetype. Its signature theme is **reu
    (multiple-response states the count: "Select two.").
 3. Batches of 4–5; feedback only at batch end.
 4. Full distractor autopsy on every question.
-5. Domain mix: ~6 F4, ~5 F2, ~3 F1, ~1 F5. The guide names Tool Design & MCP, Claude Code
+5. Domain mix: ~6 F2, ~5 F3, ~3 F1, ~1 F5. The guide names Tool Design & MCP, Claude Code
    Configuration, and Agentic Architecture as this archetype's primary domains, in that order.
 
 ## Building the scenario brief
@@ -94,11 +94,11 @@ the misfire. "The description is bad" is not an answer; the exam wants the mecha
 
    ```
    S4 Developer Productivity Tooling — [N]/[total] ([%])
-   F2 [n]/[n] · F4 [n]/[n] · F1 [n]/[n] · F5 [n]/[n]
+   F3 [n]/[n] · F2 [n]/[n] · F1 [n]/[n] · F5 [n]/[n]
    ```
 
 6. Name the two most transferable weaknesses.
-7. Record per `.agents/TUTORIAL.md` Step 5. Misses become drill cards; update F2 and F4
+7. Record per `.agents/TUTORIAL.md` Step 5. Misses become drill cards; update F3 and F2
    readiness. Log any doc discrepancy found while verifying.
 
 ## Out of scope

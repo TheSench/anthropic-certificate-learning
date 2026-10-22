@@ -1,15 +1,25 @@
-# Solution Design and Model Selection — P2 Solution Design & Architecture
+# Solution Design and Model Selection — P1 Solution Design & Architecture
 
-**Exam weight: 17%**
+**Exam weight: 17% (P1) and 13% (P2)**
+
+*Owns § 6 task statements:*
+
+- P1.1 — Translate business problems into Claude-based AI solutions
+- P1.2 — Design end-to-end architectures (input → processing → output → feedback loops)
+- P1.3 — Select appropriate architectural patterns (workflow, agentic, augmented LLM)
+- P1.5 — Apply decomposition techniques for complex problem solving
+- P1.6 — Align solutions to business value pillars (efficiency, transformation,
+  productivity, cost, performance SLAs)
+- P2.1 — Select appropriate Claude models based on trade-offs
 
 ## What this session assumes
 
-Sessions 1–3 (P1). Tier 1 session 2 covered agent-vs-workflow; this raises the same
+Sessions 1–3 (P3). Tier 1 session 2 covered agent-vs-workflow; this raises the same
 judgment to whole-solution design and adds model choice.
 
 ## Why this domain is worth 17% of your score
 
-"When Sonnet is the right call over Opus" is a documented exam question type, and the P2
+"When Sonnet is the right call over Opus" is a documented exam question type, and the P1
 domain description names **model and API selection for specific problems**. The exam gives
 you a problem plus constraints and asks for the design; wrong answers are typically the
 most capable option chosen where a stated cost, latency, or simplicity constraint should
@@ -153,7 +163,7 @@ By the end, the learner can:
    learner simplify each, stating what's lost. Then ask for the one case where the complex
    version was justified.
 11. **Teach justification.** Have them defend a design in three sentences to a skeptical
-   engineering director — this rehearses P5 as well.
+   engineering director — this rehearses P6 as well.
 12. **Decision table** — walk all ten rows.
 13. **Scenario drill — 6 questions**, standalone Professional format. Include a
     constraint-driven model choice, a tiered-pattern trade-off, an API surface decision, an

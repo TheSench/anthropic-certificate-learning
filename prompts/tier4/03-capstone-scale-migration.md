@@ -1,6 +1,6 @@
 # Capstone: Scale and Model Migration
 
-**Spans P2, P3, P5, P6, P7 · Professional capstone 3 of 4**
+**Spans P1, P2, P4, P6, P7 · Professional capstone 3 of 4**
 
 ## What this session is
 
@@ -22,7 +22,7 @@ something: undocumented, unevaluated, over-budget, and depending on a model with
 retirement date. This capstone is built around the domain's recurring right answer — that
 you cannot safely change what you cannot measure — and forces the learner to sequence
 building that measurement under time pressure. It's also the only capstone that
-substantially exercises P5 lifecycle mechanics.
+substantially exercises P6 lifecycle mechanics.
 
 ## The problem
 
@@ -85,10 +85,10 @@ upgrade cadence so this doesn't recur.
 
 | Domain | Assessment | Notes |
 |---|---|---|
-| P2 Solution Design | [1–4] | |
-| P3 Evaluation & Optimization | [1–4] | |
-| P5 Stakeholder & Lifecycle | [1–4] | |
-| P6 Context & Prompting | [1–4] | |
+| P1 Solution Design | [1–4] | |
+| P2 Context & Prompting | [1–4] | |
+| P4 Evaluation & Optimization | [1–4] | |
+| P6 Stakeholder & Lifecycle | [1–4] | |
 | P7 Enablement | [1–4] | |
 
 **Strongest:** …

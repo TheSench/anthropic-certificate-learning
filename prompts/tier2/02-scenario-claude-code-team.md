@@ -1,11 +1,11 @@
 # Scenario: Claude Code Team Config — S2
 
-**Foundations scenario archetype 2 of 6 · primary domains F2, F5**
+**Foundations scenario archetype 2 of 6 · primary domains F3, F5**
 
 ## What this session is
 
 An **exam-difficulty drill** on the Claude Code team-configuration archetype. Not a
-teaching session — the three F2 sessions taught this material. Teach only in response to a
+teaching session — the three F3 sessions taught this material. Teach only in response to a
 miss.
 
 This archetype is the most *precision-dependent* of the six: precedence and placement
@@ -25,7 +25,7 @@ Drill the Claude Code team-configuration archetype. This is the most **precision
    (multiple-response states the count: "Select two.").
 3. Batches of 4–5; no feedback until the batch is complete.
 4. Full distractor autopsy on every question after each batch, including correct answers.
-5. Domain mix: ~8 F2, ~4 F5, ~2 F4, ~1 F1. The guide names Context Management &
+5. Domain mix: ~8 F3, ~4 F5, ~2 F2, ~1 F1. The guide names Context Management &
    Reliability a primary domain for this archetype; long sessions in a large codebase are
    where it bites, so it earns more than a single item.
 
@@ -105,12 +105,12 @@ trick.
 
    ```
    S2 Claude Code Team Config — [N]/[total] ([%])
-   F2 [n]/[n] · F5 [n]/[n] · F4 [n]/[n] · F1 [n]/[n]
+   F3 [n]/[n] · F5 [n]/[n] · F2 [n]/[n] · F1 [n]/[n]
    ```
 
 6. Name the two most transferable weaknesses. If precedence rules were the problem, say so
    directly — that's memorizable, and worth a targeted drill before the mock.
-7. Record per `.agents/TUTORIAL.md` Step 5. Every miss becomes a drill card; update F2
+7. Record per `.agents/TUTORIAL.md` Step 5. Every miss becomes a drill card; update F3
    readiness from measured accuracy. Log any doc discrepancy found while verifying.
 
 ## Out of scope
@@ -122,5 +122,5 @@ resume. See `.agents/TUTORIAL.md` § Teaching inside a drill for the distinction
 two-per-session cap. Queue the review either way — the inline fix doesn't replace it.
 
 **This session runs interleaved inside Tier 1, at slot 22** (see `.agents/SEQUENCE.md`
-§ Interleaved drills), straight after F2's three sessions (19–21). Every Foundations domain is
+§ Interleaved drills), straight after F3's three sessions (19–21). Every Foundations domain is
 taught by then, so run the full mix.

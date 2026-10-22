@@ -22,7 +22,7 @@ gate belongs in the harness; this session is the API that builds the gate."
 
 ## Why this domain is worth 27% of your score
 
-This is an F1 session, not an F2 one, and that matters more than it looks. Task 1.5 is
+This is an F1 session, not an F3 one, and that matters more than it looks. Task 1.5 is
 Domain 1 — Agentic Architecture — because a hook is a *structural* property of the agent,
 not a Claude Code convenience: it changes what the loop is guaranteed to do regardless of
 what the model decides. The material has historically been filed under Claude Code

@@ -1,4 +1,4 @@
-# Structured Output via Tool Use and JSON Schemas — F3 Prompt Engineering & Structured Output
+# Structured Output via Tool Use and JSON Schemas — F4 Prompt Engineering & Structured Output
 
 **Exam weight: 20%**
 
@@ -14,7 +14,7 @@ absence representable.
 
 ## Why this domain is worth 20% of your score
 
-F3 task statement **4.3 — "Enforce structured output using tool use and JSON schemas"** —
+F4 task statement **4.3 — "Enforce structured output using tool use and JSON schemas"** —
 names the mechanism in its own title, and one of the six scenario archetypes is structured
 data extraction from unstructured sources. The scored judgment is the difference between
 *asking* for JSON and *guaranteeing* it, and then the harder judgment on top: what a

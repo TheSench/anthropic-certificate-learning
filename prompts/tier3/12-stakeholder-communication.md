@@ -1,6 +1,13 @@
-# Defending Architecture Decisions — P5 Stakeholder Communication & Lifecycle Management
+# Defending Architecture Decisions — P6 Stakeholder Communication & Lifecycle Management
 
 **Exam weight: 14% · part of the 35% that appears ONLY on Professional**
+
+*Owns § 6 task statements:*
+
+- P6.1 — Conduct structured discovery and requirement gathering
+- P6.2 — Communicate architectural decisions and trade-offs
+- P6.3 — Manage stakeholder feedback loops and expectation alignment (including SLAs)
+- P6.4 — Document architectures and provide implementation guidance
 
 ## What this session assumes
 

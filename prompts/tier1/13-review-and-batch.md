@@ -1,4 +1,4 @@
-# Multi-Pass Review and Batch Processing — F3 Prompt Engineering & Structured Output
+# Multi-Pass Review and Batch Processing — F4 Prompt Engineering & Structured Output
 
 **Exam weight: 20%**
 
@@ -15,7 +15,7 @@ volume.
 
 ## Why this domain is worth 20% of your score
 
-This session owns the last two F3 task statements: **4.6 — "Design multi-instance and
+This session owns the last two F4 task statements: **4.6 — "Design multi-instance and
 multi-pass review architectures"** — and **4.5 — "Design efficient batch processing
 strategies"**. 4.6 is tested directly by the official sample questions (Q12), which is as
 strong a signal of item density as the guide gives. 4.5 is the most arithmetic-friendly

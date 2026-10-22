@@ -65,7 +65,7 @@ correct. The most common single failure on both exams.
 ### 2. Guidance where enforcement is required
 
 Choosing a mechanism the model *may* follow when the scenario needs one the harness
-*guarantees*. The signature trap of F2, and it generalizes to every domain with a
+*guarantees*. The signature trap of F3, and it generalizes to every domain with a
 compliance or safety requirement.
 
 | Instance | The tell that rules it out |
@@ -195,7 +195,18 @@ On any decomposition item, make the learner name **which of the four tests**
 (self-contained, verifiable, bounded, independent) their answer turns on. That's the
 transferable form, and it's what makes the autopsy stick.
 
-### F2 Claude Code Configuration & Workflows (20%)
+### F2 Tools, MCP & Integrations (18%)
+
+| Trap | The tell | Source |
+|---|---|---|
+| "Improve the system prompt" for a tool-description bug | A tool description *is* a prompt — it's the model's whole basis for choosing | T1-11 |
+| Building a custom tool where a built-in or server tool already does it | Check the built-ins before designing | S4 |
+| Overlapping tool descriptions left mutually ambiguous | Neither says when to use the other | T1-11, S4 |
+| A third-party server accepted without a trust analysis | It sees arguments (exfiltration) and returns context (injection) | T1-12, S4 |
+| Returning full payloads that bloat the parent's context | The parent needs a field, not the document | S4 |
+| Unbounded retry as an implied default | No ceiling stated anywhere in the design | T1-13 |
+
+### F3 Claude Code Configuration & Workflows (20%)
 
 | Trap | The tell | Source |
 |---|---|---|
@@ -210,7 +221,7 @@ transferable form, and it's what makes the autopsy stick.
 | No sandbox on a shared runner | Other jobs share the host | S5 |
 | Unbounded run time or token spend per job | No ceiling means no cost bound | S5 |
 
-### F3 Prompt Engineering & Output Control (20%)
+### F4 Prompt Engineering & Output Control (20%)
 
 | Trap | The tell | Source |
 |---|---|---|
@@ -223,17 +234,6 @@ transferable form, and it's what makes the autopsy stick.
 | A noisy category left enabled while "improving the prompt" | It erodes trust in the accurate categories in the meantime | S5 |
 | Single-pass review of a 40-file change | Attention dilutes across files; per-file plus a cross-file pass is the shape | S5 |
 | Findings parsed out of prose instead of enforced by a schema | The consumer is a program, and prose parsing fails silently on rewording | T1-09, S5 |
-
-### F4 Tools, MCP & Integrations (18%)
-
-| Trap | The tell | Source |
-|---|---|---|
-| "Improve the system prompt" for a tool-description bug | A tool description *is* a prompt — it's the model's whole basis for choosing | T1-11 |
-| Building a custom tool where a built-in or server tool already does it | Check the built-ins before designing | S4 |
-| Overlapping tool descriptions left mutually ambiguous | Neither says when to use the other | T1-11, S4 |
-| A third-party server accepted without a trust analysis | It sees arguments (exfiltration) and returns context (injection) | T1-12, S4 |
-| Returning full payloads that bloat the parent's context | The parent needs a field, not the document | S4 |
-| Unbounded retry as an implied default | No ceiling stated anywhere in the design | T1-13 |
 
 ### F5 Context, State & Reliability (15%)
 
@@ -253,23 +253,24 @@ transferable form, and it's what makes the autopsy stick.
 
 ## Professional — domain traps
 
-Beyond the families. P4–P7 are absent from Foundations, so a correct answer there is
+Beyond the families. P5–P7 are absent from Foundations, so a correct answer there is
 weaker evidence — [`TUTORIAL.md`](../TUTORIAL.md) tells you to score them conservatively.
 
 | Domain | Trap | The tell | Source |
 |---|---|---|---|
-| P1 (19%) | Parity across deployment surfaces assumed rather than verified | Feature availability differs per surface and moves | T3-02 |
-| P1 | Static credentials chosen for simplicity | An enterprise identity system already exists | T3-01 |
-| P2 (17%) | Scaling answers that add capacity where the constraint is a limit | Rate limits don't yield to more workers | T3-05 |
-| P2 | Prompt-level fixes for reliability problems | Reliability needs a structural control, not better wording | T3-06 |
-| P2 | Schema validation trusted to catch semantic errors | Well-formed and wrong is the dangerous case | T3-06 |
-| P3 (16%) | Optimization before measurement | No profile identifies where the cost or latency actually is | T3-09 |
-| P3 | Levers chosen without their side effect | Every lever trades something; name it | T3-09 |
-| P4 (14%) | Oversight assigned by task difficulty rather than reversibility | Hard-and-reversible needs less oversight than easy-and-irreversible | T3-11 |
-| P4 | Instruction-hardening where privilege reduction was the control | Instructions bind a cooperative model only | T3-11 |
-| P5 (14%) | Migration without eval evidence | No baseline means no way to know the migration regressed | T3-13 |
-| P5 | Stronger-model upgrades assumed safe | A more capable model can still regress a specific behavior | T3-13 |
-| P6 (13%) | Production A/B results trusted at sample sizes that can't support them | The claimed effect is below the resolvable difference | T3-15 |
+| P1 (17%) | Scaling answers that add capacity where the constraint is a limit | Rate limits don't yield to more workers | T3-05 |
+| P1 | Prompt-level fixes for reliability problems | Reliability needs a structural control, not better wording | T3-06 |
+| P1 | Schema validation trusted to catch semantic errors | Well-formed and wrong is the dangerous case | T3-06 |
+| P2 (13%) | Production A/B results trusted at sample sizes that can't support them | The claimed effect is below the resolvable difference | T3-15 |
+| P3 (19%) | Parity across deployment surfaces assumed rather than verified | Feature availability differs per surface and moves | T3-02 |
+| P3 | Static credentials chosen for simplicity | An enterprise identity system already exists | T3-01 |
+| P4 (16%) | Optimization before measurement | No profile identifies where the cost or latency actually is | T3-09 |
+| P4 | Levers chosen without their side effect | Every lever trades something; name it | T3-09 |
+| P5 (14%) | Oversight assigned by task difficulty rather than reversibility | Hard-and-reversible needs less oversight than easy-and-irreversible | T3-11 |
+| P5 | Instruction-hardening where privilege reduction was the control | Instructions bind a cooperative model only | T3-11 |
+| P5 | Human approval requested in the prompt where the harness had to withhold the action | The agent can still take the action without a human's answer | T3-11 |
+| P6 (14%) | Migration without eval evidence | No baseline means no way to know the migration regressed | T3-13 |
+| P6 | Stronger-model upgrades assumed safe | A more capable model can still regress a specific behavior | T3-13 |
 | P7 (7%) | Org-wide launches before the enablement path exists | Rollout precedes the support structure it depends on | T3-16 |
 
 ---

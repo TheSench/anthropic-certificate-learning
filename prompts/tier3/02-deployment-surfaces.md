@@ -1,6 +1,9 @@
-# Bedrock, Vertex, Foundry, Gateways — P1 Integration
+# Bedrock, Vertex, Foundry, Gateways — P3 Integration
 
 **Exam weight: 19%**
+
+*Owns no § 6 task statement. Supports P3.7 — choosing the integration mechanism — and
+P5.4 — compliance — wherever residency or retention decides the surface.*
 
 ## What this session assumes
 

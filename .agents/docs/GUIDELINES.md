@@ -14,7 +14,7 @@
 ## Domain codes
 
 Always refer to domains by code plus name on first use in a file: `F1 Agentic
-Architecture`. Codes are defined in `BLUEPRINT.md` and are stable.
+Architecture`. Codes are defined in `BLUEPRINT.md` and match the exam guides' domain numbers.
 
 - `F1`–`F5` — Foundations domains
 - `P1`–`P7` — Professional domains
@@ -92,12 +92,12 @@ is always the tested one:
 | Term | This curriculum (tested) | AI Fluency (not tested) |
 |---|---|---|
 | **Delegation** | Agent-to-subagent handoff — delegation briefs, subagent economics, the three-column ledger (F1) | Deciding what to hand to an AI vs. keep human |
-| **Description** | The text a model reads to choose a tool; "a tool description is a prompt" (F4) | Communicating intent to an AI precisely |
+| **Description** | The text a model reads to choose a tool; "a tool description is a prompt" (F2) | Communicating intent to an AI precisely |
 
 The other two collide with nothing here: **Discernment** (critically evaluating
 AI output) is the personal-competency analogue of our validation boundary and
 semantically-wrong-but-well-formed output (T3-06); **Diligence** (responsible,
-accountable AI use) is the individual-conduct analogue of P4/P5 governance.
+accountable AI use) is the individual-conduct analogue of P5/P6 governance.
 
 If a learner raises any of the four, name the collision and move on — do not
 teach the framework as scope.

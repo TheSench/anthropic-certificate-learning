@@ -1,4 +1,4 @@
-# Skills, Slash Commands, and Plan Mode — F2 Claude Code Configuration & Workflows
+# Skills, Slash Commands, and Plan Mode — F3 Claude Code Configuration & Workflows
 
 **Exam weight: 20%**
 
@@ -23,7 +23,7 @@ project-scoped `.claude/commands/` for team-wide availability, one keyed on plan
 monolith-to-microservices migration — which is a high density for a single session. Both are
 placement judgments rather than recall: *which* directory, and *whether to plan first*. The
 distractors in both are things that would technically work and are simply the wrong call
-under the stated constraints, which is the F2 house style.
+under the stated constraints, which is the F3 house style.
 
 ## Session focus
 

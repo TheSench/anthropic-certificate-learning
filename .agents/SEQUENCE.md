@@ -17,12 +17,12 @@ The Foundations pool. Tier 2 has one session per archetype; mocks draw 4 at rand
 
 | # | Archetype | Primary domains |
 |---|---|---|
-| S1 | Customer support resolution with escalation logic | F1, F4, F5 |
-| S2 | Claude Code team configuration and workflows | F2, F5 |
-| S3 | Multi-agent research system orchestration | F1, F4, F5 |
-| S4 | Developer productivity tooling with built-in utilities | F2, F4 |
-| S5 | Automated code review inside CI/CD | F2, F3 |
-| S6 | Structured data extraction from unstructured sources | F3, F5 |
+| S1 | Customer support resolution with escalation logic | F1, F2, F5 |
+| S2 | Claude Code team configuration and workflows | F3, F5 |
+| S3 | Multi-agent research system orchestration | F1, F2, F5 |
+| S4 | Developer productivity tooling with built-in utilities | F2, F3 |
+| S5 | Automated code review inside CI/CD | F3, F4 |
+| S6 | Structured data extraction from unstructured sources | F4, F5 |
 
 Each archetype's prompt file is authoritative for its own domains and question mix; this
 table is the index. If the two disagree, the prompt file wins and this table is stale.
@@ -46,7 +46,7 @@ on what. Every session's prerequisites are taught before it; there are no forwar
 references.
 
 Each session owns the § 6 task statements listed, and every one of the 30 is owned exactly
-once. Session counts track exam weight (F1 5 of 18 against 27%, F3 4 against 20%, F2/F4/F5
+once. Session counts track exam weight (F1 5 of 18 against 27%, F4 4 against 20%, F3/F2/F5
 3 each against 20/18/15%).
 
 | # | File | Session | Domain | Owns | Builds on |
@@ -58,24 +58,24 @@ once. Session counts track exam weight (F1 5 of 18 against 27%, F3 4 against 20%
 | **5** | `prompts/tier2/03-scenario-multi-agent-research.md` | **DRILL — S3 Multi-Agent Research** (partial: F1 only) | S3 | — | 1–4 |
 | 6 | `prompts/tier1/06-conversation-context.md` | Conversation Context and What Summarization Destroys | F5 | 5.1 | 1, 3 |
 | 7 | `prompts/tier1/07-reliability-across-agents.md` | Reliability Across Agents: Errors, Crash Recovery, Provenance | F5 | 5.3, 5.4, 5.6 | 1, 3, 4, 6 |
-| 8 | `prompts/tier1/08-criteria-and-fewshot.md` | Explicit Criteria and Few-Shot Prompting | F3 | 4.1, 4.2 | 1 |
+| 8 | `prompts/tier1/08-criteria-and-fewshot.md` | Explicit Criteria and Few-Shot Prompting | F4 | 4.1, 4.2 | 1 |
 | 9 | `prompts/tier1/09-escalation.md` | Escalation and Ambiguity Resolution | F5 | 5.2 | 1, 8 |
 | **10** | `prompts/tier2/01-scenario-support-escalation.md` | **DRILL — S1 Customer Support Resolution** | S1 | — | 1–9 |
-| 11 | `prompts/tier1/11-structured-output.md` | Structured Output via Tool Use and JSON Schemas | F3 | 4.3 | 1, 8 |
-| 12 | `prompts/tier1/12-validation-and-calibration.md` | Validation, Retry, and Confidence Calibration | F3 | 4.4, 5.5 | 11 |
-| 13 | `prompts/tier1/13-review-and-batch.md` | Multi-Pass Review and Batch Processing | F3 | 4.6, 4.5 | 2, 3, 11, 12 |
-| 14 | `prompts/tier1/14-tool-interfaces.md` | Designing Tool Interfaces | F4 | 2.1 | 1, 8 |
+| 11 | `prompts/tier1/11-structured-output.md` | Structured Output via Tool Use and JSON Schemas | F4 | 4.3 | 1, 8 |
+| 12 | `prompts/tier1/12-validation-and-calibration.md` | Validation, Retry, and Confidence Calibration | F4 | 4.4, 5.5 | 11 |
+| 13 | `prompts/tier1/13-review-and-batch.md` | Multi-Pass Review and Batch Processing | F4 | 4.6, 4.5 | 2, 3, 11, 12 |
+| 14 | `prompts/tier1/14-tool-interfaces.md` | Designing Tool Interfaces | F2 | 2.1 | 1, 8 |
 | 15 | `prompts/tier1/15-hooks.md` | Agent SDK Hooks for Interception and Normalization | F1 | 1.5 | 1, 14 |
-| 16 | `prompts/tier1/16-tool-errors-distribution.md` | Tool Errors and Tool Distribution | F4 | 2.2, 2.3 | 3, 7, 11, 14 |
-| 17 | `prompts/tier1/17-mcp-and-builtins.md` | MCP Servers and Built-in Tools | F4 | 2.4, 2.5 | 14, 16 |
+| 16 | `prompts/tier1/16-tool-errors-distribution.md` | Tool Errors and Tool Distribution | F2 | 2.2, 2.3 | 3, 7, 11, 14 |
+| 17 | `prompts/tier1/17-mcp-and-builtins.md` | MCP Servers and Built-in Tools | F2 | 2.4, 2.5 | 14, 16 |
 | **18** | `prompts/tier2/03-scenario-multi-agent-research.md` | **DRILL — S3 Multi-Agent Research** (full) | S3 | — | 1–17 |
-| 19 | `prompts/tier1/19-claude-md-and-rules.md` | CLAUDE.md Hierarchy and Path-Specific Rules | F2 | 3.1, 3.3 | 1, 14 |
-| 20 | `prompts/tier1/20-skills-commands-planmode.md` | Skills, Slash Commands, and Plan Mode | F2 | 3.2, 3.4 | 2, 3, 14, 19 |
-| 21 | `prompts/tier1/21-refinement-and-cicd.md` | Iterative Refinement and CI/CD Integration | F2 | 3.5, 3.6 | 8, 11, 13, 19, 20 |
+| 19 | `prompts/tier1/19-claude-md-and-rules.md` | CLAUDE.md Hierarchy and Path-Specific Rules | F3 | 3.1, 3.3 | 1, 14 |
+| 20 | `prompts/tier1/20-skills-commands-planmode.md` | Skills, Slash Commands, and Plan Mode | F3 | 3.2, 3.4 | 2, 3, 14, 19 |
+| 21 | `prompts/tier1/21-refinement-and-cicd.md` | Iterative Refinement and CI/CD Integration | F3 | 3.5, 3.6 | 8, 11, 13, 19, 20 |
 | **22** | `prompts/tier2/02-scenario-claude-code-team.md` | **DRILL — S2 Claude Code Team Config** | S2 | — | 1–21 |
 
 Session 12 owns one task from each of two domains (4.4 and 5.5) — the extraction result
-and the decision of whether to trust it are one lesson. Its `Domain` label is F3 for
+and the decision of whether to trust it are one lesson. Its `Domain` label is F4 for
 routing, but 5.5 credits F5 under [Readiness scoring](TUTORIAL.md#readiness-scoring),
 which counts task statements rather than session labels, so the mixed ownership costs
 nothing.
@@ -123,14 +123,14 @@ exam's largest domain, and a first sustained exam-format block arriving too late
 the stamina a 15-question scenario demands.
 
 **A partial drill is worth more than a delayed one.** Running S3 at session 5 on F1 material
-alone cuts F1's gap from eighteen sessions to one. The F4 items it would otherwise carry
+alone cuts F1's gap from eighteen sessions to one. The F2 items it would otherwise carry
 (subagent tool distribution, scoped cross-role tools) are deferred to the full re-run at
 18 — those are authorship decisions that need session 14, and the archetype rehearses fine
 without them.
 
 | # | Archetype | Coverage | What it rehearses |
 |---|---|---|---|
-| 5 | S3 Multi-Agent Research | Partial — F1 only | Decomposition, delegation, coordinator aggregation. Defer F4 and F5 items. |
+| 5 | S3 Multi-Agent Research | Partial — F1 only | Decomposition, delegation, coordinator aggregation. Defer F2 and F5 items. |
 | 10 | S1 Customer Support Resolution | Full for S1's domains | Loop, subagents, context preservation, error propagation, escalation. |
 | 18 | S3 Multi-Agent Research | Full | The same archetype with tool distribution, structured errors, and provenance in place. |
 | 22 | S2 Claude Code Team Config | Full | CLAUDE.md scope, skills, plan mode, CI. |
@@ -143,7 +143,7 @@ Run each as its prompt file specifies, with one amendment — see
 [`TUTORIAL.md` § Teaching inside a drill](TUTORIAL.md#teaching-inside-a-drill). Where
 coverage is partial, **narrow the set to covered domains and say so** rather than padding
 with unseen material: at session 5, draw entirely from F1 for ~10 questions instead of S3's
-full ~7 F1 / ~4 F4 / ~3 F5 / ~1 F3 mix.
+full ~7 F1 / ~4 F2 / ~3 F5 / ~1 F4 mix.
 
 Score these as normal drill sessions: readiness rows updated from measured accuracy, misses
 become drill cards. Note in the log that the session ran interleaved and which domains were
@@ -157,24 +157,24 @@ at session 21), so they run in Tier 2 where they get full coverage.
 File numbers restart at `01` and do not match session numbers — session 28 is
 `tier3/01-…`, an offset of 27.
 
-| # | File | Session | Domain | Wt |
-|---|------|---------|--------|-----|
-| 28 | `prompts/tier3/01-enterprise-integration.md` | Enterprise Integration Patterns | P1 | 19% |
-| 29 | `prompts/tier3/02-deployment-surfaces.md` | Bedrock, Vertex, Foundry, Gateways | P1 | 19% |
-| 30 | `prompts/tier3/03-data-integration.md` | Files, Citations, RAG, and Data Wiring | P1 | 19% |
-| 31 | `prompts/tier3/04-solution-design.md` | Solution Design and Model Selection | P2 | 17% |
-| 32 | `prompts/tier3/05-architecture-tradeoffs.md` | Architecture Trade-offs at Scale | P2 | 17% |
-| 33 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P2 | 17% |
-| 34 | `prompts/tier3/07-eval-design.md` | Designing Evals That Catch Regressions | P3 | 16% |
-| 35 | `prompts/tier3/08-guardrails-quality.md` | Guardrails: Hallucination, Jailbreak, Leak | P3 | 16% |
-| 36 | `prompts/tier3/09-cost-latency-optimization.md` | Cost and Latency Optimization | P3 | 16% |
-| 37 | `prompts/tier3/10-governance-compliance.md` | Governance, Residency, and Compliance | P4 | 14% |
-| 38 | `prompts/tier3/11-safety-risk.md` | Safety Controls and Risk Management | P4 | 14% |
-| 39 | `prompts/tier3/12-stakeholder-communication.md` | Defending Architecture Decisions | P5 | 14% |
-| 40 | `prompts/tier3/13-lifecycle-management.md` | Lifecycle: Migration and Deprecation | P5 | 14% |
-| 41 | `prompts/tier3/14-context-engineering-scale.md` | Context Engineering at Scale | P6 | 13% |
-| 42 | `prompts/tier3/15-model-steering.md` | Model Steering and Prompt Portfolios | P6 | 13% |
-| 43 | `prompts/tier3/16-developer-enablement.md` | Developer Productivity and Enablement | P7 | 7% |
+| # | File | Session | Domain | Wt | Owns |
+|---|------|---------|--------|-----|------|
+| 28 | `prompts/tier3/01-enterprise-integration.md` | Enterprise Integration Patterns | P3 | 19% | P3.2, P3.7 |
+| 29 | `prompts/tier3/02-deployment-surfaces.md` | Bedrock, Vertex, Foundry, Gateways | P3 | 19% | — |
+| 30 | `prompts/tier3/03-data-integration.md` | Files, Citations, RAG, and Data Wiring | P3 | 19% | P3.5, P3.6 |
+| 31 | `prompts/tier3/04-solution-design.md` | Solution Design and Model Selection | P1 | 17% | P1.1, P1.2, P1.3, P1.5, P1.6, P2.1 |
+| 32 | `prompts/tier3/05-architecture-tradeoffs.md` | Architecture Trade-offs at Scale | P1 | 17% | P1.4, P3.3 |
+| 33 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P1 | 17% | P3.4, P4.4, P4.6 |
+| 34 | `prompts/tier3/07-eval-design.md` | Designing Evals That Catch Regressions | P4 | 16% | P4.1, P4.2, P4.3 |
+| 35 | `prompts/tier3/08-guardrails-quality.md` | Guardrails: Hallucination, Jailbreak, Leak | P4 | 16% | P5.1 |
+| 36 | `prompts/tier3/09-cost-latency-optimization.md` | Cost and Latency Optimization | P4 | 16% | P4.5 |
+| 37 | `prompts/tier3/10-governance-compliance.md` | Governance, Residency, and Compliance | P5 | 14% | P5.4 |
+| 38 | `prompts/tier3/11-safety-risk.md` | Safety Controls and Risk Management | P5 | 14% | P5.2, P5.3, P5.5 |
+| 39 | `prompts/tier3/12-stakeholder-communication.md` | Defending Architecture Decisions | P6 | 14% | P6.1, P6.2, P6.3, P6.4 |
+| 40 | `prompts/tier3/13-lifecycle-management.md` | Lifecycle: Migration and Deprecation | P6 | 14% | P6.5 |
+| 41 | `prompts/tier3/14-context-engineering-scale.md` | Context Engineering at Scale | P2 | 13% | P2.4, P3.1, P3.8 |
+| 42 | `prompts/tier3/15-model-steering.md` | Model Steering and Prompt Portfolios | P2 | 13% | P2.2, P2.3, P2.5 |
+| 43 | `prompts/tier3/16-developer-enablement.md` | Developer Productivity and Enablement | P7 | 7% | P7.1, P7.2, P7.3 |
 
 ### Tier 4 — Professional capstones (4 sessions + gate)
 

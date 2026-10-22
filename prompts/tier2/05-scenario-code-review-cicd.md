@@ -1,11 +1,11 @@
 # Scenario: Code Review in CI/CD — S5
 
-**Foundations scenario archetype 5 of 6 · primary domains F2, F3**
+**Foundations scenario archetype 5 of 6 · primary domains F3, F4**
 
 ## What this session is
 
 An **exam-difficulty drill** on the automated-code-review-in-CI archetype. Not a teaching
-session — Claude Code & CI/CD taught the core, with the other F2 sessions and all F4
+session — Claude Code & CI/CD taught the core, with the other F3 sessions and all F2
 sessions supporting. Teach only on
 a miss.
 
@@ -28,7 +28,7 @@ Drill the automated-code-review-in-CI archetype, weighted toward **prompt design
    (multiple-response states the count: "Select two.").
 3. Batches of 4–5; feedback only at batch end.
 4. Full distractor autopsy on every question.
-5. Domain mix: ~6 F2, ~5 F3, ~2 F4, ~2 F5.
+5. Domain mix: ~6 F3, ~5 F4, ~2 F2, ~2 F5.
 
 ## Building the scenario brief
 
@@ -123,11 +123,11 @@ hallucinated fields.
 
    ```
    S5 Code Review in CI/CD — [N]/[total] ([%])
-   F2 [n]/[n] · F3 [n]/[n] · F4 [n]/[n] · F5 [n]/[n]
+   F3 [n]/[n] · F4 [n]/[n] · F2 [n]/[n] · F5 [n]/[n]
    ```
 
 6. Name the two most transferable weaknesses.
-7. Record per `.agents/TUTORIAL.md` Step 5. Misses become drill cards; update F2 and F3
+7. Record per `.agents/TUTORIAL.md` Step 5. Misses become drill cards; update F3 and F4
    readiness. Log any doc discrepancy found while verifying.
 
 ## Out of scope

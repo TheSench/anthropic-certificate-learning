@@ -1,6 +1,10 @@
-# Enterprise Integration Patterns — P1 Integration
+# Enterprise Integration Patterns — P3 Integration
 
 **Exam weight: 19% (highest of any Professional domain)**
+
+*Owns § 6 task statements P3.2 — Analyze authentication and authorization requirements to
+identify security gaps — and P3.7 — Evaluate connection protocols and select the
+appropriate integration mechanism (MCP, API/CLI, agent-to-agent).*
 
 ## What this session assumes
 
@@ -9,7 +13,7 @@ Foundations altitude; this session raises it to enterprise systems integration.
 
 ## Why this domain is worth 19% of your score
 
-P1 is the largest Professional domain — enterprise system connectivity and data wiring.
+P3 is the largest Professional domain — enterprise system connectivity and data wiring.
 The altitude shift matters: Foundations asks "how do you define a tool", Professional asks
 "how does this land in an enterprise that already has an identity provider, a data
 classification policy, an existing event bus, and a network perimeter". Wrong answers are

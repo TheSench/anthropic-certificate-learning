@@ -1,6 +1,8 @@
-# Guardrails: Hallucination, Jailbreak, Leak — P3 Evaluation, Testing & Optimization
+# Guardrails: Hallucination, Jailbreak, Leak — P4 Evaluation, Testing & Optimization
 
 **Exam weight: 16%**
+
+*Owns § 6 task statement P5.1 — Implement guardrails and safety controls.*
 
 ## What this session assumes
 

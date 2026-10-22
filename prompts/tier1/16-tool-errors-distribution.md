@@ -1,4 +1,4 @@
-# Tool Errors and Tool Distribution — F4 Tool Design & MCP Integration
+# Tool Errors and Tool Distribution — F2 Tool Design & MCP Integration
 
 **Exam weight: 18%**
 
@@ -17,12 +17,12 @@ configure tool choice."**
 
 ## Why this domain is worth 18% of your score
 
-The F4 domain description names **structured error responses with retry logic** explicitly,
-and tool distribution is where F4 and F1 questions overlap — a multi-agent scenario asking
+The F2 domain description names **structured error responses with retry logic** explicitly,
+and tool distribution is where F2 and F1 questions overlap — a multi-agent scenario asking
 "why is this agent unreliable" often has a tool-distribution answer rather than an
-orchestration one. Both tasks here are mechanism-heavy in a way the rest of F4 is not: the
+orchestration one. Both tasks here are mechanism-heavy in a way the rest of F2 is not: the
 exam expects the literal field names on an error payload and the literal `tool_choice`
-values, not a paraphrase of the concept. Two tasks in one session makes this the densest F4
+values, not a paraphrase of the concept. Two tasks in one session makes this the densest F2
 session; budget accordingly.
 
 ## Session focus
@@ -212,7 +212,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 
 ## How to run this session
 
-1. **Frame** — F4 is 18%; this session owns two task statements, 2.2 and 2.3, and both are
+1. **Frame** — F2 is 18%; this session owns two task statements, 2.2 and 2.3, and both are
    mechanism-heavy. Say plainly that the field names and the `tool_choice` values are
    themselves the tested content here, not just the ideas behind them.
 2. **Teach error-as-context** with a direct comparison. Show `"Operation failed"` returned for

@@ -1,6 +1,12 @@
-# Production Reliability Patterns — P2 Solution Design & Architecture
+# Production Reliability Patterns — P1 Solution Design & Architecture
 
 **Exam weight: 17%**
+
+*Owns § 6 task statements:*
+
+- P3.4 — Analyze observability challenges and select monitoring strategies at scale
+- P4.4 — Diagnose system issues (prompt failure, hallucinations, model mismatch)
+- P4.6 — Monitor system performance using logging and observability tools
 
 ## What this session assumes
 

@@ -28,20 +28,8 @@ the exam."
 - [CCAR-F Exam Guide (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1783542750/Claude+Certified+Architect+%E2%80%93+Foundations+Exam+Guide.pdf)
 - [CCAR-P Exam Guide (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1783542810/Claude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf)
 
-**Our P-codes are not the guide's domain numbers.** This file orders the Professional
-domains by weight and labels them P1–P7; the guide lists them in its own order as Domain
-1–7. The domains, names, and weights are identical — only the numbering differs. Read
-across when comparing this file to the guide:
-
-| Ours | Guide | Domain | Weight |
-|---|---|---|---|
-| P1 | Domain 3 | Integration | 19% |
-| P2 | Domain 1 | Solution Design & Architecture | 17% |
-| P3 | Domain 4 | Evaluation, Testing & Optimization | 16% |
-| P4 | Domain 5 | Governance, Safety & Risk Management | 14% |
-| P5 | Domain 6 | Stakeholder Communication & Lifecycle Management | 14% |
-| P6 | Domain 2 | Claude Models, Prompting & Context Engineering | 13% |
-| P7 | Domain 7 | Developer Productivity & Operational Enablement | 7% |
+**Domain codes are the guides' domain numbers.** F3 is CCAR-F Domain 3 and P3 is CCAR-P
+Domain 3, so a code reads straight across to the guide and to a score report.
 
 CCAR-F's § 17 Appendix carries three lists that define scope precisely —
 **Technologies and Concepts**, **In-Scope Topics**, and **Out-of-Scope Topics**.
@@ -122,28 +110,15 @@ scaled cut score.
 | # | Domain | Weight | Task statements | Tier 1 sessions |
 |---|--------|--------|-----------------|-----------------|
 | F1 | Agentic Architecture & Orchestration | **27%** | 7 | 5 |
-| F2 | Claude Code Configuration & Workflows | **20%** | 6 | 3 |
-| F3 | Prompt Engineering & Structured Output | **20%** | 6 | 4 |
-| F4 | Tool Design & MCP Integration | **18%** | 5 | 3 |
+| F2 | Tool Design & MCP Integration | **18%** | 5 | 3 |
+| F3 | Claude Code Configuration & Workflows | **20%** | 6 | 3 |
+| F4 | Prompt Engineering & Structured Output | **20%** | 6 | 4 |
 | F5 | Context Management & Reliability | **15%** | 6 | 3 |
 
 Session counts are proportional to weight — study time tracks what is scored. **Task
-statement counts are not**: F5 carries six objectives on 15% of the score while F4 carries
+statement counts are not**: F5 carries six objectives on 15% of the score while F2 carries
 five on 18%, so per-domain coverage must be measured against the statement count, not the
 session count. See `.agents/TUTORIAL.md` § Readiness scoring.
-
-**Our F-codes are not the guide's domain numbers**, for the same reason as the P-codes
-below: this file orders domains by weight, the guide uses its own order. F1 and F5 happen
-to coincide; F2, F3, and F4 do not. The score report is per-domain, so read across before
-comparing a result to the guide:
-
-| Ours | Guide | Domain | Weight |
-|---|---|---|---|
-| F1 | Domain 1 | Agentic Architecture & Orchestration | 27% |
-| F2 | Domain 3 | Claude Code Configuration & Workflows | 20% |
-| F3 | Domain 4 | Prompt Engineering & Structured Output | 20% |
-| F4 | Domain 2 | Tool Design & MCP Integration | 18% |
-| F5 | Domain 5 | Context Management & Reliability | 15% |
 
 ### Task statements — the real scope
 
@@ -302,19 +277,72 @@ Claude API · Agent SDK · Claude Code · MCP · Claude Projects
 
 ### Domains
 
-| # | Domain | Weight | Tier 3 sessions |
-|---|--------|--------|-----------------|
-| P1 | Integration | **19%** | 3 |
-| P2 | Solution Design & Architecture | **17%** | 3 |
-| P3 | Evaluation, Testing & Optimization | **16%** | 3 |
-| P4 | Governance, Safety & Risk Management | **14%** | 2 |
-| P5 | Stakeholder Communication & Lifecycle Management | **14%** | 2 |
-| P6 | Claude Models, Prompting & Context Engineering | **13%** | 2 |
-| P7 | Developer Productivity & Operational Enablement | **7%** | 1 |
+| # | Domain | Weight | Task statements | Tier 3 sessions |
+|---|--------|--------|-----------------|-----------------|
+| P1 | Solution Design & Architecture | **17%** | 6 | 3 |
+| P2 | Claude Models, Prompting & Context Engineering | **13%** | 5 | 2 |
+| P3 | Integration | **19%** | 8 | 3 |
+| P4 | Evaluation, Testing & Optimization | **16%** | 6 | 3 |
+| P5 | Governance, Safety & Risk Management | **14%** | 5 | 2 |
+| P6 | Stakeholder Communication & Lifecycle Management | **14%** | 5 | 2 |
+| P7 | Developer Productivity & Operational Enablement | **7%** | 3 | 1 |
 
-**P4, P5, P7 together are 35% of Professional and appear nowhere on Foundations.**
+**P5, P6, P7 together are 35% of Professional and appear nowhere on Foundations.**
 They are the most common reason a strong Foundations candidate fails Professional —
 the curriculum treats them as first-class, not as an afterthought.
+
+### Task statements
+
+The CCAR-P guide numbers its domains but not the task statements under them, so these IDs
+are ours: `P` + domain number + the bullet's position in that domain's § 6 list. The `P`
+prefix keeps them distinct from CCAR-F IDs on drill cards, where a bare `3.1` already
+means a Foundations task. Every statement is quoted verbatim, so a revised guide that
+reorders or rewords a bullet shows up as a mismatch here rather than a silently wrong ID.
+
+| ID | Task statement | Session |
+|---|---|---|
+| **P1.1** | Translate business problems into Claude-based AI solutions | S31 |
+| **P1.2** | Design end-to-end architectures (input → processing → output → feedback loops) | S31 |
+| **P1.3** | Select appropriate architectural patterns (workflow, agentic, augmented LLM) | S31 |
+| **P1.4** | Design multi-agent systems and orchestration strategies | S32 |
+| **P1.5** | Apply decomposition techniques for complex problem solving | S31 |
+| **P1.6** | Align solutions to business value pillars (efficiency, transformation, productivity, cost, performance SLAs) | S31 |
+| **P2.1** | Select appropriate Claude models based on trade-offs | S31 |
+| **P2.2** | Design system prompts, templates, and guardrails | S42 |
+| **P2.3** | Apply prompt engineering techniques (zero-shot, few-shot, chain-of-thought) | S42 |
+| **P2.4** | Optimize context windows and manage token usage | S41 |
+| **P2.5** | Implement prompt reuse strategies (caching, modular prompts, Skills) | S42 |
+| **P3.1** | Evaluate tool/agent configuration for capability bloat | S41 |
+| **P3.2** | Analyze authentication and authorization requirements to identify security gaps | S28 |
+| **P3.3** | Evaluate accuracy-latency trade-offs and justify configuration decisions | S32 |
+| **P3.4** | Analyze observability challenges and select monitoring strategies at scale | S33 |
+| **P3.5** | Design a RAG pipeline with appropriate chunking and indexing strategies | S30 |
+| **P3.6** | Apply retrieval strategies matched to data shape and query pattern | S30 |
+| **P3.7** | Evaluate connection protocols and select the appropriate integration mechanism (MCP, API/CLI, agent-to-agent) | S28 |
+| **P3.8** | Evaluate progressive discovery vs. monolithic context strategy | S41 |
+| **P4.1** | Define evaluation metrics (accuracy, latency, cost, safety, security) | S34 |
+| **P4.2** | Design evaluation datasets and test frameworks using mixed methodologies | S34 |
+| **P4.3** | Conduct A/B testing and iterative improvements | S34 |
+| **P4.4** | Diagnose system issues (prompt failure, hallucinations, model mismatch) | S33 |
+| **P4.5** | Optimize token usage, latency, and cost-performance trade-offs | S36 |
+| **P4.6** | Monitor system performance using logging and observability tools | S33 |
+| **P5.1** | Implement guardrails and safety controls | S35 |
+| **P5.2** | Identify risks, limitations, and failure modes of LLM systems | S38 |
+| **P5.3** | Apply human-in-the-loop validation strategies | S38 |
+| **P5.4** | Ensure compliance with regulations (e.g., GDPR, HIPAA, FedRAMP) | S37 |
+| **P5.5** | Address ethical AI considerations (bias, fairness, transparency) | S38 |
+| **P6.1** | Conduct structured discovery and requirement gathering | S39 |
+| **P6.2** | Communicate architectural decisions and trade-offs | S39 |
+| **P6.3** | Manage stakeholder feedback loops and expectation alignment (including SLAs) | S39 |
+| **P6.4** | Document architectures and provide implementation guidance | S39 |
+| **P6.5** | Support lifecycle phases (discovery, design, handoff, monitoring, iteration) | S40 |
+| **P7.1** | Configure Claude tools and environments for teams (e.g., Claude Code) | S43 |
+| **P7.2** | Improve developer workflows using AI-assisted tooling | S43 |
+| **P7.3** | Support debugging and operational issue resolution | S43 |
+
+`Session` is the Tier 3 session that owns the statement, numbered as in
+`.agents/SEQUENCE.md` § Tier 3. Ownership follows content, not the session's `Domain`
+label — see the note under that table.
 
 ---
 
@@ -324,7 +352,7 @@ Prompt files cite from these. Claude Code docs live on `code.claude.com`;
 API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 — old links 301-redirect.)
 
-### Agentic architecture & orchestration (F1, P2)
+### Agentic architecture & orchestration (F1, P1)
 - <https://code.claude.com/docs/en/sub-agents>
 - <https://code.claude.com/docs/en/agent-teams>
 - <https://code.claude.com/docs/en/workflows>
@@ -335,7 +363,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration>
 - <https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent>
 
-### Claude Code configuration & workflows (F2, P7)
+### Claude Code configuration & workflows (F3, P7)
 - <https://code.claude.com/docs/en/memory> — CLAUDE.md hierarchy, auto memory
 - <https://code.claude.com/docs/en/settings> · <https://code.claude.com/docs/en/settings-reference>
 - <https://code.claude.com/docs/en/hooks> · <https://code.claude.com/docs/en/hooks-guide>
@@ -349,7 +377,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://code.claude.com/docs/en/best-practices>
 - <https://code.claude.com/docs/en/managed-settings> · <https://code.claude.com/docs/en/admin-setup>
 
-### Prompt engineering & structured output (F3, P6)
+### Prompt engineering & structured output (F4, P2)
 - <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/overview>
 - <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices>
 - <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-opus-5>
@@ -359,7 +387,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://platform.claude.com/docs/en/build-with-claude/effort>
 - <https://platform.claude.com/docs/en/build-with-claude/handling-stop-reasons>
 
-### Tool design & MCP (F4, P1)
+### Tool design & MCP (F2, P3)
 - <https://platform.claude.com/docs/en/agents-and-tools/tool-use/overview>
 - <https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools>
 - <https://platform.claude.com/docs/en/agents-and-tools/tool-use/how-tool-use-works>
@@ -374,7 +402,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers>
 - <https://code.claude.com/docs/en/managed-mcp>
 
-### Context management & reliability (F5, P6)
+### Context management & reliability (F5, P2)
 - <https://platform.claude.com/docs/en/build-with-claude/context-windows>
 - <https://platform.claude.com/docs/en/build-with-claude/context-editing>
 - <https://platform.claude.com/docs/en/build-with-claude/compaction>
@@ -385,7 +413,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://code.claude.com/docs/en/context-window>
 - <https://code.claude.com/docs/en/sessions> · <https://code.claude.com/docs/en/checkpointing>
 
-### Integration (P1)
+### Integration (P3)
 - <https://platform.claude.com/docs/en/managed-agents/overview>
 - <https://platform.claude.com/docs/en/managed-agents/webhooks>
 - <https://platform.claude.com/docs/en/managed-agents/environments>
@@ -398,7 +426,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://platform.claude.com/docs/en/build-with-claude/embeddings>
 - <https://platform.claude.com/docs/en/build-with-claude/streaming>
 
-### Evaluation, testing & optimization (P3)
+### Evaluation, testing & optimization (P4)
 - <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
 - <https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/increase-consistency>
 - <https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/reduce-hallucinations>
@@ -408,7 +436,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence>
 - <https://platform.claude.com/docs/en/about-claude/pricing>
 
-### Governance, safety & risk (P4)
+### Governance, safety & risk (P5)
 - <https://platform.claude.com/docs/en/manage-claude/workspaces>
 - <https://platform.claude.com/docs/en/manage-claude/user-management>
 - <https://platform.claude.com/docs/en/manage-claude/api-and-data-retention>
@@ -423,7 +451,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://code.claude.com/docs/en/legal-and-compliance>
 - <https://www.anthropic.com/legal/aup>
 
-### Lifecycle & operational enablement (P5, P7)
+### Lifecycle & operational enablement (P6, P7)
 - <https://platform.claude.com/docs/en/about-claude/models/migration-guide>
 - <https://platform.claude.com/docs/en/about-claude/model-deprecations>
 - <https://platform.claude.com/docs/en/about-claude/models/choosing-a-model>
@@ -434,7 +462,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://code.claude.com/docs/en/costs>
 - <https://platform.claude.com/docs/en/managed-agents/budgets>
 
-### Model selection (P2, P6)
+### Model selection (P1, P2)
 - <https://platform.claude.com/docs/en/models/overview>
 - <https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions>
 - <https://platform.claude.com/docs/en/models/opus-5/overview>

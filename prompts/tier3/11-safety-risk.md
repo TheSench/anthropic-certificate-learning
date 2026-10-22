@@ -1,6 +1,12 @@
-# Safety Controls and Risk Management — P4 Governance, Safety & Risk Management
+# Safety Controls and Risk Management — P5 Governance, Safety & Risk Management
 
 **Exam weight: 14% · part of the 35% that appears ONLY on Professional**
+
+*Owns § 6 task statements:*
+
+- P5.2 — Identify risks, limitations, and failure modes of LLM systems
+- P5.3 — Apply human-in-the-loop validation strategies
+- P5.5 — Address ethical AI considerations (bias, fairness, transparency)
 
 ## What this session assumes
 
@@ -16,7 +22,7 @@ listing safety features.
 
 ## Session focus
 
-This session covers risk management as an organizational discipline, framed as an architecture review board would ask it. The crux is **least privilege for agents**: an agent's blast radius is the union of its tool permissions, so restricting tools beats hardening instructions. Insist the learner explicitly *accept* at least one risk — an architect who mitigates everything hasn't prioritized. Also land the agent-specific risk that traditional appsec misses: the action set is chosen at runtime by a probabilistic process influenced by untrusted input. This session also owns **ethical AI — bias, fairness, transparency** — which CCAR-P names as its own task statement. Teach it as an engineering concern with the same likelihood × impact discipline as any other risk, not as a values discussion: where bias enters, how you would *detect* it, and what disclosure the deployment owes its users.
+This session covers risk management as an organizational discipline, framed as an architecture review board would ask it. The crux is **least privilege for agents**: an agent's blast radius is the union of its tool permissions, so restricting tools beats hardening instructions. Insist the learner explicitly *accept* at least one risk — an architect who mitigates everything hasn't prioritized. Also land the agent-specific risk that traditional appsec misses: the action set is chosen at runtime by a probabilistic process influenced by untrusted input. This session also owns **ethical AI — bias, fairness, transparency** — which CCAR-P names as its own task statement. Teach it as an engineering concern with the same likelihood × impact discipline as any other risk, not as a values discussion: where bias enters, how you would *detect* it, and what disclosure the deployment owes its users. And it owns **human-in-the-loop validation**, taught as three decisions in order — where the human sits, what makes the gate binding, and what proves the oversight is real. The trap that carries the most points is a human approval *requested in the prompt* where the harness had to *withhold the action* until a human answered.
 
 ## Authoritative sources
 
@@ -38,6 +44,12 @@ This session covers risk management as an organizational discipline, framed as a
 - <https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/security>
 - <https://code.claude.com/docs/en/agent-sdk/secure-deployment>
 - <https://code.claude.com/docs/en/agent-sdk/permissions>
+
+**Human-in-the-loop gates and review**
+- <https://code.claude.com/docs/en/agent-sdk/user-input>
+- <https://code.claude.com/docs/en/agent-sdk/permissions>
+- <https://platform.claude.com/docs/en/managed-agents/permission-policies>
+- <https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring>
 
 **Policy and acceptable use**
 - <https://www.anthropic.com/legal/aup>
@@ -68,9 +80,24 @@ By the end, the learner can:
   restricting instructions
 - Design **sandboxing and isolation** appropriately — what an agent can reach, and what a
   compromised or confused agent could therefore do
-- Design **human oversight** proportionate to risk: pre-approval for irreversible actions,
-  post-hoc review by sampling for routine ones, and full autonomy where the blast radius
-  is genuinely small
+- Apply **human-in-the-loop validation** as three decisions, in this order:
+  - **Placement** — where the human sits relative to the action: *before* it
+    (pre-approval, for irreversible or externally visible actions), *routed* to them (an
+    exception queue fed by action class, or by a confidence threshold validated against
+    labeled outcomes as Tier 1 session 12 taught), or *after* it (sampled review, for
+    reversible actions at volume). Reversibility and blast radius decide it, not how hard
+    the task is, and full autonomy is a legitimate placement where the blast radius is
+    genuinely small
+  - **Pattern** — the gate is enforced by the harness, not requested in the prompt. "Confirm
+    with a human before issuing a refund" in a system prompt binds a cooperative model
+    only; a real gate is a permission the agent cannot get past without a human's answer.
+    Verify the mechanism per surface against the cited docs, including where a gate stops
+    firing: an approval callback only sees calls nothing earlier in the permission flow
+    already allowed, so a broad allow rule removes the human without any visible change
+  - **Proof** — the evidence an auditor will ask for: override and disagreement rates per
+    reviewer, time per case against routed volume, how often review catches an error the
+    model made, and a record of who approved what. An approval rate near 100% at high
+    volume is evidence the gate is decorative, not that the model is good
 - Explain the **agent-specific risk** that traditional application security misses: the
   action set is chosen at runtime by a probabilistic process influenced by untrusted input
 - Design an **incident response** path for an agentic system: detect, contain (kill switch,
@@ -115,6 +142,9 @@ By the end, the learner can:
 | Pre-approval vs. sampled post-review | Is the action reversible? |
 | Sandbox vs. direct access | Could the agent reach anything outside its task? |
 | Human in the loop vs. fully autonomous | What's the blast radius of a wrong action at volume? |
+| Gate in the harness vs. instruction in the prompt | Can the agent take the action without a human's answer? |
+| Route by action class vs. by model confidence | Has the confidence been validated against labeled outcomes? |
+| More reviewers vs. less routed volume | Can each routed case get a real look at this rate? |
 | Block the use case vs. constrain it | Is the risk in the capability or the configuration? |
 | Aggregate eval vs. per-segment eval | Could a failure be concentrated in one group? |
 | Disclose AI involvement vs. not | Does the user's decision change if they know? |
@@ -133,9 +163,19 @@ By the end, the learner can:
    if its instructions were fully subverted, then reduce the tool set until the answer is
    tolerable. This is the same move as session 8's injection defense, at organizational level.
 5. **Teach sandboxing and isolation.**
-6. **Teach proportionate oversight.** Give six actions and have them assign an oversight
-   level, justifying on reversibility and volume — the same rule as Tier 1 session 15, now
-   applied to policy.
+6. **Teach human-in-the-loop validation — placement, pattern, proof.** This is the block
+   to spend time on.
+   - *Placement.* Give six actions and have the learner place a human before, routed,
+     after, or nowhere, justifying on reversibility and volume — the escalation rule from
+     Tier 1 session 9, now applied as policy. At least one should earn full autonomy.
+   - *Pattern.* Take their highest-stakes placement and ask how the gate is enforced. If
+     the answer is an instruction to the model, ask what happens when the model is
+     injected or simply wrong about whether the case qualifies. Then ask what
+     configuration change would remove the gate without anyone noticing, and have them
+     find the allow rule or permission mode that does it in the cited docs.
+   - *Proof.* Play the auditor: "show me this oversight works." Accept only measurements —
+     override rates, time per case, errors caught — and push on the reviewer who approves
+     everything at forty cases an hour.
 7. **Teach the agent-specific risk.** Ask what's different from a traditional web app; lead
    them to the runtime-chosen action set influenced by untrusted input.
 8. **Teach incident response.** Have them design the path, then ask the hard questions: who
@@ -161,15 +201,18 @@ By the end, the learner can:
     answer is the logged inputs, the retrieved sources, the criteria applied, and the
     human's decision record. Overclaiming explainability is the distractor here.
 14. **Teach the rubber-stamp failure** — why a human in the loop can launder an outcome
-    rather than check it, and what makes oversight real.
+    rather than check it. This is step 6's *proof* applied to fairness: the same
+    measurements decide whether the reviewer is checking the model or inheriting its framing.
 15. **Teach honest risk presentation** — residual risk named explicitly.
 16. **Decision table** — walk all rows.
-17. **Scenario drill — 5 questions**, standalone Professional format. Include a risk
-    prioritization, a least-privilege question, an oversight proportionality question, a
-    bias-detection question (per-segment vs. aggregate), and one multiple-response on what
-    transparency a high-consequence deployment owes.
+17. **Scenario drill — 6 questions**, standalone Professional format. Include a risk
+    prioritization, a least-privilege question, an oversight placement question, a gate
+    enforcement question (harness vs. prompt), a bias-detection question (per-segment vs.
+    aggregate), and one multiple-response on what transparency a high-consequence
+    deployment owes.
 18. **Distractor autopsy** — expect instruction-hardening chosen where privilege reduction
-    was the control, and oversight assigned by task difficulty rather than reversibility.
+    was the control, oversight assigned by task difficulty rather than reversibility, and a
+    human approval requested in the prompt where the harness had to withhold the action.
 19. Record per `.agents/TUTORIAL.md` Step 5. Score conservatively — this domain is absent
     from Foundations.
 

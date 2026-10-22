@@ -1,4 +1,4 @@
-# CLAUDE.md Hierarchy and Path-Specific Rules — F2 Claude Code Configuration & Workflows
+# CLAUDE.md Hierarchy and Path-Specific Rules — F3 Claude Code Configuration & Workflows
 
 **Exam weight: 20%**
 
@@ -11,12 +11,12 @@ convention loading.*
 Sessions 1 and 14. From session 1: harness vs. model, and that instructions are context the
 model may or may not act on — CLAUDE.md is exactly that, which is why its *scope* rather
 than its wording is what the exam tests. From session 14: that a description the model reads
-is a prompt, which is the same claim applied to a different surface. Nothing in F2 before
-this session is required; this is the first F2 session in the sequence.
+is a prompt, which is the same claim applied to a different surface. Nothing in F3 before
+this session is required; this is the first F3 session in the sequence.
 
 ## Why this domain is worth 20% of your score
 
-The F2 domain description names **CLAUDE.md hierarchy** and **path-scoped rules**
+The F3 domain description names **CLAUDE.md hierarchy** and **path-scoped rules**
 explicitly, and one of the six scenario archetypes — Claude Code team configuration — is
 built on them. These questions are attractive to exam writers because there is exactly one
 right answer and several plausible wrong ones, and because the interesting failures are
@@ -116,7 +116,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 
 ## How to run this session
 
-1. **Frame** — F2's archetype is team configuration, and the interesting failures are
+1. **Frame** — F3's archetype is team configuration, and the interesting failures are
    organizational. Say up front that this session is about *scope*, not about writing better
    instructions, and that precedence tables are deliberately not the focus.
 2. **Verify first.** Fetch the memory doc and confirm the hierarchy levels and the rule
