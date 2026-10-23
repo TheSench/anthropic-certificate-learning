@@ -264,8 +264,8 @@ weaker evidence — [`TUTORIAL.md`](../TUTORIAL.md) tells you to score them cons
 | P2 (13%) | Production A/B results trusted at sample sizes that can't support them | The claimed effect is below the resolvable difference | T3-15 |
 | P3 (19%) | Parity across deployment surfaces assumed rather than verified | Feature availability differs per surface and moves | T3-02 |
 | P3 | Static credentials chosen for simplicity | An enterprise identity system already exists | T3-01 |
-| P4 (16%) | Optimization before measurement | No profile identifies where the cost or latency actually is | T3-09 |
-| P4 | Levers chosen without their side effect | Every lever trades something; name it | T3-09 |
+| P4 (16%) | Optimization before measurement | No profile identifies where the cost or latency actually is | T3-08 |
+| P4 | Levers chosen without their side effect | Every lever trades something; name it | T3-08 |
 | P5 (14%) | Oversight assigned by task difficulty rather than reversibility | Hard-and-reversible needs less oversight than easy-and-irreversible | T3-11 |
 | P5 | Instruction-hardening where privilege reduction was the control | Instructions bind a cooperative model only | T3-11 |
 | P5 | Human approval requested in the prompt where the harness had to withhold the action | The agent can still take the action without a human's answer | T3-11 |

@@ -126,4 +126,4 @@ By the end, the learner can:
 - Cloud deployment surfaces specifically → session 2
 - Data pipelines and RAG → session 3
 - Compliance controls and residency → session 10
-- Cost modeling → session 9
+- Cost modeling → session 8

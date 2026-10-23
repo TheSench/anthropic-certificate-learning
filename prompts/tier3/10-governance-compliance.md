@@ -7,7 +7,7 @@ FedRAMP).*
 
 ## What this session assumes
 
-Sessions 1–9. Session 8 opened the three domains (P5, P6, P7) absent from Foundations
+Sessions 1–9. Session 9 opened the three domains (P5, P6, P7) absent from Foundations
 entirely — the most common reason a strong Foundations candidate fails Professional — with
 guardrails; this session begins P5's governance half.
 
@@ -131,4 +131,4 @@ By the end, the learner can:
 
 - Safety controls and risk management → session 11
 - Stakeholder communication of risk → session 12
-- Cost governance mechanics → session 9
+- Cost governance mechanics → session 8

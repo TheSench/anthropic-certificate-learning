@@ -114,5 +114,5 @@ By the end, the learner can:
 
 - Reliability patterns specifically → session 6
 - Eval design → session 7
-- Cost optimization mechanics → session 9
+- Cost optimization mechanics → session 8
 - Governance of multi-tenant data → session 10

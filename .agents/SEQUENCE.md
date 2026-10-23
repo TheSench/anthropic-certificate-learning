@@ -166,8 +166,8 @@ File numbers restart at `01` and do not match session numbers — session 28 is
 | 32 | `prompts/tier3/05-architecture-tradeoffs.md` | Architecture Trade-offs at Scale | P1 | 17% | P1.4, P3.3 |
 | 33 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P4 | 16% | P3.4, P4.4, P4.6 |
 | 34 | `prompts/tier3/07-eval-design.md` | Designing Evals That Catch Regressions | P4 | 16% | P4.1, P4.2, P4.3 |
-| 35 | `prompts/tier3/08-guardrails-quality.md` | Guardrails: Hallucination, Jailbreak, Leak | P5 | 14% | P5.1 |
-| 36 | `prompts/tier3/09-cost-latency-optimization.md` | Cost and Latency Optimization | P4 | 16% | P4.5 |
+| 35 | `prompts/tier3/08-cost-latency-optimization.md` | Cost and Latency Optimization | P4 | 16% | P4.5 |
+| 36 | `prompts/tier3/09-guardrails-quality.md` | Guardrails: Hallucination, Jailbreak, Leak | P5 | 14% | P5.1 |
 | 37 | `prompts/tier3/10-governance-compliance.md` | Governance, Residency, and Compliance | P5 | 14% | P5.4 |
 | 38 | `prompts/tier3/11-safety-risk.md` | Safety Controls and Risk Management | P5 | 14% | P5.2, P5.3, P5.5 |
 | 39 | `prompts/tier3/12-stakeholder-communication.md` | Defending Architecture Decisions | P6 | 14% | P6.1, P6.2, P6.3, P6.4 |

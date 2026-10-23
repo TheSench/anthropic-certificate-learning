@@ -7,7 +7,7 @@ trade-offs.*
 
 ## What this session assumes
 
-Sessions 4–8. Session 7 established that you baseline before optimizing; this session is
+Sessions 4–7. Session 7 established that you baseline before optimizing; this session is
 the optimization itself.
 
 ## Why this domain is worth 16% of your score

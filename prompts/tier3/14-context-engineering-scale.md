@@ -124,5 +124,5 @@ By the end, the learner can:
 
 - Model steering and prompt portfolios → session 15
 - Retrieval design → session 3
-- Cost arithmetic → session 9
+- Cost arithmetic → session 8
 - Compliance program → session 10

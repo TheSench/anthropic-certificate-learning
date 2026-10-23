@@ -324,9 +324,9 @@ reorders or rewords a bullet shows up as a mismatch here rather than a silently 
 | **P4.2** | Design evaluation datasets and test frameworks using mixed methodologies | S34 |
 | **P4.3** | Conduct A/B testing and iterative improvements | S34 |
 | **P4.4** | Diagnose system issues (prompt failure, hallucinations, model mismatch) | S33 |
-| **P4.5** | Optimize token usage, latency, and cost-performance trade-offs | S36 |
+| **P4.5** | Optimize token usage, latency, and cost-performance trade-offs | S35 |
 | **P4.6** | Monitor system performance using logging and observability tools | S33 |
-| **P5.1** | Implement guardrails and safety controls | S35 |
+| **P5.1** | Implement guardrails and safety controls | S36 |
 | **P5.2** | Identify risks, limitations, and failure modes of LLM systems | S38 |
 | **P5.3** | Apply human-in-the-loop validation strategies | S38 |
 | **P5.4** | Ensure compliance with regulations (e.g., GDPR, HIPAA, FedRAMP) | S37 |

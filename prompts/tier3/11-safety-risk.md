@@ -10,11 +10,11 @@
 
 ## What this session assumes
 
-Sessions 8 and 10 (guardrails; governance and compliance).
+Sessions 9 and 10 (guardrails; governance and compliance).
 
 ## Why this domain is worth 14% of your score
 
-Session 8 covered guardrails as *technical* mitigations; this covers risk management as an
+Session 9 covered guardrails as *technical* mitigations; this covers risk management as an
 *organizational* discipline — identifying what could go wrong before it does, deciding
 what's acceptable, and owning the residual. Exam items here read like an architecture
 review board's questions, and the scored skill is systematic risk reasoning rather than
@@ -161,7 +161,7 @@ By the end, the learner can:
    at least one risk — architects who mitigate everything haven't prioritized.
 4. **Teach least privilege for agents** as the strongest control. Ask what an agent could do
    if its instructions were fully subverted, then reduce the tool set until the answer is
-   tolerable. This is the same move as session 8's injection defense, at organizational level.
+   tolerable. This is the same move as session 9's injection defense, at organizational level.
 5. **Teach sandboxing and isolation.**
 6. **Teach human-in-the-loop validation — placement, pattern, proof.** This is the block
    to spend time on.
@@ -218,6 +218,6 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Technical guardrail mechanics → session 8
+- Technical guardrail mechanics → session 9
 - Compliance evidence and residency → session 10
 - Communicating risk to executives → session 12

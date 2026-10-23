@@ -120,4 +120,4 @@ By the end, the learner can:
 
 - Governance program and compliance evidence → session 10
 - Organizational risk management → session 11
-- Cost and latency → session 9
+- Cost and latency → session 8

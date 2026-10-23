@@ -153,7 +153,7 @@ By the end, the learner can:
     Separate it from a canary explicitly — same mechanism, different question — since
     conflating them is the common error. Close the loop back to step 2: production signal
     becomes next quarter's eval cases.
-12. **Teach baselines** as a precondition for all optimization, setting up session 9.
+12. **Teach baselines** as a precondition for all optimization, setting up session 8.
 13. **Decision table** — walk all ten rows.
 14. **Scenario drill — 7 questions**, standalone Professional format. Include a grading
     method choice, a judge-validity question, a gating design, an agentic trajectory
@@ -166,7 +166,7 @@ By the end, the learner can:
 
 ## Out of scope
 
-- Adversarial robustness and guardrails → session 8
-- Cost and latency tuning → session 9
+- Adversarial robustness and guardrails → session 9
+- Cost and latency tuning → session 8
 - Compliance evidence and audit → session 10
 - Model migration validation → session 13

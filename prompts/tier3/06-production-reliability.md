@@ -126,6 +126,6 @@ By the end, the learner can:
 ## Out of scope
 
 - Eval design and regression detection → session 7
-- Guardrails against adversarial input → session 8
+- Guardrails against adversarial input → session 9
 - Governance-mandated controls → sessions 10–11
 - Incident communication → session 12

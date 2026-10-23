@@ -180,6 +180,6 @@ By the end, the learner can:
 
 - Scaling trade-offs → session 5
 - Reliability patterns → session 6
-- Cost optimization mechanics → session 9
+- Cost optimization mechanics → session 8
 - Stakeholder defense in depth → session 12
 - Migration between models → session 13
