@@ -279,11 +279,11 @@ Claude API · Agent SDK · Claude Code · MCP · Claude Projects
 
 | # | Domain | Weight | Task statements | Tier 3 sessions |
 |---|--------|--------|-----------------|-----------------|
-| P1 | Solution Design & Architecture | **17%** | 6 | 3 |
+| P1 | Solution Design & Architecture | **17%** | 6 | 2 |
 | P2 | Claude Models, Prompting & Context Engineering | **13%** | 5 | 2 |
 | P3 | Integration | **19%** | 8 | 3 |
 | P4 | Evaluation, Testing & Optimization | **16%** | 6 | 3 |
-| P5 | Governance, Safety & Risk Management | **14%** | 5 | 2 |
+| P5 | Governance, Safety & Risk Management | **14%** | 5 | 3 |
 | P6 | Stakeholder Communication & Lifecycle Management | **14%** | 5 | 2 |
 | P7 | Developer Productivity & Operational Enablement | **7%** | 3 | 1 |
 
@@ -324,9 +324,9 @@ reorders or rewords a bullet shows up as a mismatch here rather than a silently 
 | **P4.2** | Design evaluation datasets and test frameworks using mixed methodologies | S34 |
 | **P4.3** | Conduct A/B testing and iterative improvements | S34 |
 | **P4.4** | Diagnose system issues (prompt failure, hallucinations, model mismatch) | S33 |
-| **P4.5** | Optimize token usage, latency, and cost-performance trade-offs | S36 |
+| **P4.5** | Optimize token usage, latency, and cost-performance trade-offs | S35 |
 | **P4.6** | Monitor system performance using logging and observability tools | S33 |
-| **P5.1** | Implement guardrails and safety controls | S35 |
+| **P5.1** | Implement guardrails and safety controls | S36 |
 | **P5.2** | Identify risks, limitations, and failure modes of LLM systems | S38 |
 | **P5.3** | Apply human-in-the-loop validation strategies | S38 |
 | **P5.4** | Ensure compliance with regulations (e.g., GDPR, HIPAA, FedRAMP) | S37 |

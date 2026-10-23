@@ -1,6 +1,6 @@
-# Production Reliability Patterns — P1 Solution Design & Architecture
+# Production Reliability Patterns — P4 Evaluation, Testing & Optimization
 
-**Exam weight: 17%**
+**Exam weight: 16% (P4) and 19% (P3)**
 
 *Owns § 6 task statements:*
 
@@ -10,13 +10,15 @@
 
 ## What this session assumes
 
-Sessions 4–5. Tier 1 session 15 covered escalation and state; this raises it to
-production reliability engineering.
+Sessions 4–5. Tier 1 sessions 4 and 9 covered session state and escalation; this raises
+them to production reliability engineering.
 
-## Why this domain is worth 17% of your score
+## Why this domain is worth 16% of your score
 
-The Professional exam is explicitly weighted toward **production reliability patterns**.
-The distinguishing idea at this altitude: an LLM-based component is a *probabilistic
+P4 is measurement of a live system, and this session owns its operational half:
+**diagnosing** a failure to its cause and **monitoring** a system in production, plus the
+P3 task of choosing a monitoring strategy that holds at scale. The distinguishing idea at
+this altitude: an LLM-based component is a *probabilistic
 dependency*, so reliability comes from the system around it — validation, fallbacks,
 circuit breakers, idempotency, and observability — not from making the model more
 reliable. Exam answers that try to fix reliability inside the prompt are usually wrong.
@@ -124,6 +126,6 @@ By the end, the learner can:
 ## Out of scope
 
 - Eval design and regression detection → session 7
-- Guardrails against adversarial input → session 8
+- Guardrails against adversarial input → session 9
 - Governance-mandated controls → sessions 10–11
 - Incident communication → session 12

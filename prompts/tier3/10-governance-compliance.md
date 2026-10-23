@@ -7,8 +7,9 @@ FedRAMP).*
 
 ## What this session assumes
 
-Sessions 1–9. This begins the three domains (P5, P6, P7) absent from Foundations
-entirely — the most common reason a strong Foundations candidate fails Professional.
+Sessions 1–9. Session 9 opened the three domains (P5, P6, P7) absent from Foundations
+entirely — the most common reason a strong Foundations candidate fails Professional — with
+guardrails; this session begins P5's governance half.
 
 ## Why this domain is worth 14% of your score
 
@@ -19,7 +20,7 @@ requires: who can use what, where data goes, how long it's kept, and how you pro
 
 ## Session focus
 
-This session begins the three domains absent from Foundations entirely. Say plainly that P5, P6, and P7 are 35% of this exam and the usual reason strong builders fail it. The crux is the enforcement-point judgment: **policy in a document is not a control**. Spend the most time on the placement exercise — six stated policies mapped onto managed settings, inference hooks, spend limits, or workspace boundaries — where the point is identifying which are currently *unenforced*. Test audit design against a real auditor question and accept only evidence, never intent.
+This session begins governance, the core of the three domains absent from Foundations entirely. Say plainly that P5, P6, and P7 are 35% of this exam and the usual reason strong builders fail it. The crux is the enforcement-point judgment: **policy in a document is not a control**. Spend the most time on the placement exercise — six stated policies mapped onto managed settings, inference hooks, spend limits, or workspace boundaries — where the point is identifying which are currently *unenforced*. Test audit design against a real auditor question and accept only evidence, never intent.
 
 ## Authoritative sources
 
@@ -130,4 +131,4 @@ By the end, the learner can:
 
 - Safety controls and risk management → session 11
 - Stakeholder communication of risk → session 12
-- Cost governance mechanics → session 9
+- Cost governance mechanics → session 8

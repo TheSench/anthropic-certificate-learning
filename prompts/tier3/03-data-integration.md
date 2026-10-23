@@ -239,4 +239,4 @@ By the end, the learner can:
   the task statements ask for strategy, not vendor choice
 - Compliance and residency program → session 10
 - Context engineering at scale → session 14
-- Cost modeling → session 9
+- Cost modeling → session 8

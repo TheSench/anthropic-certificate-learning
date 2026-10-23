@@ -120,5 +120,5 @@ By the end, the learner can:
 
 - Data pipelines and retrieval → session 3
 - Compliance program design → session 10
-- Cost optimization → session 9
+- Cost optimization → session 8
 - Migration execution → session 13

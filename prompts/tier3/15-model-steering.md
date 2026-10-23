@@ -203,7 +203,7 @@ By the end, the learner can:
 13. **Teach A/B statistics honestly.** Ask how many samples they'd need to detect a 3%
    difference. The answer being "more than you'd think" is the lesson; connect to session 7's
    eval sizing arithmetic.
-14. **Teach system-prompt placement** and the secrets rule from session 8.
+14. **Teach system-prompt placement** and the secrets rule from session 9.
 15. **Teach prompt sprawl** with an org that has 200 prompts and no inventory; connect to
     session 13's prompt inventory.
 16. **Decision table** — walk all rows.
@@ -228,4 +228,4 @@ By the end, the learner can:
 - Context architecture → session 14
 - Eval construction → session 7
 - Model migration → session 13
-- Cost arithmetic → session 9
+- Cost arithmetic → session 8
