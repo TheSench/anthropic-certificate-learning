@@ -164,9 +164,9 @@ File numbers restart at `01` and do not match session numbers — session 28 is
 | 30 | `prompts/tier3/03-data-integration.md` | Files, Citations, RAG, and Data Wiring | P3 | 19% | P3.5, P3.6 |
 | 31 | `prompts/tier3/04-solution-design.md` | Solution Design and Model Selection | P1 | 17% | P1.1, P1.2, P1.3, P1.5, P1.6, P2.1 |
 | 32 | `prompts/tier3/05-architecture-tradeoffs.md` | Architecture Trade-offs at Scale | P1 | 17% | P1.4, P3.3 |
-| 33 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P1 | 17% | P3.4, P4.4, P4.6 |
+| 33 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P4 | 16% | P3.4, P4.4, P4.6 |
 | 34 | `prompts/tier3/07-eval-design.md` | Designing Evals That Catch Regressions | P4 | 16% | P4.1, P4.2, P4.3 |
-| 35 | `prompts/tier3/08-guardrails-quality.md` | Guardrails: Hallucination, Jailbreak, Leak | P4 | 16% | P5.1 |
+| 35 | `prompts/tier3/08-guardrails-quality.md` | Guardrails: Hallucination, Jailbreak, Leak | P5 | 14% | P5.1 |
 | 36 | `prompts/tier3/09-cost-latency-optimization.md` | Cost and Latency Optimization | P4 | 16% | P4.5 |
 | 37 | `prompts/tier3/10-governance-compliance.md` | Governance, Residency, and Compliance | P5 | 14% | P5.4 |
 | 38 | `prompts/tier3/11-safety-risk.md` | Safety Controls and Risk Management | P5 | 14% | P5.2, P5.3, P5.5 |
@@ -175,6 +175,11 @@ File numbers restart at `01` and do not match session numbers — session 28 is
 | 41 | `prompts/tier3/14-context-engineering-scale.md` | Context Engineering at Scale | P2 | 13% | P2.4, P3.1, P3.8 |
 | 42 | `prompts/tier3/15-model-steering.md` | Model Steering and Prompt Portfolios | P2 | 13% | P2.2, P2.3, P2.5 |
 | 43 | `prompts/tier3/16-developer-enablement.md` | Developer Productivity and Enablement | P7 | 7% | P7.1, P7.2, P7.3 |
+
+Every one of the 38 CCAR-P task statements is owned exactly once. As in Tier 1, `Domain`
+routes the session and `Owns` decides credit, so sessions 31, 32, 33 and 41 own across two
+domains. Session 29 owns none — surface choice is a procurement and compliance judgment
+that the guide states under P3.7 and P5.4, which sessions 28 and 37 own.
 
 ### Tier 4 — Professional capstones (4 sessions + gate)
 

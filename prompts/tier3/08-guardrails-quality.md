@@ -1,6 +1,6 @@
-# Guardrails: Hallucination, Jailbreak, Leak — P4 Evaluation, Testing & Optimization
+# Guardrails: Hallucination, Jailbreak, Leak — P5 Governance, Safety & Risk Management
 
-**Exam weight: 16%**
+**Exam weight: 14% · part of the 35% that appears ONLY on Professional**
 
 *Owns § 6 task statement P5.1 — Implement guardrails and safety controls.*
 
@@ -8,9 +8,11 @@
 
 Session 7 (eval design). Guardrails without evals are unmeasurable, so that order matters.
 
-## Why this domain is worth 16% of your score
+## Why this domain is worth 14% of your score
 
-The published guardrail guidance maps almost one-to-one onto exam-relevant failure modes:
+This session opens P5, one of the three domains absent from Foundations, with its most
+technical task statement: implementing guardrails and safety controls. The published
+guardrail guidance maps almost one-to-one onto exam-relevant failure modes:
 hallucination, jailbreak, prompt leak, inconsistency, and streaming refusals. The scored
 judgment is matching a **mitigation to a specific failure mode** — and knowing that
 guardrails are probabilistic, so anything requiring a guarantee needs a deterministic
@@ -112,7 +114,7 @@ By the end, the learner can:
     multiple-response on layered defense.
 12. **Distractor autopsy** — expect prompt instructions offered for absolute requirements,
     and injection treated as a prompt-hardening problem rather than a privilege problem.
-13. Record per `.agents/TUTORIAL.md` Step 5.
+13. Record per `.agents/TUTORIAL.md` Step 5. Score conservatively — absent from Foundations.
 
 ## Out of scope
 

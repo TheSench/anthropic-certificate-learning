@@ -279,11 +279,11 @@ Claude API · Agent SDK · Claude Code · MCP · Claude Projects
 
 | # | Domain | Weight | Task statements | Tier 3 sessions |
 |---|--------|--------|-----------------|-----------------|
-| P1 | Solution Design & Architecture | **17%** | 6 | 3 |
+| P1 | Solution Design & Architecture | **17%** | 6 | 2 |
 | P2 | Claude Models, Prompting & Context Engineering | **13%** | 5 | 2 |
 | P3 | Integration | **19%** | 8 | 3 |
 | P4 | Evaluation, Testing & Optimization | **16%** | 6 | 3 |
-| P5 | Governance, Safety & Risk Management | **14%** | 5 | 2 |
+| P5 | Governance, Safety & Risk Management | **14%** | 5 | 3 |
 | P6 | Stakeholder Communication & Lifecycle Management | **14%** | 5 | 2 |
 | P7 | Developer Productivity & Operational Enablement | **7%** | 3 | 1 |
 
