@@ -1,0 +1,979 @@
+{
+  "meta": {
+    "promptFile": "prompts/tier1/06-conversation-context.md",
+    "promptHash": "sha256:b9e2252599daaaedcd49da880bab14257a92f5aca236516a6a98c8b2e694470e",
+    "gatesHash": "sha256:3b2ebea9032932d9a3fc365bbc616257b7b14d600c7e63a764c9880c494678ee",
+    "builtAt": "2026-10-21",
+    "model": "claude-opus-5-5"
+  },
+  "facts": [
+    {
+      "id": "f1",
+      "claim": "Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Haiku 5.5, and Claude Mythos Preview have a 1M-token context window; for every such model, 1M is the default and no beta header is needed.",
+      "value": "1M tokens",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f2",
+      "claim": "Other Claude models, including Claude Sonnet 4.5 (deprecated), have a 200k-token context window.",
+      "value": "200k tokens",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f3",
+      "claim": "A single request to any of the 1M-context models can generate up to 128k output tokens (`max_tokens`).",
+      "value": "128k output tokens",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f4",
+      "claim": "A single request can include up to 600 images or PDF pages (100 for models with a 200k-token context window).",
+      "value": "600 (100 on 200k-window models)",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f5",
+      "claim": "Everything in the request counts toward the context window: the system prompt, every message in `messages` (including tool results, images, and documents), and your tool definitions; the output Claude generates for the turn, including its extended thinking, counts too.",
+      "value": "system prompt + messages (incl. tool results) + tool definitions + output",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f6",
+      "claim": "If the input alone already exceeds the model's context window, the API returns a 400 `invalid_request_error` (\"prompt is too long\"); on Claude 4.5 models and newer, if generation reaches the context window limit it stops with `stop_reason: \"model_context_window_exceeded\"`.",
+      "value": "400 invalid_request_error / model_context_window_exceeded",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-windows",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f7",
+      "claim": "Context editing is in beta; enable it with the beta header `context-management-2025-06-27`. Strategies: `clear_tool_uses_20250919` (tool result clearing) and `clear_thinking_20251015` (thinking block clearing).",
+      "value": "context-management-2025-06-27",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f8",
+      "claim": "Tool result clearing `trigger` defaults to 100,000 input tokens: once the prompt exceeds this threshold, clearing begins.",
+      "value": "100,000 input tokens",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f9",
+      "claim": "Tool result clearing `keep` defaults to 3 tool uses: how many recent tool use/result pairs to keep after clearing occurs.",
+      "value": "3 tool uses",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f10",
+      "claim": "Context editing is applied server-side before the prompt reaches Claude; your client application maintains the full, unmodified conversation history.",
+      "value": "server-side; client keeps full history",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f11",
+      "claim": "Compaction replaces the older turns of a conversation with a summary that Claude writes on the server; Compaction on demand uses the beta header `compact-2026-09-04` and the top-level `compaction` parameter, and Compaction at a token threshold triggers when input tokens reach the trigger you set.",
+      "value": "compact-2026-09-04",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/compaction",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f12",
+      "claim": "Client-side compaction (SDK) `context_token_threshold` defaults to 100,000: the token count at which compaction triggers.",
+      "value": "100,000",
+      "sourceUrl": "https://platform.claude.com/docs/en/build-with-claude/context-editing",
+      "checkedOn": "2026-10-08"
+    },
+    {
+      "id": "f13",
+      "claim": "Claude Code auto memory: the first 200 lines or 25KB, whichever comes first, are loaded into the conversation context.",
+      "value": "200 lines or 25KB",
+      "sourceUrl": "https://code.claude.com/docs/en/context-window",
+      "checkedOn": "2026-10-08"
+    }
+  ],
+  "items": [
+    {
+      "id": "t1-06-i01",
+      "task": "5.1",
+      "objective": 1,
+      "trapFamilies": [
+        "Symptom fix over cause fix"
+      ],
+      "factRefs": [
+        "f5"
+      ],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i01",
+        "prompt": "Your support agent's sessions hit the context window at around turn 40. A teammate spent a sprint cutting the system prompt from 6,000 to 3,000 tokens, and sessions still hit the window at around turn 40. The agent has 12 tool definitions that were not changed, and logs show the same tool-definition token count on every request from turn 1 to turn 40, extended thinking is not enabled, max_tokens is fixed at 4,096 on every request, and each turn typically makes one or two order lookups whose results are appended to the history. What most likely explains why the prompt cut did not move the turn count?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Tool definitions are re-sent on every request, so their tokens multiply with the turn count and swamp the 3,000 tokens the prompt cut saved."
+          },
+          {
+            "key": "B",
+            "text": "Extended thinking blocks from earlier turns accumulate in the history, so the reasoning tokens grow faster than any prompt saving can offset."
+          },
+          {
+            "key": "C",
+            "text": "Accumulated tool results grow with every lookup and dominate the window, while the system prompt is a fixed per-request cost that never grew."
+          },
+          {
+            "key": "D",
+            "text": "The output space reserved by max_tokens grows as the conversation lengthens, absorbing the room that the shorter system prompt freed up."
+          }
+        ]
+      },
+      "answerKey": "C",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "Tool definitions really are sent on every request, so it feels like they compound.",
+          "ruledOutBy": "Logs show the same tool-definition token count on every request from turn 1 to turn 40, so the definitions do not grow with turns."
+        },
+        {
+          "option": "B",
+          "tempting": "Thinking output does count toward the window and can be large.",
+          "ruledOutBy": "The stem states extended thinking is not enabled, so there are no thinking blocks to accumulate."
+        },
+        {
+          "option": "D",
+          "tempting": "Output does count toward the window, so a growing reservation sounds plausible.",
+          "ruledOutBy": "The stem states max_tokens is fixed at 4,096 on every request, so the output reservation cannot grow."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "Logs show the same tool-definition token count on every request from turn 1 to turn 40, so the definitions do not grow with turns.",
+            "B": "The stem states extended thinking is not enabled, so there are no thinking blocks to accumulate.",
+            "D": "The stem states max_tokens is fixed at 4,096 on every request, so the output reservation cannot grow."
+          },
+          "quantityInStem": "No figure decides it beyond the fixed 3,000-token saving versus per-turn lookups that the stem supplies.",
+          "everyConstraintWorks": "The constant tool-definition count in logs kills the tool-definition option; thinking disabled kills the thinking option; fixed max_tokens kills the growing-output option; lookups appended per turn make tool results the growing term."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i02",
+      "task": "5.1",
+      "objective": 0,
+      "trapFamilies": [
+        "Unverifiable elegance"
+      ],
+      "factRefs": [
+        "f2",
+        "f5",
+        "f6"
+      ],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i02",
+        "prompt": "Your team runs an agent on Claude Sonnet 4.5, which has a 200k-token context window. Its budget spreadsheet adds the 4,000-token system prompt, sent in the top-level system field, to the measured size of the messages array actually sent and flags a session only above 190k tokens. Yet 6% of sessions estimated at around 150k end with stop_reason \"model_context_window_exceeded\". Every request sends all 80 tool definitions in the tools array, totaling 38,000 tokens, with max_tokens set to 16,000. What most likely explains the gap between the estimate and the failures?",
+        "options": [
+          {
+            "key": "A",
+            "text": "The spreadsheet omits the tool definitions and the turn's generated output, both of which count toward the context window on every request."
+          },
+          {
+            "key": "B",
+            "text": "The system prompt is stored in the history after the first turn, so its 4,000 tokens are counted again on every request and compound with turns."
+          },
+          {
+            "key": "C",
+            "text": "Only the output reservation is missing, because tool definitions are loaded on demand when the model calls a tool rather than sent up front."
+          },
+          {
+            "key": "D",
+            "text": "The deprecated model is the defect, and on a model with a 1M-token window the same spreadsheet would produce accurate estimates for every session."
+          }
+        ]
+      },
+      "answerKey": "A",
+      "autopsy": [
+        {
+          "option": "B",
+          "tempting": "It mirrors how tool results really do accumulate in the history.",
+          "ruledOutBy": "The stem states the system prompt is sent in the top-level system field and the messages size is measured from the array actually sent, so the prompt is neither in the history nor counted repeatedly."
+        },
+        {
+          "option": "C",
+          "tempting": "Output really is missing from the estimate, and on-demand tool loading sounds like a real optimization.",
+          "ruledOutBy": "The stem states all 80 definitions are sent in the tools array on every request, so they are present and counted."
+        },
+        {
+          "option": "D",
+          "tempting": "A bigger window would make the failures disappear, which feels like a fix.",
+          "ruledOutBy": "The ask is why the estimate is wrong; a 1M window hides the failures while the spreadsheet would still omit 54,000 tokens per request."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "B": "The stem states the system prompt is sent in the top-level system field and the messages size is measured from the array actually sent, so the prompt is neither in the history nor counted repeatedly.",
+            "C": "The stem states all 80 definitions are sent in the tools array on every request, so they are present and counted.",
+            "D": "The ask is why the estimate is wrong; a 1M window hides the failures while the spreadsheet would still omit 54,000 tokens per request."
+          },
+          "quantityInStem": "150k + 38k definitions + up to 16k output exceeds 200k; all figures are in the stem.",
+          "everyConstraintWorks": "The top-level system field and measured messages array kill the compounding-prompt option; the 80-in-every-request statement kills on-demand loading; the model name and window let the arithmetic close; the 190k flag explains why no warning fired."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i03",
+      "task": "5.1",
+      "objective": 2,
+      "trapFamilies": [
+        "Ignoring a stated non-functional requirement"
+      ],
+      "factRefs": [],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i03",
+        "prompt": "To save tokens, your support agent's client sends only the system prompt and the last four turns on each request. Conversations average 25 turns and about 30,000 tokens, far below the model's window. In 18% of conversations past turn 10, the agent asks again for an order number the customer already gave, and in some it quotes a different refund amount from the one it committed to in turn 5. What change would most effectively fix this?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Add a system prompt rule telling the agent never to re-ask for details the customer has already provided and never to revise a quoted amount."
+          },
+          {
+            "key": "B",
+            "text": "Widen the sliding window from the last four turns to the last eight, which still saves tokens while covering most of what customers refer back to."
+          },
+          {
+            "key": "C",
+            "text": "Move to a model with a larger context window so that more turns fit into each request without the client needing to drop anything."
+          },
+          {
+            "key": "D",
+            "text": "Send the complete conversation history on every request, including prior user and assistant turns and the tool_use and tool_result pairs."
+          }
+        ]
+      },
+      "answerKey": "D",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "It names the exact misbehavior and looks cheap.",
+          "ruledOutBy": "The order number and the turn-5 commitment are not in the request at all, so no instruction lets the model honor what it cannot see."
+        },
+        {
+          "option": "B",
+          "tempting": "It keeps the token saving the team wanted and reduces the failure rate.",
+          "ruledOutBy": "Commitments from turn 5 are referenced at turn 20 and later in 25-turn conversations, so any fixed window still drops them."
+        },
+        {
+          "option": "C",
+          "tempting": "It sounds like the reason turns were dropped is lack of room.",
+          "ruledOutBy": "At 30,000 tokens the conversations already fit far below the current window; the client is choosing to drop turns."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "The order number and the turn-5 commitment are not in the request at all, so no instruction lets the model honor what it cannot see.",
+            "B": "Commitments from turn 5 are referenced at turn 20 and later in 25-turn conversations, so any fixed window still drops them.",
+            "C": "At 30,000 tokens the conversations already fit far below the current window; the client is choosing to drop turns."
+          },
+          "quantityInStem": "30,000 tokens against the window and the turn-5/turn-20 gap are in the stem.",
+          "everyConstraintWorks": "The far-below-window figure kills the bigger-window option; the turn-5 commitment kills the wider sliding window; the missing data kills the instruction."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i04",
+      "task": "5.1",
+      "objective": 3,
+      "trapFamilies": [
+        "Ignoring a stated non-functional requirement"
+      ],
+      "factRefs": [],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i04",
+        "prompt": "After 50 turns, your support agent's history was summarized. The original turns held a $184.50 refund, a 20% restocking fee, order #88213, and the agent's own turn-12 promise that a replacement would arrive before the 15th because the customer needs it for a wedding. The summary reads: \"customer awaiting partial refund minus a fee, replacement coming soon, time-sensitive.\" The agent can call lookup_order, which returns order numbers and totals for the customer, and get_policy, which returns the fee schedule. The promise exists in no backend system. Which loss does the most damage?",
+        "options": [
+          {
+            "key": "A",
+            "text": "The $184.50 refund amount, because a wrong refund has a direct financial cost and the summary replaced the exact figure with a vague phrase."
+          },
+          {
+            "key": "B",
+            "text": "The delivery commitment and the customer's stated need, because no later tool call can recover what the customer was promised in this chat."
+          },
+          {
+            "key": "C",
+            "text": "The 20% restocking fee, because percentages blurred into a phrase like \"a fee\" are the classic casualty that later refund math depends on."
+          },
+          {
+            "key": "D",
+            "text": "Order #88213, because without the identifier every later action on the case risks being applied to the wrong order in the customer's account."
+          }
+        ]
+      },
+      "answerKey": "B",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "Money errors feel like the most serious consequence.",
+          "ruledOutBy": "lookup_order returns the order totals, so the amount can be re-derived after summarization."
+        },
+        {
+          "option": "C",
+          "tempting": "Percentages are a named casualty of progressive summarization.",
+          "ruledOutBy": "get_policy returns the fee schedule, so the percentage is recoverable by a tool call."
+        },
+        {
+          "option": "D",
+          "tempting": "Identifiers anchor every action, so losing one feels catastrophic.",
+          "ruledOutBy": "lookup_order returns the customer's order numbers, so the identifier can be looked up again."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "lookup_order returns the order totals, so the amount can be re-derived after summarization.",
+            "C": "get_policy returns the fee schedule, so the percentage is recoverable by a tool call.",
+            "D": "lookup_order returns the customer's order numbers, so the identifier can be looked up again."
+          },
+          "quantityInStem": "No quantity decides the key; it turns on which values the stated tools return.",
+          "everyConstraintWorks": "lookup_order kills the amount and order-number options; get_policy kills the fee option; 'exists in no backend system' makes the promise the unrecoverable one."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i05",
+      "task": "5.1",
+      "objective": 4,
+      "trapFamilies": [
+        "Guidance where enforcement is required"
+      ],
+      "factRefs": [],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i05",
+        "prompt": "Conversations in your support agent run a median of 60 turns, and history is summarized whenever it reaches a token threshold. In 9% of summarized sessions, the final refund is wrong. The errors involve a goodwill credit the agent agreed to mid-conversation, which exists in no backend system, and dates that the summary turned into \"later this month.\" Last quarter the summarizer prompt was rewritten to list amounts, dates, and credits as must-keep items, with examples, and the error rate did not change. Raising the summarization threshold last month only moved the same errors to later turns. What change would most effectively prevent these errors?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Rewrite the summarizer prompt to list every category that must survive verbatim, such as amounts and dates, and add examples of correct summaries."
+          },
+          {
+            "key": "B",
+            "text": "Keep amounts, dates, statuses, and what the customer was told in a case facts block included in every prompt, outside the summarized history."
+          },
+          {
+            "key": "C",
+            "text": "Raise the summarization threshold so it fires later in the conversation, which keeps the exact figures in the original turns for longer."
+          },
+          {
+            "key": "D",
+            "text": "Have the agent re-run its backend lookups immediately before every refund calculation so the figures always come from the system of record."
+          }
+        ]
+      },
+      "answerKey": "B",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "It targets the summarizer that blurred the values, and stronger wording often helps.",
+          "ruledOutBy": "The stem states the summarizer prompt was already rewritten with must-keep categories and examples last quarter and the error rate did not change."
+        },
+        {
+          "option": "C",
+          "tempting": "Fewer summarizations means fewer chances to blur.",
+          "ruledOutBy": "The stem states raising the threshold last month only moved the same errors to later turns."
+        },
+        {
+          "option": "D",
+          "tempting": "Re-deriving from the system of record is normally the safe move.",
+          "ruledOutBy": "The goodwill credit exists in no backend system, so a lookup cannot return it."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "The stem states the summarizer prompt was already rewritten with must-keep categories and examples last quarter and the error rate did not change.",
+            "C": "The stem states raising the threshold last month only moved the same errors to later turns.",
+            "D": "The goodwill credit exists in no backend system, so a lookup cannot return it."
+          },
+          "quantityInStem": "The 60-turn median and 9% are in the stem; the key does not hinge on a computed number.",
+          "everyConstraintWorks": "The unchanged rate after last quarter's summarizer rewrite kills the prompt rewrite; last month's threshold raise moving errors later kills the threshold option; 'no backend system' kills the re-lookup."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i07",
+      "task": "5.1",
+      "objective": 5,
+      "trapFamilies": [
+        "Capability over constraint",
+        "Over-orchestration"
+      ],
+      "factRefs": [],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i07",
+        "prompt": "Your support agent handles sessions where a customer has several open issues at once, such as a refund, a delayed shipment, and a billing dispute. It keeps one case facts block holding every order ID, amount, and status mentioned. In 14% of multi-issue sessions, the agent applies one issue's order ID to another issue's action, though the block holds every correct value. Customers move between issues within a single message, and product requires no added confirmation turns. What is the most effective fix?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Persist structured issue data (order IDs, amounts, statuses) in a separate context layer keyed per issue, not one flat facts block."
+          },
+          {
+            "key": "B",
+            "text": "Expand the case facts block to hold every field from each lookup, so the agent always has full detail available when it acts on an issue."
+          },
+          {
+            "key": "C",
+            "text": "Hand each issue to its own subagent with its own context, so no subagent can see another issue's order ID and apply it by mistake."
+          },
+          {
+            "key": "D",
+            "text": "Have the agent read back the order ID to the customer and wait for confirmation before executing any action on any of the open issues."
+          }
+        ]
+      },
+      "answerKey": "A",
+      "autopsy": [
+        {
+          "option": "B",
+          "tempting": "More facts in the block feels like more protection against error.",
+          "ruledOutBy": "The block already holds every correct value; the failure is conflation between issues, which more fields in a flat block makes worse."
+        },
+        {
+          "option": "C",
+          "tempting": "Isolation would make cross-issue contamination impossible.",
+          "ruledOutBy": "Customers move between issues within a single message, which needs one conversation that sees all issues, not separate agents."
+        },
+        {
+          "option": "D",
+          "tempting": "Human confirmation catches the wrong ID before it does damage.",
+          "ruledOutBy": "Product requires no added confirmation turns."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "B": "The block already holds every correct value; the failure is conflation between issues, which more fields in a flat block makes worse.",
+            "C": "Customers move between issues within a single message, which needs one conversation that sees all issues, not separate agents.",
+            "D": "Product requires no added confirmation turns."
+          },
+          "quantityInStem": "No number decides it.",
+          "everyConstraintWorks": "'Block holds every correct value' kills expansion; within-message switching kills per-issue subagents; 'no added confirmation turns' kills the read-back."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i08",
+      "task": "5.1",
+      "objective": 6,
+      "trapFamilies": [
+        "Capability over constraint"
+      ],
+      "factRefs": [
+        "f11"
+      ],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i08",
+        "prompt": "Your agent uses compaction, which replaces older turns with a model-written summary once input tokens reach a threshold; context editing is not enabled. In 5% of compacted sessions, the agent later tells the customer they \"agreed to store credit,\" though the original transcript shows the customer refused it. The summary is 600 tokens, sits at the top of the request, and reads \"store credit was discussed.\" What is the most likely root cause?",
+        "options": [
+          {
+            "key": "A",
+            "text": "The model is hallucinating an agreement that never occurred, which a more capable model would avoid when it continues the conversation."
+          },
+          {
+            "key": "B",
+            "text": "The summary was overlooked through the lost in the middle effect, so the agent filled the gap with the most likely outcome of such a discussion."
+          },
+          {
+            "key": "C",
+            "text": "Compaction replaced the exact turns with a lossy summary, and the agent now reasons from that summary as if it were the original record."
+          },
+          {
+            "key": "D",
+            "text": "Context editing cleared the tool result that recorded the refusal, so the customer's decision vanished before the next request was sent."
+          }
+        ]
+      },
+      "answerKey": "C",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "Asserting something false looks like a hallucination.",
+          "ruledOutBy": "The agent's claim tracks the summary's ambiguous wording, which is the only record it has; a stronger model reading the same summary has the same gap."
+        },
+        {
+          "option": "B",
+          "tempting": "Position effects can cause details to be missed.",
+          "ruledOutBy": "The 600-token summary sits at the top of the request, not the middle, and it lacks the refusal entirely."
+        },
+        {
+          "option": "D",
+          "tempting": "Clearing stale content is a real way context goes missing.",
+          "ruledOutBy": "The stem states context editing is not enabled, and a customer's refusal is a user turn, not a tool result."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "The agent's claim tracks the summary's ambiguous wording, which is the only record it has; a stronger model reading the same summary has the same gap.",
+            "B": "The 600-token summary sits at the top of the request, not the middle, and it lacks the refusal entirely.",
+            "D": "The stem states context editing is not enabled, and a customer's refusal is a user turn, not a tool result."
+          },
+          "quantityInStem": "No number decides it; the 600-token size and top position kill lost in the middle.",
+          "everyConstraintWorks": "Context editing disabled kills that option; top position kills lost in the middle; the summary wording explains the claim, killing the hallucination option."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i09",
+      "task": "5.1",
+      "objective": 7,
+      "trapFamilies": [
+        "Right technique, wrong condition",
+        "Symptom fix over cause fix"
+      ],
+      "factRefs": [],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i09",
+        "prompt": "Your research agent calls a search tool about 60 times per run, and each result is about 3,000 tokens. The agent must read each result in full when it arrives to choose its next query, but it never needs a result again after that. The user's instructions in the first two turns must remain verbatim for the whole run, and runs continue until a work queue is empty, with no fixed length. Which approach best keeps runs inside the window?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Use context editing to clear stale tool results while keeping recent ones, leaving the user's original turns untouched in the history."
+          },
+          {
+            "key": "B",
+            "text": "Use compaction to replace older turns with a summary when a threshold is reached, which reclaims space from both tool results and conversation."
+          },
+          {
+            "key": "C",
+            "text": "Trim each search result at the tool boundary to a short excerpt before it enters context, so no full result is ever appended to history."
+          },
+          {
+            "key": "D",
+            "text": "Move to a 1M-token model, which holds well over 300 full results and gives the agent ample room without changing the loop."
+          }
+        ]
+      },
+      "answerKey": "A",
+      "autopsy": [
+        {
+          "option": "B",
+          "tempting": "Compaction is the general-purpose way to reclaim space.",
+          "ruledOutBy": "It summarizes the early turns too, but the user's instructions must remain verbatim, and no narrative summary is needed."
+        },
+        {
+          "option": "C",
+          "tempting": "Boundary trimming is the right answer when results carry noise.",
+          "ruledOutBy": "The agent must read each result in full when it arrives, so trimming removes detail it needs at that step."
+        },
+        {
+          "option": "D",
+          "tempting": "1M tokens is large compared to 60 × 3,000.",
+          "ruledOutBy": "Runs continue until the queue is empty with no fixed length, so growth is unbounded and any fixed window is eventually exhausted."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "B": "It summarizes the early turns too, but the user's instructions must remain verbatim, and no narrative summary is needed.",
+            "C": "The agent must read each result in full when it arrives, so trimming removes detail it needs at that step.",
+            "D": "Runs continue until the queue is empty with no fixed length, so growth is unbounded and any fixed window is eventually exhausted."
+          },
+          "quantityInStem": "60 × 3,000 and the unbounded run length are in the stem.",
+          "everyConstraintWorks": "Verbatim early turns kills compaction; full-read-on-arrival kills trimming; no fixed length kills the bigger window; never-needed-again makes clearing safe."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i10",
+      "task": "5.1",
+      "objective": 8,
+      "trapFamilies": [
+        "Symptom fix over cause fix",
+        "Guidance where enforcement is required"
+      ],
+      "factRefs": [
+        "f12"
+      ],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i10",
+        "prompt": "Your returns agent calls lookup_order about 12 times per session. Each call returns 40 fields, roughly 1,800 tokens, but returns handling uses only 5 of them. Lookup results make up about 80% of input tokens on every request after the first lookup, and sessions peak at about 70,000 tokens, below the 100,000-token default threshold at which your SDK's client-side compaction triggers. Finance wants input tokens cut by half, and the cut must hold for the request immediately after each lookup, not only for later requests. What is the most effective change?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Lower the compaction threshold so the accumulated lookup results are summarized sooner, which reclaims the wasted tokens later in the session."
+          },
+          {
+            "key": "B",
+            "text": "Add a system prompt instruction telling the agent to ignore every order field except the five that returns handling actually uses."
+          },
+          {
+            "key": "C",
+            "text": "Trim each lookup_order result to the five return-relevant fields in the tool wrapper, before the result is appended to the conversation."
+          },
+          {
+            "key": "D",
+            "text": "Run a cleanup pass every few turns that strips unused fields from earlier lookup results already sitting in the conversation history."
+          }
+        ]
+      },
+      "answerKey": "C",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "Compaction reclaims space from accumulated results.",
+          "ruledOutBy": "Sessions peak below the threshold, and the cut must hold for the request immediately after each lookup, which a summary that fires later cannot shrink."
+        },
+        {
+          "option": "B",
+          "tempting": "It names the right five fields.",
+          "ruledOutBy": "All 40 fields are still sent on every request, so the input tokens finance wants cut are unchanged."
+        },
+        {
+          "option": "D",
+          "tempting": "It removes the same noise as trimming.",
+          "ruledOutBy": "The cut must hold for the request immediately after each lookup, but a pass every few turns strips fields only after that request has already carried all 40."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "Sessions peak below the threshold, and the cut must hold for the request immediately after each lookup, which a summary that fires later cannot shrink.",
+            "B": "All 40 fields are still sent on every request, so the input tokens finance wants cut are unchanged.",
+            "D": "The cut must hold for the request immediately after each lookup, but a pass every few turns strips fields only after that request has already carried all 40."
+          },
+          "quantityInStem": "40 vs 5 fields, the 80% share from lookups, 12 calls, the 70,000 peak, the 100,000 threshold, and the halving target are all in the stem; trimming 35 of 40 fields from an 80% share cuts roughly 70%.",
+          "everyConstraintWorks": "70k below 100k and the immediately-after-each-lookup requirement kill compaction; the same requirement kills the cleanup pass; the halving target kills the instruction option; the 80% share makes boundary trimming meet the target."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i11",
+      "task": "5.1",
+      "objective": 9,
+      "trapFamilies": [
+        "Symptom fix over cause fix",
+        "Guidance where enforcement is required"
+      ],
+      "factRefs": [],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i11",
+        "prompt": "Your synthesis step receives the reports of 14 subagents concatenated in order, about 120,000 tokens in total, on a model with a 200k-token window. In 30% of runs, the final report omits findings from reports 5 through 10, while findings from reports 1 through 3 and 12 through 14 almost always appear. The prompt already tells the model to weigh every report equally, and a trial that shuffled report order only moved the omissions to whichever reports landed in the middle. What change would most effectively fix this?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Move the synthesis step to a model with a larger context window so that all 14 reports fit with plenty of room to spare."
+          },
+          {
+            "key": "B",
+            "text": "Put a key-findings summary at the beginning of the aggregated input and organize each report's detail under explicit section headers."
+          },
+          {
+            "key": "C",
+            "text": "Shuffle the order of the reports on every run so that no subagent's findings are consistently placed in the middle of the input."
+          },
+          {
+            "key": "D",
+            "text": "Add an instruction to the synthesis prompt telling the model to read all 14 reports carefully and give each equal weight in the output."
+          }
+        ]
+      },
+      "answerKey": "B",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "More room sounds like it removes pressure on the content.",
+          "ruledOutBy": "120,000 tokens already fits the 200k window; the loss tracks position, not space."
+        },
+        {
+          "option": "C",
+          "tempting": "It spreads the loss evenly, which looks fair.",
+          "ruledOutBy": "The stem states a shuffle trial only moved the omissions to whichever reports landed in the middle."
+        },
+        {
+          "option": "D",
+          "tempting": "It names the exact desired behavior.",
+          "ruledOutBy": "The stem states the prompt already tells the model to weigh every report equally, and the omissions persist."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "120,000 tokens already fits the 200k window; the loss tracks position, not space.",
+            "C": "The stem states a shuffle trial only moved the omissions to whichever reports landed in the middle.",
+            "D": "The stem states the prompt already tells the model to weigh every report equally, and the omissions persist."
+          },
+          "quantityInStem": "120,000 vs 200k and the middle-report pattern are in the stem.",
+          "everyConstraintWorks": "Fits the window kills the bigger window; the shuffle trial kills shuffling; the existing equal-weight instruction kills the read-carefully option; the middle-loss pattern points at position."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i12",
+      "task": "5.1",
+      "objective": 10,
+      "trapFamilies": [
+        "Symptom fix over cause fix"
+      ],
+      "factRefs": [],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i12",
+        "prompt": "Your research subagents return findings as prose sentences such as \"the market grew 34%.\" The synthesis agent writes the final report from these. Reviewers flag 22% of figures as unusable because nobody can tell what year a figure covers, which internal document it came from, or whether it came from a survey or a full census. The subagents' prose contains no year, document name, or method, and leadership needs every figure in the report rather than a reduced set. The source documents are internal and are not searchable once a subagent run ends. What is the most effective fix?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Have the synthesis agent infer each figure's year and source from the surrounding prose and state its best estimate next to the figure."
+          },
+          {
+            "key": "B",
+            "text": "Add a fact-checking agent after synthesis that searches for each figure's source and attaches the citation it finds to the final report."
+          },
+          {
+            "key": "C",
+            "text": "Instruct the synthesis agent to omit any figure that lacks a date or source, so the report never presents a number it cannot support."
+          },
+          {
+            "key": "D",
+            "text": "Require subagents to return structured findings that carry dates, source locations, and methodological context for each figure they report."
+          }
+        ]
+      },
+      "answerKey": "D",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "It fixes the report without changing the subagents.",
+          "ruledOutBy": "The stem states the prose contains no year, document name, or method, so there is nothing to infer from."
+        },
+        {
+          "option": "B",
+          "tempting": "Verification after the fact sounds rigorous.",
+          "ruledOutBy": "The internal sources are not searchable once a subagent run ends, so a later agent cannot find them."
+        },
+        {
+          "option": "C",
+          "tempting": "It removes the unusable figures.",
+          "ruledOutBy": "Leadership needs every figure in the report rather than a reduced set, so dropping 22% of figures fails the stated requirement."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "The stem states the prose contains no year, document name, or method, so there is nothing to infer from.",
+            "B": "The internal sources are not searchable once a subagent run ends, so a later agent cannot find them.",
+            "C": "Leadership needs every figure in the report rather than a reduced set, so dropping 22% of figures fails the stated requirement."
+          },
+          "quantityInStem": "22% is in the stem and frames the cost of omission.",
+          "everyConstraintWorks": "Prose without year, document, or method kills inference; unsearchable sources kill the fact-checker; leadership needing every figure kills omission."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i13",
+      "task": "5.1",
+      "objective": 11,
+      "trapFamilies": [
+        "Right technique, wrong condition"
+      ],
+      "factRefs": [],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i13",
+        "prompt": "Your coding agent runs a fresh session for each task. Your team's style rules are authored by engineers and change about twice a year. Separately, the agent discovers repository quirks during its work, such as a flaky test or a build flag, and these change weekly as the codebase moves. No human reviews them between tasks. In 40% of tasks the agent rediscovers a quirk it already found in an earlier task. Where should the discovered quirks persist?",
+        "options": [
+          {
+            "key": "A",
+            "text": "In the project instruction file next to the style rules, so that every session loads them automatically from the start without any tool call."
+          },
+          {
+            "key": "B",
+            "text": "In each new session's history, by resuming the previous task's session so the agent continues from everything it already learned."
+          },
+          {
+            "key": "C",
+            "text": "In the memory tool, which the agent reads at the start of each task and updates itself as quirks are discovered or become stale."
+          },
+          {
+            "key": "D",
+            "text": "In the system prompt, regenerated by engineers at each release from a list of quirks they collect from the agent's task logs."
+          }
+        ]
+      },
+      "answerKey": "C",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "Instruction files load every session automatically.",
+          "ruledOutBy": "Quirks are discovered and changed weekly by the agent with no human reviewing between tasks; an instruction file is for authored, stable content."
+        },
+        {
+          "option": "B",
+          "tempting": "Resumption preserves what the agent knew.",
+          "ruledOutBy": "The agent runs a fresh session per task by design, and resumption carries a whole transcript rather than the distilled quirks."
+        },
+        {
+          "option": "D",
+          "tempting": "A system prompt is reliably present in every request.",
+          "ruledOutBy": "No human reviews quirks between tasks, and they change weekly, faster than release-time regeneration."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "Quirks are discovered and changed weekly by the agent with no human reviewing between tasks; an instruction file is for authored, stable content.",
+            "B": "The agent runs a fresh session per task by design, and resumption carries a whole transcript rather than the distilled quirks.",
+            "D": "No human reviews quirks between tasks, and they change weekly, faster than release-time regeneration."
+          },
+          "quantityInStem": "Twice a year vs weekly and no human review are in the stem.",
+          "everyConstraintWorks": "Weekly change and no human review kill the instruction file and the engineer-regenerated prompt; fresh session per task kills resumption; the 40% rediscovery frames the need."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i14",
+      "task": "5.1",
+      "objective": 12,
+      "trapFamilies": [
+        "Symptom fix over cause fix"
+      ],
+      "factRefs": [
+        "f1"
+      ],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i14",
+        "prompt": "Developers report that Claude Code sessions in your monorepo start at about 52,000 tokens of context before anyone types a message. The root CLAUDE.md has grown to 3,200 lines covering the conventions of 14 teams. Sessions already run on Claude Opus 5.5, which has a 1M-token context window. Five MCP tools are connected, their definitions totaling under 2,000 tokens, and the session has no conversation history yet. Most developers work in one team's area per session. What is the most effective fix?",
+        "options": [
+          {
+            "key": "A",
+            "text": "Cut the root CLAUDE.md to repo-wide essentials and move each team's conventions into path-scoped rule files that load only for matching files."
+          },
+          {
+            "key": "B",
+            "text": "Disconnect MCP servers that are not needed for the current task, because tool definitions are loaded at session start and consume context."
+          },
+          {
+            "key": "C",
+            "text": "Compact the conversation at the start of each session so the accumulated context is summarized before the developer begins working."
+          },
+          {
+            "key": "D",
+            "text": "Use a model with a larger context window so the 52,000 tokens become a small fraction of the space available to each session."
+          }
+        ]
+      },
+      "answerKey": "A",
+      "autopsy": [
+        {
+          "option": "B",
+          "tempting": "Connected MCP servers sound like a likely startup cost, since tool definitions count toward the window whenever they are loaded.",
+          "ruledOutBy": "The stem states the five MCP tools' definitions total under 2,000 tokens, which cannot account for 52,000."
+        },
+        {
+          "option": "C",
+          "tempting": "Compaction is the standard way to reclaim context.",
+          "ruledOutBy": "There is no conversation history yet to compact; the tokens come from loaded instruction files."
+        },
+        {
+          "option": "D",
+          "tempting": "A smaller share of a larger window feels like the problem goes away.",
+          "ruledOutBy": "Sessions already run on Claude Opus 5.5 with a 1M-token window, so a larger window is not available as a change."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "B": "The stem states the five MCP tools' definitions total under 2,000 tokens, which cannot account for 52,000.",
+            "C": "There is no conversation history yet to compact; the tokens come from loaded instruction files.",
+            "D": "Sessions already run on Claude Opus 5.5 with a 1M-token window, so a larger window is not available as a change."
+          },
+          "quantityInStem": "52,000 tokens, 3,200 lines, 14 teams, five tools are in the stem.",
+          "everyConstraintWorks": "Definitions under 2,000 tokens kills the MCP option; no history kills compaction; already on a 1M-token model kills the bigger window; one team's area per session makes path-scoping the fix."
+        }
+      }
+    },
+    {
+      "id": "t1-06-i15",
+      "task": "5.1",
+      "objective": 13,
+      "trapFamilies": [
+        "Capability over constraint"
+      ],
+      "factRefs": [
+        "f7",
+        "f8",
+        "f9",
+        "f10"
+      ],
+      "question": {
+        "type": "multiple_choice",
+        "id": "t1-06-i15",
+        "prompt": "Support leads report that your agent \"forgets\" a customer's account tier mid-conversation in 11% of sessions, then applies the wrong refund policy. The tier comes from a get_customer call in turn 2. Context editing is enabled with tool result clearing at its default settings. Logs confirm the client sends the full, unmodified history on every request. Failures occur only in sessions whose input passes 100,000 tokens, all of which make more than three tool calls after turn 2. In a test cohort with context editing disabled, sessions above 100,000 tokens never lost the tier. What is the most likely root cause?",
+        "options": [
+          {
+            "key": "A",
+            "text": "The model's recall of early turns weakens as conversations lengthen, which a more capable model with stronger long-context recall would fix."
+          },
+          {
+            "key": "B",
+            "text": "Tool result clearing removed the turn-2 get_customer result once input passed its trigger, and nothing carried the tier outside clearable results."
+          },
+          {
+            "key": "C",
+            "text": "The client is thinning early turns from the history to save tokens, so the turn-2 lookup is missing from the requests it sends to the API."
+          },
+          {
+            "key": "D",
+            "text": "The tier sits in the middle of a long context and is overlooked through the lost in the middle effect once enough turns have accumulated."
+          }
+        ]
+      },
+      "answerKey": "B",
+      "autopsy": [
+        {
+          "option": "A",
+          "tempting": "\"Forgets\" invites a model-capability explanation.",
+          "ruledOutBy": "The test cohort with context editing disabled never lost the tier above 100,000 tokens, so length alone does not degrade recall here."
+        },
+        {
+          "option": "C",
+          "tempting": "Thinning history is a classic cause of lost context.",
+          "ruledOutBy": "Logs confirm the client sends the full, unmodified history; context editing happens server-side."
+        },
+        {
+          "option": "D",
+          "tempting": "Position effects are a real cause of missed details.",
+          "ruledOutBy": "Turn 2 is near the beginning, and the cohort with context editing disabled kept the tier at the same lengths, so position is not the cause."
+        }
+      ],
+      "audit": {
+        "gate6": {
+          "distractorKillers": {
+            "A": "The test cohort with context editing disabled never lost the tier above 100,000 tokens, so length alone does not degrade recall here.",
+            "C": "Logs confirm the client sends the full, unmodified history; context editing happens server-side.",
+            "D": "Turn 2 is near the beginning, and the cohort with context editing disabled kept the tier at the same lengths, so position is not the cause."
+          },
+          "quantityInStem": "The 100,000-token onset matches the default trigger (f8), and more than three later tool calls exceed the default keep of 3 (f9); both quantities are in the stem.",
+          "everyConstraintWorks": "Full-history logs kill client thinning; the context-editing-disabled cohort kills recall decay and lost in the middle; the 100,000 onset and more-than-three later calls tie the failure to clearing defaults."
+        }
+      }
+    }
+  ]
+}

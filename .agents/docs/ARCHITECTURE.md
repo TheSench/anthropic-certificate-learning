@@ -35,6 +35,9 @@ learner/              ← All mutable learner state
 
 drills/
   deck.md             ← Spaced-repetition cards from missed questions
+
+banks/
+  tier1/ … tier4/     ← Pre-gated items + verified facts per prompt file (build-bank skill)
 ```
 
 ## Session flow
@@ -62,7 +65,7 @@ User sends "Start" / "Continue" / "mock" / "drill"
 `drills/` to a `learning` branch; curriculum and protocol updates arrive on `main` and
 are merged in at Step 0.5 of `TUTORIAL.md`. This works only because the ownership split
 is disjoint: the learner writes `learner/` and `drills/`, the maintainer writes
-`prompts/`, `.agents/`, `BLUEPRINT.md`, and `README.md`. Nothing is written by both, so
+`prompts/`, `.agents/`, `banks/`, `BLUEPRINT.md`, and `README.md`. Nothing is written by both, so
 the recurring merge is conflict-free in practice. A conflict is a signal the split was
 violated, which is why the sync aborts and hands it to a human rather than resolving it.
 
@@ -83,7 +86,7 @@ offline matters more than being current.
 committed after each session, so progress survives across conversations and machines.
 
 **Curriculum read-only to agents** — `prompts/`, `.agents/` (including `TUTORIAL.md` and
-`SEQUENCE.md`), `BLUEPRINT.md`, and `README.md` are the learning contract. Only humans change them. This keeps an agent
+`SEQUENCE.md`), `banks/`, `BLUEPRINT.md`, and `README.md` are the learning contract. Only humans change them. This keeps an agent
 from quietly rewriting the syllabus to match what it just happened to teach.
 
 **Weight-proportional session counts** — sessions per domain track the official exam
@@ -154,17 +157,20 @@ instead of advancing a tier. This is the one place the system is designed to say
 distractor tell, on a spacing schedule. Missed questions are the highest-signal study
 material available, and losing them to conversation scrollback wastes the session.
 
-**Questions are generated per session; traps are stored** — prompt files specify a
-*generator* (scenario shape, domain mix, coverage list, trap inventory) rather than a bank
-of written items, and `docs/TRAPS.md` stores the reusable half. A committed question bank
-is the obvious alternative and it's worse here for three reasons. There is one learner and
-they read the repo, so a stored item is an item they've seen — which is why Tier 2 briefs
-are regenerated fresh and `GATE-F` draws 4 of 6 archetypes at random. Stored items are also
-frozen at authoring time and can't respond to depth calibration or a readiness number that
-says push harder in F1. And they rot: the docs move often enough to need
-`check-sources.sh` and a weekly changelog check, so a static bank would silently drill
-stale behavior. What *doesn't* rot is the reasoning error a distractor exploits, so that's
-what's stored — at the level of the bias, never the flag name or the limit.
+**Lesson items come from a gated bank where one exists; traps are stored** — prompt files
+specify a *generator* (scenario shape, domain mix, coverage list, trap inventory), and
+`docs/TRAPS.md` stores the reusable half. An item the learner has read is spoiled — which is
+why Tier 2 briefs are regenerated fresh and `GATE-F` draws 4 of 6 archetypes at random. So a
+session reads `banks/` only through `bank.mjs pick`, which prints no keys, and `key`, which
+runs after the learner answers and retires the item in `learner/seen-items.jsonl`; `.ignore`
+keeps it out of searches, so nobody reads a bank whole. The bank earns its place by gating an
+author can't do on their own drafts: a solver that never saw the key. It costs two things.
+Stored items are frozen at authoring time and can't respond to depth calibration or a
+readiness number that says push harder in F1. And they rot: the docs move often enough to
+need `check-sources.sh` and a weekly changelog check. So a bank stamped against an older
+prompt file or gates falls back to drafting, and `rebuild-stale` lists facts older than 30
+days. What *doesn't* rot is the reasoning error a distractor exploits, so that's what's
+stored — at the level of the bias, never the flag name or the limit.
 
 **Items are constructed before they're administered** — the six gates are a cold check
 and don't work applied to an item you're already committed to asking, so the whole drill is
