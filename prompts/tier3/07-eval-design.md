@@ -1,6 +1,12 @@
-# Designing Evals That Catch Regressions — P3 Evaluation, Testing & Optimization
+# Designing Evals That Catch Regressions — P4 Evaluation, Testing & Optimization
 
 **Exam weight: 16%**
+
+*Owns § 6 task statements:*
+
+- P4.1 — Define evaluation metrics (accuracy, latency, cost, safety, security)
+- P4.2 — Design evaluation datasets and test frameworks using mixed methodologies
+- P4.3 — Conduct A/B testing and iterative improvements
 
 ## What this session assumes
 
@@ -8,15 +14,15 @@ Sessions 4–6. Session 6 raised the question of how you'd measure an SLO; this 
 
 ## Why this domain is worth 16% of your score
 
-P3 is quality measurement, and it's the domain most often skipped by practitioners who
+P4 is quality measurement, and it's the domain most often skipped by practitioners who
 learned Claude by building rather than by operating. The scored idea: you cannot manage
 prompt or model changes without an eval suite, so "how would you know if this change made
-it worse" is the question behind most P3 items. Answers that rely on spot-checking or
+it worse" is the question behind most P4 items. Answers that rely on spot-checking or
 vibes are wrong.
 
 ## Session focus
 
-This session answers the question behind most P3 items: **"how would you know if this change made it worse?"** Hold the learner to it — any answer that can't be measured isn't an answer. The crux is LLM-as-judge done properly, including the step most people skip: validating the judge against human labels. An unvalidated judge is a measurement you cannot trust, and spot-checking is not a regression strategy. Also do the eval-set sizing arithmetic; the number of cases needed to detect a small regression is persuasive in a way the principle isn't.
+This session answers the question behind most P4 items: **"how would you know if this change made it worse?"** Hold the learner to it — any answer that can't be measured isn't an answer. The crux is LLM-as-judge done properly, including the step most people skip: validating the judge against human labels. An unvalidated judge is a measurement you cannot trust, and spot-checking is not a regression strategy. Also do the eval-set sizing arithmetic; the number of cases needed to detect a small regression is persuasive in a way the principle isn't.
 
 ## Authoritative sources
 
@@ -113,7 +119,7 @@ By the end, the learner can:
 
 ## How to run this session
 
-1. **Frame** — every P3 item reduces to "how would you know?". Say it, and hold the learner
+1. **Frame** — every P4 item reduces to "how would you know?". Say it, and hold the learner
    to it: any answer that can't be measured is not an answer.
 2. **Teach production-data-first eval construction.** Ask where their test cases should come
    from. If they say "write representative examples", push back: the failures you've seen

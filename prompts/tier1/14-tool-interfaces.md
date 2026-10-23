@@ -1,4 +1,4 @@
-# Designing Tool Interfaces — F4 Tool Design & MCP Integration
+# Designing Tool Interfaces — F2 Tool Design & MCP Integration
 
 **Exam weight: 18%**
 
@@ -9,12 +9,12 @@ prompting). Session 1 established tool *use* — `stop_reason` returning `"tool_
 results appended to history, `allowedTools` restricting what an agent may call. Session 8
 established that precision in a prompt comes from explicit criteria and boundaries rather
 than from asking more nicely. This is the first session in which the learner *authors* a
-tool interface, and it is the first of the three F4 sessions. It owns § 6 task
+tool interface, and it is the first of the three F2 sessions. It owns § 6 task
 **2.1 — "Design effective tool interfaces with clear descriptions and boundaries."**
 
 ## Why this domain is worth 18% of your score
 
-The F4 domain description names **building tool descriptions** first, and "debugging tool
+The F2 domain description names **building tool descriptions** first, and "debugging tool
 selection issues" is a named exam skill. The scored insight is that a tool description is
 the *only* information the model has when it chooses — it is a prompt, read at selection
 time — so most tool-selection bugs are description bugs, fixed in the tool definition.
@@ -152,7 +152,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 
 ## How to run this session
 
-1. **Frame the lateness deliberately.** F4 is 18%; this session owns task 2.1. Say why it
+1. **Frame the lateness deliberately.** F2 is 18%; this session owns task 2.1. Say why it
    arrives at 14: everything before it needed only tool *use*, and the learner has already
    watched selection go wrong from the outside — a subagent misrouting, a tool surface
    bloating context, a failure that had to propagate. Authorship is the specialised fix for

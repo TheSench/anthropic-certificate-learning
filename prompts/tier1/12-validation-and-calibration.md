@@ -1,6 +1,6 @@
-# Validation, Retry, and Confidence Calibration — F3 Prompt Engineering & Structured Output
+# Validation, Retry, and Confidence Calibration — F4 Prompt Engineering & Structured Output
 
-**Exam weight: 20% (F3) and 15% (F5)**
+**Exam weight: 20% (F4) and 15% (F5)**
 
 ## What this session assumes
 
@@ -13,14 +13,14 @@ picks it up there.
 
 ## Why this domain is worth 20% of your score
 
-This session owns one task statement from each of two domains: F3's **4.4 — "Implement
+This session owns one task statement from each of two domains: F4's **4.4 — "Implement
 validation, retry, and feedback loops for extraction quality"** — and F5 Context Management
 & Reliability's **5.5 — "Design human review workflows and confidence calibration"**. That
 pairing is deliberate and you should say so out loud in the session: the extraction result
 and the decision of whether to trust it are one lesson, not two. A validation layer with no
 calibrated confidence routes everything to humans or nothing; a confidence score with no
 validation layer is a number nobody checked. Coverage is scored per task statement, so 5.5
-credits F5 regardless of this session's F3 label — the learner should know that this
+credits F5 regardless of this session's F4 label — the learner should know that this
 session is carrying weight in two domains.
 
 ## Session focus

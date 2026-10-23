@@ -109,7 +109,7 @@ earlier session has already built, so domains interleave as a consequence. Each 
 taught later. The map is [`../SEQUENCE.md`](../SEQUENCE.md); this file carries only why.
 
 Grouping by domain instead produced forward references that were invisible while sessions
-were the unit of account. Under the old F1 → F5 → F2 → F3 → F4 order, the F2 session
+were the unit of account. Under the old F1 → F5 → F3 → F4 → F2 order, the F3 session
 declared that it assumed F5 — taught nine sessions later — and three task statements were
 taught under a domain label that did not own them, so per-domain accuracy measured the
 wrong objectives entirely.
@@ -126,7 +126,7 @@ restriction and result shape.
 **Four drills are interleaved into Tier 1, two on partial coverage.** Strict tier order
 left an eighteen-session gap between teaching F1 and drilling it at scenario scale. A
 partial drill beats a delayed one: the first S3 pass rehearses F1 one session after it
-finishes, deferring its F4 items to the full re-run. The tier boundary still means what it
+finishes, deferring its F2 items to the full re-run. The tier boundary still means what it
 did — Tier 2 is drilling, Tier 1 is teaching — the drills just start earlier. Slots in
 [`../SEQUENCE.md`](../SEQUENCE.md) § Interleaved drills.
 

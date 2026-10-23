@@ -1,6 +1,9 @@
-# Lifecycle: Migration and Deprecation — P5 Stakeholder Communication & Lifecycle Management
+# Lifecycle: Migration and Deprecation — P6 Stakeholder Communication & Lifecycle Management
 
 **Exam weight: 14% · part of the 35% that appears ONLY on Professional**
+
+*Owns § 6 task statement P6.5 — Support lifecycle phases (discovery, design, handoff,
+monitoring, iteration).*
 
 ## What this session assumes
 
@@ -9,7 +12,7 @@ precondition for everything here.
 
 ## Why this domain is worth 14% of your score
 
-The P5 domain description names **system ownership over time**. A Claude system's
+The P6 domain description names **system ownership over time**. A Claude system's
 dependencies move underneath it — models are released and deprecated, prompts drift as
 requirements change, and the input distribution shifts. The scored skill is owning that
 change safely, and the recurring right answer is that an eval suite is what makes

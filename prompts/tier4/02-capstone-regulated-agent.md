@@ -1,6 +1,6 @@
 # Capstone: Agent in a Regulated Industry
 
-**Spans P1, P2, P3, P4, P6 · Professional capstone 2 of 4**
+**Spans P1, P2, P3, P4, P5 · Professional capstone 2 of 4**
 
 ## What this session is
 
@@ -21,7 +21,7 @@ Capstone 1 covered internal rollout, where the blast radius is your own engineer
 inverts it: an agent taking actions that affect customers, under rules with legal force.
 It's the scenario where the *right* answer is most often less autonomy, tighter validation,
 and more human oversight than the technology strictly requires — and where an architect who
-optimizes for capability fails. It also exercises P3 and P6, which capstone 1 doesn't.
+optimizes for capability fails. It also exercises P4 and P2, which capstone 1 doesn't.
 
 ## The problem
 
@@ -67,7 +67,7 @@ constraint-based justification throughout.
 ### Phase 4 — Quality, evals, and guardrails (10 min)
 Have them design the eval suite — including how they'd measure fair treatment across
 groups, which is a regulatory obligation as well as a quality one — the grading methods,
-the regression gate, and the guardrails matched to specific failure modes. Ask the P3
+the regression gate, and the guardrails matched to specific failure modes. Ask the P4
 question directly: "how would you know if it got worse?"
 
 ### Phase 5 — Governance, audit, and oversight (10 min)
@@ -89,11 +89,11 @@ would have.
 
 | Domain | Assessment | Notes |
 |---|---|---|
-| P1 Integration | [1–4] | |
-| P2 Solution Design | [1–4] | |
-| P3 Evaluation & Optimization | [1–4] | |
-| P4 Governance & Risk | [1–4] | |
-| P6 Context & Prompting | [1–4] | |
+| P1 Solution Design | [1–4] | |
+| P2 Context & Prompting | [1–4] | |
+| P3 Integration | [1–4] | |
+| P4 Evaluation & Optimization | [1–4] | |
+| P5 Governance & Risk | [1–4] | |
 
 **Strongest:** …
 **Weakest:** …

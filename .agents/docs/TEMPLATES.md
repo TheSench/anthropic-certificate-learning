@@ -120,27 +120,27 @@ teaching) from a weak one (needs drilling) from a high-stakes one (needs both).
 | Domain | Weight | Relevance | Rationale |
 |---|---|---|---|
 | F1 Agentic Architecture & Orchestration | 27% | HIGH | Largest domain; every scenario touches it |
-| F2 Claude Code Configuration & Workflows | 20% | HIGH | [why for this learner] |
-| F3 Prompt Engineering & Structured Output | 20% | HIGH | [why for this learner] |
-| F4 Tool Design & MCP Integration | 18% | HIGH | [why for this learner] |
+| F2 Tool Design & MCP Integration | 18% | HIGH | [why for this learner] |
+| F3 Claude Code Configuration & Workflows | 20% | HIGH | [why for this learner] |
+| F4 Prompt Engineering & Structured Output | 20% | HIGH | [why for this learner] |
 | F5 Context Management & Reliability | 15% | MED | [why for this learner] |
 
 ### Professional (CCAR-P)
 
 | Domain | Weight | Relevance | Rationale |
 |---|---|---|---|
-| P1 Integration | 19% | HIGH | Largest Professional domain |
-| P2 Solution Design & Architecture | 17% | HIGH | [why for this learner] |
-| P3 Evaluation, Testing & Optimization | 16% | MED | [why — often weak in builders who haven't operated] |
-| P4 Governance, Safety & Risk Management | 14% | MED | [why — absent from Foundations entirely] |
-| P5 Stakeholder Communication & Lifecycle | 14% | MED | [why — absent from Foundations entirely] |
-| P6 Claude Models, Prompting & Context Engineering | 13% | MED | [why for this learner] |
+| P1 Solution Design & Architecture | 17% | HIGH | [why for this learner] |
+| P2 Claude Models, Prompting & Context Engineering | 13% | MED | [why for this learner] |
+| P3 Integration | 19% | HIGH | Largest Professional domain |
+| P4 Evaluation, Testing & Optimization | 16% | MED | [why — often weak in builders who haven't operated] |
+| P5 Governance, Safety & Risk Management | 14% | MED | [why — absent from Foundations entirely] |
+| P6 Stakeholder Communication & Lifecycle | 14% | MED | [why — absent from Foundations entirely] |
 | P7 Developer Productivity & Operational Enablement | 7% | LOW | Smallest domain; still absent from Foundations |
 ```
 
 **Setting the initial ratings.** HIGH for stated weak areas and for any domain at ≥18%
 weight; LOW only where the learner has demonstrable production depth already. Never rate a
-domain LOW because it's unfamiliar — unfamiliar is the argument for HIGH. The P4/P5/P7
+domain LOW because it's unfamiliar — unfamiliar is the argument for HIGH. The P5/P6/P7
 group deserves particular care: a learner who has only *built* with Claude will
 under-report weakness there because they've never had to do it, so probe before accepting
 a low rating.
@@ -167,21 +167,21 @@ Formula: `projected = 100 + 9 × Σ(weight × confidence)`
 | Domain | Weight | Confidence | Basis | Last assessed |
 |---|---|---|---|---|
 | F1 Agentic Architecture & Orchestration | 27% | 0 | untested | — |
-| F2 Claude Code Configuration & Workflows | 20% | 0 | untested | — |
-| F3 Prompt Engineering & Structured Output | 20% | 0 | untested | — |
-| F4 Tool Design & MCP Integration | 18% | 0 | untested | — |
+| F2 Tool Design & MCP Integration | 18% | 0 | untested | — |
+| F3 Claude Code Configuration & Workflows | 20% | 0 | untested | — |
+| F4 Prompt Engineering & Structured Output | 20% | 0 | untested | — |
 | F5 Context Management & Reliability | 15% | 0 | untested | — |
 
 ## Professional (CCAR-P)
 
 | Domain | Weight | Confidence | Basis | Last assessed |
 |---|---|---|---|---|
-| P1 Integration | 19% | 0 | untested | — |
-| P2 Solution Design & Architecture | 17% | 0 | untested | — |
-| P3 Evaluation, Testing & Optimization | 16% | 0 | untested | — |
-| P4 Governance, Safety & Risk Management | 14% | 0 | untested | — |
-| P5 Stakeholder Communication & Lifecycle | 14% | 0 | untested | — |
-| P6 Claude Models, Prompting & Context Engineering | 13% | 0 | untested | — |
+| P1 Solution Design & Architecture | 17% | 0 | untested | — |
+| P2 Claude Models, Prompting & Context Engineering | 13% | 0 | untested | — |
+| P3 Integration | 19% | 0 | untested | — |
+| P4 Evaluation, Testing & Optimization | 16% | 0 | untested | — |
+| P5 Governance, Safety & Risk Management | 14% | 0 | untested | — |
+| P6 Stakeholder Communication & Lifecycle | 14% | 0 | untested | — |
 | P7 Developer Productivity & Operational Enablement | 7% | 0 | untested | — |
 
 ## Highest-leverage next study

@@ -1,6 +1,12 @@
-# Context Engineering at Scale — P6 Claude Models, Prompting & Context Engineering
+# Context Engineering at Scale — P2 Claude Models, Prompting & Context Engineering
 
-**Exam weight: 13%**
+**Exam weight: 13% (P2) and 19% (P3)**
+
+*Owns § 6 task statements:*
+
+- P2.4 — Optimize context windows and manage token usage
+- P3.1 — Evaluate tool/agent configuration for capability bloat
+- P3.8 — Evaluate progressive discovery vs. monolithic context strategy
 
 ## What this session assumes
 
@@ -8,7 +14,7 @@ Tier 1 session 14 (context mechanics) and Tier 3 sessions 3, 5, and 9.
 
 ## Why this domain is worth 13% of your score
 
-The P6 domain description names **large-scale context management**. Foundations taught the
+The P2 domain description names **large-scale context management**. Foundations taught the
 mechanics — windows, caching, compaction. Professional asks how you *architect* context
 for a system serving many users over long horizons, where context strategy is simultaneously
 the dominant cost driver, a correctness concern, and a data-boundary concern.
@@ -90,7 +96,7 @@ By the end, the learner can:
 ## How to run this session
 
 1. **Frame** — context architecture is simultaneously the top cost driver, a correctness
-   concern, and a data-boundary concern. Most P6 items turn on one of those three.
+   concern, and a data-boundary concern. Most P2 items turn on one of those three.
 2. **Teach the layered context architecture** and have the learner lay out all five layers
    for a stated multi-tenant product, ordered for cacheability.
 3. **Teach the cache-layout rule** and then its organizational consequence: who is allowed

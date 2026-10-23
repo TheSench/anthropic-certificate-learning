@@ -1,4 +1,4 @@
-# Iterative Refinement and CI/CD Integration — F2 Claude Code Configuration & Workflows
+# Iterative Refinement and CI/CD Integration — F3 Claude Code Configuration & Workflows
 
 **Exam weight: 20%**
 

@@ -2,6 +2,12 @@
 
 **Exam weight: 7% (smallest Professional domain) · part of the 35% that appears ONLY on Professional**
 
+*Owns § 6 task statements:*
+
+- P7.1 — Configure Claude tools and environments for teams (e.g., Claude Code)
+- P7.2 — Improve developer workflows using AI-assisted tooling
+- P7.3 — Support debugging and operational issue resolution
+
 ## What this session assumes
 
 Tier 1 sessions 5–7 (Claude Code configuration, hooks/skills, CI) and Tier 3 sessions

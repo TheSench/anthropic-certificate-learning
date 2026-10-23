@@ -1,6 +1,12 @@
-# Model Steering and Prompt Portfolios — P6 Claude Models, Prompting & Context Engineering
+# Model Steering and Prompt Portfolios — P2 Claude Models, Prompting & Context Engineering
 
 **Exam weight: 13%**
+
+*Owns § 6 task statements:*
+
+- P2.2 — Design system prompts, templates, and guardrails
+- P2.3 — Apply prompt engineering techniques (zero-shot, few-shot, chain-of-thought)
+- P2.5 — Implement prompt reuse strategies (caching, modular prompts, Skills)
 
 ## What this session assumes
 
@@ -8,7 +14,7 @@ Tier 1 session 8 (prompt diagnosis) and Tier 3 sessions 4, 7, 13, 14.
 
 ## Why this domain is worth 13% of your score
 
-The P6 domain description names **model steering**. Foundations tested prompt technique on
+The P2 domain description names **model steering**. Foundations tested prompt technique on
 a single prompt; Professional tests managing prompts as a **portfolio asset** across
 models, teams, and time — versioned, owned, evaluated, and migrated. Items here often turn
 on treating prompts as code rather than as configuration strings.
@@ -149,7 +155,7 @@ By the end, the learner can:
 ## How to run this session
 
 1. **Frame** — prompts as a portfolio asset, managed like code. Name that this altitude
-   shift is what separates P6 items from Foundations prompt questions.
+   shift is what separates P2 items from Foundations prompt questions.
 2. **Verify** the model-specific prompting guidance for the current models before teaching
    any steering specifics.
 3. **Teach prompts-as-artifacts.** Ask what's wrong with prompts stored in a database and

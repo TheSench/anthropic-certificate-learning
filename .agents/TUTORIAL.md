@@ -225,7 +225,7 @@ Run only when `learner/profile.md` doesn't exist.
    - How much hands-on Claude work have you done — Claude Code, Agent SDK, the API, MCP? Any of it in production?
    - Which of these are you weakest on: enterprise integration, evals/testing, governance & compliance, stakeholder communication, cost/model selection?
    - Have you ever had to defend an architecture to a security review, own a compliance
-     requirement, or present a technical decision to executives? (This probes P4/P5 — 28%
+     requirement, or present a technical decision to executives? (This probes P5/P6 — 28%
      of Professional — which builders routinely under-report because they've never had to.)
    - How long do you want sessions to run, and do you prefer depth over pace?
    - Do you have a target exam date for Foundations?
@@ -280,7 +280,7 @@ that message.
 **Readiness:** [Foundations|Professional] [projected score] / 720 to pass
 Last completed: [Topic] ([date])
 
-**Starting:** [Session title] — domain [F1 / P3 / …] ([weight]% of exam, [HIGH/MED/LOW] relevance)
+**Starting:** [Session title] — domain [F1 / P4 / …] ([weight]% of exam, [HIGH/MED/LOW] relevance)
 [One sentence: what this covers and why it matters for this learner.]
 ```
 
@@ -539,11 +539,11 @@ saying `mock`.
 - Pick **4 of the 6 [scenario archetypes](SEQUENCE.md#scenario-archetypes)** at random.
 - 15 questions per scenario, 60 total. Each scenario opens with a substantial context
   block (system description, constraints, stakeholders) that questions refer back to.
-- Distribute questions across domains at blueprint weight: F1 27% (~16), F2 20% (~12),
-  F3 20% (~12), F4 18% (~11), F5 15% (~9).
+- Distribute questions across domains at blueprint weight: F1 27% (~16), F2 18% (~11),
+  F3 20% (~12), F4 20% (~12), F5 15% (~9).
 
-**Professional mock (`GATE-P`)** — 63 standalone items, weighted P1 19% (~12),
-P2 17% (~11), P3 16% (~10), P4 14% (~9), P5 14% (~9), P6 13% (~8), P7 7% (~4).
+**Professional mock (`GATE-P`)** — 63 standalone items, weighted P1 17% (~11),
+P2 13% (~8), P3 19% (~12), P4 16% (~10), P5 14% (~9), P6 14% (~9), P7 7% (~4).
 
 **During the mock:**
 - **Pre-batch every group before presenting it** — see [Item pre-batch](#item-pre-batch).
@@ -670,7 +670,7 @@ for coverage:
 Counting sessions instead of task statements is how a domain reports itself closed while
 objectives sit untouched: F1 once read `98 · 4 of 4 sessions` while three of its seven
 task statements had no drill card anywhere, because the sessions teaching them were
-labelled F2 and F5. The projection is only as honest as its denominator.
+labelled F3 and F5. The projection is only as honest as its denominator.
 
 `Basis` records what the number came from (`3 drills`, `mock 2026-09-20`) so it's auditable.
 
@@ -713,7 +713,8 @@ primary stop condition or a backstop". This is the card's identity.]
 
 `Task` is the § 6 task statement the card measures — see `BLUEPRINT.md` § Task statements.
 It is what makes per-domain accuracy mean something: a card tagged `F5` that actually
-tests Task 1.4 inflates F5 and hides an F1 gap.
+tests Task 1.4 inflates F5 and hides an F1 gap. Professional cards carry the `P`-prefixed
+IDs (`P3.1`); a bare `3.1` is always a Foundations task.
 
 **`Tests` is the durable asset; `Q` is disposable.** At `Seen` 3 or more, rewrite the
 vignette before serving — new domain, new numbers, same decision and same tell. A card

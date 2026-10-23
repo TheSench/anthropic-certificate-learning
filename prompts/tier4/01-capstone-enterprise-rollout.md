@@ -1,6 +1,6 @@
 # Capstone: Enterprise Claude Code Rollout
 
-**Spans P1, P2, P4, P5, P7 · Professional capstone 1 of 4**
+**Spans P1, P3, P5, P6, P7 · Professional capstone 1 of 4**
 
 ## What this session is
 
@@ -87,10 +87,10 @@ Score across the five spanned domains, and report:
 
 | Domain | Assessment | Notes |
 |---|---|---|
-| P1 Integration | [1–4] | |
-| P2 Solution Design | [1–4] | |
-| P4 Governance & Risk | [1–4] | |
-| P5 Stakeholder & Lifecycle | [1–4] | |
+| P1 Solution Design | [1–4] | |
+| P3 Integration | [1–4] | |
+| P5 Governance & Risk | [1–4] | |
+| P6 Stakeholder & Lifecycle | [1–4] | |
 | P7 Enablement | [1–4] | |
 
 **Strongest:** …

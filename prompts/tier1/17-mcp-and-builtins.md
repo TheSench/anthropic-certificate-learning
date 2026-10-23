@@ -1,4 +1,4 @@
-# MCP Servers and Built-in Tools — F4 Tool Design & MCP Integration
+# MCP Servers and Built-in Tools — F2 Tool Design & MCP Integration
 
 **Exam weight: 18%**
 
@@ -8,14 +8,14 @@ Sessions 14 (designing tool interfaces) and 16 (tool errors and tool distributio
 14 established that a description is the model's selection mechanism — which is exactly what
 decides whether your MCP server's tools get used instead of a built-in. Session 16 established
 `isError` and structured error metadata on MCP tool results, and the cost of an oversized tool
-surface, which is what connecting several servers at once produces. This is the last F4
+surface, which is what connecting several servers at once produces. This is the last F2
 session and the last of Tier 1's teaching sessions on this domain. It owns § 6 tasks
 **2.4 — "Integrate MCP servers into Claude Code and agent workflows"** and **2.5 — "Select and
 apply built-in tools (Read, Write, Edit, Bash, Grep, Glob) effectively."**
 
 ## Why this domain is worth 18% of your score
 
-The F4 domain description names **MCP server configuration**, and MCP is listed among the
+The F2 domain description names **MCP server configuration**, and MCP is listed among the
 products in scope — but § 17 draws a hard line through it: servers, tools, resources,
 `isError`, tool descriptions, tool distribution, `.mcp.json`, and environment variable
 expansion are in; **deploying or hosting MCP servers is explicitly out**. That boundary is
@@ -164,7 +164,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 
 ## How to run this session
 
-1. **Frame the scope boundary first.** F4 is 18%; this session owns 2.4 and 2.5. State the
+1. **Frame the scope boundary first.** F2 is 18%; this session owns 2.4 and 2.5. State the
    § 17 line out loud before teaching anything: MCP servers, tools, resources, `isError`,
    descriptions, distribution, `.mcp.json`, and environment variable expansion are testable;
    **deploying or hosting MCP servers is explicitly out of scope** — infrastructure,
@@ -233,8 +233,8 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
     resource was the answer; "write our own Jira server" for a standard integration; a
     system-prompt instruction telling the agent to prefer the MCP tool, where the answer is to
     improve its description; and `Glob` offered for a contents search.
-15. **Close Tier 1's F4 arc.** All three F4 task groups are now taught — interfaces (14),
-    errors and distribution (16), MCP and built-ins (17). Tell the learner F4 is complete and
+15. **Close Tier 1's F2 arc.** All three F2 task groups are now taught — interfaces (14),
+    errors and distribution (16), MCP and built-ins (17). Tell the learner F2 is complete and
     name their weakest of the three.
 16. Record per `.agents/TUTORIAL.md` Step 5. Glossary **`.mcp.json`**, **`~/.claude.json`**,
     **`${ENV_VAR}` expansion**, **MCP resource**, and each built-in tool name.
@@ -259,5 +259,5 @@ Defer and say where it's covered:
 - Tool distribution, scoped tool sets, `tool_choice` → session 16 (task 2.3), already taught;
   reference it when the connected-surface question comes up rather than re-teaching it
 - Context budgeting and why incremental exploration pays → session 6, already taught
-- CLAUDE.md, slash commands, and skills → sessions 19 and 20 (F2), which come next
+- CLAUDE.md, slash commands, and skills → sessions 19 and 20 (F3), which come next
 - Enterprise MCP governance, data residency, and gateways → Tier 3 sessions 2 and 10

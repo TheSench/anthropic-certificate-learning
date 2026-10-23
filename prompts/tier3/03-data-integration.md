@@ -1,14 +1,18 @@
-# Files, Citations, RAG, and Data Wiring — P1 Integration
+# Files, Citations, RAG, and Data Wiring — P3 Integration
 
 **Exam weight: 19%**
 
+*Owns § 6 task statements P3.5 — Design a RAG pipeline with appropriate chunking and
+indexing strategies — and P3.6 — Apply retrieval strategies matched to data shape and
+query pattern.*
+
 ## What this session assumes
 
-Sessions 1–2. This completes P1 by covering how enterprise *data* reaches the model.
+Sessions 1–2. This completes P3 by covering how enterprise *data* reaches the model.
 
 ## Why this domain is worth 19% of your score
 
-"Data wiring" is named in the P1 domain description. The scored judgment is choosing among
+"Data wiring" is named in the P3 domain description. The scored judgment is choosing among
 ways to get information in front of the model — long context, retrieval, files, tool
 lookup at inference time — and knowing which one satisfies a *freshness*, *permission*,
 and *auditability* requirement rather than just fitting the tokens.

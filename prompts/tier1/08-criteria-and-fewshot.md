@@ -1,4 +1,4 @@
-# Explicit Criteria and Few-Shot Prompting — F3 Prompt Engineering & Structured Output
+# Explicit Criteria and Few-Shot Prompting — F4 Prompt Engineering & Structured Output
 
 **Exam weight: 20%**
 
@@ -11,7 +11,7 @@ session is about the *text* of a prompt, not the shape of its output.
 
 ## Why this domain is worth 20% of your score
 
-The F3 § 6 task statements name this session's two objectives directly: **4.1 "Design
+The F4 § 6 task statements name this session's two objectives directly: **4.1 "Design
 prompts with explicit criteria to improve precision and reduce false positives"** and
 **4.2 "Apply few-shot prompting to improve output consistency and quality"**. Between
 them they are a third of the domain's task statements, and the exam does not test prompt
@@ -22,7 +22,7 @@ list.
 
 ## Session focus
 
-This session teaches the two interventions the F3 task statements name by hand: explicit
+This session teaches the two interventions the F4 task statements name by hand: explicit
 categorical criteria, and few-shot examples. The crux is that **"be conservative" is not
 a criterion** — specific categorical rules define report-vs-skip, and 2–4 examples showing
 *why* one action was chosen over a plausible alternative do what instructions alone
@@ -159,7 +159,7 @@ Surface each of these explicitly as a "when to use which, and the tell" table:
 
 ## How to run this session
 
-1. **Frame** — this session owns two of F3's six task statements, and the exam tests
+1. **Frame** — this session owns two of F4's six task statements, and the exam tests
    diagnosis rather than technique recall. Say both plainly. Name the crux: "be
    conservative" is not a criterion.
 2. **Teach explicit criteria** first. Give a weak prompt ("summarize this professionally")

@@ -1,11 +1,11 @@
 # Scenario: Structured Data Extraction — S6
 
-**Foundations scenario archetype 6 of 6 · primary domains F3, F5**
+**Foundations scenario archetype 6 of 6 · primary domains F4, F5**
 
 ## What this session is
 
 An **exam-difficulty drill** on the structured-extraction archetype. Not a teaching
-session — the three F3 sessions taught the core, with Tool Design and Context Management
+session — the three F4 sessions taught the core, with Tool Design and Context Management
 supporting. Teach only on
 a miss.
 
@@ -27,7 +27,7 @@ Drill the structured-extraction archetype. The crux is the gap between **asking 
    (multiple-response states the count: "Select two.").
 3. Batches of 4–5; feedback only at batch end.
 4. Full distractor autopsy on every question.
-5. Domain mix: ~7 F3, ~5 F5, ~2 F4, ~1 F1. The guide names Context Management &
+5. Domain mix: ~7 F4, ~5 F5, ~2 F2, ~1 F1. The guide names Context Management &
    Reliability the second primary domain for this archetype — confidence routing, review
    sampling, and long-document handling are all F5 — so it outweighs Tool Design here.
 
@@ -103,11 +103,11 @@ provides. That word is the whole discrimination in this domain.
 
    ```
    S6 Structured Data Extraction — [N]/[total] ([%])
-   F3 [n]/[n] · F5 [n]/[n] · F4 [n]/[n] · F1 [n]/[n]
+   F4 [n]/[n] · F5 [n]/[n] · F2 [n]/[n] · F1 [n]/[n]
    ```
 
 6. Name the two most transferable weaknesses.
-7. Record per `.agents/TUTORIAL.md` Step 5. Misses become drill cards; update F3 and F4
+7. Record per `.agents/TUTORIAL.md` Step 5. Misses become drill cards; update F4 and F2
    readiness. Log any doc discrepancy found while verifying.
 
 ## Out of scope

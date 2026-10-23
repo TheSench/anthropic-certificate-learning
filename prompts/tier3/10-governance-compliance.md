@@ -1,22 +1,25 @@
-# Governance, Residency, and Compliance — P4 Governance, Safety & Risk Management
+# Governance, Residency, and Compliance — P5 Governance, Safety & Risk Management
 
 **Exam weight: 14% · part of the 35% that appears ONLY on Professional**
 
+*Owns § 6 task statement P5.4 — Ensure compliance with regulations (e.g., GDPR, HIPAA,
+FedRAMP).*
+
 ## What this session assumes
 
-Sessions 1–9. This begins the three domains (P4, P5, P7) absent from Foundations
+Sessions 1–9. This begins the three domains (P5, P6, P7) absent from Foundations
 entirely — the most common reason a strong Foundations candidate fails Professional.
 
 ## Why this domain is worth 14% of your score
 
-P4, P5, and P7 together are 35% of the Professional exam and appear nowhere on
+P5, P6, and P7 together are 35% of the Professional exam and appear nowhere on
 Foundations. A candidate who prepared only by building will be weakest here, and it's
 enough to fail on. This session covers the controls and evidence an enterprise deployment
 requires: who can use what, where data goes, how long it's kept, and how you prove it.
 
 ## Session focus
 
-This session begins the three domains absent from Foundations entirely. Say plainly that P4, P5, and P7 are 35% of this exam and the usual reason strong builders fail it. The crux is the enforcement-point judgment: **policy in a document is not a control**. Spend the most time on the placement exercise — six stated policies mapped onto managed settings, inference hooks, spend limits, or workspace boundaries — where the point is identifying which are currently *unenforced*. Test audit design against a real auditor question and accept only evidence, never intent.
+This session begins the three domains absent from Foundations entirely. Say plainly that P5, P6, and P7 are 35% of this exam and the usual reason strong builders fail it. The crux is the enforcement-point judgment: **policy in a document is not a control**. Spend the most time on the placement exercise — six stated policies mapped onto managed settings, inference hooks, spend limits, or workspace boundaries — where the point is identifying which are currently *unenforced*. Test audit design against a real auditor question and accept only evidence, never intent.
 
 ## Authoritative sources
 
@@ -95,7 +98,7 @@ By the end, the learner can:
 
 ## How to run this session
 
-1. **Frame** — say plainly that P4/P5/P7 are 35% of this exam, absent from Foundations, and
+1. **Frame** — say plainly that P5/P6/P7 are 35% of this exam, absent from Foundations, and
    the usual reason strong builders fail it. This session and the next four are where the
    Professional credential is actually won.
 2. **Verify** the retention, residency, and compliance-API specifics from live docs before

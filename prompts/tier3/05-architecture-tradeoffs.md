@@ -1,6 +1,9 @@
-# Architecture Trade-offs at Scale — P2 Solution Design & Architecture
+# Architecture Trade-offs at Scale — P1 Solution Design & Architecture
 
-**Exam weight: 17%**
+**Exam weight: 17% (P1) and 19% (P3)**
+
+*Owns § 6 task statements P1.4 — Design multi-agent systems and orchestration strategies —
+and P3.3 — Evaluate accuracy-latency trade-offs and justify configuration decisions.*
 
 ## What this session assumes
 
@@ -98,7 +101,7 @@ By the end, the learner can:
 10. **The core exercise:** have the learner propose an architecture for a stated problem,
     then interrogate it — "what does this cost you?", "what breaks at 10×?", "what's the
     failure mode you haven't handled?" Keep going until they can pre-empt the questions.
-    This is the session's real work and the closest rehearsal for P2 exam items.
+    This is the session's real work and the closest rehearsal for P1 exam items.
 11. **Decision table** — walk all six rows.
 12. **Scenario drill — 5 questions**, standalone Professional format. Include a
     rate-limit/parallelism question, a tail-latency question, a blast-radius question, a

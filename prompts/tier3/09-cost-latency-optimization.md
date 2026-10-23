@@ -1,6 +1,9 @@
-# Cost and Latency Optimization — P3 Evaluation, Testing & Optimization
+# Cost and Latency Optimization — P4 Evaluation, Testing & Optimization
 
 **Exam weight: 16%**
+
+*Owns § 6 task statement P4.5 — Optimize token usage, latency, and cost-performance
+trade-offs.*
 
 ## What this session assumes
 
@@ -9,7 +12,7 @@ the optimization itself.
 
 ## Why this domain is worth 16% of your score
 
-Cost and performance tuning is named in the P3 domain description, and it's the most
+Cost and performance tuning is named in the P4 domain description, and it's the most
 quantitative material on the Professional exam. Items typically supply volumes, token
 counts, and a budget, then ask which lever closes the gap — or which proposed optimization
 would break a stated requirement. Precision and knowing each lever's side effect are what
@@ -106,7 +109,7 @@ By the end, the learner can:
    cost-optimal choice is unacceptable.
 8. **Teach p99 optimization** and connect it back to session 5.
 9. **Teach the baseline-and-gate requirement.** Ask how they'd know a 40% cost cut didn't
-   cost 5% quality. This connects P3's two halves.
+   cost 5% quality. This connects P4's two halves.
 10. **Teach spend controls and attribution.**
 11. **Teach requirement renegotiation** as a legitimate architectural move, and have them
     identify a requirement worth challenging.
