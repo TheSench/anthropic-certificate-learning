@@ -91,7 +91,7 @@ is always the tested one:
 
 | Term | This curriculum (tested) | AI Fluency (not tested) |
 |---|---|---|
-| **Delegation** | Agent-to-subagent handoff — delegation briefs, subagent economics, the three-column ledger (F1) | Deciding what to hand to an AI vs. keep human |
+| **Delegation** | Agent-to-subagent handoff — delegation briefs, subagent economics, the three-column ledger (F1); **and** CCAR-P v1.1 P1.1, which tests which parts of a business process go to Claude, stay with humans, or are shared, judged by reversibility, stakes, and accountability | The AI Fluency "4 D's" framework itself — its vocabulary and teaching model are not tested |
 | **Description** | The text a model reads to choose a tool; "a tool description is a prompt" (F2) | Communicating intent to an AI precisely |
 
 The other two collide with nothing here: **Discernment** (critically evaluating

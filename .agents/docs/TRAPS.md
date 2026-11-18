@@ -258,20 +258,47 @@ weaker evidence — [`TUTORIAL.md`](../TUTORIAL.md) tells you to score them cons
 
 | Domain | Trap | The tell | Source |
 |---|---|---|---|
-| P1 (17%) | Scaling answers that add capacity where the constraint is a limit | Rate limits don't yield to more workers | T3-05 |
-| P1 | Prompt-level fixes for reliability problems | Reliability needs a structural control, not better wording | T3-06 |
-| P1 | Schema validation trusted to catch semantic errors | Well-formed and wrong is the dangerous case | T3-06 |
-| P2 (13%) | Production A/B results trusted at sample sizes that can't support them | The claimed effect is below the resolvable difference | T3-15 |
-| P3 (19%) | Parity across deployment surfaces assumed rather than verified | Feature availability differs per surface and moves | T3-02 |
-| P3 | Static credentials chosen for simplicity | An enterprise identity system already exists | T3-01 |
-| P4 (16%) | Optimization before measurement | No profile identifies where the cost or latency actually is | T3-09 |
-| P4 | Levers chosen without their side effect | Every lever trades something; name it | T3-09 |
-| P5 (14%) | Oversight assigned by task difficulty rather than reversibility | Hard-and-reversible needs less oversight than easy-and-irreversible | T3-11 |
-| P5 | Instruction-hardening where privilege reduction was the control | Instructions bind a cooperative model only | T3-11 |
+| P1 (18%) | Scaling answers that add capacity where the constraint is a limit | Rate limits don't yield to more workers | T3-05 |
+| P1 | "Fails first" named as output quality | A hard limit or an unenforced permission breaks earlier than quality degrades | T3-05 |
+| P1 | Decomposition judged on its happy path | Nothing says how a failed subagent is seen, retried, or synthesized around | T3-05 |
+| P1 | Surface parity or hosted-runtime availability assumed | Feature and runtime availability differ per surface and move | T3-02 |
+| P1 | ZDR offered as a residency control | ZDR governs how long data is held, not where it is processed | T3-02, T3-10 |
+| P1 | "All requirements met, no trade-off" | Surface choice constrains runtime and feature availability; something is given up | T3-02 |
+| P1 | Irreversible or accountable decisions delegated to Claude, or every step kept with humans | Assign by reversibility, stakes, and accountability, not by caution | T3-04 |
+| P2 (13%) | Rigid template or exhaustive rule list as the "safest" prompt revision | Over-constrains legitimate variation; fix the underspecified dimension only | T3-15 |
+| P2 | Manual chain-of-thought scaffolding on a current model | Native thinking at a set effort is the current answer; verify per model | T3-15 |
+| P2 | Cache breakpoint placed after a per-request field | Stable content must precede the breakpoint, or nothing is reused | T3-15 |
+| P2 | Compaction chosen where exact recall or cross-session persistence was required | Compaction is lossy and in-session; the memory tool persists | T3-14 |
+| P2 | Effort raised globally for one step's accuracy need | Allocate effort per step; global effort pays latency everywhere | T3-14 |
+| P3 (21%) | Static credentials chosen for simplicity | An enterprise identity system already exists | T3-01 |
+| P3 | Authorization enforced by a prompt instruction | Authorization belongs in the credential and the tool, not the prompt | T3-01 |
+| P3 | Timeout or retry-count tuning for duplicated side effects | Reduces how often the race happens; only idempotency removes it | T3-06 |
+| P3 | Fallback routing or replay with no idempotency | A second path re-executes a side effect the first already completed | T3-06 |
+| P3 | Index built for a corpus that fits in context, or for a live permission-rich system of record | Full-corpus context or agentic search fit; indexing is a commitment | T3-03 |
+| P3 | Tools kept "in case" because they're cheap to cache | Least privilege is a security property, not a token cost | T3-14 |
+| P4 (17%) | "Improve the prompt" for a retrieval failure or tool error | The trace shows the model never received what it needed | T3-06 |
+| P4 | Fix aimed at the wrong judge bias | Position, verbosity, self-preference, and drift each leave a distinct pattern | T3-07 |
+| P4 | Single-trial comparison of two configurations | Run-to-run variance is larger than the claimed effect | T3-07 |
+| P4 | Accuracy checks where the gap was groundedness | Correct-looking output unsupported by its sources passes an accuracy check | T3-07 |
+| P4 | Optimization aimed at the loudest route rather than the one telemetry shows | No profile locates where spend or latency concentrates | T3-09 |
+| P4 | Migration without eval evidence, or re-baselining to hide a regression | No baseline, or a moved baseline, means no way to see the regression | T3-13 |
+| P5 (16%) | Oversight assigned by task difficulty rather than reversibility | Hard-and-reversible needs less oversight than easy-and-irreversible | T3-11 |
+| P5 | Gate triggered by the model's self-reported confidence | A gate on an irreversible step must be deterministic | T3-11 |
 | P5 | Human approval requested in the prompt where the harness had to withhold the action | The agent can still take the action without a human's answer | T3-11 |
-| P6 (14%) | Migration without eval evidence | No baseline means no way to know the migration regressed | T3-13 |
-| P6 | Stronger-model upgrades assumed safe | A more capable model can still regress a specific behavior | T3-13 |
-| P7 (7%) | Org-wide launches before the enablement path exists | Rollout precedes the support structure it depends on | T3-16 |
+| P5 | Risks listed rather than ranked by exposure | The item asks which matters most; quota exhaustion and supply chain are often omitted | T3-11 |
+| P5 | Bias mitigation aimed at the wrong source | A "be fair" instruction cannot fix data bias; reweighting cannot fix a biased eval | T3-11 |
+| P5 | "Label it untrusted" as the only injection control, or for a third-party Skill | A Skill's content is meant to be followed; the control is vetting and privilege | T3-08 |
+| P5 | Blanket filter that closes a misuse path by breaking the stated legitimate use | The stem names a legitimate use the control must preserve | T3-08 |
+| P5 | Control set padded beyond what the obligation requires | Select the set that *evidences* the stated obligation, no more | T3-10 |
+| P6 (7%) | Prompt instruction offered to meet an unsupportable commitment | The commitment needs clarifying or the architecture changing | T3-12 |
+| P6 | ADR revision that overstates certainty about model behavior | Residual risk must be explicit, not reassured away | T3-12 |
+| P6 | Handoff treated as a walkthrough rather than documentation that closes a gap | The receiving team needs the missing assumption, dependency, or runbook written down | T3-13 |
+| P7 (8%) | `bypassPermissions` chosen for CI convenience on a non-isolated runner | Unattended plus unsandboxed is the unsafe pairing | T3-16 |
+| P7 | Safety controls shipped only as CLAUDE.md or README guidance | Guidance isn't enforcement; managed settings are | T3-16 |
+| P7 | AI review offered as the accountability control for AI-generated code | Ownership requires a named human, not another model | T3-16 |
+
+Ownership and weights follow CCAR-P v1.1 (`BLUEPRINT.md` § Exam 2). Rebuilt 2026-11-18 from
+the Tier 3 autopsy lines after the v1.1 re-mapping; `T3-NN` is the Tier 3 file number.
 
 ---
 

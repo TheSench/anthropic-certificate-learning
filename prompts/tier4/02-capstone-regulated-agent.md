@@ -23,6 +23,10 @@ It's the scenario where the *right* answer is most often less autonomy, tighter 
 and more human oversight than the technology strictly requires — and where an architect who
 optimizes for capability fails. It also exercises P4 and P2, which capstone 1 doesn't.
 
+CCAR-P v1.1 § 6 warns that exam scenarios present artifacts — architecture diagrams,
+configuration files, logs and traces, evaluation results, and code — and expect you to reason
+from them. Phases 3, 4, and 6 below each hand the learner one to review.
+
 ## The problem
 
 Construct a fresh brief each run. Include at minimum:
@@ -41,6 +45,12 @@ Construct a fresh brief each run. Include at minimum:
 - **Multi-tenancy or data segregation** requirement
 - **A stated quality bar** with a number, plus the consequence of missing it
 - **An existing manual process** the agent is meant to augment, with its current accuracy
+- **A residency or data-custody obligation** that constrains both deployment surface and
+  agent runtime
+- **Untrusted content in context**: customer-uploaded documents, retrieved policy text, and
+  at least one MCP server or third-party Skill
+- **A side-effecting tool** (issue a refund, file a claim decision) behind a rate-limited
+  downstream API
 
 ## How to run this session
 
@@ -64,11 +74,33 @@ the constraints, tool design and permissions, data delivery with per-tenant/per-
 filtering, context architecture, and the validation boundary before any side effect. Demand
 constraint-based justification throughout.
 
+Add three beats:
+- **Runtime selection (P1.6).** Have them choose the deployment surface and the agent
+  runtime — Messages API loop, self-hosted Agent SDK or headless Claude Code, or Claude
+  Managed Agents — under the residency obligation, and name what the choice costs in
+  feature availability, session state, sandboxing, and data custody. Verify current
+  per-surface runtime availability from live docs.
+- **Injection surface (P5.2).** Have them trace every path untrusted content enters context
+  — uploads, retrieved documents, tool results, MCP responses, the third-party Skill — and
+  specify the control for each that stops it being treated as instruction.
+- **Reliability under load (P3.8).** Show an error trace: a burst of rate-limit errors,
+  client retries with backoff, and two customers refunded twice after client-side timeouts.
+  Have them name the control (idempotency on the side-effecting tool) and explain why
+  tuning retries alone would not fix it.
+
 ### Phase 4 — Quality, evals, and guardrails (10 min)
 Have them design the eval suite — including how they'd measure fair treatment across
 groups, which is a regulatory obligation as well as a quality one — the grading methods,
 the regression gate, and the guardrails matched to specific failure modes. Ask the P4
 question directly: "how would you know if it got worse?"
+
+Then show **evaluation results**: an LLM judge scores the agent's explanations 4.6/5 while
+human reviewers rate the same sample far lower, and the judge's scores rise with
+explanation length while order and model family show no pattern. Have them name the
+responsible bias — position, verbosity, self-preference, or judge drift — and the correction
+(P4.3). Then show a fairness breakdown with disparate outcomes across groups and have them
+decide whether the source is data, prompt framing, or evaluation design before choosing a
+mitigation (P5.6).
 
 ### Phase 5 — Governance, audit, and oversight (10 min)
 Controls, enforcement points, audit trail sufficient for a regulator, retention, and the
@@ -82,6 +114,12 @@ identify root cause, remediate affected customers, report, and prevent recurrenc
 in their design would have caught it sooner — and whether their answer in Phase 4 actually
 would have.
 
+Give the root cause as **traces**, not a narrative: a handful of request traces where the
+retrieval step returns a superseded policy version and the agent cites it faithfully. Have
+them isolate the cause among prompt failure, retrieval failure, hallucination, tool or
+subagent error, and model mismatch (P4.5), then name the monitoring signal that would have
+surfaced it (P3.4).
+
 ### Phase 7 — Assessment
 
 ```
@@ -89,11 +127,11 @@ would have.
 
 | Domain | Assessment | Notes |
 |---|---|---|
-| P1 Solution Design | [1–4] | |
-| P2 Context & Prompting | [1–4] | |
+| P1 Solution Design and Architecture | [1–4] | |
+| P2 Claude Models, Prompting, and Context Engineering | [1–4] | |
 | P3 Integration | [1–4] | |
-| P4 Evaluation & Optimization | [1–4] | |
-| P5 Governance & Risk | [1–4] | |
+| P4 Evaluation, Testing, and Optimization | [1–4] | |
+| P5 Governance, Safety, and Risk Management | [1–4] | |
 
 **Strongest:** …
 **Weakest:** …
@@ -107,12 +145,15 @@ Be blunt in that last line.
 Judge on: an autonomy boundary drawn on reversibility and regulation rather than
 difficulty; a validation boundary before every side effect; evals that address the
 regulatory obligations, not just accuracy; audit design that produces evidence; per-tenant
-data isolation handled correctly; and incident handling in Phase 6 that starts with
-containment rather than root cause.
+data isolation handled correctly; a runtime choice justified against the residency
+obligation; idempotency rather than retry tuning for the duplicate side effect; the judge
+bias named correctly; root cause read from the traces rather than guessed; and incident
+handling in Phase 6 that starts with containment rather than root cause.
 
 Weak signals: autonomy granted because it's technically feasible, the quality bar set at
-perfection without reference to the human baseline, guardrails offered generically,
-compliance overclaimed, and a Phase 6 response that jumps to a fix before scoping the harm.
+perfection without reference to the human baseline, guardrails offered generically, a
+prompt instruction offered where an enforceable control was needed, compliance overclaimed,
+and a Phase 6 response that jumps to a fix before scoping the harm.
 
 ## Recording
 

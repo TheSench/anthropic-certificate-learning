@@ -131,18 +131,19 @@ session in the curriculum and it's meant to be re-run.
 
 | | Foundations (CCAR-F) | Professional (CCAR-P) |
 |---|---|---|
-| Items | 60 | 63 |
+| Items | 60 | 70 (60 scored, 10 unscored) |
 | Duration | 120 min | 120 min |
-| Format | 4 scenarios from a pool of 6, 15 questions each | Standalone items |
+| Format | 4 scenarios from a pool of 6, 15 questions each | Standalone scenario-based items |
 | Passing | 720 / 1000 scaled | 720 / 1000 scaled |
 | Conditions | Proctored, closed-book | Proctored, closed-book |
 
 Full domain weights, scenario archetypes, and the documentation map are in
 [`BLUEPRINT.md`](BLUEPRINT.md).
 
-**Note on Professional:** its Governance, Stakeholder, and Enablement domains are 35% of
-the exam and appear nowhere on Foundations. They're the usual reason a strong Foundations
-candidate fails Professional, so the curriculum treats them as first-class.
+**Note on Professional:** the curriculum teaches CCAR-P guide **v1.1, effective
+December 7, 2026**. Its Governance, Stakeholder, and Enablement domains are 31% of the exam
+and appear nowhere on Foundations. They're the usual reason a strong Foundations candidate
+fails Professional, so the curriculum treats them as first-class.
 
 ---
 

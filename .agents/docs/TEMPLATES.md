@@ -129,13 +129,13 @@ teaching) from a weak one (needs drilling) from a high-stakes one (needs both).
 
 | Domain | Weight | Relevance | Rationale |
 |---|---|---|---|
-| P1 Solution Design & Architecture | 17% | HIGH | [why for this learner] |
-| P2 Claude Models, Prompting & Context Engineering | 13% | MED | [why for this learner] |
-| P3 Integration | 19% | HIGH | Largest Professional domain |
-| P4 Evaluation, Testing & Optimization | 16% | MED | [why — often weak in builders who haven't operated] |
-| P5 Governance, Safety & Risk Management | 14% | MED | [why — absent from Foundations entirely] |
-| P6 Stakeholder Communication & Lifecycle | 14% | MED | [why — absent from Foundations entirely] |
-| P7 Developer Productivity & Operational Enablement | 7% | LOW | Smallest domain; still absent from Foundations |
+| P1 Solution Design and Architecture | 18% | HIGH | [why for this learner] |
+| P2 Claude Models, Prompting, and Context Engineering | 13% | MED | [why for this learner] |
+| P3 Integration | 21% | HIGH | Largest Professional domain |
+| P4 Evaluation, Testing, and Optimization | 17% | MED | [why — often weak in builders who haven't operated] |
+| P5 Governance, Safety, and Risk Management | 16% | MED | [why — absent from Foundations entirely] |
+| P6 Stakeholder Communication and Lifecycle Management | 7% | MED | [why — absent from Foundations entirely] |
+| P7 Developer Productivity and Operational Enablement | 8% | LOW | Smallest domain; still absent from Foundations |
 ```
 
 **Setting the initial ratings.** HIGH for stated weak areas and for any domain at ≥18%
@@ -176,13 +176,13 @@ Formula: `projected = 100 + 9 × Σ(weight × confidence)`
 
 | Domain | Weight | Confidence | Basis | Last assessed |
 |---|---|---|---|---|
-| P1 Solution Design & Architecture | 17% | 0 | untested | — |
-| P2 Claude Models, Prompting & Context Engineering | 13% | 0 | untested | — |
-| P3 Integration | 19% | 0 | untested | — |
-| P4 Evaluation, Testing & Optimization | 16% | 0 | untested | — |
-| P5 Governance, Safety & Risk Management | 14% | 0 | untested | — |
-| P6 Stakeholder Communication & Lifecycle | 14% | 0 | untested | — |
-| P7 Developer Productivity & Operational Enablement | 7% | 0 | untested | — |
+| P1 Solution Design and Architecture | 18% | 0 | untested | — |
+| P2 Claude Models, Prompting, and Context Engineering | 13% | 0 | untested | — |
+| P3 Integration | 21% | 0 | untested | — |
+| P4 Evaluation, Testing, and Optimization | 17% | 0 | untested | — |
+| P5 Governance, Safety, and Risk Management | 16% | 0 | untested | — |
+| P6 Stakeholder Communication and Lifecycle Management | 7% | 0 | untested | — |
+| P7 Developer Productivity and Operational Enablement | 8% | 0 | untested | — |
 
 ## Highest-leverage next study
 

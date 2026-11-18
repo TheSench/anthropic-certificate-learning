@@ -117,7 +117,7 @@ By the end, the learner can:
 returns content that enters the model's context, so its responses and its tool descriptions
 are untrusted input. State that in a sentence if the learner raises it, and move on — it is
 not attached to a task statement here, and prompt-injection defense in depth is Tier 3
-session 11.
+session 35 (P5.2).
 
 ### Task 2.5 — selecting built-in tools
 
@@ -251,7 +251,7 @@ Defer and say where it's covered:
   scored credential content is `${ENV_VAR}` expansion and nothing beyond it
 - Specific cloud provider configurations — excluded by § 17
 - Prompt injection defenses in depth, and the third-party trust analysis beyond the one-line
-  aside above → Tier 3 session 11
+  aside above → Tier 3 session 35 (P5.2)
 - Writing tool descriptions, renaming, splitting → session 14 (task 2.1), already taught;
   this session assumes it and applies it to MCP tools competing with built-ins
 - `isError`, `errorCategory`, `isRetryable`, structured error responses → session 16

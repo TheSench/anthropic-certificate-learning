@@ -29,7 +29,9 @@ Before doing anything else, read:
 ## Step 2 — Compute the target list
 
 Rank domains by **weight × shortfall** — the same calculation that drives the readiness
-file's "highest-leverage next study". Take the top three.
+file's "highest-leverage next study". Use the CCAR-P v1.1 weights and domain names from
+`BLUEPRINT.md` § Exam 2 (P6 is now 7%, P3 21%), and credit each objective to the domain
+`BLUEPRINT.md` assigns it, not to the owning session's label. Take the top three.
 
 Then, separately, identify the top two **distractor patterns** — the systematic biases
 recurring across sessions. These are attacked differently: not by re-teaching a domain, but
@@ -50,8 +52,8 @@ State the plan to the learner before starting:
 Projected: [N]/1000 · 720 to pass
 ```
 
-If the projection is already comfortably above 720 and all domains are above 70, say so and
-recommend proceeding to the mock rather than padding the session.
+If the projection is already above 780 with no domain below 65 (the same bar as the ready
+verdict below), say so and recommend proceeding to the mock rather than padding the session.
 
 ## Step 3 — Run the blitz
 
@@ -60,7 +62,10 @@ For each of the three target domains, in weight order:
 1. **Two minutes of targeted re-teaching**, aimed only at the specific gap the record shows
    — not a domain overview. If the record shows the gap is a confusion between two things,
    teach the discrimination and nothing else.
-2. **4–6 exam-format questions** at full Professional difficulty, standalone items.
+2. **4–6 exam-format questions** at full Professional difficulty, standalone items. Build
+   most of them on an artifact — an architecture diagram, configuration file, log or trace,
+   evaluation result, or code excerpt — since v1.1 § 6 says exam scenarios present such
+   artifacts and expect the candidate to reason from them.
 3. **Full distractor autopsy** on every one.
 4. Re-score the domain from measured accuracy.
 
