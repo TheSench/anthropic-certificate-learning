@@ -1,4 +1,4 @@
-# Files, Citations, Retrieval, and Data Wiring — P3 Integration
+# Retrieval Architecture: Full Context, Agentic Search, or RAG — P3 Integration
 
 **Exam weight: 21%**
 
@@ -12,8 +12,11 @@
 
 ## What this session assumes
 
-Sessions 28–29. Tier 1's tool-use and prompt-caching sessions (the prefix-ordering rule is
-Tier 1 session 14). This completes P3's data side: how enterprise content reaches the model.
+Sessions 28–29 and Tier 1's tool-use sessions. Prompt caching has not been taught yet:
+cache breakpoints and prefix ordering are session 42 (P2.5). Here, state only that a
+stable prefix can be cached, which is what makes full-corpus context and per-chunk context
+generation affordable, and defer the mechanics. This completes P3's data side: how
+enterprise content reaches the model.
 
 ## Why this domain is worth 21% of your score
 

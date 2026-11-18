@@ -74,7 +74,10 @@ By the end, the learner can:
     server's retry guidance, cap client-side concurrency, and queue rather than fan out.
     Past the limit, more concurrency *reduces* throughput (session 32)
   - **Retry and backoff** — transient errors (rate limit, overload, timeouts): exponential
-    backoff with jitter, a retry ceiling, and retry only on errors that are retryable. A
+    backoff with jitter, a retry ceiling, and retry only on errors that are retryable. Not
+    every 429 is transient: a spend or usage cap keeps failing until access resumes, so
+    read the response (verify current 429 variants and `retry-after` behaviour on the
+    errors page) before treating it as retryable. A
     synchronized retry wave is a retry storm; jitter breaks it
   - **Idempotency for side-effecting tools** — a duplicate effect in the trace (a second
     payment, a second ticket) where the first attempt executed but the caller never saw
@@ -105,7 +108,7 @@ By the end, the learner can:
   |---|---|---|
   | **Prompt failure** | The model did what the prompt said; the prompt was ambiguous, underspecified, or contradictory for this input class. Failure is consistent across runs | Revise the prompt (session 42 owns P2.2's revision skill) |
   | **Retrieval failure** | The content needed to answer never entered context — absent from the retrieved chunks or search results | Fix retrieval (query, depth, index, ranking); no prompt work fixes it (session 30) |
-  | **Hallucination** | The needed content *was* in context, or nothing supported the claim, and the output asserts something unsupported by it | Grounding, citations, permission to say "I don't know", verification against a source of truth |
+  | **Hallucination** | The needed content *was* in context (or the task needed none), and the output asserts something unsupported by it. If the evidence never arrived, classify by why — retrieval failure or tool error — even when the model then fabricated | Grounding, citations, permission to say "I don't know", verification against a source of truth |
   | **Tool or subagent error** | A tool returned an error, empty, or malformed result — or a subagent failed — and the caller treated it as success and kept going | Fix the tool or its error propagation: structured error results, status fields, the orchestrator checking them |
   | **Model mismatch** | The model is wrong for the task, not misbehaving: failures concentrate on the hardest-reasoning cases, or a large tier is too slow for a trivial one | Change tier or route by difficulty (session 31 owns P2.1) |
 
@@ -157,8 +160,10 @@ By the end, the learner can:
 ## How to run this session
 
 1. **Frame** — reliability lives in the system around the model, and every item gives you
-   an artifact to read first. State that prompt-level fixes are usually the wrong answer to
-   a reliability question on this exam, and why (Sample 2's logic).
+   an artifact to read first. State that where the failure happens outside the model's view
+   (a client retry, a rate limit, a timed-out side effect), prompt-level fixes are the wrong
+   answer, and why (Sample 2's logic). Say too that "revise the prompt" stays correct for a
+   genuine prompt failure under P4.5, so the rule is about P3.8 controls, not all failures.
 2. **Teach the probabilistic-dependency framing.** Ask what the system's error rate should
    be if the model is right 97% of the time. Lead them to: it depends entirely on what's
    built around it.

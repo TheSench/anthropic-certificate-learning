@@ -118,7 +118,7 @@ By the end, the learner can:
   metadata sits in context until the Skill triggers, the body loads on trigger, bundled
   resources load only when read. The description is the trigger — it must say what the
   Skill does and when to use it; an over-broad one fires wrongly (same principle as tool
-  descriptions, Tier 1 session 11). This is progressive discovery (session 41, P3.7)
+  descriptions, Tier 1 session 14). This is progressive discovery (session 41, P3.7)
   applied to instructions
 - Choose among the reuse mechanisms on what each does: **caching** makes a repeated prefix
   cheap but sends the same tokens; **modular composition** removes authoring duplication

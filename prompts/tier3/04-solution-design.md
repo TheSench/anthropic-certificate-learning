@@ -22,7 +22,8 @@
 
 ## What this session assumes
 
-Sessions 28–30 (P3). Tier 1 session 2 covered agent-vs-workflow; this raises the same
+Sessions 28–30 (P3). Tier 1 sessions 2 and 4 covered fixed vs. adaptive decomposition and the
+workflow-vs-agentic split; this raises the same
 judgment to whole-solution design, adds who does what (Claude or a human), and adds model
 tier choice.
 
@@ -64,10 +65,10 @@ change frequently, and a stale model ID is a wrong answer.
 - <https://platform.claude.com/docs/en/about-claude/models/optimizing-for-cost-and-intelligence>
 - <https://platform.claude.com/docs/en/about-claude/pricing>
 
-**Current model line** — check which exist and their positioning before teaching
-- <https://platform.claude.com/docs/en/models/opus-5/overview>
-- <https://platform.claude.com/docs/en/models/sonnet-5/overview>
-- <https://platform.claude.com/docs/en/models/haiku-4-5/overview>
+**Current model line** — check which tiers exist and their positioning before teaching;
+the lineup changes (a tier above Opus has been added before), so never teach it from memory
+- <https://platform.claude.com/docs/en/models/overview>
+- <https://platform.claude.com/docs/en/about-claude/models/choosing-a-model>
 
 **Capability levers that change the calculus**
 - <https://platform.claude.com/docs/en/build-with-claude/extended-thinking>
@@ -110,8 +111,8 @@ By the end, the learner can:
     that an agent loads on demand when a task matches. The unit of reuse and governance
     is the Skill: authored once, versioned, reviewed, and distributed across teams and
     agents. Verify current Skill packaging and loading behaviour from live docs
-  Tier 1 taught conversational/workflow/agentic; say plainly that the exam's terms are
-  augmented LLM and Skills-based, which are not the same idea as a conversational
+  Tier 1 taught the workflow vs. agentic (model-driven) split; augmented LLM and
+  Skills-based are new here, and augmented LLM is not the same idea as a conversational
   assistant
 - Select the pattern against the **three constraints the statement names**:
   - **Reuse** — is the same procedure needed across many agents, teams, or tasks? That

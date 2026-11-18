@@ -300,22 +300,6 @@ weaker evidence — [`TUTORIAL.md`](../TUTORIAL.md) tells you to score them cons
 Ownership and weights follow CCAR-P v1.1 (`BLUEPRINT.md` § Exam 2). Rebuilt 2026-11-18 from
 the Tier 3 autopsy lines after the v1.1 re-mapping; `T3-NN` is the Tier 3 file number.
 
----|---|---|---|
-| P1 (17%) | Scaling answers that add capacity where the constraint is a limit | Rate limits don't yield to more workers | T3-05 |
-| P1 | Prompt-level fixes for reliability problems | Reliability needs a structural control, not better wording | T3-06 |
-| P1 | Schema validation trusted to catch semantic errors | Well-formed and wrong is the dangerous case | T3-06 |
-| P2 (13%) | Production A/B results trusted at sample sizes that can't support them | The claimed effect is below the resolvable difference | T3-15 |
-| P3 (19%) | Parity across deployment surfaces assumed rather than verified | Feature availability differs per surface and moves | T3-02 |
-| P3 | Static credentials chosen for simplicity | An enterprise identity system already exists | T3-01 |
-| P4 (16%) | Optimization before measurement | No profile identifies where the cost or latency actually is | T3-09 |
-| P4 | Levers chosen without their side effect | Every lever trades something; name it | T3-09 |
-| P5 (14%) | Oversight assigned by task difficulty rather than reversibility | Hard-and-reversible needs less oversight than easy-and-irreversible | T3-11 |
-| P5 | Instruction-hardening where privilege reduction was the control | Instructions bind a cooperative model only | T3-11 |
-| P5 | Human approval requested in the prompt where the harness had to withhold the action | The agent can still take the action without a human's answer | T3-11 |
-| P6 (14%) | Migration without eval evidence | No baseline means no way to know the migration regressed | T3-13 |
-| P6 | Stronger-model upgrades assumed safe | A more capable model can still regress a specific behavior | T3-13 |
-| P7 (7%) | Org-wide launches before the enablement path exists | Rollout precedes the support structure it depends on | T3-16 |
-
 ---
 
 ## Maintenance

@@ -25,12 +25,14 @@ for routing.
 
 ## What this session assumes
 
-Tier 1 session 14 (context mechanics) and Tier 3 sessions 30, 32, and 36.
+Tier 1 sessions 6 (context mechanics) and 14 (tool interfaces), and Tier 3 sessions 30, 32, and 36.
 
 ## Why this domain is worth 13% of your score
 
 Two of P2's six objectives live here, plus two P3 objectives that are the same skill seen
-from the tool side. Foundations taught the mechanics — windows, caching, compaction.
+from the tool side. Earlier sessions taught the inputs — context windows (Tier 1 session 6), and prompt caching
+as a cost and latency lever (sessions 32 and 36). Compaction and the other lifecycle tools
+are new here, and breakpoint placement is session 42.
 Professional hands you an artifact — a per-component token breakdown, a call-volume figure, a
 trace of a long-running agent, a tool manifest — and asks which change cuts consumption or
 sustains performance *without* losing what the task needs. Every objective here is

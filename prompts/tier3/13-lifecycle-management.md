@@ -45,9 +45,9 @@ models change, and a stale date is a wrong answer.
 - <https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions>
 - <https://platform.claude.com/docs/en/models/overview>
 
-**Model-specific migration notes**
-- <https://platform.claude.com/docs/en/models/opus-5/migration-guide>
-- <https://platform.claude.com/docs/en/models/sonnet-5/migration-guide>
+**Model-specific migration notes** — each current model has its own migration guide;
+find the one for the target model from the models overview rather than a hard-coded link
+- <https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions> — what a model ID pins
 
 **Prompt portability across models**
 - <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices>
@@ -69,9 +69,13 @@ By the end, the learner can:
 
 - Read a **deprecation timeline** — notice, deprecation, retirement — and compute the
   working time left against the effort the migration needs (eval runs, prompt work, canary)
-- **Pin model versions explicitly** in production rather than tracking a moving alias, and
-  explain that an alias update is itself behavioral drift arriving without a change on your
-  side. Pinning buys reproducibility; it does not stop retirement
+- **Pin** by staying on a specific model ID until you choose to move. Know what an ID
+  guarantees, from the model IDs page: a model ID maps to one fixed snapshot, and for
+  current models the dateless ID is itself that pinned snapshot, not an evergreen
+  pointer. Only some earlier models had convenience aliases that moved, and an alias
+  update was behavioral drift arriving without a change on your side. So the current-model
+  risk is not a silent alias change; it is the **retirement date**. Pinning buys
+  reproducibility; it does not stop retirement
 - Read **regression results** for a candidate version: which criteria moved, by how much
   against run-to-run variance (session 34), and whether the moved criteria are ones the
   business outcome depends on
@@ -126,7 +130,7 @@ By the end, the learner can:
 
 | Decision | The tell that decides it |
 |---|---|
-| Pin a version vs. track an alias | Must behavior stay reproducible between deliberate changes? |
+| Stay on the current ID vs. move now | Is the retirement date far enough out to migrate deliberately, and does the candidate pass the suite? |
 | Pin vs. re-tune vs. re-baseline vs. defer | What regressed, why, and how much time is left before retirement? |
 | Re-tune the prompt vs. accept the regression | Is the regression in a criterion the business outcome depends on? |
 | Re-baseline vs. treat as a real regression | Does the eval penalize a correct answer for differing from the old model's style? |

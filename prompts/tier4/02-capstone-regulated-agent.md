@@ -95,8 +95,8 @@ the regression gate, and the guardrails matched to specific failure modes. Ask t
 question directly: "how would you know if it got worse?"
 
 Then show **evaluation results**: an LLM judge scores the agent's explanations 4.6/5 while
-human reviewers rate the same sample far lower, with the judge favouring longer
-explanations and scoring its own model family's outputs higher. Have them name the
+human reviewers rate the same sample far lower, and the judge's scores rise with
+explanation length while order and model family show no pattern. Have them name the
 responsible bias — position, verbosity, self-preference, or judge drift — and the correction
 (P4.3). Then show a fairness breakdown with disparate outcomes across groups and have them
 decide whether the source is data, prompt framing, or evaluation design before choosing a

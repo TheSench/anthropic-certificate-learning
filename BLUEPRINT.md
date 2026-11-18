@@ -39,7 +39,8 @@ Domain 3, so a code reads straight across to the guide and to a score report.
 CCAR-F's § 17 Appendix carries three lists that define scope precisely —
 **Technologies and Concepts**, **In-Scope Topics**, and **Out-of-Scope Topics**.
 CCAR-P has no appendix and no equivalent lists; its scope is the Domain 1–7
-objectives in § 5 and nothing else.
+objectives in § 5, plus CCAR-F's scope, which v1.1 § 6 calls "assumed knowledge for this
+exam".
 
 **Section numbers differ between the guides.** CCAR-F's objectives are its § 6 task
 statements. CCAR-P v1.1 dropped v1.0's candidate-profile section, so its objectives
@@ -91,7 +92,7 @@ site-wide. Consult these pages manually; do not scrape them.
   Discernment, Diligence) — a real Anthropic-published framework, but not exam
   scope. Verified 2026-09-11 (and again against CCAR-P v1.1 on 2026-11-18):
   `fluency`, `Delegation`, `Discernment`, and `Diligence` appear nowhere in either
-  exam guide, and CCAR-P's scope is its § 5 objectives alone. (v1.1's P1.1 says
+  exam guide, and CCAR-P's scope is its § 5 objectives plus CCAR-F as assumed knowledge. (v1.1's P1.1 says
   "delegated to Claude" in its ordinary sense, not the framework's.) Reaches the Partner Academy catalog as education-sector
   material (developed with Rick Dakan, Ringling College of Art and Design;
   student and educator assignment guides), and the Academy lists it as
@@ -396,8 +397,12 @@ objectives.
 - **Format:** 63 items → 70 (60 scored + 10 unscored); "multiple-choice and
   multiple-response" → "scenario-based multiple-choice", still stating how many to select.
 - **Weights:** P1 +1, P3 +2, P4 +1, P5 +2, P7 +1; **P6 −7** (14% → 7%).
-- **Dropped from scope:** structured discovery and requirement gathering, stakeholder
-  feedback loops, general lifecycle-phase support (v1.0 P6.1, P6.3, P6.5 as written);
+- **Dropped from scope:** "translate business problems into Claude-based AI solutions"
+  as a stand-alone objective (v1.0 P1.1); "templates" (v1.0 P2.2); the named regulations
+  "GDPR, HIPAA, FedRAMP" (v1.0 P5.4; v1.1 P5.5 names controls, not regulations);
+  "fairness" and "transparency" (v1.0 P5.5; v1.1 P5.6 is bias only); structured discovery
+  and requirement gathering, stakeholder feedback loops, general lifecycle-phase support
+  (v1.0 P6.1, P6.3, P6.5 as written);
   "improve developer workflows" and "support debugging" as stand-alone P7 objectives;
   RAG *chunking* strategy as a named objective (v1.1 P3.5 keeps indexing only as the
   "when indexing is chosen" branch); the "capability bloat" and "mixed methodologies"
@@ -412,12 +417,16 @@ objectives.
   deriving evals from business processes (P4.2); named judge biases — position, verbosity,
   self-preference, judge drift (P4.3); trials per case against run-to-run variance (P4.4);
   retrieval failure and tool/subagent error as root causes (P4.5); cache hit rates (P4.6);
-  model version migration (P4.7, moved from P6); third-party Skills as an injection
+  model version migration (P4.7; under v1.0 this repo taught migration in its P6
+  lifecycle session); third-party Skills as an injection
   surface (P5.2); token/quota exhaustion and supply-chain risk (P5.3); data vs.
-  prompt-framing vs. evaluation-design bias (P5.6); unsupportable SLA commitments (P6.1);
-  ADRs (P6.2); operational handoff packages (P6.3); plugin marketplaces and managed
+  prompt-framing vs. evaluation-design bias (P5.6); ADRs (P6.2); plugin marketplaces and managed
   settings (P7.1); the six permission modes and headless/CI operation (P7.2);
   accountability for AI-generated code (P7.3).
+- **Sharpened, not new:** v1.0's "expectation alignment (including SLAs)" becomes finding
+  an unsupportable commitment in discovery notes or a draft SLA (P6.1), and its lifecycle
+  "handoff" becomes auditing a handoff package for the gap that blocks the receiving team
+  (P6.3).
 - **Sample items:** all three replaced. v1.1's samples are longer, constraint-dense, and
   reward naming the binding constraint *and* the trade-off accepted (Sample 1), the
   enforceable control over the prompt-level one (Sample 2), and gate placement by
@@ -501,7 +510,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://platform.claude.com/docs/en/managed-agents/sessions> · <https://platform.claude.com/docs/en/managed-agents/tools> — P1.6 runtime selection
 - <https://platform.claude.com/docs/en/api/errors> · <https://platform.claude.com/docs/en/api/rate-limits> — P3.8 reliability controls
 - <https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock>
-- <https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai>
+- <https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed>
 - <https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry>
 - <https://code.claude.com/docs/en/llm-gateway> · <https://code.claude.com/docs/en/gateways>
 - <https://platform.claude.com/docs/en/build-with-claude/files>
@@ -548,9 +557,9 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 ### Model selection (P1, P2)
 - <https://platform.claude.com/docs/en/models/overview>
 - <https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions>
-- <https://platform.claude.com/docs/en/models/opus-5/overview>
-- <https://platform.claude.com/docs/en/models/sonnet-5/overview>
-- <https://platform.claude.com/docs/en/models/haiku-4-5/overview>
+- <https://platform.claude.com/docs/en/models/fable-5-2/overview> · <https://platform.claude.com/docs/en/models/opus-5-5/overview>
+- <https://platform.claude.com/docs/en/models/sonnet-5-5/overview> · <https://platform.claude.com/docs/en/models/haiku-5-5/overview>
+- Version-pinned: the lineup changes, so re-check against models/overview before teaching
 
 ### Doc indexes (for finding anything not listed)
 - <https://code.claude.com/docs/llms.txt>

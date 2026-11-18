@@ -161,7 +161,7 @@ File numbers restart at `01` and do not match session numbers — session 28 is
 |---|------|---------|--------|-----|------|
 | 28 | `prompts/tier3/01-enterprise-integration.md` | Enterprise Integration Patterns | P3 | 21% | P3.2, P3.6 |
 | 29 | `prompts/tier3/02-deployment-surfaces.md` | Deployment Surfaces and Agent Runtimes | P1 | 18% | P1.6 |
-| 30 | `prompts/tier3/03-data-integration.md` | Files, Citations, Retrieval, and Data Wiring | P3 | 21% | P3.5 |
+| 30 | `prompts/tier3/03-data-integration.md` | Retrieval Architecture: Full Context, Agentic Search, or RAG | P3 | 21% | P3.5 |
 | 31 | `prompts/tier3/04-solution-design.md` | Solution Design and Model Selection | P1 | 18% | P1.1, P1.3, P1.5, P2.1 |
 | 32 | `prompts/tier3/05-architecture-tradeoffs.md` | Architecture Trade-offs at Scale | P1 | 18% | P1.2, P1.4, P3.3 |
 | 33 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P3 | 21% | P3.4, P3.8, P4.5 |

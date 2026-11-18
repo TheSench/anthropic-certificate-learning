@@ -27,7 +27,7 @@ actually constrains, and picking the set whose output an auditor would accept as
 
 ## Session focus
 
-This session begins the three domains absent from Foundations entirely; say plainly that P5, P6, and P7 are 31% of this exam and the usual reason strong builders fail it. The crux is **match the control to the dimension the obligation constrains, then prove it**: residency constrains *where* inputs are processed, retention and ZDR constrain *how long* they are held, PII detection and redaction constrain *what* enters the context, tenant isolation constrains *who* can reach it, and audit logging is what makes any of the others evidenceable. The commonest wrong answer is a real control aimed at the wrong dimension — zero data retention offered for a residency obligation, which governs how long data is held, not where it is processed. Spend the most time on the selection exercise: an obligation, five candidate controls, and the learner choosing the set that *evidences* it, rejecting both the mismatched control and the policy document that states intent but enforces nothing.
+This session continues the three domains absent from Foundations entirely (session 35 opened P5); say plainly that P5, P6, and P7 are 31% of this exam and the usual reason strong builders fail it. The crux is **match the control to the dimension the obligation constrains, then prove it**: residency constrains *where* inputs are processed, retention and ZDR constrain *how long* they are held, PII detection and redaction constrain *what* enters the context, tenant isolation constrains *who* can reach it, and audit logging is what makes any of the others evidenceable. The commonest wrong answer is a real control aimed at the wrong dimension — zero data retention offered for a residency obligation, which governs how long data is held, not where it is processed. Spend the most time on the selection exercise: an obligation, five candidate controls, and the learner choosing the set that *evidences* it, rejecting both the mismatched control and the policy document that states intent but enforces nothing.
 
 ## Authoritative sources
 
@@ -43,8 +43,10 @@ from live docs — these carry contractual weight and must not be approximated.
 - <https://code.claude.com/docs/en/zero-data-retention>
 - <https://code.claude.com/docs/en/data-usage>
 
-**PII detection and redaction at the enforcement point**
-- <https://platform.claude.com/docs/en/manage-claude/inference-hooks>
+**Inline enforcement for Claude Enterprise (allow/deny only)**
+- <https://platform.claude.com/docs/en/manage-claude/inference-hooks> — Enterprise-only
+  allow/deny gate on prompts; it cannot rewrite or redact, and does not cover API
+  (Platform) organizations or the cloud surfaces. Verify scope before citing it
 
 **Audit logging and compliance evidence**
 - <https://platform.claude.com/docs/en/manage-claude/compliance-api>
@@ -80,8 +82,13 @@ By the end, the learner can:
   answers a *how long* obligation and never a *where* one
 - Place **PII detection and redaction** *before* the content reaches the model or a log, and
   at a point the client cannot bypass — and know that redaction applied after the response
-  does not satisfy an obligation about what the model may receive. Session 30 taught the
-  redaction mechanics; this is where the control is placed and justified
+  does not satisfy an obligation about what the model may receive. Teach the mechanics
+  here (session 30 defers them to this session): classify fields, then detect and redact
+  or tokenize in a gateway, proxy, or ingestion step the architect places in front of the
+  API call, keeping the re-identification map outside the model's reach. For an API
+  workload this is something you build; don't offer Inference hooks as the redaction
+  control — they return allow or deny, cannot redact, and apply only to Claude Enterprise
+  (verify from the cited page)
 - Design **audit logging** as evidence: what must be recorded, how it is retrieved, how long
   it is kept, and whether it can answer a specific auditor question ("show me every request
   that touched customer data last March"). Note the tension: audit retention and ZDR pull in

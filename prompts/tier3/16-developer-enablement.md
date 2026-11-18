@@ -19,7 +19,7 @@
 
 ## What this session assumes
 
-Tier 1 sessions 5–7 (Claude Code configuration, hooks/skills, CI) and Tier 3 sessions 35,
+Tier 1 sessions 15 and 19–21 (hooks, CLAUDE.md, skills and plan mode, CI) and Tier 3 sessions 35,
 37, and 38.
 
 ## Why this domain is worth 8% of your score
@@ -38,8 +38,8 @@ The crux is **"safe when it runs unattended"**: every P7 item turns on which con
 ## Authoritative sources
 
 **Packaging and distribution (P7.1)**
-- <https://code.claude.com/docs/en/plugins> · <https://code.claude.com/docs/en/plugins-reference>
-- <https://code.claude.com/docs/en/plugin-marketplaces>
+- <https://code.claude.com/docs/en/plugins> · <https://code.claude.com/docs/en/plugins/manifest-reference>
+- <https://code.claude.com/docs/en/plugins/marketplace-reference>
 - <https://code.claude.com/docs/en/plugins/create-marketplace> · <https://code.claude.com/docs/en/plugins/host-marketplace>
 - <https://code.claude.com/docs/en/managed-settings> · <https://code.claude.com/docs/en/admin-setup>
 - <https://code.claude.com/docs/en/settings> · <https://code.claude.com/docs/en/managed-mcp>
@@ -161,4 +161,4 @@ all seven P domains and name the weakest two.
 - Adoption metrics, chargeback, champion programmes — v1.0 material no v1.1 objective scores
 - Governance and compliance enforcement → sessions 37–38
 - Least-privilege tool review in general → session 41 (P3.1)
-- Claude Code configuration mechanics → Tier 1 sessions 5–7
+- Claude Code configuration mechanics → Tier 1 sessions 15 and 19–21

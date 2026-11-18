@@ -18,7 +18,7 @@
 ## What this session assumes
 
 Sessions 35 and 37 (guardrails and the injection surface; compliance controls), and session
-7's per-segment evaluation.
+34's per-segment evaluation.
 
 ## Why this domain is worth 16% of your score
 
@@ -102,7 +102,9 @@ By the end, the learner can:
 - **Classify each step** of an agentic workflow by reversibility and stakes — read-only,
   reversible and auditable, externally visible, irreversible or financially binding — and
   place gates accordingly:
-  - *Pre-execution approval* on the irreversible or high-stakes step only
+  - *Pre-execution approval* on the irreversible or high-stakes step only. Gate by
+    reversibility and stakes, not by how *difficult* the step is: a hard but reversible
+    step needs less oversight than an easy, irreversible one
   - *No gate* on read-only steps and on reversible steps whose audit log supports reversal
   - *Deterministic constraint* instead of review where the risk is a bounded parameter —
     e.g. an email that may only go to the address already on file
@@ -149,7 +151,7 @@ By the end, the learner can:
   reviewer who inherits the model's framing launders the outcome rather than checking it
 - Apply **proportionality**: a disparate result in a high-consequence, hard-to-reverse
   decision (screening applicants, triaging benefit claims) warrants stronger mitigation and
-  a human gate; connect to session 37 where it becomes a compliance obligation
+  a human gate
 
 ## Decisions the exam actually tests
 

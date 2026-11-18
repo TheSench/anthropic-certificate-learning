@@ -72,6 +72,12 @@ By the end, the learner can:
   measured. Groundedness is the one learners forget: an answer can be accurate-looking
   and fluent yet unsupported by the sources it was given, and only a faithfulness check
   against those sources (citations, claim-to-source verification) sees it
+- Tell the other dimensions apart from the failure described: **latency** and **cost**
+  failures are SLA or budget breaches that a quality-only suite passes; **safety** is
+  harmful or policy-violating output to an ordinary request; **security** is the system
+  being made to act against its owner — injected instructions followed, data exfiltrated,
+  a tool misused. Safety vs. security is the pair items use against each other: ask
+  whether the harm came from the model's own output or from an adversary steering it
 - Recognize a **grading-target** gap, distinct from a missing dimension: the suite
   measured the right dimension on the wrong object — the final answer but not the
   trajectory (right answer reached by a destructive path or a blown budget), the format
@@ -101,6 +107,9 @@ By the end, the learner can:
 - **Derive the success criterion from the business outcome** ("misrouted claims below the
   current human rate", "no refund issued without a matching order") rather than from a
   proxy that is easy to score ("judge rates 4 of 5")
+- Report results **per segment** (user group, language, input class) as well as in
+  aggregate: an aggregate can pass while a failure concentrates in one group. Session 38
+  builds its bias-evidence work on this
 - Select the **test-methodology mix** that covers the deployed distribution: programmatic
   assertions for mechanically checkable criteria, LLM-judged criteria for open-ended
   quality, human review for subjective high-stakes judgments, production-sampled cases
@@ -161,6 +170,7 @@ By the end, the learner can:
 |---|---|
 | Missing dimension vs. missing grading target | Was the property never scored, or scored on the wrong object? |
 | Accuracy check vs. groundedness check | Could the answer look right yet be unsupported by its sources? |
+| Safety metric vs. security metric | Did harm come from the model's own output, or from an adversary steering the system? |
 | Trajectory eval vs. output-only | Could the right answer be reached the wrong way? |
 | Which process step is the eval | Which output does the business rely on, and where does ground truth exist? |
 | Eval shape for model change vs. prompt change vs. release gate | What decision does the result have to support? |
@@ -200,10 +210,10 @@ By the end, the learner can:
    trade-off. Do the arithmetic — the numbers are persuasive.
 8. **Teach A/B vs. canary** briefly, as the live-traffic version of step 7. Close the loop:
    production signal becomes next quarter's eval cases.
-9. **Decision table** — walk all ten rows.
+9. **Decision table** — walk all eleven rows.
 10. **Scenario drill — 7 questions**, standalone Professional format with evaluation
-    results or a judge's scores in each stem. Include a missing-dimension item (one on
-    groundedness), a grading-target item, a business-process derivation item, two judge-bias
+    results or a judge's scores in each stem. Include two missing-dimension items (one on
+    groundedness, one where the gap is safety vs. security, latency, or cost), a grading-target item, a business-process derivation item, two judge-bias
     items (different biases), a trials-per-case item, and one multiple-response on eval
     suite defects.
 11. **Distractor autopsy** — expect unvalidated LLM-judge answers; spot-checking offered as

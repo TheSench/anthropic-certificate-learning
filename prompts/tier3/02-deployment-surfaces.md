@@ -55,9 +55,9 @@ assert parity or runtime availability from memory.
 
 **Cloud provider surfaces**
 - <https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock>
-- <https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai>
+- <https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed>
 - <https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry>
-- <https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws>
+- <https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws> — Anthropic-operated, *not* Bedrock; see the surface-variants objective
 
 **Agent runtimes**
 - <https://platform.claude.com/docs/en/agents-and-tools/tool-use/build-a-tool-using-agent> — Messages API loop you own
@@ -97,10 +97,24 @@ By the end, the learner can:
   - **Self-hosted Agent SDK or headless Claude Code** — a prebuilt agent loop with tools,
     sessions, and permissions, running on infrastructure you host; you own hosting, the
     sandbox, and session persistence, and data stays where you run it
-  - **Claude Managed Agents** — Anthropic hosts and scales the loop, sessions, and
-    sandboxed environment; least operational ownership, but session state and execution
-    live in Anthropic's infrastructure, and the runtime is available only where it is
-    offered — verify per surface from live docs
+  - **Claude Managed Agents** — Anthropic hosts and scales the loop, and sessions are
+    stateful server-side resources; least operational ownership. It comes in **three
+    hosting variants**, and the variant decides custody: an **Anthropic-managed cloud
+    sandbox** (loop, sessions, and execution all in Anthropic's infrastructure); a
+    **self-hosted sandbox** (Anthropic runs the loop and stores sessions, but tool
+    execution, files, and egress stay on infrastructure you control); and **self-hosted
+    Managed Agents** (the whole service, sessions and history included, on your
+    infrastructure). The stateful variants carry retention consequences — verify current
+    ZDR and BAA eligibility per variant on the Managed Agents overview — and the runtime
+    is available only where it is offered, so verify per surface from live docs
+- Separate the **exam's four surfaces from the Anthropic-operated variants on cloud
+  marketplaces**. Amazon Bedrock, Google Vertex AI (Google-managed), and Microsoft Foundry
+  are operated by the cloud provider and follow its release schedule. Claude Platform on
+  AWS, and the Anthropic-managed option on Google Cloud, are the Anthropic API with cloud
+  billing and identity: same features on the same schedule, but requests reach
+  Anthropic's API. An item's residency logic (Sample 1) turns on who operates the
+  inference stack and where inputs are processed, not on whose invoice it appears;
+  verify current variants and their feature schedules from live docs
 - Apply the **four selection constraints** the statement names and rank them for a
   scenario: **data residency** (where inputs may be processed — usually binding and
   non-negotiable), **compliance** (what evidence must exist and who can produce it),

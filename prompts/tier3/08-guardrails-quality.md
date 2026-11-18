@@ -15,8 +15,9 @@
 ## What this session assumes
 
 Session 34 (eval design) — guardrails without evals are unmeasurable, so that order
-matters. Session 28 (integration auth posture, P3.2) and Tier 1 sessions 7 and 12 (MCP and
-CI agents), which this session uses as injection callbacks.
+matters. Session 28 (integration auth posture, P3.2) and Tier 1 session 17, whose aside on
+third-party MCP servers (responses and tool descriptions are untrusted input) this session
+builds on as its injection callback.
 
 ## Why this domain is worth 16% of your score
 
@@ -43,7 +44,7 @@ This session is placing controls on a system diagram. The crux is **close the pa
 - <https://www.anthropic.com/legal/aup>
 
 **Enforcement points outside the model**
-- <https://platform.claude.com/docs/en/manage-claude/inference-hooks>
+- <https://platform.claude.com/docs/en/manage-claude/inference-hooks> — Claude Enterprise only, allow/deny verdicts; not an API-workload control
 - <https://code.claude.com/docs/en/hooks>
 - <https://code.claude.com/docs/en/permissions>
 - <https://code.claude.com/docs/en/sandboxing>
@@ -160,8 +161,9 @@ By the end, the learner can:
    blanket option and make them say exactly what it degrades.
 4. **Teach over-refusal and input vs. output screening** as placement choices, with a
    legitimate-but-sensitive request.
-5. **Teach injection vs. jailbreak**, using the MCP and CI examples from Tier 1 sessions 7
-   and 12 as callbacks.
+5. **Teach injection vs. jailbreak**, calling back to Tier 1 session 17's aside on
+   third-party MCP servers. Injection through a CI agent's inputs (a PR body, a commit
+   message) is new here; Tier 1 session 21 deliberately left it out.
 6. **Teach P5.2 surface enumeration.** Give an architecture with a RAG corpus, a web-fetch
    tool, a third-party MCP server, and a marketplace Skill. Have them list every channel
    by which text reaches context and who controls it. Make sure they catch MCP tool
