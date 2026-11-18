@@ -59,7 +59,7 @@ This session is reading a proposed architecture and finding where it breaks. The
 - <https://platform.claude.com/docs/en/about-claude/models/choosing-a-model>
 
 **Operational visibility**
-- <https://platform.claude.com/docs/en/manage-claude/usage-cost-api>
+- <https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api>
 - <https://code.claude.com/docs/en/agent-sdk/observability>
 - <https://code.claude.com/docs/en/agent-sdk/cost-tracking>
 

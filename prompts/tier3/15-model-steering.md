@@ -78,7 +78,7 @@ By the end, the learner can:
   best-practices guidance on instruction literalness and emphasis before teaching it
 - Decide what belongs in the **system prompt** versus per-request content — stable role,
   boundaries, and output contract in the system prompt; per-call data after it — which is
-  also the P2.5 layout rule. Secrets go in neither (session 35)
+  also the P2.5 layout rule. Secrets go in neither (session 28)
 
 **P2.3 — technique selection against an observed failure**
 - Match each of v1.1's four techniques to the failure it fixes, and reject it for the others:
@@ -96,9 +96,11 @@ By the end, the learner can:
   - **Structured output** — fixes *parse failures* and schema drift that instructions and
     examples only reduce; schema-constrained output makes the contract enforceable
 - Weigh **token cost** against the task's stated complexity: examples, thinking, and higher
-  effort add tokens on every call, so the cheapest sufficient technique wins. Order the
-  levers — instruction clarity, examples, output structure, thinking/effort, then model
-  change — and reject a model change before the prompt is unambiguous (model tier itself
+  effort add tokens on every call, so the cheapest sufficient technique wins. First match
+  the technique to the failure (a parse failure needs structured output, whatever its
+  place in any list); then, among techniques that fit, prefer the cheaper — instruction
+  clarity, examples, output structure, thinking/effort, then model change — and reject a
+  model change before the prompt is unambiguous (model tier itself
   is P2.1, session 31)
 
 **P2.5 — cache breakpoints and reusable packaging**
@@ -164,8 +166,8 @@ By the end, the learner can:
    to land: on a model with thinking, hand-written step-by-step scaffolding is the older
    playbook; calibrate effort instead. Ask what they'd do on a model where thinking is off,
    and what they'd check before asking a current model to write its reasoning in tags.
-7. **Teach the lever order.** Give four failures and have them pick the cheapest sufficient
-   lever. Reject reaching for a model change first — that's the domain's bias trap.
+7. **Teach the lever order.** Give four failures and have them first match each to the
+   technique that addresses it, then pick the cheapest that does. Reject reaching for a model change first — that's the domain's bias trap.
 8. **Teach P2.5 layout.** Give a request log for a repeated sequence — tools, a system prompt
    with a date stamp near the top, a shared reference document, per-user context, the
    message — with a low hit rate. Have them reorder it, place breakpoints, and estimate the

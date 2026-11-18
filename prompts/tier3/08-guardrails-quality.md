@@ -28,7 +28,8 @@ which content in context must never be obeyed. The scored judgment is choosing t
 that closes the specific path — knowing that prompt-level guardrails shift odds rather than
 guarantee, so anything stated as "must never" needs a deterministic control outside the
 model — while leaving the stated legitimate use intact. v1.1's Sample 3 rewards the same
-shape: a narrow deterministic constraint on the risky action, not a blanket gate.
+shape: gate only the irreversible step, and constrain the bounded outbound step
+deterministically instead of reviewing it (session 38 owns that HITL placement, P5.4).
 
 ## Session focus
 

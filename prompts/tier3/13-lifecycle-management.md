@@ -22,7 +22,8 @@ precondition for everything here.
 
 ## Why this domain is worth 17% of your score
 
-v1.1 moved model migration into P4: it is an evaluation decision, not a communication one.
+v1.1 added model migration as a P4 objective: it is an evaluation decision, not a
+communication one.
 A Claude system's model moves underneath it — versions are released and deprecated, and a
 newer model behaves differently on the same prompt. The scored skill is reading a
 deprecation timeline next to regression results and choosing the response that manages that
@@ -44,10 +45,10 @@ models change, and a stale date is a wrong answer.
 - <https://platform.claude.com/docs/en/about-claude/models/migration-guide>
 - <https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions>
 - <https://platform.claude.com/docs/en/models/overview>
+- <https://platform.claude.com/docs/en/about-claude/model-deprecations> — lifecycle states, notice period, per-surface schedules
 
-**Model-specific migration notes** — each current model has its own migration guide;
-find the one for the target model from the models overview rather than a hard-coded link
-- <https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions> — what a model ID pins
+Each current model also has its own migration guide; find the one for the target model
+from the models overview rather than a hard-coded link.
 
 **Prompt portability across models**
 - <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices>
@@ -55,7 +56,7 @@ find the one for the target model from the models overview rather than a hard-co
 **Regression evidence and monitoring**
 - <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
 - <https://platform.claude.com/docs/en/manage-claude/analytics-api>
-- <https://platform.claude.com/docs/en/manage-claude/usage-cost-api>
+- <https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api>
 
 **SDK and platform version changes**
 - <https://code.claude.com/docs/en/agent-sdk/migration-guide>
@@ -67,15 +68,20 @@ By the end, the learner can:
 
 **Model version migration (P4.7)**
 
-- Read a **deprecation timeline** — notice, deprecation, retirement — and compute the
-  working time left against the effort the migration needs (eval runs, prompt work, canary)
+- Read a **deprecation timeline** in the docs' own terms — a model moves through Active,
+  Legacy, Deprecated, and Retired, with advance notice before retirement (verify the
+  current states and notice period on the deprecations page; partner-operated surfaces
+  set their own dates) — and compute the working time left against the effort the migration needs (eval runs, prompt work, canary)
 - **Pin** by staying on a specific model ID until you choose to move. Know what an ID
   guarantees, from the model IDs page: a model ID maps to one fixed snapshot, and for
   current models the dateless ID is itself that pinned snapshot, not an evergreen
-  pointer. Only some earlier models had convenience aliases that moved, and an alias
-  update was behavioral drift arriving without a change on your side. So the current-model
-  risk is not a silent alias change; it is the **retirement date**. Pinning buys
-  reproducibility; it does not stop retirement
+  pointer. Some earlier models still have convenience aliases that move, and an alias
+  update is behavioral drift arriving without a change on your side. Pinning fixes the
+  **weights**, not every behaviour: the docs note that serving-infrastructure updates can
+  produce minor observable differences on an unchanged ID, so keep regression monitoring
+  on a pinned model. Pinning also does not stop retirement, and staying on a Deprecated
+  model has a cost of its own — the docs warn deprecated models are likely to be less
+  reliable
 - Read **regression results** for a candidate version: which criteria moved, by how much
   against run-to-run variance (session 34), and whether the moved criteria are ones the
   business outcome depends on
@@ -88,7 +94,10 @@ By the end, the learner can:
   - **Re-baseline evaluations** — the suite's references, golden outputs, or judge encode
     the old model's style, so a correct but different answer scores as a failure. Re-baseline
     against the business criterion — and know the trap: re-baselining to make a real
-    regression disappear
+    regression disappear. The evidence that separates the two is session 34's
+    human-labelled anchor set: if human reviewers rate the new model's "failing" answers
+    as correct, the eval is the artifact (often a judge or reference that prefers the old
+    model's style); if they agree with the eval, the regression is real
   - **Defer** — retirement is far enough off that building missing evidence first is
     cheaper than migrating blind; invalid when the date falls before the work can finish
 - Explain why **prompts are not perfectly portable**, so a stronger model can score worse on
@@ -130,7 +139,6 @@ By the end, the learner can:
 
 | Decision | The tell that decides it |
 |---|---|
-| Stay on the current ID vs. move now | Is the retirement date far enough out to migrate deliberately, and does the candidate pass the suite? |
 | Pin vs. re-tune vs. re-baseline vs. defer | What regressed, why, and how much time is left before retirement? |
 | Re-tune the prompt vs. accept the regression | Is the regression in a criterion the business outcome depends on? |
 | Re-baseline vs. treat as a real regression | Does the eval penalize a correct answer for differing from the old model's style? |
@@ -165,7 +173,7 @@ By the end, the learner can:
    using the day-one / first-incident / deprecation test, and name the closing document.
    Make sure the eval suite comes up; ask what the receiving team can do without it. Note
    the vocabulary collision with Tier 1's escalation handoff.
-10. **Decision table** — walk all nine rows.
+10. **Decision table** — walk all eight rows.
 11. **Scenario drill — 6 questions**, standalone Professional format, each with a timeline
     or package excerpt. Include a pin-vs-re-tune question, a re-baseline question where the
     regression is an eval artifact, a defer question where the date makes deferral invalid,

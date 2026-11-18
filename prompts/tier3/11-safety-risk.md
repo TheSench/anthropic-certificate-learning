@@ -121,7 +121,8 @@ By the end, the learner can:
   against labeled outcomes (Tier 1 session 12). Verify the mechanism per surface against the
   cited docs, including where a gate stops firing: an approval callback only sees calls
   nothing earlier in the permission flow already allowed, so a broad allow rule removes the
-  human without any visible change
+  human, often without any visible change (some SDK configurations now emit a warning;
+  verify current behaviour)
 - Keep the gate **real without stalling it**: route only the gated class, size reviewer
   capacity to that volume, and watch override rates and time per case. An approval rate near
   100% at forty cases an hour is evidence the gate is decorative

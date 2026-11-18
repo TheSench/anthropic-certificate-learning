@@ -45,7 +45,7 @@ The material to ground on is what these documents let you *promise*, and what th
 
 **Evidence to state commitments with**
 - <https://platform.claude.com/docs/en/test-and-evaluate/develop-tests>
-- <https://platform.claude.com/docs/en/manage-claude/usage-cost-api>
+- <https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api>
 
 ## Teaching objectives
 
@@ -69,7 +69,8 @@ By the end, the learner can:
   meetable once stated measurably (a rate on a defined eval set, a percentile per route
   class, "explainable" as an audit record), or **change the architecture** when the need is
   real as stated (fallback routing, a human gate on the high-stakes path, a deterministic
-  component, a pinned version with a migration plan). Recommending a deterministic system
+  component, a pinned version with regression monitoring and a migration plan — pinning fixes the
+  weights, not every behaviour, so it cannot by itself promise "behavior will not change"). Recommending a deterministic system
   for the part that must be deterministic is a legitimate architectural change
 - Reject the resolutions that don't resolve: a prompt instruction ("always be accurate"), a
   stronger model presented as a guarantee, or silently dropping the clause

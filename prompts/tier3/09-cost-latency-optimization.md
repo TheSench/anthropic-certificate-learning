@@ -48,7 +48,7 @@ from memory.
 
 **Telemetry: reading where it goes**
 - <https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics>
-- <https://platform.claude.com/docs/en/manage-claude/usage-cost-api>
+- <https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api>
 - <https://code.claude.com/docs/en/costs>
 - <https://code.claude.com/docs/en/agent-sdk/cost-tracking>
 
@@ -73,7 +73,8 @@ By the end, the learner can:
 - **Interpret cache hit rate** as a diagnostic: compute it from the usage fields that report
   cache reads and cache writes (verify the field names from live docs), and read a low rate
   as a symptom with a small set of causes — dynamic content (timestamps, user IDs, reordered
-  tools) ahead of the breakpoint, traffic too sparse to reuse within the TTL, or a prefix
+  tools) early in the prompt, ahead of the stable content a cache would reuse (session 41
+  formalizes the layout, session 42 the breakpoint), traffic too sparse to reuse within the TTL, or a prefix
   below the minimum cacheable length. Know that cache writes are priced above uncached input (verify the multiplier), so a
   cache with many writes and few reads can *raise* spend. Breakpoint placement itself is
   session 42; here the skill is recognizing the pattern in telemetry
@@ -82,7 +83,8 @@ By the end, the learner can:
   - Prompt caching → needs a stable prefix and reuse within the TTL
   - Batch → forfeits interactivity
   - Reduce context / prune tool results → risks losing needed detail
-  - Delegate to subagents → adds coordination overhead
+  - Delegate to subagents → total tokens usually *rise*; it pays only when it keeps bulky
+    intermediate context out of a long-lived loop, or runs the bulk work on a cheaper tier
   - Lower effort / skip extended thinking → risks quality on reasoning-heavy work
   - Fewer loop iterations via better tools → costs engineering time
 - Treat the **quality floor as binding**: an optimization is acceptable only if the eval

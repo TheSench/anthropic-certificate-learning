@@ -22,7 +22,7 @@
 
 ## What this session assumes
 
-Sessions 28–30 (P3). Tier 1 sessions 2 and 4 covered fixed vs. adaptive decomposition and the
+Sessions 28–30 (28 and 30 are P3 integration; 29 is P1.6 surfaces and runtimes). Tier 1 sessions 2 and 4 covered fixed vs. adaptive decomposition and the
 workflow-vs-agentic split; this raises the same
 judgment to whole-solution design, adds who does what (Claude or a human), and adds model
 tier choice.
@@ -42,9 +42,11 @@ without saying why the alternatives fail.
 This session covers four connected selections: delegating process components between
 Claude and humans, choosing the architectural pattern, choosing the option with the best
 measurable value under a ceiling, and choosing the model tier. The crux is
-**constraint-first selection with the rejections stated**: find every binding constraint,
-choose the least option that clears all of them, and say why each rejected alternative
-fails — v1.1 scores the rejections, not just the pick. Spend disproportionate time on two
+**constraint-first selection**: find every binding constraint first. For model tier
+(P2.1) and pattern (P1.3), choose the least option that clears all of them and say why
+each rejected alternative fails — P2.1 scores the rejections explicitly. For value (P1.5),
+filter by the cost or SLA ceiling, then pick the option with the largest measurable
+outcome. Spend disproportionate time on two
 places: model tier selection (verify current model names, IDs, and prices before teaching
 any — a stale ID is simply a wrong answer — and drill the "cheapest tier that clears the
 quality bar" judgment until the learner names each rejected tier's failing constraint

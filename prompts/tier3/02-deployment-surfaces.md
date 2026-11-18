@@ -96,9 +96,10 @@ By the end, the learner can:
     control and portability across surfaces, maximum operational ownership
   - **Self-hosted Agent SDK or headless Claude Code** — a prebuilt agent loop with tools,
     sessions, and permissions, running on infrastructure you host; you own hosting, the
-    sandbox, and session persistence, and data stays where you run it
-  - **Claude Managed Agents** — Anthropic hosts and scales the loop, and sessions are
-    stateful server-side resources; least operational ownership. It comes in **three
+    sandbox, and session persistence. The loop, files, and session state stay where you
+    run it, but model inputs still go to whichever inference surface it calls
+  - **Claude Managed Agents** — in its default form Anthropic hosts and scales the loop,
+    and sessions are stateful server-side resources; least operational ownership. It comes in **three
     hosting variants**, and the variant decides custody: an **Anthropic-managed cloud
     sandbox** (loop, sessions, and execution all in Anthropic's infrastructure); a
     **self-hosted sandbox** (Anthropic runs the loop and stores sessions, but tool
@@ -107,14 +108,22 @@ By the end, the learner can:
     infrastructure). The stateful variants carry retention consequences — verify current
     ZDR and BAA eligibility per variant on the Managed Agents overview — and the runtime
     is available only where it is offered, so verify per surface from live docs
-- Separate the **exam's four surfaces from the Anthropic-operated variants on cloud
-  marketplaces**. Amazon Bedrock, Google Vertex AI (Google-managed), and Microsoft Foundry
-  are operated by the cloud provider and follow its release schedule. Claude Platform on
-  AWS, and the Anthropic-managed option on Google Cloud, are the Anthropic API with cloud
-  billing and identity: same features on the same schedule, but requests reach
-  Anthropic's API. An item's residency logic (Sample 1) turns on who operates the
-  inference stack and where inputs are processed, not on whose invoice it appears;
-  verify current variants and their feature schedules from live docs
+- Decide residency by **where inference runs** (which infrastructure, which geography)
+  for the exact variant in the scenario, not by the surface's brand or whose invoice it
+  appears on. The variants differ in who operates them and where they run, and the
+  differences are easy to get backwards:
+  - **Amazon Bedrock** and **Google Cloud (Google-managed)** are operated by the cloud
+    provider, which also sets model availability and retirement dates
+  - **Microsoft Foundry** is Anthropic-operated under both hosting options; "Hosted on
+    Azure" runs inference on Azure infrastructure, "Hosted on Anthropic" does not. The
+    hosting option, not the operator, decides whether inputs leave Azure
+  - **Claude Platform on AWS** and **Google Cloud (Anthropic-managed)** are Anthropic-
+    operated, run on that cloud's infrastructure, and track the Claude API closely (AWS:
+    "typically same-day"), with listed exceptions — HIPAA readiness among them on AWS
+  - The **Anthropic API** can itself restrict inference geography per workspace (session
+    37 teaches the control), so a residency obligation does not automatically force a
+    cloud surface; Sample 1's binding constraint is the firm's *own cloud boundary*
+  Verify current variants, hosting options, and exceptions from live docs before teaching
 - Apply the **four selection constraints** the statement names and rank them for a
   scenario: **data residency** (where inputs may be processed — usually binding and
   non-negotiable), **compliance** (what evidence must exist and who can produce it),
@@ -160,7 +169,7 @@ By the end, the learner can:
 | Which cloud provider surface | Where do the existing commitment and residency attestations already sit — and is the needed model there? |
 | Residency vs. ZDR as the fix | Is the obligation about *where* data is processed, or *how long* it is kept? |
 | Messages API loop vs. Agent SDK / headless Claude Code | Do you need the built-in loop, tools, and sessions, or full control over each step? |
-| Self-hosted runtime vs. Claude Managed Agents | Who must own hosting, session state, and the sandbox — and is the hosted runtime offered on the surface the constraints force? |
+| Self-hosted runtime vs. Claude Managed Agents (and which variant) | Who must own hosting, session state, and the sandbox — and is that Managed Agents variant offered on the surface the constraints force? |
 | Wait for parity vs. proceed | Does the workload depend on a model or feature not yet on that surface? |
 | Gateway vs. direct | Does the org need central spend, policy, or audit control across teams? |
 | Single surface vs. multi-surface | Is there a residency or resilience requirement one surface can't meet — and can you afford the doubled evaluation? |

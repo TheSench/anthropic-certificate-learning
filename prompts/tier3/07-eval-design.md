@@ -156,7 +156,11 @@ By the end, the learner can:
     case-sampling error and more trials reduce per-case noise; spend on whichever
     dominates the variance
 - Do the sizing arithmetic: why a 20-case, one-trial suite cannot detect a 2-point
-  regression, and what it would take
+  regression, and what it would take. The method: measure the spread from the A-vs-A run;
+  the comparison's noise shrinks roughly with the square root of the number of
+  observations, so estimate how many cases × trials bring that spread below the effect
+  you need to detect. Trials only shrink per-case noise, so once case-to-case variation
+  dominates, add cases instead
 - Decide what the success metric is **before** running, and establish a **baseline**
   before optimizing anything (session 36's cost work depends on it)
 - Place **A/B testing** on live traffic as the online version of the same design — split
@@ -211,7 +215,7 @@ By the end, the learner can:
 8. **Teach A/B vs. canary** briefly, as the live-traffic version of step 7. Close the loop:
    production signal becomes next quarter's eval cases.
 9. **Decision table** — walk all eleven rows.
-10. **Scenario drill — 7 questions**, standalone Professional format with evaluation
+10. **Scenario drill — 8 questions**, standalone Professional format with evaluation
     results or a judge's scores in each stem. Include two missing-dimension items (one on
     groundedness, one where the gap is safety vs. security, latency, or cost), a grading-target item, a business-process derivation item, two judge-bias
     items (different biases), a trials-per-case item, and one multiple-response on eval

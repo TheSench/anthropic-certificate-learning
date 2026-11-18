@@ -547,7 +547,7 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://platform.claude.com/docs/en/about-claude/models/migration-guide>
 - <https://platform.claude.com/docs/en/about-claude/model-deprecations>
 - <https://platform.claude.com/docs/en/about-claude/models/choosing-a-model>
-- <https://platform.claude.com/docs/en/manage-claude/usage-cost-api>
+- <https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api>
 - <https://platform.claude.com/docs/en/manage-claude/analytics-api>
 - <https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api>
 - <https://code.claude.com/docs/en/analytics> · <https://code.claude.com/docs/en/monitoring-usage>

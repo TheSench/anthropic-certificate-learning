@@ -30,9 +30,10 @@ Tier 1 sessions 6 (context mechanics) and 14 (tool interfaces), and Tier 3 sessi
 ## Why this domain is worth 13% of your score
 
 Two of P2's six objectives live here, plus two P3 objectives that are the same skill seen
-from the tool side. Earlier sessions taught the inputs — context windows (Tier 1 session 6), and prompt caching
-as a cost and latency lever (sessions 32 and 36). Compaction and the other lifecycle tools
-are new here, and breakpoint placement is session 42.
+from the tool side. Earlier sessions taught the inputs — context windows, compaction, and context editing
+(Tier 1 sessions 6–7), and prompt caching as a cost and latency lever (sessions 32 and 36).
+New here: the memory tool, effort allocation, and choosing among the lifecycle tools for a
+long-running agent. Breakpoint placement is session 42.
 Professional hands you an artifact — a per-component token breakdown, a call-volume figure, a
 trace of a long-running agent, a tool manifest — and asks which change cuts consumption or
 sustains performance *without* losing what the task needs. Every objective here is
@@ -111,9 +112,10 @@ By the end, the learner can:
   change mid-conversation without breaking the cache — all of these vary by model
 - Teach the **three lifecycle mechanisms as distinct**, each with when-to-use and what it
   costs. Verify behaviour from the live pages before teaching; the shape:
-  - **Context editing** — the API clears specific content once context crosses a configured
-    threshold: oldest tool results (optionally their inputs too), and earlier thinking
-    blocks. Cleared content is replaced with a placeholder, not summarized; the client keeps
+  - **Context editing** — the API clears specific content under configured rules: oldest
+    tool results (optionally their inputs too) once context crosses a token threshold, and
+    thinking blocks from earlier turns by a keep-recent-turns setting whose default varies
+    by model. Cleared content is replaced with a placeholder, not summarized; the client keeps
     the full history. Best for tool-heavy agents whose old results are no longer needed once
     processed. Cost: clearing tool results invalidates the cached prefix from that point, so
     clear in large enough chunks to be worth the re-write

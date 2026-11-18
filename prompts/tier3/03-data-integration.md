@@ -13,7 +13,8 @@
 ## What this session assumes
 
 Sessions 28–29 and Tier 1's tool-use sessions. Prompt caching has not been taught yet:
-cache breakpoints and prefix ordering are session 42 (P2.5). Here, state only that a
+it appears as a lever in sessions 32 and 36, prefix ordering is session 41 (P2.4), and
+breakpoint placement is session 42 (P2.5). Here, state only that a
 stable prefix can be cached, which is what makes full-corpus context and per-chunk context
 generation affordable, and defer the mechanics. This completes P3's data side: how
 enterprise content reaches the model.

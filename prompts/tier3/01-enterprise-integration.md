@@ -91,8 +91,9 @@ By the end, the learner can:
   correctly names the escalation but proposes a system-prompt instruction as the fix is
   wrong, because a prompt is not an authorization control
 - Place the **network boundary** as part of the auth posture: what reaches out from
-  where, what must stay inside the perimeter, and what a tunnel or gateway solves (no
-  inbound exposure, central credential handling) that direct connection doesn't
+  where, what must stay inside the perimeter, and what a tunnel solves (no inbound exposure;
+  it does not authenticate to the server, so each MCP server keeps its own auth) and what
+  a gateway solves (central credential handling and policy) that direct connection doesn't
 - **Select the connection mechanism** (P3.6) by what sits on the other end and what the
   scenario constrains:
   - **MCP** — a reusable, discoverable tool surface exposed to a model, shared across

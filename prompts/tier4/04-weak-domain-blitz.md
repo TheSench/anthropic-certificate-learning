@@ -52,8 +52,8 @@ State the plan to the learner before starting:
 Projected: [N]/1000 · 720 to pass
 ```
 
-If the projection is already comfortably above 720 and all domains are above 70, say so and
-recommend proceeding to the mock rather than padding the session.
+If the projection is already above 780 with no domain below 65 (the same bar as the ready
+verdict below), say so and recommend proceeding to the mock rather than padding the session.
 
 ## Step 3 — Run the blitz
 

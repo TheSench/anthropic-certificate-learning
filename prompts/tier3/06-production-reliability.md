@@ -18,8 +18,8 @@
 
 ## What this session assumes
 
-Sessions 31–32. Tier 1 sessions 7 and 12 covered error propagation and retry at the
-single-call level, and sessions 4 and 9 covered state, handoff, and escalation; this raises
+Sessions 31–32. Tier 1 sessions 7, 12, and 16 covered error propagation, retry, retry
+ceilings, and single-tool idempotency, and sessions 4 and 9 covered state, handoff, and escalation; this raises
 them to production reliability engineering, read from traces.
 
 ## Why this domain is worth 21% of your score
@@ -149,7 +149,7 @@ By the end, the learner can:
 | Idempotency key vs. timeout/retry tuning | Did the side effect execute before the caller saw the result? |
 | Retry with backoff vs. circuit breaker / fallback route | Is the dependency momentarily busy, or degraded? |
 | Rate-limit handling vs. more parallelism | Are the errors throttling at a peak? |
-| Enforceable control vs. prompt instruction | Does the failure happen where the model can see it? |
+| Enforceable control vs. prompt instruction | Must the guard hold regardless of model behaviour (a side effect, an irreversible step)? Then enforce it in code. Whether the model can even see the failure is a second, independent reason |
 | Retrieval failure vs. hallucination | Was the needed content in context? |
 | Tool/subagent error vs. hallucination | Did a tool or child return an error or empty result the caller ignored? |
 | Prompt failure vs. model mismatch | Does it fail on an input class, or on the hardest-reasoning cases? |
@@ -160,9 +160,11 @@ By the end, the learner can:
 ## How to run this session
 
 1. **Frame** — reliability lives in the system around the model, and every item gives you
-   an artifact to read first. State that where the failure happens outside the model's view
-   (a client retry, a rate limit, a timed-out side effect), prompt-level fixes are the wrong
-   answer, and why (Sample 2's logic). Say too that "revise the prompt" stays correct for a
+   an artifact to read first. State that when a guard must hold regardless of model
+   behaviour — a side-effecting tool, an irreversible step — a prompt-level fix is the
+   wrong answer because it relies on the model rather than an enforceable guard; and that
+   when the failure happens outside the model's view (a client retry, a rate limit, a
+   timed-out side effect), the prompt cannot even reach it. Both are Sample 2's logic. Say too that "revise the prompt" stays correct for a
    genuine prompt failure under P4.5, so the rule is about P3.8 controls, not all failures.
 2. **Teach the probabilistic-dependency framing.** Ask what the system's error rate should
    be if the model is right 97% of the time. Lead them to: it depends entirely on what's
