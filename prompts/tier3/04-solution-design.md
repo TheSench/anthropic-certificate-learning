@@ -1,40 +1,63 @@
-# Solution Design and Model Selection — P1 Solution Design & Architecture
+# Solution Design and Model Selection — P1 Solution Design and Architecture
 
-**Exam weight: 17% (P1) and 13% (P2)**
+**Exam weight: 18%**
 
-*Owns § 6 task statements:*
+*Owns CCAR-P v1.1 § 5 task statements:*
 
-- P1.1 — Translate business problems into Claude-based AI solutions
-- P1.2 — Design end-to-end architectures (input → processing → output → feedback loops)
-- P1.3 — Select appropriate architectural patterns (workflow, agentic, augmented LLM)
-- P1.5 — Apply decomposition techniques for complex problem solving
-- P1.6 — Align solutions to business value pillars (efficiency, transformation,
-  productivity, cost, performance SLAs)
-- P2.1 — Select appropriate Claude models based on trade-offs
+- P1.1 — Task Delegation Between Claude and Humans: Determining which components of a
+  described business process should be delegated to Claude, retained by humans, or
+  handled collaboratively, and justifying each assignment against reversibility, stakes,
+  and accountability.
+- P1.3 — Architectural Pattern Selection: Selecting among workflow, agentic,
+  augmented-LLM, and Skills-based architectural patterns for a use case with stated reuse,
+  governance, and risk-profile constraints, and justifying the delegation boundary the
+  selected pattern establishes.
+- P1.5 — Value-Based Architectural Decisions: Selecting the architectural option that
+  maximizes measurable business outcome under a stated cost or SLA ceiling, weighing
+  competing feature proposals against stated business value pillars such as efficiency,
+  transformation, productivity, solution cost, and performance SLAs.
+- P2.1 — Model Tier Selection: Selecting the Claude model tier that satisfies all binding
+  latency, cost, and quality constraints for a stated workload profile, and identifying
+  why each rejected alternative fails.
 
 ## What this session assumes
 
-Sessions 1–3 (P3). Tier 1 session 2 covered agent-vs-workflow; this raises the same
-judgment to whole-solution design and adds model choice.
+Sessions 28–30 (P3). Tier 1 session 2 covered agent-vs-workflow; this raises the same
+judgment to whole-solution design, adds who does what (Claude or a human), and adds model
+tier choice.
 
-## Why this domain is worth 17% of your score
+## Why this domain is worth 18% of your score
 
-"When Sonnet is the right call over Opus" is a documented exam question type, and the P1
-domain description names **model and API selection for specific problems**. The exam gives
-you a problem plus constraints and asks for the design; wrong answers are typically the
-most capable option chosen where a stated cost, latency, or simplicity constraint should
-have decided otherwise.
+P1 is the second-largest Professional domain, and three of its six objectives live here;
+P2.1 adds a slice of P2 (13%). Every one of them is a selection under stated constraints:
+which work Claude does, which pattern carries it, which option buys the most measurable
+outcome under a ceiling, which tier clears every bar. Wrong answers are typically the most
+capable or most autonomous option chosen where a stated cost, latency, accountability, or
+simplicity constraint should have decided otherwise — or the right choice justified
+without saying why the alternatives fail.
 
 ## Session focus
 
-This session covers requirements-to-architecture and model selection. Verify current model names, IDs, and prices before teaching any — a stale model ID is simply a wrong answer. The crux is **constraint-first selection**: identify the binding constraint, then choose the cheapest model that clears the quality bar. "When Sonnet is the right call over Opus" is a documented exam question type, and defaulting to the most capable option is the top Professional failure mode. Spend real time on the over-engineering exercise; the exam rewards the *sufficient* design.
+This session covers four connected selections: delegating process components between
+Claude and humans, choosing the architectural pattern, choosing the option with the best
+measurable value under a ceiling, and choosing the model tier. The crux is
+**constraint-first selection with the rejections stated**: find every binding constraint,
+choose the least option that clears all of them, and say why each rejected alternative
+fails — v1.1 scores the rejections, not just the pick. Spend disproportionate time on two
+places: model tier selection (verify current model names, IDs, and prices before teaching
+any — a stale ID is simply a wrong answer — and drill the "cheapest tier that clears the
+quality bar" judgment until the learner names each rejected tier's failing constraint
+unprompted), and delegation by **reversibility, stakes, and accountability**, which is new
+in v1.1 and also governs the delegation boundary each pattern establishes. Defaulting to
+the most capable or most autonomous option is the top Professional failure mode; the exam
+rewards the *sufficient* design.
 
 ## Authoritative sources
 
 Verify current model names, IDs, capabilities, context limits, and prices — model lineups
 change frequently, and a stale model ID is a wrong answer.
 
-**Model selection**
+**Model tier selection**
 - <https://platform.claude.com/docs/en/models/overview>
 - <https://platform.claude.com/docs/en/about-claude/models/choosing-a-model>
 - <https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions>
@@ -52,134 +75,166 @@ change frequently, and a stale model ID is a wrong answer.
 - <https://platform.claude.com/docs/en/build-with-claude/fast-mode>
 
 **Architecture patterns**
+- <https://www.anthropic.com/engineering/building-effective-agents> — augmented LLM, workflows, agents
 - <https://code.claude.com/docs/en/workflows>
-- <https://platform.claude.com/docs/en/managed-agents/overview>
+- <https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview> · <https://code.claude.com/docs/en/skills> — Skills
 - <https://platform.claude.com/docs/en/about-claude/use-case-guides/overview>
 
 ## Teaching objectives
 
 By the end, the learner can:
 
-- Run a **requirements-to-architecture** pass: from stated business need, quality bar,
-  volume, latency budget, cost ceiling, and compliance posture to a defensible design
-- Name which **business value pillar** a solution is actually serving — CCAR-P lists five:
-  **efficiency** (same outcome, less input), **transformation** (something previously
-  impossible, not merely faster), **productivity** (people accomplishing more per unit
-  time), **cost** (direct spend reduction), and **performance SLAs** (a commitment about
-  latency, throughput, or availability). Use them as the exam's vocabulary for *why* a
-  system is being built, and recognize that they pull against each other: a transformation
-  case tolerates cost that an efficiency case cannot, and an SLA commitment constrains
-  designs that a productivity case would happily accept
-- Detect the **stated-versus-real pillar mismatch**: a sponsor who says "efficiency" but
-  measures headcount reduction, or one who asks for transformation and supplies an
-  efficiency budget. The architecture that follows differs, so the mismatch has to surface
-  before design, not after
-- Name the three **architectural patterns in the exam's own vocabulary** and place a given
-  problem in one:
-  - **Augmented LLM** — a single model call enhanced with what it needs to answer:
-    retrieval, tools, memory. One turn, no control flow to speak of; the augmentation is
-    the architecture. This is the right shape far more often than its reputation suggests,
-    and it's the baseline the other two must beat
+- **Delegate process components** (P1.1): break a described business process into its
+  components and assign each to **Claude**, **a human**, or **collaborative** handling
+  (Claude drafts or recommends, a human approves or decides), justifying each against:
+  - **Reversibility** — can the effect be undone cheaply and completely? Irreversible
+    effects (a payment, a sent external message, a deleted record) pull toward human
+    retention or approval
+  - **Stakes** — what does an error cost, and to whom? Low-stakes, high-volume steps are
+    the natural delegation targets
+  - **Accountability** — who must answer for the decision, by regulation, contract, or
+    org policy? Where a named human must be accountable, the human decides even if Claude
+    could; collaboration preserves the accountable decision while delegating the work
+  Recognize both failure directions: delegating an irreversible, high-stakes, or
+  accountable decision to Claude, and retaining reversible, low-stakes work with humans
+  so the system adds review delay without reducing risk. Where exactly a human gate sits
+  in an agentic flow is session 38 (P5.4); here, decide *who owns* each component
+- Name the four **architectural patterns** in the exam's vocabulary and place a problem
+  in one (P1.3):
+  - **Augmented LLM** — a single model call enhanced with retrieval, tools, or memory.
+    The baseline the others must beat
   - **Workflow** — predetermined steps orchestrated in code, with model calls at fixed
-    points. Control flow is yours, so it's testable, boundable, and debuggable
+    points. Control flow is yours: testable, boundable, debuggable
   - **Agentic** — the model directs control flow, choosing tools and sequence at runtime
-  Tier 1 taught this distinction as conversational/workflow/agentic; the exam's third term
-  is **augmented LLM**, which is not the same idea as a conversational assistant. Teach the
-  exam's vocabulary here and say plainly that it differs, so a question naming "augmented
-  LLM" reads as familiar rather than novel
-- Lay out an **end-to-end architecture as four stages — input → processing → output →
-  feedback loop** — and treat the fourth as load-bearing rather than decorative: what
-  production signal is captured (corrections, dismissals, escalations, thumbs-down), where
-  it goes, and what consumes it (the eval set, the prompt, the routing thresholds). A
-  design that can't say how it improves after launch is incomplete, and the feedback stage
-  is the one architects most often leave off the diagram
-- Select a model from **constraints rather than capability ranking**: identify the binding
-  constraint first, then choose the cheapest/fastest model that clears the quality bar
-- Explain the **tiered-model pattern**: a cheap model handling the common path with
-  escalation to a stronger one on low confidence or complexity — and name what it costs
-  (two prompts to maintain, two eval suites, a routing decision that can itself be wrong)
-- Explain the **effort/thinking dimension** as an alternative to changing models, and when
-  raising effort on a smaller model beats moving to a larger one
-- Decide the **API surface**: direct Messages API, Agent SDK, managed/hosted agents, or
-  Claude Code — on operational ownership and control grounds
-- Justify a design against the alternatives, including the deliberately boring one
-- Recognize **over-engineering** — agentic where a workflow fits, multi-agent where one
-  agent suffices, RAG where a static prompt would do — and articulate the cost of
-  unnecessary complexity in maintenance and evaluation burden
-- Design for the **quality bar that's actually required**, and push back on unstated
-  perfection assumptions
-- Explain why "we'll just use the best model" is a non-answer at enterprise scale
+  - **Skills-based** — reusable, packaged procedures (instructions, scripts, resources)
+    that an agent loads on demand when a task matches. The unit of reuse and governance
+    is the Skill: authored once, versioned, reviewed, and distributed across teams and
+    agents. Verify current Skill packaging and loading behaviour from live docs
+  Tier 1 taught conversational/workflow/agentic; say plainly that the exam's terms are
+  augmented LLM and Skills-based, which are not the same idea as a conversational
+  assistant
+- Select the pattern against the **three constraints the statement names**:
+  - **Reuse** — is the same procedure needed across many agents, teams, or tasks? That
+    favours Skills; one-off logic does not need packaging
+  - **Governance** — must the procedure be reviewed, versioned, and centrally
+    controlled? Workflows and Skills give an auditable artifact; agentic control flow is
+    harder to govern
+  - **Risk profile** — how bad is an unexpected action? High risk pulls control flow
+    into code (workflow); low risk and open-ended tasks tolerate agentic
+- **Justify the delegation boundary** each pattern establishes — what Claude decides and
+  what code or humans decide:
+  - Augmented LLM: Claude decides one answer; everything around it is fixed
+  - Workflow: code owns sequence and branching; Claude owns the content of each step
+  - Agentic: Claude owns sequence and tool choice inside the tools and permissions it is
+    given — the permission set *is* the boundary
+  - Skills-based: the Skill fixes the procedure Claude follows and the scripts it may
+    run; Claude decides when a Skill applies. A third-party Skill moves part of that
+    boundary to its author, which is a supply-chain and injection concern (session 35,
+    P5.2)
+- Make **value-based decisions** (P1.5): choose the option that **maximizes measurable
+  business outcome under a stated cost or SLA ceiling**. Treat the ceiling as a hard
+  filter first, then rank survivors by measurable outcome. Use the guide's pillars as
+  vocabulary — "such as" efficiency (same outcome, less input), transformation (something
+  previously impossible), productivity (more per person per unit time), **solution cost**
+  (what the solution itself costs to build and run), and **performance SLAs** (latency,
+  throughput, availability commitments) — noting the list is illustrative, not closed
+- **Weigh competing feature proposals**: given several proposals and one budget or SLA,
+  pick the one whose outcome is measurable and largest within the ceiling, and reject
+  proposals whose value is unmeasurable, whose cost breaks the ceiling, or that serve a
+  pillar the sponsor didn't state. Detect the **stated-versus-measured pillar mismatch**
+  (a sponsor who says "transformation" but sets an efficiency budget) before designing
+- Select a **model tier** (P2.1) that satisfies **all** binding constraints — latency,
+  cost, quality — for the stated workload profile: identify each binding constraint,
+  eliminate tiers that fail any, choose the cheapest survivor, and **state why each
+  rejected tier fails** (misses the quality bar; breaks the latency budget; breaks the
+  cost ceiling at the stated volume). Verify every tier's current positioning and price
+  from live docs
+- Weigh the alternatives a tier decision is often confused with: a better prompt, higher
+  effort or thinking on a smaller tier, or a **tiered/escalation pattern** (cheap tier on
+  the common path, stronger tier on hard cases) — and name what tiering costs: two prompts,
+  two eval suites, a router that can misroute
+- Recognize **over-engineering** — agentic where a workflow fits, Skills packaging for
+  logic used once, a larger tier where a smaller one clears the bar — and articulate its
+  cost in maintenance and evaluation burden
+- Know that a design is incomplete without a **feedback loop**, and leave the full
+  four-stage (input, processing, output, feedback) architecture evaluation to session 32
+  (P1.2)
 
 ## Decisions the exam actually tests
 
 | Decision | The tell that decides it |
 |---|---|
-| Larger model vs. better prompt/effort | Is the prompt already unambiguous and the failure genuinely reasoning? |
-| Single model vs. tiered with escalation | Is the cost gap large and the common path easy? |
-| Raise effort vs. change model | Which constraint is binding — capability or per-token cost? |
-| Messages API vs. Agent SDK vs. managed agents | Who owns the loop, the tools, and the operations? |
-| Claude Code vs. a built application | Is the user an engineer in a repo, or an end user in a product? |
-| Simplest sufficient design vs. flexible one | Is the requirement stable, or genuinely expected to change? |
-| Which value pillar governs | Is this efficiency, transformation, productivity, cost, or an SLA commitment? |
+| Delegate to Claude vs. retain with human | Is the effect reversible, the stakes low, and no named human accountable? |
+| Fully delegated vs. collaborative | Does a human have to own the decision even if Claude does the work? |
 | Augmented LLM vs. workflow vs. agentic | Can you enumerate the steps — and does anything need to choose them at runtime? |
-| Decompose vs. keep one agent | Do the parts have genuinely different tool needs or context budgets? |
-| Feedback loop now vs. later | Will you be able to tell, post-launch, whether it's getting better? |
+| Skills-based vs. inline logic | Is the procedure reused across agents or teams, and must it be governed as an artifact? |
+| Workflow vs. agentic under risk | How bad is an unplanned action, and must control flow be auditable? |
+| Which delegation boundary | What does the pattern let Claude decide, and is that within the risk profile? |
+| Which feature proposal | Which has the largest *measurable* outcome inside the cost or SLA ceiling? |
+| Which value pillar governs | Does the stated success metric match the stated pillar? |
+| Which model tier | Which is the cheapest tier that clears every binding constraint — and what does each rejected tier fail? |
+| Larger tier vs. better prompt/effort | Is the prompt already unambiguous and the failure genuinely capability? |
+| Single tier vs. tiered with escalation | Is the cost gap large and the common path easy? |
 
 ## How to run this session
 
-1. **Frame** — the exam rewards choosing the *sufficient* design, not the most capable one.
-   Name that this is the top Professional failure mode.
+1. **Frame** — the exam rewards the *sufficient* design and scores the rejections. Name
+   over-reach (most capable, most autonomous) as the top Professional failure mode.
 2. **Verify the model lineup** before teaching any name, ID, price, or limit. Tell the
-   learner explicitly that model IDs and prices must be checked, since a confidently stated
-   stale ID is exactly what an exam question can punish.
-3. **Teach the value pillars first**, because they decide what "good" means before any
-   constraint is weighed. Give five one-line project briefs and have the learner name the
-   governing pillar for each, then say what changes in the design if the pillar were
-   different. Include one brief where the stated pillar and the stated success metric
-   disagree — that mismatch is the exam-relevant case, and the architect's job is to
-   surface it rather than design past it.
-4. **Teach the requirements-to-architecture pass** as a repeatable order: pillar, quality
-   bar, volume, latency, cost, compliance, then design. Work one example end to end, and
-   draw it as the four stages — input, processing, output, feedback loop. When the learner
-   stops at "output", ask how they'd know in three months whether it was getting better;
-   the missing fourth stage is the teaching moment. Make them name the signal, where it's
-   stored, and what consumes it.
-5. **Teach the pattern trio in the exam's vocabulary** — augmented LLM, workflow, agentic.
-   Give six problems and have them place each, starting from the augmented-LLM baseline
-   and requiring a reason to move up. Flag the vocabulary difference from Tier 1 out loud:
-   the third pattern there was *conversational*; the exam's third term is *augmented LLM*,
-   and they are not the same idea. Then push one step further on the agentic cases: if it
-   decomposes, what are the parts, and do they differ enough in tools or context budget to
-   justify separate agents? Tier 1 taught the primitives; the Professional judgment is
-   whether to decompose at all.
-6. **Teach constraint-first model selection.** Give four workloads with different binding
-   constraints and have them choose, naming the constraint each time. Include one where the
-   cheapest model is right and one where it genuinely isn't.
-7. **Teach the tiered pattern** with its full cost, not just its savings. Ask what breaks
-   when the router misclassifies.
-8. **Teach the effort dimension** as a third axis besides model and prompt.
-9. **Teach API surface choice** as an ownership question.
-10. **Teach over-engineering detection.** Present three over-built designs and have the
-   learner simplify each, stating what's lost. Then ask for the one case where the complex
+   learner explicitly that model IDs and prices must be checked.
+3. **Teach delegation first** (P1.1). Give one business process of six to eight
+   components — e.g. intake, classification, lookup, drafting, an approval with financial
+   effect, an external send — and have the learner assign each to Claude, human, or
+   collaborative, justifying on reversibility, stakes, and accountability. Then flip one
+   constraint (a regulator names an accountable officer; an action becomes reversible) and
+   ask what moves. Push back on both failure directions.
+4. **Teach the value pillars and the ceiling** (P1.5). Give three competing feature
+   proposals and one stated cost or SLA ceiling; have the learner filter by the ceiling,
+   then rank by measurable outcome, and say why each loser loses. Include one proposal
+   whose value can't be measured, and one brief where the stated pillar and the success
+   metric disagree.
+5. **Teach the four patterns** (P1.3). Give six problems with stated reuse, governance,
+   and risk-profile constraints and have them place each, starting from the augmented-LLM
+   baseline and requiring a reason to move up. Include two where Skills-based is right
+   (a procedure reused by many teams and centrally reviewed) and one where it is
+   over-engineering. For each pick, make them state the delegation boundary — what Claude
+   decides, what code or humans decide.
+6. **Teach constraint-first tier selection** (P2.1). Give four workload profiles with
+   different binding constraints; for each the learner picks a tier and states, for every
+   rejected tier, which constraint it fails. Include one where the cheapest tier is right
+   and one where it genuinely isn't.
+7. **Teach the tier alternatives** — prompt, effort, tiered escalation — with their full
+   cost. Ask what breaks when the router misroutes.
+8. **Teach over-engineering detection.** Present three over-built designs and have the
+   learner simplify each, stating what's lost; then ask for the one case where the complex
    version was justified.
-11. **Teach justification.** Have them defend a design in three sentences to a skeptical
-   engineering director — this rehearses P6 as well.
-12. **Decision table** — walk all ten rows.
-13. **Scenario drill — 6 questions**, standalone Professional format. Include a
-    constraint-driven model choice, a tiered-pattern trade-off, an API surface decision, an
-    over-engineering identification, one item that turns on placing a problem in the
-    augmented-LLM / workflow / agentic trio, and one multiple-response on selection
+9. **Decision table** — walk all rows.
+10. **Scenario drill — 6 questions**, standalone Professional format. Include a
+    delegation assignment justified by reversibility/stakes/accountability, a pattern
+    selection where Skills-based competes with workflow, a delegation-boundary item, a
+    feature-proposal choice under a cost or SLA ceiling, a tier selection whose key
+    requires knowing why each rejected tier fails, and one multiple-response on selection
     criteria.
-14. **Distractor autopsy** — expect the most capable model chosen by default, complexity
-    chosen for hypothetical future needs, and an agentic design offered where an augmented
-    LLM answers the question.
-15. Record per `.agents/TUTORIAL.md` Step 5. Glossary every model ID and price verified,
+11. **Distractor autopsy** — expect the most capable tier chosen by default, an
+    irreversible or accountable decision delegated to Claude, every step kept with humans
+    "to be safe", Skills packaging for one-off logic, an agentic design where an
+    augmented LLM answers the question, and a feature proposal chosen for unmeasurable
+    value or one that breaks the stated ceiling.
+12. Record per `.agents/TUTORIAL.md` Step 5. Glossary every model ID and price verified,
     with the date.
 
 ## Out of scope
 
-- Scaling trade-offs → session 5
-- Reliability patterns → session 6
-- Cost optimization mechanics → session 9
-- Stakeholder defense in depth → session 12
-- Migration between models → session 13
+- Deployment surface and agent runtime (Messages API loop, Agent SDK, Managed Agents) →
+  session 29 (P1.6)
+- End-to-end four-stage architecture evaluation and orchestrator/subagent decomposition →
+  session 32 (P1.2, P1.4)
+- Reliability patterns → session 33
+- Third-party Skills as an injection surface → session 35 (P5.2)
+- Cost optimization mechanics → session 36 (P4.6)
+- Human-in-the-loop gate placement inside an agentic flow → session 38 (P5.4)
+- Stakeholder defense and ADRs → session 39 (P6.2)
+- Migration between model versions → session 40 (P4.7)
+- Reasoning-effort allocation for long-running agents → session 41 (P2.6)
+- Skill packaging for cache reuse → session 42 (P2.5); plugin/Skill distribution in
+  Claude Code → session 43 (P7.1)

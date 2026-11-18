@@ -5,10 +5,11 @@ domain is drawn from. Everything in `prompts/` traces back to a domain here.
 
 > **Verification note.** Every structural figure below (domains, weights, item
 > counts, durations, passing scores, scenario bank) was verified verbatim against
-> the official Anthropic exam guides on 2026-09-11 — see § Sources. Anthropic
-> revises blueprints; re-verify against those PDFs before your exam date. Do
-> *not* re-verify against <https://www.pearsonvue.com/us/en/anthropic.html>: that
-> page lists exam names only and contains none of these figures.
+> the official Anthropic exam guides — CCAR-F v1.0 on 2026-09-11, CCAR-P v1.1 on
+> 2026-11-18 — see § Sources. Anthropic revises blueprints; re-verify against those
+> PDFs before your exam date. Do *not* take figures from
+> <https://www.pearsonvue.com/us/en/anthropic.html>: it carries none of them, though
+> it is where exam-update dates are announced (see § Not a source).
 
 ---
 
@@ -20,21 +21,31 @@ which is which when describing this system.
 ### Layer 1 — Exam structure (authoritative)
 
 Domains, weights, item counts, durations, passing scores, and the CCAR-F scenario
-bank come from Anthropic's official exam guides. Both are v1.0, effective July
-2026, and are publicly fetchable without login from the Partner Academy CDN.
-Each states it "is the authoritative reference for candidates preparing to sit
-the exam."
+bank come from Anthropic's official exam guides, both publicly fetchable without
+login. Each states it "is the authoritative reference for candidates preparing to
+sit the exam."
 
 - [CCAR-F Exam Guide (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1783542750/Claude+Certified+Architect+%E2%80%93+Foundations+Exam+Guide.pdf)
-- [CCAR-P Exam Guide (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1783542810/Claude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf)
+  — v1.0, effective July 2026. Not part of the December 2026 update.
+- [CCAR-P Exam Guide v1.1 (PDF)](https://cc.sj-cdn.net/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1794946420/Claude_Certified_Architect_-_Professional_Exam_Guide_Updated_Dec_7.pdf)
+  — v1.1, **effective December 7, 2026**, published 2026-11-17. Its document control
+  summarizes the change as "Revised objectives, descriptions, and sample items."
+  The superseded [v1.0 (PDF)](https://everpath-course-content.s3-accelerate.amazonaws.com/instructor/6nizmqk8tpzpfjvt6qmmav7rh/public/1783542810/Claude+Certified+Architect+%E2%80%93+Professional+Exam+Guide.pdf)
+  applies only to sittings before December 7, 2026; this repo no longer teaches it.
 
 **Domain codes are the guides' domain numbers.** F3 is CCAR-F Domain 3 and P3 is CCAR-P
 Domain 3, so a code reads straight across to the guide and to a score report.
 
 CCAR-F's § 17 Appendix carries three lists that define scope precisely —
 **Technologies and Concepts**, **In-Scope Topics**, and **Out-of-Scope Topics**.
-CCAR-P has no appendix and no equivalent lists; its scope is the Domain 1–7 task
-statements in § 6 and nothing else.
+CCAR-P has no appendix and no equivalent lists; its scope is the Domain 1–7
+objectives in § 5 and nothing else.
+
+**Section numbers differ between the guides.** CCAR-F's objectives are its § 6 task
+statements. CCAR-P v1.1 dropped v1.0's candidate-profile section, so its objectives
+moved to **§ 5** (the guide calls them "skills"), How to Prepare to § 6, and sample
+questions to § 7. This repo calls both exams' objectives *task statements*; wherever a
+prompt file says "§ 6 task statement" about a `P` ID, read CCAR-P § 5.
 
 ### Layer 2 — Documentation map (editorial)
 
@@ -43,15 +54,18 @@ statements in § 6 and nothing else.
 guides' domains, task statements, and CCAR-F's appendix lists. No official source
 prescribes them.
 
-The only guide text pointing at documentation at all is CCAR-P § 7: "Review
-official Anthropic documentation for the Claude API, models, prompt engineering,
-MCP, and Skills." It names areas, not pages. CCAR-F never mentions documentation
-as a prep resource; its § 7 is hands-on build tasks only.
+The only guide text pointing at documentation at all is CCAR-P v1.1 § 6: "Review
+official Anthropic documentation and engineering guidance for the Claude Developer
+Platform, Agent Skills, Claude Code and the Claude Agent SDK, Claude Managed Agents,
+and the Model Context Protocol, as well as the feature-availability and data-handling
+differences across the Anthropic API, Amazon Bedrock, Google Vertex AI, and Microsoft
+Foundry." It names areas, not pages. CCAR-F never mentions documentation as a prep
+resource; its § 7 is hands-on build tasks only.
 
 ### Secondary — Anthropic Partner Academy prep courses
 
 A parallel interpretation of the same blueprints, useful as a cross-check but
-*not* authoritative: CCAR-P § 7 states "There is no single required course.
+*not* authoritative: CCAR-P § 6 states "There is no single required course.
 Anthropic does not guarantee that any particular resource ensures a passing
 result." Public without login (module titles, objectives, durations, CCAR-F
 lesson lists); actual lesson content is gated.
@@ -68,13 +82,17 @@ site-wide. Consult these pages manually; do not scrape them.
 
 - <https://www.pearsonvue.com/us/en/anthropic.html> — confirms the exams exist
   and handles scheduling. Contains no weights, item counts, durations, or scores.
+  It *is* where exam-content updates are announced, so check it when re-verifying:
+  on 2026-11-12 it announced the December 7, 2026 update to CCAR-P (alongside CCAO-F
+  and CCDV-F; not CCAR-F) and the November 17 release of the new guides.
 - Third-party prep sites (findskill.ai, prepgenaicerts.com and similar) — sell
   unofficial material; their claimed exam structure is unverified marketing.
 - Anthropic's **AI Fluency Framework** and its "4 D's" (Delegation, Description,
   Discernment, Diligence) — a real Anthropic-published framework, but not exam
-  scope. Verified 2026-09-11: `fluency`, `Delegation`, `Discernment`, and
-  `Diligence` appear nowhere in either exam guide, and CCAR-P's scope is its § 6
-  task statements alone. Reaches the Partner Academy catalog as education-sector
+  scope. Verified 2026-09-11 (and again against CCAR-P v1.1 on 2026-11-18):
+  `fluency`, `Delegation`, `Discernment`, and `Diligence` appear nowhere in either
+  exam guide, and CCAR-P's scope is its § 5 objectives alone. (v1.1's P1.1 says
+  "delegated to Claude" in its ordinary sense, not the framework's.) Reaches the Partner Academy catalog as education-sector
   material (developed with Rick Dakan, Ringling College of Art and Design;
   student and educator assignment guides), and the Academy lists it as
   recommended, not required. Two of its terms collide with this curriculum's
@@ -266,83 +284,144 @@ Claude API · Agent SDK · Claude Code · MCP · Claude Projects
 
 ## Exam 2 — Claude Certified Architect: Professional (CCAR-P)
 
+**Guide v1.1, effective December 7, 2026.** Everything in this section is quoted or
+derived from v1.1; see § Sources for v1.0.
+
 | Property | Value |
 |---|---|
-| Items | 63 |
+| Items | 70 — "of which 60 are scored and 10 are unscored items. Unscored items are not identified and do not affect your score." |
 | Duration | 120 minutes |
-| Format | **Standalone items** (not scenario-bundled) |
+| Item format | "Scenario-based multiple-choice items; each item states how many responses to select" |
 | Passing score | 720 scaled (100–1000) |
-| Prerequisites | None formally; assumes Foundations-level fluency |
-| Assumed experience | 3+ yrs architecture/platform engineering, 6+ mo Claude in production |
+| Delivery | Proctored: online and/or test center |
+| Validity | 12 months |
+| Prerequisites | None. CCAR-F is "recommended, but not required, preparation", and § 6 says its scope "is assumed knowledge for this exam" |
+| Assumed experience | 3+ yrs systems architecture or platform engineering, 6+ months hands-on with Claude in production |
+
+**Items are standalone, not scenario-bundled.** Unlike CCAR-F there is no scenario bank:
+each item carries its own scenario. The three § 7 samples run 75–95 words of stem plus four long options, and § 6
+warns that "exam scenarios present such artifacts" — architecture diagrams, configuration
+files, logs and traces, evaluation results, and code — "and expect you to reason from
+them." Write Professional items that way.
+
+**Option count.** All three v1.1 samples have four options (A–D), as the v1.0 samples did.
+The guide does not state an option count or how multiple-response items are scored.
 
 ### Domains
 
-| # | Domain | Weight | Task statements | Tier 3 sessions |
-|---|--------|--------|-----------------|-----------------|
-| P1 | Solution Design & Architecture | **17%** | 6 | 3 |
-| P2 | Claude Models, Prompting & Context Engineering | **13%** | 5 | 2 |
-| P3 | Integration | **19%** | 8 | 3 |
-| P4 | Evaluation, Testing & Optimization | **16%** | 6 | 3 |
-| P5 | Governance, Safety & Risk Management | **14%** | 5 | 2 |
-| P6 | Stakeholder Communication & Lifecycle Management | **14%** | 5 | 2 |
-| P7 | Developer Productivity & Operational Enablement | **7%** | 3 | 1 |
+| # | Domain | Weight | v1.0 | Task statements | Tier 3 sessions |
+|---|--------|--------|------|-----------------|-----------------|
+| P1 | Solution Design and Architecture | **18%** | 17% | 6 | 3 |
+| P2 | Claude Models, Prompting, and Context Engineering | **13%** | 13% | 6 | 2 |
+| P3 | Integration | **21%** | 19% | 8 | 3 |
+| P4 | Evaluation, Testing, and Optimization | **17%** | 16% | 7 | 3 |
+| P5 | Governance, Safety, and Risk Management | **16%** | 14% | 6 | 3 |
+| P6 | Stakeholder Communication and Lifecycle Management | **7%** | 14% | 3 | 1 |
+| P7 | Developer Productivity and Operational Enablement | **8%** | 7% | 3 | 1 |
 
-**P5, P6, P7 together are 35% of Professional and appear nowhere on Foundations.**
-They are the most common reason a strong Foundations candidate fails Professional —
-the curriculum treats them as first-class, not as an afterthought.
+`Tier 3 sessions` counts sessions by their `Domain` label in `.agents/SEQUENCE.md`; three
+labels changed with v1.1 so that session counts track the new weights (see the note under
+that table).
+
+**P5, P6, P7 together are 31% of Professional and appear nowhere on Foundations.** P6
+halved in v1.1, but P5 grew, and P5 is where Foundations-strong candidates are thinnest:
+compliance controls, injection surfaces, risk ranking, and bias sources.
 
 ### Task statements
 
-The CCAR-P guide numbers its domains but not the task statements under them, so these IDs
-are ours: `P` + domain number + the bullet's position in that domain's § 6 list. The `P`
-prefix keeps them distinct from CCAR-F IDs on drill cards, where a bare `3.1` already
-means a Foundations task. Every statement is quoted verbatim, so a revised guide that
-reorders or rewords a bullet shows up as a mismatch here rather than a silently wrong ID.
+v1.1 replaces v1.0's one-line bullets with **named objectives**, each a heading plus a
+one-sentence description, and the guide says "Each domain below lists the skills against
+which exam items are written." The IDs are ours: `P` + domain number + the objective's
+position in that domain's § 5 list. The `P` prefix keeps them distinct from CCAR-F IDs on
+drill cards, where a bare `3.1` already means a Foundations task.
 
-| ID | Task statement | Session |
-|---|---|---|
-| **P1.1** | Translate business problems into Claude-based AI solutions | S31 |
-| **P1.2** | Design end-to-end architectures (input → processing → output → feedback loops) | S31 |
-| **P1.3** | Select appropriate architectural patterns (workflow, agentic, augmented LLM) | S31 |
-| **P1.4** | Design multi-agent systems and orchestration strategies | S32 |
-| **P1.5** | Apply decomposition techniques for complex problem solving | S31 |
-| **P1.6** | Align solutions to business value pillars (efficiency, transformation, productivity, cost, performance SLAs) | S31 |
-| **P2.1** | Select appropriate Claude models based on trade-offs | S31 |
-| **P2.2** | Design system prompts, templates, and guardrails | S42 |
-| **P2.3** | Apply prompt engineering techniques (zero-shot, few-shot, chain-of-thought) | S42 |
-| **P2.4** | Optimize context windows and manage token usage | S41 |
-| **P2.5** | Implement prompt reuse strategies (caching, modular prompts, Skills) | S42 |
-| **P3.1** | Evaluate tool/agent configuration for capability bloat | S41 |
-| **P3.2** | Analyze authentication and authorization requirements to identify security gaps | S28 |
-| **P3.3** | Evaluate accuracy-latency trade-offs and justify configuration decisions | S32 |
-| **P3.4** | Analyze observability challenges and select monitoring strategies at scale | S33 |
-| **P3.5** | Design a RAG pipeline with appropriate chunking and indexing strategies | S30 |
-| **P3.6** | Apply retrieval strategies matched to data shape and query pattern | S30 |
-| **P3.7** | Evaluate connection protocols and select the appropriate integration mechanism (MCP, API/CLI, agent-to-agent) | S28 |
-| **P3.8** | Evaluate progressive discovery vs. monolithic context strategy | S41 |
-| **P4.1** | Define evaluation metrics (accuracy, latency, cost, safety, security) | S34 |
-| **P4.2** | Design evaluation datasets and test frameworks using mixed methodologies | S34 |
-| **P4.3** | Conduct A/B testing and iterative improvements | S34 |
-| **P4.4** | Diagnose system issues (prompt failure, hallucinations, model mismatch) | S33 |
-| **P4.5** | Optimize token usage, latency, and cost-performance trade-offs | S36 |
-| **P4.6** | Monitor system performance using logging and observability tools | S33 |
-| **P5.1** | Implement guardrails and safety controls | S35 |
-| **P5.2** | Identify risks, limitations, and failure modes of LLM systems | S38 |
-| **P5.3** | Apply human-in-the-loop validation strategies | S38 |
-| **P5.4** | Ensure compliance with regulations (e.g., GDPR, HIPAA, FedRAMP) | S37 |
-| **P5.5** | Address ethical AI considerations (bias, fairness, transparency) | S38 |
-| **P6.1** | Conduct structured discovery and requirement gathering | S39 |
-| **P6.2** | Communicate architectural decisions and trade-offs | S39 |
-| **P6.3** | Manage stakeholder feedback loops and expectation alignment (including SLAs) | S39 |
-| **P6.4** | Document architectures and provide implementation guidance | S39 |
-| **P6.5** | Support lifecycle phases (discovery, design, handoff, monitoring, iteration) | S40 |
-| **P7.1** | Configure Claude tools and environments for teams (e.g., Claude Code) | S43 |
-| **P7.2** | Improve developer workflows using AI-assisted tooling | S43 |
-| **P7.3** | Support debugging and operational issue resolution | S43 |
+The `Task statement` column quotes the guide's description verbatim. It carries the scope;
+the heading is a label. The descriptions are written as **diagnose-and-select** tasks
+("Analyzing…", "Evaluating…", "and selecting the…") against stated constraints, which is
+the shape items take. A session teaching the concept without the selection under
+constraint teaches the wrong skill.
+
+| ID | Objective | Task statement (verbatim) | Session |
+|---|---|---|---|
+| **P1.1** | Task Delegation Between Claude and Humans | Determining which components of a described business process should be delegated to Claude, retained by humans, or handled collaboratively, and justifying each assignment against reversibility, stakes, and accountability. | S31 |
+| **P1.2** | End-to-End Architecture Evaluation | Evaluating whether a proposed end-to-end architecture (input, processing, output, feedback) satisfies stated scalability, maintainability, and access-control requirements, and identifying the component that fails first under a specified load or trust condition. | S32 |
+| **P1.3** | Architectural Pattern Selection | Selecting among workflow, agentic, augmented-LLM, and Skills-based architectural patterns for a use case with stated reuse, governance, and risk-profile constraints, and justifying the delegation boundary the selected pattern establishes. | S31 |
+| **P1.4** | Orchestrator and Subagent Decomposition | Evaluating a proposed orchestrator/subagent decomposition for a multi-step workload against stated observability and error-recovery requirements, and identifying where task boundaries, control flow, or result synthesis will fail. | S32 |
+| **P1.5** | Value-Based Architectural Decisions | Selecting the architectural option that maximizes measurable business outcome under a stated cost or SLA ceiling, weighing competing feature proposals against stated business value pillars such as efficiency, transformation, productivity, solution cost, and performance SLAs. | S31 |
+| **P1.6** | Deployment Surface and Agent Runtime Selection | Selecting a deployment surface (Anthropic API, Amazon Bedrock, Google Vertex AI, Microsoft Foundry) and an agent runtime (Messages API loop, self-hosted Agent SDK or headless Claude Code, Claude Managed Agents) under data residency, compliance, model-availability, and operational-ownership constraints, and justifying the trade-offs the selection imposes on latency, feature availability, hosting, session state, sandboxing, and data custody. | S29 |
+| **P2.1** | Model Tier Selection | Selecting the Claude model tier that satisfies all binding latency, cost, and quality constraints for a stated workload profile, and identifying why each rejected alternative fails. | S31 |
+| **P2.2** | System Prompt Diagnosis and Revision | Diagnosing the underspecification in a system prompt that produces degraded or inconsistent output, and selecting the revision that constrains scope, format, and behavior without over-constraining legitimate variation. | S42 |
+| **P2.3** | Prompting Technique Selection | Applying the prompting technique (zero-shot, few-shot, prompted reasoning versus native thinking, structured output) that addresses an observed failure pattern for a task of stated complexity without unnecessary token cost. | S42 |
+| **P2.4** | Context Composition and Token Economics | Analyzing context composition and caching behavior against a token budget and a defined call volume to determine where token consumption can be reduced without loss of task-relevant information. | S41 |
+| **P2.5** | Cache Breakpoints and Reusable Packaging | Applying cache breakpoints and modular or Skill-based packaging to a repeated prompt sequence so that stable content precedes dynamic content and reuse is maximized across the stated call pattern. | S42 |
+| **P2.6** | Reasoning Effort and Context Lifecycle | Allocating reasoning effort and selecting a context lifecycle strategy (context editing, memory tool, compaction) that sustains task performance across the stated session length for a long-running agent workload with stated latency and accuracy requirements. | S41 |
+| **P3.1** | Least-Privilege Tool Configuration | Evaluating an agent or subagent tool configuration against least-privilege and minimal-footprint principles, and determining which tool connections to remove, scope down, or replace with a context-efficient access pattern. | S41 |
+| **P3.2** | Authentication and Authorization Posture | Analyzing the authentication and authorization posture of an integration design to identify credential exposure and privilege escalation risks, and specifying the mitigation for each. | S28 |
+| **P3.3** | Relieving the Binding Performance Constraint | Evaluating candidate configuration changes (retrieval depth, model tier, caching, call pattern) for a system whose dominant constraint is accuracy or latency, and selecting the change that relieves the binding constraint at least cost to the other. | S32 |
+| **P3.4** | Instrumentation and Monitoring Gaps | Analyzing the instrumentation gap in a scaled agentic architecture where a described failure went undetected, and selecting the monitoring strategy that would have surfaced it. | S33 |
+| **P3.5** | Retrieval Architecture Selection | Selecting among retrieval architectures (pre-built RAG pipeline, agentic search with tools, full-corpus context) based on corpus characteristics, query pattern, and latency and cost limits, and, when indexing is chosen, specifying the contextual-retrieval and fallback configuration that maximizes retrieval quality within those limits. | S30 |
+| **P3.6** | Connection Mechanism Selection | Evaluating MCP, direct API/CLI, and agent-to-agent handoff against scenario constraints on latency, security, and statefulness, and selecting the connection mechanism the constraints favor. | S28 |
+| **P3.7** | Progressive Discovery vs. Monolithic Context Loading | Evaluating progressive discovery against loading everything into context up front for a task with stated context demands and latency tolerance, and selecting the strategy whose context economics fit the workload. | S41 |
+| **P3.8** | Production Reliability Controls | Analyzing the failure pattern in error traces or throughput data from a production integration, and specifying the reliability control (rate-limit handling, retry and backoff, idempotency for side-effecting tools, or fallback routing) that addresses it without introducing duplicate effects. | S33 |
+| **P4.1** | Evaluation Coverage Gaps | Analyzing an existing evaluation suite after a failure reached production to determine which metric dimension (accuracy, groundedness, latency, cost, safety, security) or grading target was missing, and specifying the metric that would have detected the failure pre-release. | S34 |
+| **P4.2** | Deriving Evaluations from Business Processes | Determining which portion of a business process constitutes a valid evaluation for a decision it must support (model change, prompt change, release gate), deriving the success criterion from the business outcome, and selecting the test-methodology mix that covers the deployed distribution. | S34 |
+| **P4.3** | LLM-as-Judge Design and Bias | Evaluating the design of an LLM-as-judge or rubric-based evaluation whose results are inconsistent with human review, and selecting the correction that addresses the responsible bias (position, verbosity, self-preference, judge drift). | S34 |
+| **P4.4** | Experimental Design for Configuration Comparison | Applying an experimental design that, within a stated sample and cost budget, yields an interpretable comparison of two candidate prompt or model configurations, including the number of trials per case needed to separate the configuration effect from run-to-run variance. | S34 |
+| **P4.5** | Root-Cause Isolation from Logs and Traces | Isolating the root cause of a failing Claude system from its logs or traces among prompt failure, retrieval failure, hallucination, tool or subagent error, and model mismatch, and specifying the corrective action. | S33 |
+| **P4.6** | Cost and Latency Optimization | Analyzing cost and latency telemetry, including cache hit rates, to determine where spend or latency is concentrated, and specifying the optimization that reduces it without violating the stated quality floor. | S36 |
+| **P4.7** | Model Version Migration | Evaluating migration readiness from a model deprecation timeline and regression results for a candidate version, and selecting the response (pin, re-tune prompts, re-baseline evaluations, or defer) that manages behavioral drift within the timeline. | S40 |
+| **P5.1** | Guardrail Placement | Analyzing guardrail placement in a system design against a described misuse path, and selecting the control that closes the path without degrading a stated legitimate use case. | S35 |
+| **P5.2** | Prompt Injection Surface and Controls | Analyzing the injection surface of an architecture whose model context includes retrieved documents, tool results, MCP server responses, or third-party Skills, and specifying the controls that prevent untrusted content from being treated as instruction. | S35 |
+| **P5.3** | Risk Assessment and Ranking | Analyzing a proposed deployment for risk categories (attack surface, failure modes, token and quota exhaustion, dependency and supply-chain risk) and ranking them by exposure. | S38 |
+| **P5.4** | Human-in-the-Loop Checkpoints | Analyzing where human-in-the-loop checkpoints must sit in an agentic workflow containing irreversible or high-stakes actions, and specifying gates that pause execution without stalling acceptable-risk paths. | S38 |
+| **P5.5** | Architectural Controls for Compliance Obligations | Evaluating candidate architectural controls (data residency and deployment surface, retention and zero-data-retention configuration, PII detection and redaction, audit logging, tenant isolation) against a stated compliance obligation, and selecting the control set that evidences the obligation. | S37 |
+| **P5.6** | Bias Source Identification and Mitigation | Evaluating the evidence for bias when outputs or a dataset show disparate results across groups, and selecting the mitigation appropriate to its source, distinguishing data bias from prompt-framing and evaluation-design bias. | S38 |
+| **P6.1** | Unsupportable Commitments in Requirements and SLAs | Identifying a commitment in discovery notes or a draft SLA that the proposed Claude architecture cannot meet, and specifying the requirement clarification or architectural change that resolves it. | S39 |
+| **P6.2** | Architecture Decision Records | Evaluating a draft architecture decision record against a stakeholder constraint it fails to address, and selecting the revision that makes the trade-off and its residual risk explicit without overstating certainty about model behavior. | S39 |
+| **P6.3** | Operational Handoff Completeness | Identifying the missing assumption, dependency, or runbook element in a handoff package that would block the team receiving a Claude system entering operation, and specifying the documentation that closes the gap. | S40 |
+| **P7.1** | Packaging and Distributing Claude Code Workflows | Evaluating how to package and distribute a Claude Code workflow proven on one team across an organization, including plugin contents (skills, hooks, subagents, commands, MCP configuration), marketplace, and managed settings, and deciding which controls are enforced centrally versus left to teams so the workflow stays safe when it runs unattended. | S43 |
+| **P7.2** | Agent SDK and Claude Code Configuration | Configuring the Claude Agent SDK or Claude Code (permission modes such as default, acceptEdits, plan, auto, dontAsk, and bypassPermissions; hooks; subagent definitions; headless or CI operation) to support a team workflow within stated safety and automation guardrails. | S43 |
+| **P7.3** | Accountability for AI-Generated Code | Analyzing the review and accountability process of a team adopting AI-assisted development, and identifying the control that preserves human ownership of AI-generated code. | S43 |
 
 `Session` is the Tier 3 session that owns the statement, numbered as in
 `.agents/SEQUENCE.md` § Tier 3. Ownership follows content, not the session's `Domain`
 label — see the note under that table.
+
+### What changed from v1.0
+
+Recorded so a maintainer can audit the re-mapping, and so material taught under v1.0 is
+recognizable. **IDs were renumbered**: a v1.0 `P3.5` and a v1.1 `P3.5` are different
+objectives.
+
+- **Format:** 63 items → 70 (60 scored + 10 unscored); "multiple-choice and
+  multiple-response" → "scenario-based multiple-choice", still stating how many to select.
+- **Weights:** P1 +1, P3 +2, P4 +1, P5 +2, P7 +1; **P6 −7** (14% → 7%).
+- **Dropped from scope:** structured discovery and requirement gathering, stakeholder
+  feedback loops, general lifecycle-phase support (v1.0 P6.1, P6.3, P6.5 as written);
+  "improve developer workflows" and "support debugging" as stand-alone P7 objectives;
+  RAG *chunking* strategy as a named objective (v1.1 P3.5 keeps indexing only as the
+  "when indexing is chosen" branch); the "capability bloat" and "mixed methodologies"
+  wording (now "least-privilege and minimal-footprint" and "test-methodology mix").
+- **New to scope:** Claude/human task delegation (P1.1); Skills-based as a fourth
+  architectural pattern (P1.3); deployment surface *and agent runtime* selection,
+  including Claude Managed Agents and Microsoft Foundry (P1.6); prompted reasoning versus
+  native thinking (P2.3); cache breakpoints (P2.5); reasoning effort and context lifecycle
+  — context editing, memory tool, compaction (P2.6); agentic search and full-corpus context
+  as retrieval architectures (P3.5); production reliability controls — rate limits,
+  backoff, idempotency, fallback routing (P3.8); groundedness as an eval dimension (P4.1);
+  deriving evals from business processes (P4.2); named judge biases — position, verbosity,
+  self-preference, judge drift (P4.3); trials per case against run-to-run variance (P4.4);
+  retrieval failure and tool/subagent error as root causes (P4.5); cache hit rates (P4.6);
+  model version migration (P4.7, moved from P6); third-party Skills as an injection
+  surface (P5.2); token/quota exhaustion and supply-chain risk (P5.3); data vs.
+  prompt-framing vs. evaluation-design bias (P5.6); unsupportable SLA commitments (P6.1);
+  ADRs (P6.2); operational handoff packages (P6.3); plugin marketplaces and managed
+  settings (P7.1); the six permission modes and headless/CI operation (P7.2);
+  accountability for AI-generated code (P7.3).
+- **Sample items:** all three replaced. v1.1's samples are longer, constraint-dense, and
+  reward naming the binding constraint *and* the trade-off accepted (Sample 1), the
+  enforceable control over the prompt-level one (Sample 2), and gate placement by
+  reversibility and stakes (Sample 3).
 
 ---
 
@@ -371,6 +450,8 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://code.claude.com/docs/en/commands>
 - <https://code.claude.com/docs/en/permissions> · <https://code.claude.com/docs/en/permission-modes>
 - <https://code.claude.com/docs/en/plugins> · <https://code.claude.com/docs/en/plugins-reference>
+- <https://code.claude.com/docs/en/plugins/create-marketplace> · <https://code.claude.com/docs/en/plugins/host-marketplace> — P7.1 org distribution
+- <https://code.claude.com/docs/en/auto-mode-config> · <https://code.claude.com/docs/en/agent-sdk/permissions> — P7.2 permission modes
 - <https://code.claude.com/docs/en/github-actions> · <https://code.claude.com/docs/en/gitlab-ci-cd>
 - <https://code.claude.com/docs/en/code-review>
 - <https://code.claude.com/docs/en/headless> · <https://code.claude.com/docs/en/cli-reference>
@@ -417,6 +498,8 @@ API/platform docs on `platform.claude.com`. (Both moved from `docs.claude.com`
 - <https://platform.claude.com/docs/en/managed-agents/overview>
 - <https://platform.claude.com/docs/en/managed-agents/webhooks>
 - <https://platform.claude.com/docs/en/managed-agents/environments>
+- <https://platform.claude.com/docs/en/managed-agents/sessions> · <https://platform.claude.com/docs/en/managed-agents/tools> — P1.6 runtime selection
+- <https://platform.claude.com/docs/en/api/errors> · <https://platform.claude.com/docs/en/api/rate-limits> — P3.8 reliability controls
 - <https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock>
 - <https://platform.claude.com/docs/en/build-with-claude/claude-on-vertex-ai>
 - <https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry>

@@ -159,22 +159,38 @@ File numbers restart at `01` and do not match session numbers — session 28 is
 
 | # | File | Session | Domain | Wt | Owns |
 |---|------|---------|--------|-----|------|
-| 28 | `prompts/tier3/01-enterprise-integration.md` | Enterprise Integration Patterns | P3 | 19% | P3.2, P3.7 |
-| 29 | `prompts/tier3/02-deployment-surfaces.md` | Bedrock, Vertex, Foundry, Gateways | P3 | 19% | — |
-| 30 | `prompts/tier3/03-data-integration.md` | Files, Citations, RAG, and Data Wiring | P3 | 19% | P3.5, P3.6 |
-| 31 | `prompts/tier3/04-solution-design.md` | Solution Design and Model Selection | P1 | 17% | P1.1, P1.2, P1.3, P1.5, P1.6, P2.1 |
-| 32 | `prompts/tier3/05-architecture-tradeoffs.md` | Architecture Trade-offs at Scale | P1 | 17% | P1.4, P3.3 |
-| 33 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P1 | 17% | P3.4, P4.4, P4.6 |
-| 34 | `prompts/tier3/07-eval-design.md` | Designing Evals That Catch Regressions | P4 | 16% | P4.1, P4.2, P4.3 |
-| 35 | `prompts/tier3/08-guardrails-quality.md` | Guardrails: Hallucination, Jailbreak, Leak | P4 | 16% | P5.1 |
-| 36 | `prompts/tier3/09-cost-latency-optimization.md` | Cost and Latency Optimization | P4 | 16% | P4.5 |
-| 37 | `prompts/tier3/10-governance-compliance.md` | Governance, Residency, and Compliance | P5 | 14% | P5.4 |
-| 38 | `prompts/tier3/11-safety-risk.md` | Safety Controls and Risk Management | P5 | 14% | P5.2, P5.3, P5.5 |
-| 39 | `prompts/tier3/12-stakeholder-communication.md` | Defending Architecture Decisions | P6 | 14% | P6.1, P6.2, P6.3, P6.4 |
-| 40 | `prompts/tier3/13-lifecycle-management.md` | Lifecycle: Migration and Deprecation | P6 | 14% | P6.5 |
-| 41 | `prompts/tier3/14-context-engineering-scale.md` | Context Engineering at Scale | P2 | 13% | P2.4, P3.1, P3.8 |
+| 28 | `prompts/tier3/01-enterprise-integration.md` | Enterprise Integration Patterns | P3 | 21% | P3.2, P3.6 |
+| 29 | `prompts/tier3/02-deployment-surfaces.md` | Deployment Surfaces and Agent Runtimes | P1 | 18% | P1.6 |
+| 30 | `prompts/tier3/03-data-integration.md` | Files, Citations, Retrieval, and Data Wiring | P3 | 21% | P3.5 |
+| 31 | `prompts/tier3/04-solution-design.md` | Solution Design and Model Selection | P1 | 18% | P1.1, P1.3, P1.5, P2.1 |
+| 32 | `prompts/tier3/05-architecture-tradeoffs.md` | Architecture Trade-offs at Scale | P1 | 18% | P1.2, P1.4, P3.3 |
+| 33 | `prompts/tier3/06-production-reliability.md` | Production Reliability Patterns | P3 | 21% | P3.4, P3.8, P4.5 |
+| 34 | `prompts/tier3/07-eval-design.md` | Designing Evals That Catch Regressions | P4 | 17% | P4.1, P4.2, P4.3, P4.4 |
+| 35 | `prompts/tier3/08-guardrails-quality.md` | Guardrails and the Injection Surface | P5 | 16% | P5.1, P5.2 |
+| 36 | `prompts/tier3/09-cost-latency-optimization.md` | Cost and Latency Optimization | P4 | 17% | P4.6 |
+| 37 | `prompts/tier3/10-governance-compliance.md` | Governance, Residency, and Compliance | P5 | 16% | P5.5 |
+| 38 | `prompts/tier3/11-safety-risk.md` | Safety Controls and Risk Management | P5 | 16% | P5.3, P5.4, P5.6 |
+| 39 | `prompts/tier3/12-stakeholder-communication.md` | Defending Architecture Decisions | P6 | 7% | P6.1, P6.2 |
+| 40 | `prompts/tier3/13-lifecycle-management.md` | Lifecycle: Migration, Deprecation, Handoff | P4 | 17% | P4.7, P6.3 |
+| 41 | `prompts/tier3/14-context-engineering-scale.md` | Context Engineering at Scale | P2 | 13% | P2.4, P2.6, P3.1, P3.7 |
 | 42 | `prompts/tier3/15-model-steering.md` | Model Steering and Prompt Portfolios | P2 | 13% | P2.2, P2.3, P2.5 |
-| 43 | `prompts/tier3/16-developer-enablement.md` | Developer Productivity and Enablement | P7 | 7% | P7.1, P7.2, P7.3 |
+| 43 | `prompts/tier3/16-developer-enablement.md` | Developer Productivity and Enablement | P7 | 8% | P7.1, P7.2, P7.3 |
+
+Ownership tracks CCAR-P **v1.1** (effective December 7, 2026), whose 39 objectives are
+quoted in [`BLUEPRINT.md`](../BLUEPRINT.md) § Exam 2; every one is owned exactly once. The
+v1.1 re-mapping kept all sixteen sessions and their order, and relabelled four sessions'
+`Domain` so that session counts track the new weights (P1 3, P2 2, P3 3, P4 3, P5 3, P6 1,
+P7 1 against 18/13/21/17/16/7/8%):
+
+- **29 → P1.** Deployment surface and agent runtime selection is now P1.6. Under v1.0 the
+  session owned nothing.
+- **33 → P3.** Its objectives are P3.4, P3.8 and P4.5; none is P1.
+- **35 → P5.** Guardrail placement and the injection surface are P5.1 and P5.2.
+- **40 → P4.** Model version migration moved from P6 to P4.7, and P6 halved to 7%.
+
+As in Tier 1, a session's label is for routing; readiness credits each objective to the
+domain `BLUEPRINT.md` assigns it, so mixed ownership (31 owns P2.1, 40 owns P6.3) costs
+nothing.
 
 ### Tier 4 — Professional capstones (4 sessions + gate)
 
@@ -187,4 +203,4 @@ session 44 is `tier4/01-…`, an offset of 43.
 | 45 | `prompts/tier4/02-capstone-regulated-agent.md` | Capstone: Agent in a Regulated Industry |
 | 46 | `prompts/tier4/03-capstone-scale-migration.md` | Capstone: Scale and Model Migration |
 | 47 | `prompts/tier4/04-weak-domain-blitz.md` | Weak-Domain Blitz (reads readiness, targets gaps) |
-| 48 | **GATE-P** | Professional Mock Exam (63q / 120 min) |
+| 48 | **GATE-P** | Professional Mock Exam (70q / 120 min) |

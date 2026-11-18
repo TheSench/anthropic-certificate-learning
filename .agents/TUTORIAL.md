@@ -225,7 +225,7 @@ Run only when `learner/profile.md` doesn't exist.
    - How much hands-on Claude work have you done — Claude Code, Agent SDK, the API, MCP? Any of it in production?
    - Which of these are you weakest on: enterprise integration, evals/testing, governance & compliance, stakeholder communication, cost/model selection?
    - Have you ever had to defend an architecture to a security review, own a compliance
-     requirement, or present a technical decision to executives? (This probes P5/P6 — 28%
+     requirement, or present a technical decision to executives? (This probes P5/P6 — 23%
      of Professional — which builders routinely under-report because they've never had to.)
    - How long do you want sessions to run, and do you prefer depth over pace?
    - Do you have a target exam date for Foundations?
@@ -422,6 +422,11 @@ after it. Three of five items in one recorded session were defective this way.
      step"**, not "which is correct". Several turn on proportionality: an option can be "a
      valid architectural choice" and still wrong as a *first* step.
    - Wrong options are mostly **correct-but-disproportionate**, not false.
+   - **Professional items** calibrate against CCAR-P v1.1 § 7 instead (three samples,
+     reasoned in `BLUEPRINT.md` § Exam 2). These are longer and denser: several binding
+     constraints per stem, options that pair a choice with its justification or accepted
+     trade-off, and keys that turn on the *enforceable* control over the prompt-level one
+     and on reversibility and stakes.
    - The exam does use **non-existent features** as distractors (`CLAUDE_HEADLESS`, a
      `--batch` flag, `.claude/config.json`). Authoring one means verifying against live
      docs that the feature really doesn't exist — invent a plausible flag without checking
@@ -542,8 +547,16 @@ saying `mock`.
 - Distribute questions across domains at blueprint weight: F1 27% (~16), F2 18% (~11),
   F3 20% (~12), F4 20% (~12), F5 15% (~9).
 
-**Professional mock (`GATE-P`)** — 63 standalone items, weighted P1 17% (~11),
-P2 13% (~8), P3 19% (~12), P4 16% (~10), P5 14% (~9), P6 14% (~9), P7 7% (~4).
+**Professional mock (`GATE-P`)** — 70 standalone scenario-based items in 120 minutes,
+weighted to the v1.1 blueprint: P1 18% (~13), P2 13% (~9), P3 21% (~15), P4 17% (~12),
+P5 16% (~11), P6 7% (~5), P7 8% (~5).
+- The real exam scores 60 of its 70 items and does not identify the 10 unscored ones.
+  Run all 70, so the time pressure is real, and **score all 70**. No item can be
+  identified as unscored on exam day, so each one gets full effort, and 70 items give
+  more evidence than 60.
+- Build items the way v1.1 § 6 says the exam does: scenarios that **present an artifact
+  and expect reasoning from it** — an architecture sketch, a configuration file, a log or
+  trace excerpt, eval results, a code snippet. At least a third of the items should carry one.
 
 **During the mock:**
 - **Pre-batch every group before presenting it** — see [Item pre-batch](#item-pre-batch).
